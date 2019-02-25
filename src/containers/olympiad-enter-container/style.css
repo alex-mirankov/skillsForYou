@@ -1,0 +1,16 @@
+.cards-olympic {
+    display: flex;
+    justify-content: space-between;
+}
+
+.page-olympic {
+    width: 1170px;
+    margin: 0 auto;
+}
+
+.olympic-header {
+    color: #141313;
+    font-family: "gilroy_extra_bold";
+    font-size: 36px;
+    font-weight: 400;
+}

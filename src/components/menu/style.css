@@ -1,0 +1,12 @@
+.menu-item__text {
+  margin-left: 12px;
+  color: #6f6464;
+  font-weight: 700;
+  font-family: "gilroy_extra_bold";
+}
+
+.menu__icon_color {
+  color: white !important;
+  margin-bottom: 11px !important;
+  
+}

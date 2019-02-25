@@ -1,0 +1,56 @@
+.chat__size {
+    width: 570px;
+}
+
+.chat_beauty {
+    border: 1px solid #cfcdcd;
+    background-color: #fcfcfc;
+    border-radius: 10px;
+}
+
+.chat_position {
+    margin-top: 50px;
+    margin-bottom: 190px; 
+}
+
+.chat__header {
+    padding-top: 36px;
+    padding-bottom: 22px;
+    padding-left: 13px;
+    display: flex;
+}
+
+.chat__image {
+    width: 35px;
+    height: 36px;
+}
+
+.chat__main-p {
+    color: #010101;
+    font-family: 'gilroy_extra_bold';
+    font-size: 1.4rem;
+    margin-left: 50px;
+    line-height: 2;
+}
+
+.chat__message {
+    width: 370px;
+    height: 170px;
+    margin: 100px 100px 0;
+}
+
+.chat__button {
+    margin: 50px 30px 75px 100px;
+    width: 170px;
+    height: 44px;
+    box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    border: none;
+    background-color: #feaf55;
+    cursor: pointer;
+    outline: none;
+    color: #fffefe;
+    font-family: 'gilroy_extra_bold';
+    font-size: 1.1rem;
+    text-align: center;
+}

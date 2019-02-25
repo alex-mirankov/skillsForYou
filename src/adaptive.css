@@ -1,0 +1,8 @@
+@media (max-width: 1700px) {
+    .mechanic-item1 {
+        display: none;
+    }
+    .mechanic-item2 {
+        display: none;
+    }
+}

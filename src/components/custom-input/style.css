@@ -1,0 +1,39 @@
+.custom-input-container {
+  font-size: 1.28rem;
+  font-family: "gilroy_light";
+  font-weight: 600;
+}
+
+.custom-input__text {
+  width: 270px;
+  height: 32px;
+  border: 1px solid black;
+  border-radius: 9px;
+  margin-bottom: 15px;
+  padding-top: 5px;
+
+  cursor: pointer;
+}
+
+.custom-input__pop-up-panel {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 270px;
+  position: absolute;
+  border: 1px solid silver;
+  border-radius: 10px;
+  background: white;
+}
+
+.custom-input__value {
+  display: flex;
+  justify-content: flex-start;
+  padding: 15px 0 15px 15px;
+  cursor: pointer;
+}
+
+.custom-input__value_hover:hover {
+  background-color: rgba(13, 169, 189, 0.54);
+  transition: 0.5s;
+}

@@ -1,0 +1,84 @@
+.home-work__size {
+  width: 570px;
+}
+
+.home-work_position {
+  margin-top: 50px;
+}
+
+.home-work_beauty {
+  border: 1px solid #cfcdcd;
+  background-color: #fcfcfc;
+  border-radius: 10px;
+}
+
+.home-work__header {
+  border-bottom: 1px solid #cfcdcd;
+  padding-top: 36px;
+  padding-bottom: 22px;
+  padding-left: 13px;
+  display: flex;
+}
+
+.home-work__image {
+  width: 43px;
+  height: 43px;
+  padding-right: 41px;
+}
+
+.home-work__p {
+  color: #010101;
+  font-size: 1.4rem;
+  font-family: "gilroy_extra_bold";
+  padding-right: 65px;
+}
+
+.home-work__link {
+  border: none;
+  background: inherit;
+  outline: none;
+  color: #0d6672;
+  font-size: 1rem;
+  font-family: "gilroy_light";
+  height: 20px;
+  line-height: 1.5;
+  cursor: pointer;
+  padding-top: 5px;
+}
+
+.home-work__description {
+  padding: 30px 40px 100px 30px;
+  color: #5b5a5a;
+  font-size: 1.28rem;
+  font-family: "gilroy_light";
+}
+
+.home-work__info {
+  border-top: 1px solid #cfcdcd;
+  padding-top: 36px;
+  padding-bottom: 22px;
+  padding-left: 13px;
+  display: flex;
+}
+
+.home-work__image-info {
+  width: 33px;
+  height: 42px;
+}
+
+.home-work__text-info {
+  font-size: 1.2rem;
+  font-family: "gilroy_light";
+  color: #000000;
+  padding-right: 85px;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+.home-work__link_info {
+  line-height: 3;
+}
+
+.home-work__text-info_light {
+  color: #716d6d;
+}

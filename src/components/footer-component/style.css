@@ -1,0 +1,146 @@
+.page__flex{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.footer__size{
+  width: 100%;
+  height: 230px;
+}
+
+.footer_back-styles{
+  background-color: #434242;
+  text-align: left;
+}
+
+.social__size{
+  width: 210px;
+  height: auto;
+}
+
+.social__header{
+  color: #fffefe;
+  font-family: 'gilroy_extra_bold';
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.social-list_font{
+  font-family: 'gilroy_light';
+}
+
+.social_margin{
+  margin-left: 170px;
+  margin-top: 20px;
+}
+
+.social-list__item{
+  display: inline;
+  list-style-type: none;
+  padding: 0 10px 0 0;
+}
+
+.social-list_margin{
+  margin: 0;
+  padding: 0;
+}
+
+.social-list__link{
+  cursor: pointer;
+}
+
+.social-list__image{
+  width: 28px;
+  height: 29px;
+}
+
+.main-footer_margin{
+  margin-top: 20px;
+}
+
+.main-footer__header{
+  color: #fffefe;
+  font-family: 'gilroy_extra_bold';
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.main-footer__link{
+  display: block;
+  color: #ffffff;
+  font-family: 'gilroy_light';
+  font-size: 0.9rem;
+  font-weight: 300;
+  margin-bottom: 20px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.main-footer__link_hover:hover{
+  color: #feaf55;
+  transition: .5s;
+}
+
+.account-footer_margin{
+  margin-top: 20px;
+}
+
+.account-footer__header{
+  color: #fffefe;
+  font-family: 'gilroy_extra_bold';
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.account-footer__link{
+  display: block;
+  color: #ffffff;
+  font-family: 'gilroy_light';
+  font-size: 0.9rem;
+  font-weight: 300;
+  margin-bottom: 20px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.account-footer__link_hover:hover{
+  color: #feaf55;
+  transition: .5s;
+}
+
+.contact-footer_margin{
+  margin-top: 20px;
+}
+
+.contact-footer__header{
+  color: #fffefe;
+  font-family: 'gilroy_extra_bold';
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.contact-footer__link{
+  display: block;
+  color: #ffffff;
+  font-family: 'gilroy_light';
+  font-size: 0.9rem;
+  font-weight: 300;
+  margin-bottom: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  text-decoration: none;
+}
+
+.contact-footer__link_hover:hover{
+  color: #feaf55;
+  transition: .5s;
+}
+
+.contact-footer__image{
+  margin-right: 10px;
+}

@@ -1,0 +1,19 @@
+.button-all {
+    width: 170px;
+    height: 44px;
+
+    border-radius: 10px;
+    border: none;
+    background-color: #fd9901;
+    cursor: pointer;
+    display: block;
+    outline: none;
+
+    color: #fffefe;
+    font-family: "gilroy_extra_bold";
+    font-size: 1.1rem;
+    font-weight: 400;
+    text-align: center;
+
+    box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.3);
+}
