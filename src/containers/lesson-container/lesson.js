@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./style.css";
 
+import Compile from '../../components/compile/compile';
+
 export class Lesson extends Component {
   LessonLayout = () => (
     <React.Fragment>
@@ -26,14 +28,14 @@ export class Lesson extends Component {
           </pre>
         </div>
       </div>
-
-      <div className="compile-container compile-container__size compile-container_beauty compile-container_position">
+      <Compile />
+      {/*<div className="compile-container compile-container__size compile-container_beauty compile-container_position">
         <div className="compile compile__size compile_beauty" />
         <div className="control control__size control_position">
           <button className="control__button">Сбросить</button>
           <button className="control__button">Отправить</button>
         </div>
-      </div>
+</div>*/}
     </React.Fragment>
   );
   render() {
