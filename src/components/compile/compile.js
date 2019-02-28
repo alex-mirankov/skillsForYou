@@ -12,7 +12,7 @@ class Compile extends React.Component {
 
         this.state = {
             code: 'print (\"hello\")',
-            language: 'python',
+            language: 'pascal',
             timeoutMs: 2000,
             responceBack: '',
         }
@@ -23,7 +23,7 @@ class Compile extends React.Component {
     }
 
     compileSend() {
-        axios.post('http://127.0.0.1:3000/', this.state)
+        axios.post('http://127.0.0.1:3000/', this.state,)
             .then((responce) => {
                 this.setState({
                     responceBack: responce.data[0].combined,
@@ -39,6 +39,7 @@ class Compile extends React.Component {
         this.setState({
             code: newCode,
         })
+        
     }
 
     compileNull() {
