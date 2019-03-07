@@ -16,8 +16,8 @@ export class CustomSelect extends React.Component {
     const { inputValues, currentValue, handleChange } = this.props;
 
     return (
-      <div className="custom-input-container">
-        <div className="custom-input__text" onClick={this.handleClick}>
+      <div className="custom-input-container" >
+        <div className="custom-input__text" onClick={this.handleClick} style={this.props.stylesContainer}>
           {currentValue}
         </div>
         {isOpen && (

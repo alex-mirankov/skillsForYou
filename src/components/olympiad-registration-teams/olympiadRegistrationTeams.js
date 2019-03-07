@@ -9,32 +9,40 @@ const styles = {
     marginTop: '43px',
 }
 
-const inputValuesCategory = [
-    { text: "Базы данных", value: 1 },
-    { text: "Веб разработка", value: 2 },
-    { text: "Языки программирования", value: 3 },
-    { text: "Мобильная разработка", value: 4 },
-    { text: "Другое", value: 5 }
+const stylesButton = {
+    margin: '30px auto 29px auto',
+}
+
+const inputValuesLanguage = [
+    { text: "JS", value: 1 },
+    { text: "C#", value: 2 },
+    { text: "Python", value: 3 },
+    { text: "Java", value: 4 },
+    { text: "C++", value: 5 }
 ];
 
-const inputValuesСomplexity = [
-    { text: "Начинающий", value: 2 },
-    { text: "Средний", value: 3 },
-    { text: "Продвинутый", value: 4 }
+const inputValuesDate = [
+    { text: "11.02.2019", value: 1 },
+    { text: "24.05.2019", value: 2 },
+    { text: "30.09.2019", value: 3 }
 ];
+
+const stylesContainer = {
+    margin: '20px auto',
+}
 
 class OlympiadRegistrationTeams extends React.Component {
     state = {
-        currentValueComplexity: "Уровень сложности",
-        currentValueCategory: "Все категории "
+        currentValueLanguage: "Язык программирования",
+        currentValueDate: "Дата проведения"
     };
 
-    handleChangeCategory = text => {
-        this.setState({ currentValueCategory: text });
+    handleChangeDate = text => {
+        this.setState({ currentValueDate: text });
     };
 
-    handleChangeComplexity = text => {
-        this.setState({ currentValueComplexity: text });
+    handleChangeLanguage = text => {
+        this.setState({ currentValueLanguage: text });
     };
     render() {
         return (
@@ -43,16 +51,18 @@ class OlympiadRegistrationTeams extends React.Component {
                 <CustomInput placeHolder={'Ник 2 го участника'} />
                 <CustomInput placeHolder={'Ник 3 го участника'} />
                 <CustomSelect
-                    inputValues={inputValuesСomplexity}
-                    currentValue={this.state.currentValueComplexity}
-                    handleChange={this.handleChangeComplexity}
+                    stylesContainer={stylesContainer}
+                    inputValues={inputValuesLanguage}
+                    currentValue={this.state.currentValueLanguage}
+                    handleChange={this.handleChangeLanguage}
                 />
                 <CustomSelect
-                    inputValues={inputValuesCategory}
-                    currentValue={this.state.currentValueCategory}
-                    handleChange={this.currentValueCategory}
+                    stylesContainer={stylesContainer}
+                    inputValues={inputValuesDate}
+                    currentValue={this.state.currentValueDate}
+                    handleChange={this.handleChangeDate}
                 />
-                <ButtonAll content={'Регистрация'} />
+                <ButtonAll styles={stylesButton} content={'Регистрация'} />
             </div>
         );
     };
