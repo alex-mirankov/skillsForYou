@@ -9,6 +9,8 @@ import { Header } from "../../components/header-component";
 import { Footer } from "../../components/footer-component";
 import { Work } from "../../containers/work-page-container";
 import OlympicEnter from '../../containers/olympiad-enter-container/olympiadEnterContainer';
+import OlympiadRegistration from '../../containers/olympiad-registartion/olympiadRegistration';
+import OlympiadRegistrationTeam from '../../containers/olympiad-registration-team/olympiadRegistrationTeam';
 import { axios } from 'axios';
 // import { connect } from "react-redux"; //example
 
@@ -23,6 +25,8 @@ class App extends Component {
           <Route exact path="/" component={MainPage} />
           <Route path="/login" component={Login} />
           <Route path="/olympic-enter" component={OlympicEnter} />
+          <Route path="/olympic-registration" component={OlympiadRegistration} />
+          <Route path="/olympic-registartion-team" component={OlympiadRegistrationTeam} />
 
           <Route path="/registration" component={Registration} />
           <Route

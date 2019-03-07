@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./style.css";
 import inputSeacrhIcon from "../../images/input-seacrh__icon.png";
 import mechanic_main_1 from "../../images/mechanic_main_1.png";
-import { CustomInput } from "../custom-input/customInput";
+import { CustomSelect } from "../custom-input/customInput";
 const inputValuesCategory = [
   { text: "Базы данных", value: 1 },
   { text: "Веб разработка", value: 2 },
@@ -36,14 +36,14 @@ export class ProgramSelection extends Component {
       <p className="choose-program__header">Выбери свою программу обучения</p>
       <div className="control control__flex">
         <span className="control__item">
-          <CustomInput
+          <CustomSelect
             inputValues={inputValuesСomplexity}
             currentValue={this.state.currentValueComplexity}
             handleChange={this.handleChangeComplexity}
           />
         </span>
         <span className="control__item">
-          <CustomInput
+          <CustomSelect
             inputValues={inputValuesCategory}
             currentValue={this.state.currentValueCategory}
             handleChange={this.handleChangeCategory}

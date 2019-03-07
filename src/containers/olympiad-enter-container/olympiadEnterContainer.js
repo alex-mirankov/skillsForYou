@@ -2,12 +2,10 @@ import React from 'react';
 import './style.css';
 import OlympicCard from '../../components/olympic-card-component/olympicCard';
 
+import olympicSolo from '../../images/olympic-solo.png';
+import olympicTeam from '../../images/olympic-team.png';
+
 class OlympiadEnterContainer extends React.Component {
-
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div className="page-olympic">
@@ -15,13 +13,13 @@ class OlympiadEnterContainer extends React.Component {
                 <div className="cards-olympic">
                     <OlympicCard
                         header={'Командная олимпиада'}
-                        image={'../../images/olympicTeam.png'}
+                        image={olympicTeam}
                         content={'Создай свою команду и начни участвовать'}
                         date={'22.01.2019'}
                     />
                     <OlympicCard
                         header={'Индивидуальная олимпиада'}
-                        image={'../../images/olympicSolo.png'}
+                        image={olympicSolo}
                         content={'Любишь сражаться в одиночку?!Тогда прими участие'}
                         date={'22.01.2019'}
                     />

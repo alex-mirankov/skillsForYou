@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 
-export class CustomInput extends React.Component {
+export class CustomSelect extends React.Component {
   state = {
     isOpen: false
   };

@@ -9,8 +9,13 @@
 }
 
 .olympic-header {
+    margin: 0 auto;
+    text-align: center;
     color: #141313;
     font-family: "gilroy_extra_bold";
+    width: 60%;
     font-size: 36px;
     font-weight: 400;
+    margin-top: 120px;
+    margin-bottom: 65px;
 }

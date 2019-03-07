@@ -10,10 +10,8 @@ class OlympicCard extends React.Component {
             <div className="olympic-card">
                 <p className="olympic-card-header">{header}</p>
                 <div className="olympic-card-content">
-                    <div>
-                        <img className="olympic-image" src='../../images/olympic-solo.png' alt="Фото" />
-                    </div>
-                    <div>
+                    <img className="olympic-image" src={image} alt="Фото" />
+                    <div className="olympic-card-info">
                         <p className="olympic-text">{content} <span className="olympic-span">прямо сейчас!</span></p>
                         <p className="olympic-date">Ближайшая олимпиада: {date}</p>
                         <ButtonAll

@@ -1,0 +1,12 @@
+.card-registration {
+    width: 45%;
+    background-image: linear-gradient(to top, #4f2f82 0%, #5f3789 10%, #714091 21%, #714091 31%, #714091 40%, #543184 78%, #371e48 100%);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.card-registration-text {
+    color: #e5e5e5;
+    font-family: 'gilroy_extra_bold';
+    font-size: 1.7rem;
+}

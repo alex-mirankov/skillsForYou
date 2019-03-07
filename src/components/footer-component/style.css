@@ -12,6 +12,7 @@
 .footer_back-styles{
   background-color: #434242;
   text-align: left;
+  flex: 1 1 1;
 }
 
 .social__size{

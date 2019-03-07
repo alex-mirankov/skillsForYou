@@ -4,12 +4,13 @@
     box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.59);
     border-radius: 10px;
     background-color: #714091;
+    margin-bottom: 142px;
 }
 
 .olympic-image {
     width: 227px;
     height: 150px;
-    box-shadow: 0 0 5px rgba(252, 252, 252, 0.27);
+    margin-left: 20px;
 }
 
 .olympic-card-header {
@@ -18,10 +19,18 @@
     font-family: "gilroy_extra_bold";
     font-size: 30px;
     font-weight: 400;
+    margin-top: 36px;
 }
 
 .olympic-card-content {
     display: flex;
+    margin-top: 36px;
+}
+
+.olympic-card-image {
+    width: 500px;
+    height: 200px;
+    margin-left: 20px;
 }
 
 .olympic-text {
@@ -29,6 +38,7 @@
     font-family: 'gilroy_light';
     font-size: 24px;
     font-weight: 300;
+    margin-bottom: 23px;
 }
 
 .olympic-span {
@@ -40,6 +50,7 @@
     font-family: 'gilroy_light';
     font-size: 18px;
     font-weight: 300;
+    margin-bottom: 28px;
 }
 
 .olympic-timetable {
@@ -47,4 +58,6 @@
     font-family: 'gilroy_light';
     font-size: 14px;
     font-weight: 300;
+    text-align: right;
+    margin-right: 17px;
 }
