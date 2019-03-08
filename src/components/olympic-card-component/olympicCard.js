@@ -5,7 +5,7 @@ import ButtonAll from '../../components/share/button-all/buttonAll';
 
 class OlympicCard extends React.Component {
     render() {
-        let { header, image, content, date } = this.props;
+        let { header, image, content, date, action } = this.props;
         return (
             <div className="olympic-card">
                 <p className="olympic-card-header">{header}</p>
@@ -16,6 +16,7 @@ class OlympicCard extends React.Component {
                         <p className="olympic-date">Ближайшая олимпиада: {date}</p>
                         <ButtonAll
                             content={'Участвовать'}
+                            action={action}
                         />
                     </div>
                 </div>
