@@ -6,6 +6,10 @@ import { history } from '../../services/redux';
 import olympicSolo from '../../images/olympic-solo.png';
 import olympicTeam from '../../images/olympic-team.png';
 
+const styles = {
+    marginRight: '50px',
+}
+
 class OlympiadEnterContainer extends React.Component {
     goToSoloOlymp = () => {
         history.push('/olympic-registration');
@@ -24,6 +28,7 @@ class OlympiadEnterContainer extends React.Component {
                         content={'Создай свою команду и начни участвовать'}
                         date={'22.01.2019'}
                         action={this.goToSoloOlymp}
+                        styles={styles}
                     />
                     <OlympicCard
                         header={'Индивидуальная олимпиада'}

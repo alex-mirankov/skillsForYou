@@ -5,12 +5,12 @@ import ButtonAll from '../../components/share/button-all/buttonAll';
 
 class OlympicCard extends React.Component {
     render() {
-        let { header, image, content, date, action } = this.props;
+        let { header, image, content, date, action, styles } = this.props;
         return (
             <div className="olympic-card">
                 <p className="olympic-card-header">{header}</p>
                 <div className="olympic-card-content">
-                    <img className="olympic-image" src={image} alt="Фото" />
+                    <img className="olympic-image" src={image} alt="Фото" style={styles} />
                     <div className="olympic-card-info">
                         <p className="olympic-text">{content} <span className="olympic-span">прямо сейчас!</span></p>
                         <p className="olympic-date">Ближайшая олимпиада: {date}</p>
@@ -20,7 +20,9 @@ class OlympicCard extends React.Component {
                         />
                     </div>
                 </div>
-                <p className="olympic-timetable">Расписание олимпиад</p>
+                <p className="olympic-timetable">
+                    <a href="/" className="olympic-timetable-link">Расписание олимпиад</a>
+                </p>
             </div>
         );
     }

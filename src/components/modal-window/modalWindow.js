@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
-import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux';
+import { closeWindow } from '../../redux/actions/modal.acion';
 
 const styles = theme => ({
     paper: {
@@ -16,38 +17,45 @@ const styles = theme => ({
     },
 });
 
-class ModalWindow extends React.Component {
-    state = {
-        open: false,
-    };
+function rand() {
+    return Math.round(Math.random() * 20) - 10;
+}
 
-    handleOpen = () => {
-        this.setState({ open: true });
+function getModalStyle() {
+    const top = 50 + rand();
+    const left = 50 + rand();
+
+    return {
+        top: `${top}%`,
+        left: `${left}%`,
+        transform: `translate(-${top}%, -${left}%)`,
     };
+}
+
+class ModalWindow extends React.Component {
 
     handleClose = () => {
-        this.setState({ open: false });
+        this.props.closeWindowComp();
     };
 
     render() {
-        const { classes } = this.props;
+        const { classes, open } = this.props;
 
         return (
             <div>
-                <Button onClick={this.handleOpen}>Open Modal</Button>
                 <Modal
                     aria-labelledby="simple-modal-title"
                     aria-describedby="simple-modal-description"
-                    open={this.state.open}
+                    open={open}
                     onClose={this.handleClose}
                 >
-                    <div className={classes.paper}>
+                    <div style={getModalStyle()} className={classes.paper}>
                         <Typography variant="h6" id="modal-title">
-                            Text in a modal
-            </Typography>
+                            Спасибо за регистрацию!
+                        </Typography>
                         <Typography variant="subtitle1" id="simple-modal-description">
                             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </Typography>
+                        </Typography>
                         <SimpleModalWrapped />
                     </div>
                 </Modal>
@@ -58,8 +66,20 @@ class ModalWindow extends React.Component {
 
 ModalWindow.propTypes = {
     classes: PropTypes.object.isRequired,
+    open: PropTypes.bool.isRequired,
 };
 
-const SimpleModalWrapped = withStyles(styles)(ModalWindow);
+const mapStateToProps = (state) => ({
+    open: state.modal.open,
+});
 
-export default SimpleModalWrapped;
+const mapDispathToProps = (dispatch) => ({
+    closeWindowComp: () => {
+        dispatch(closeWindow());
+    }
+});
+
+const SimpleModalWrapped = withStyles(styles)(ModalWindow);
+const MyModal = connect(mapStateToProps, mapDispathToProps)(SimpleModalWrapped);
+
+export default MyModal;

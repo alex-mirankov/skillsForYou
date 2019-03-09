@@ -8,7 +8,6 @@
 }
 
 .olympic-image {
-    width: 227px;
     height: 150px;
     margin-left: 20px;
 }
@@ -60,4 +59,9 @@
     font-weight: 300;
     text-align: right;
     margin-right: 17px;
+    margin-top: 30px;
+}
+
+.olympic-timetable-link:visited {
+    color: #aba8a8;
 }
