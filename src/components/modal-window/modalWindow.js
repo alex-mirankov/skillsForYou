@@ -5,25 +5,25 @@ import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
 import { connect } from 'react-redux';
 import { closeWindow } from '../../redux/actions/modal.acion';
+import './style.css';
 
 const styles = theme => ({
     paper: {
         position: 'absolute',
-        width: theme.spacing.unit * 50,
-        backgroundColor: theme.palette.background.paper,
+        width: '488px',
+        height: '282px',
+        backgroundColor: '#ffffff',
         boxShadow: theme.shadows[5],
         padding: theme.spacing.unit * 4,
         outline: 'none',
+        border: '1px solid rgba(0, 0, 0, 0.38)',
+        borderRadius: '10px',
     },
 });
 
-function rand() {
-    return Math.round(Math.random() * 20) - 10;
-}
-
 function getModalStyle() {
-    const top = 50 + rand();
-    const left = 50 + rand();
+    const top = 50;
+    const left = 50;
 
     return {
         top: `${top}%`,
@@ -48,14 +48,16 @@ class ModalWindow extends React.Component {
                     aria-describedby="simple-modal-description"
                     open={open}
                     onClose={this.handleClose}
+                    className="modal"
                 >
                     <div style={getModalStyle()} className={classes.paper}>
-                        <Typography variant="h6" id="modal-title">
+                        <p className="modal-main modal-head">
                             Спасибо за регистрацию!
-                        </Typography>
-                        <Typography variant="subtitle1" id="simple-modal-description">
-                            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                        </Typography>
+                        </p>
+                        <p className="modal-main">
+                            Каждому участнику придет уведомление на почту
+                            для  подтверждения участия в олимпиаде.
+                        </p>
                         <SimpleModalWrapped />
                     </div>
                 </Modal>

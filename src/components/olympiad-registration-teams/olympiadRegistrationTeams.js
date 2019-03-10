@@ -4,6 +4,10 @@ import './style.css';
 import CustomInput from '../input-registration-form/inputRegistrationForm';
 import { CustomSelect } from '../custom-input/customInput';
 import ButtonAll from '../share/button-all/buttonAll';
+import MyModal from '../modal-window/modalWindow';
+
+import { connect } from 'react-redux';
+import { openWindow } from '../../redux/actions/modal.acion';
 
 const styles = {
     marginTop: '43px',
@@ -40,7 +44,9 @@ class OlympiadRegistrationTeams extends React.Component {
     handleChangeDate = text => {
         this.setState({ currentValueDate: text });
     };
-
+    handleOpenWindow = () => {
+        this.props.closeWindowComp();
+    }
     handleChangeLanguage = text => {
         this.setState({ currentValueLanguage: text });
     };
@@ -62,10 +68,21 @@ class OlympiadRegistrationTeams extends React.Component {
                     currentValue={this.state.currentValueDate}
                     handleChange={this.handleChangeDate}
                 />
-                <ButtonAll styles={stylesButton} content={'Регистрация'} />
+                <ButtonAll
+                    styles={stylesButton}
+                    content={'Регистрация'}
+                    action={this.handleOpenWindow}
+                />
+                <MyModal />
             </div>
         );
     };
 }
 
-export default OlympiadRegistrationTeams;
+const mapDispatchToProps = (dispatch) => ({
+    closeWindowComp: () => {
+        dispatch(openWindow());
+    }
+});
+
+export default connect(null, mapDispatchToProps)(OlympiadRegistrationTeams);
