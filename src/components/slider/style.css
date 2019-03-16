@@ -20,7 +20,7 @@
 
 .slider__flex {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .slider__size {
@@ -42,6 +42,7 @@
 
 .description-slider_margin {
   margin-top: 100px;
+  margin-left: 100px;
   text-align: left;
 }
 
@@ -103,7 +104,7 @@
 .image-slider_margin {
   margin-left: 30px;
   margin-top: 100px;
-  margin-right: 140px;
+  margin-right: 100px;
 }
 
 .image-slider_back-styles {

@@ -11,7 +11,6 @@ import { Work } from "../../containers/work-page-container";
 import OlympicEnter from '../../containers/olympiad-enter-container/olympiadEnterContainer';
 import OlympiadRegistration from '../../containers/olympiad-registartion/olympiadRegistration';
 import OlympiadRegistrationTeam from '../../containers/olympiad-registration-team/olympiadRegistrationTeam';
-import { axios } from 'axios';
 // import { connect } from "react-redux"; //example
 
 import "./App.css";

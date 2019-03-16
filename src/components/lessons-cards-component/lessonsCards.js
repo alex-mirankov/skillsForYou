@@ -60,6 +60,7 @@ export class LessonsCards extends Component {
       <span className="card-container">
         <this.LessonsCardsLayout />
         <this.LessonsCardsLayout />
+        <this.LessonsCardsLayout />
       </span>
     );
   }
