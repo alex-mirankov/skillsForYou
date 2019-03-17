@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Benefits } from "../../components/benefits-page-component";
 import { ProgramSelection } from "../../components/program-selection-component";
-import { LessonsCards } from "../../components/lessons-cards-component";
+import { LessonsList } from "../../components/lessons-list/lessonsList";
 
 import "./style.css";
 
@@ -11,7 +11,7 @@ export class MainPage extends Component {
       <div className="App">
         <Benefits />
         <ProgramSelection />
-        <LessonsCards />
+        <LessonsList />
       </div>
     );
   }
