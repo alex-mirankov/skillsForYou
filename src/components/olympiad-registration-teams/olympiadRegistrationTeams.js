@@ -32,7 +32,19 @@ const inputValuesDate = [
 ];
 
 const stylesContainer = {
-    margin: '20px auto',
+    margin: '0 auto',
+    width: '80%',
+    height: '51px',
+    fontFamily: 'gilroy_extra_bold',
+    color: '#938e8e',
+    outline: 'none',
+    border: '2px solid #acacac',
+    fontSize: '1.5rem',
+    marginBottom: '30px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '0',
 }
 
 class OlympiadRegistrationTeams extends React.Component {
