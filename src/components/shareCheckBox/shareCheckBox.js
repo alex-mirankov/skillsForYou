@@ -1,8 +1,5 @@
 import React from 'react';
-import './style.css';
-
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import 'pretty-checkbox/src/pretty-checkbox.scss';
 
 class ShareCheckBox extends React.Component {
     state = {
@@ -15,17 +12,26 @@ class ShareCheckBox extends React.Component {
     render() {
         let { label, name } = this.props;
         return (
-            <FormControlLabel
-                control={
-                    <Checkbox
+            <React.Fragment>
+                <lable className="containerRadio">{label}
+                    <input
+                        className="customRadio"
+                        type="radio"
                         checked={this.state.checkedB}
                         onChange={this.handleChange(name)}
                         value="checkedB"
-                        color="primary"
+                        name="radio"
                     />
-                }
-                label={label}
-            />
+                    <span className="checkmarkRadio"></span>
+                </lable>
+                <div class="pretty p-icon p-curve p-pulse">
+                    <input type="radio" name="radio66" />
+                    <div class="state p-info-o">
+                        <i class="icon mdi mdi-check"></i>
+                        <label> Python</label>
+                    </div>
+                </div>
+            </React.Fragment>
         );
     }
 }
