@@ -1,4 +1,5 @@
 import React from 'react';
+import './style.css';
 import 'pretty-checkbox/src/pretty-checkbox.scss';
 
 class ShareCheckBox extends React.Component {
@@ -12,26 +13,19 @@ class ShareCheckBox extends React.Component {
     render() {
         let { label, name } = this.props;
         return (
-            <React.Fragment>
-                <lable className="containerRadio">{label}
-                    <input
-                        className="customRadio"
-                        type="radio"
-                        checked={this.state.checkedB}
-                        onChange={this.handleChange(name)}
-                        value="checkedB"
-                        name="radio"
-                    />
-                    <span className="checkmarkRadio"></span>
-                </lable>
-                <div class="pretty p-icon p-curve p-pulse">
-                    <input type="radio" name="radio66" />
-                    <div class="state p-info-o">
-                        <i class="icon mdi mdi-check"></i>
-                        <label> Python</label>
-                    </div>
+            <div className="pretty p-icon p-smooth">
+                <input
+                    type="radio"
+                    name="radio"
+                    value="checkedB"
+                    checked={this.state.checkedB}
+                    onChange={this.handleChange(name)}
+                />
+                <div className="state p-success">
+                    <i className="icon icon-radio fa fa-check"></i>
+                    <label className="radio-text">{label}</label>
                 </div>
-            </React.Fragment>
+            </div>
         );
     }
 }
