@@ -4,14 +4,14 @@ import "./style.css";
 
 export class LessonsCards extends React.Component {
     render() {
-        const { image, action } = this.props;
+        const { image, action, title, sub_title, total_students, color } = this.props;
         return (
             <div className="cards cards_margin" onClick={action}>
                 <div className="card card_hover card__style card__size">
-                    <div className="card-header card-header__size card-header_back-style">
-                        <p className="card-header__main">Основы Java</p>
+                    <div className="card-header card-header__size card-header_back-style" style={{ background: color }}>
+                        <p className="card-header__main">{title}</p>
                         <p className="card-header__content">
-                            <span className="card-header__span">Уровень:</span> начинающий
+                            <span className="card-header__span">Уровень:</span> {sub_title}
                         </p>
                     </div>
                     <div className="card-image card-image__flex card-image__size">
@@ -25,7 +25,7 @@ export class LessonsCards extends React.Component {
                     <div className="card-info card-info_margin">
                         <div className="card-info__flex">
                             <p className="card-info__elem1">Количество студентов:</p>
-                            <p className="card-info__elem1 card-info__elem1_margin"> 5</p>
+                            <p className="card-info__elem1 card-info__elem1_margin"> {total_students}</p>
                         </div>
                         <div className="card-info__flex">
                             <p className="card-info__elem2">Изучили курс:</p>
