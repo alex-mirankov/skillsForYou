@@ -29,3 +29,7 @@ code {
   font-family: 'gilroy_extra_bold';
   src: url('fonts/gilroy_extra_bold.otf');
 }
+
+a {
+  text-decoration: none;
+}

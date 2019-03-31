@@ -74,13 +74,13 @@ const mapStateToProps = (state) => ({
     open: state.modal.open,
 });
 
-const mapDispathToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch) => ({
     closeWindowComp: () => {
         dispatch(closeWindow());
     }
 });
 
 const SimpleModalWrapped = withStyles(styles)(ModalWindow);
-const MyModal = connect(mapStateToProps, mapDispathToProps)(SimpleModalWrapped);
+const MyModal = connect(mapStateToProps, mapDispatchToProps)(SimpleModalWrapped);
 
 export default MyModal;

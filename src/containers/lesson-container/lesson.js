@@ -20,22 +20,10 @@ export class Lesson extends Component {
         </div>
         <div className="example example_position example__size example_beauty">
           <pre className="example__code">
-            {/* <!--                    -->    class Helloworld {
-<!--                    -->        public static main(String[] args) {
-<!--                    -->            System.out.println("Hello, world");
-<!--                    -->        }
-<!--                    -->    } */}
           </pre>
         </div>
       </div>
       <Compile />
-      {/*<div className="compile-container compile-container__size compile-container_beauty compile-container_position">
-        <div className="compile compile__size compile_beauty" />
-        <div className="control control__size control_position">
-          <button className="control__button">Сбросить</button>
-          <button className="control__button">Отправить</button>
-        </div>
-</div>*/}
     </React.Fragment>
   );
   render() {

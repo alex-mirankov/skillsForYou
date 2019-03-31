@@ -33,7 +33,7 @@ class App extends Component {
             path="/teacher-registration"
             component={TeacherRegistration}
           />
-          <Route exact path="/work" component={Work} />
+          <Route path="/work/:id" component={Work} />
           <Route path="/*" component={() => "Error 404"} />
         </Switch>
         <Footer />
