@@ -3,6 +3,11 @@ import "./style.css";
 import inputSeacrhIcon from "../../images/input-seacrh__icon.png";
 import mechanic_main_1 from "../../images/mechanic_main_1.png";
 import { CustomSelect } from "../custom-input/customInput";
+import axios from 'axios';
+
+import { getCourses } from '../../redux/actions/index';
+import { connect } from 'react-redux';
+
 const inputValuesCategory = [
   { text: "Базы данных", value: 1 },
   { text: "Веб разработка", value: 2 },
@@ -17,7 +22,7 @@ const inputValuesСomplexity = [
   { text: "Продвинутый", value: 4 }
 ];
 
-export class ProgramSelection extends Component {
+class ProgramSelectionComponent extends Component {
   state = {
     currentValueComplexity: "Уровень сложности",
     currentValueCategory: "Все категории "
@@ -30,6 +35,16 @@ export class ProgramSelection extends Component {
   handleChangeComplexity = text => {
     this.setState({ currentValueComplexity: text });
   };
+
+  getAllCourses = (data) => {
+    this.props.getAllCourses(data);
+  };
+
+  getCourses = () => {
+    axios.get('http://localhost:8000/courses')
+      .then(res => this.getAllCourses(res.data))
+      .catch(error => console.log(error));
+  }
 
   programSelectionLayout = () => (
     <div className="page page_margin page__choose-program">
@@ -66,7 +81,10 @@ export class ProgramSelection extends Component {
         </span>
       </div>
 
-      <button className="choose-program__button choose-program__button_hover">
+      <button
+        className="choose-program__button choose-program__button_hover"
+        onClick={this.getCourses}
+      >
         Начать обучение
       </button>
       <img
@@ -80,3 +98,12 @@ export class ProgramSelection extends Component {
     return <this.programSelectionLayout />;
   }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  getAllCourses: (data) => {
+    dispatch(getCourses(data));
+  }
+});
+
+export const ProgramSelection = connect(null, mapDispatchToProps)(ProgramSelectionComponent);
+
