@@ -3,6 +3,7 @@ import "./style.css";
 import inputSeacrhIcon from "../../images/input-seacrh__icon.png";
 import mechanic_main_1 from "../../images/mechanic_main_1.png";
 import { CustomSelect } from "../custom-input/customInput";
+import CircularIndeterminate from '../loader-circle/loaderCircle';
 import axios from 'axios';
 
 import { getCourses } from '../../redux/actions/index';
@@ -25,7 +26,8 @@ const inputValuesСomplexity = [
 class ProgramSelectionComponent extends Component {
   state = {
     currentValueComplexity: "Уровень сложности",
-    currentValueCategory: "Все категории "
+    currentValueCategory: "Все категории ",
+    visibleLoader: false,
   };
 
   handleChangeCategory = text => {
@@ -37,7 +39,15 @@ class ProgramSelectionComponent extends Component {
   };
 
   getAllCourses = (data) => {
-    this.props.getAllCourses(data);
+    this.setState({
+      loader: true,
+    });
+    setTimeout(() => {
+      this.props.getAllCourses(data);
+      this.setState({
+        loader: false,
+      })
+    }, 2000)
   };
 
   getCourses = () => {
@@ -92,6 +102,9 @@ class ProgramSelectionComponent extends Component {
         className="choose-program__mechanic"
         alt="шестиренка"
       />
+      {
+        this.state.loader && <CircularIndeterminate />
+      }
     </div>
   );
   render() {
