@@ -11,6 +11,20 @@ export class CustomSelect extends React.Component {
     this.setState({ isOpen: !isOpen });
   };
 
+  handleChangeColor = (id, color) => {
+    let idElement = document.getElementById(id);
+    idElement.style.background = color;
+    idElement.style.transition = '1s';
+    idElement.style.color = 'white';
+  };
+
+  handleChangeColorInit = (id) => {
+    let idElement = document.getElementById(id);
+    idElement.style.background = 'white';
+    idElement.style.color = 'black';
+    idElement.style.transition = '1s';
+  };
+
   render() {
     const { isOpen } = this.state;
     const { inputValues, currentValue, handleChange } = this.props;
@@ -26,9 +40,16 @@ export class CustomSelect extends React.Component {
               <div
                 className="custom-input__value custom-input__value_hover"
                 key={item.value}
+                id={item.value}
                 onClick={() => {
                   this.handleClick();
                   handleChange(item.text);
+                }}
+                onMouseOver={() => {
+                  this.handleChangeColor(item.value, item.color);
+                }}
+                onMouseLeave={() => {
+                  this.handleChangeColorInit(item.value);
                 }}
               >
                 {item.text}

@@ -7,8 +7,8 @@ export class LessonsCards extends React.Component {
     render() {
         const { image, title, sub_title, total_students, color, id } = this.props;
         return (
-            <Link to={{ pathname: '/work/' + id }}>
-                <div className="cards cards_margin">
+            <div className="cards cards_margin">
+                <Link to={{ pathname: '/work/' + id }}>
                     <div className="card card_hover card__style card__size">
                         <div className="card-header card-header__size card-header_back-style" style={{ background: color }}>
                             <p className="card-header__main">{title}</p>
@@ -49,8 +49,8 @@ export class LessonsCards extends React.Component {
                             </div>
                         </div>
                     </div>
-                </div>
-            </Link>
+                </Link>
+            </div>
         );
     }
 }

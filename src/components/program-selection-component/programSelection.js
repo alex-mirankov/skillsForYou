@@ -9,17 +9,17 @@ import { getCourses } from '../../redux/actions/index';
 import { connect } from 'react-redux';
 
 const inputValuesCategory = [
-  { text: "Базы данных", value: 1 },
-  { text: "Веб разработка", value: 2 },
-  { text: "Языки программирования", value: 3 },
-  { text: "Мобильная разработка", value: 4 },
-  { text: "Другое", value: 5 }
+  { text: "Базы данных", value: 1, color: "rgb(231, 76, 60)" },
+  { text: "Веб разработка", value: 2, color: "rgb(241, 196, 15)" },
+  { text: "Языки программирования", value: 3, color: "rgb(41, 128, 185)" },
+  { text: "Мобильная разработка", value: 4, color: "rgb(142, 68, 173)" },
+  { text: "Другое", value: 5, color: "rgb(0, 128, 0)" }
 ];
 
 const inputValuesСomplexity = [
-  { text: "Начинающий", value: 2 },
-  { text: "Средний", value: 3 },
-  { text: "Продвинутый", value: 4 }
+  { text: "Начинающий", value: 2, color: "lightgreen" },
+  { text: "Средний", value: 3, color: "peachpuff" },
+  { text: "Продвинутый", value: 4, color: "coral" }
 ];
 
 class ProgramSelectionComponent extends Component {

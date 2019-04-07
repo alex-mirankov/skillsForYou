@@ -33,7 +33,10 @@
   cursor: pointer;
 }
 
-.custom-input__value_hover:hover {
-  background-color: rgba(13, 169, 189, 0.54);
-  transition: 0.5s;
+.custom-input__value:last-child {
+  border-radius: 0 0 9px 9px;
+}
+
+.custom-input__value:first-child {
+  border-radius: 9px 9px 0 0;
 }

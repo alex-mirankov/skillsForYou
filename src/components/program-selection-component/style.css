@@ -154,3 +154,52 @@
     margin: 90px auto 0 auto;
   }
 }
+
+.input-search__input::-webkit-input-placeholder {
+  font-family: 'gilroy_light';
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  color: #c5bcbc;
+}
+.input-search__input::-moz-placeholder {
+  font-family: 'gilroy_light';
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  color: #c5bcbc;
+}
+.input-search__input:-moz-placeholder {
+  font-family: 'gilroy_light';
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  color: #c5bcbc;
+}
+.input-search__input:-ms-input-placeholder {
+  font-family: 'gilroy_light';
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  color: #c5bcbc;
+}
+.input-search__input:focus::-webkit-input-placeholder {
+  font-family: 'gilroy_light';
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: #c5bcbc;
+}
+.input-search__input:focus::-moz-placeholder {
+  font-family: 'gilroy_light';
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: #c5bcbc;
+}
+.input-search__input:focus:-moz-placeholder {
+  font-family: 'gilroy_light';
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: #c5bcbc;
+}
+.input-search__input:focus:-ms-input-placeholder {
+  font-family: 'gilroy_light';
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: #c5bcbc;
+}
