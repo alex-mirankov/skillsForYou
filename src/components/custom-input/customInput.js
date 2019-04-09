@@ -14,7 +14,7 @@ export class CustomSelect extends React.Component {
   handleChangeColor = (id, color) => {
     let idElement = document.getElementById(id);
     idElement.style.background = color;
-    idElement.style.transition = '1s';
+    idElement.style.transition = '0.5s';
     idElement.style.color = 'white';
   };
 
@@ -22,7 +22,7 @@ export class CustomSelect extends React.Component {
     let idElement = document.getElementById(id);
     idElement.style.background = 'white';
     idElement.style.color = 'black';
-    idElement.style.transition = '1s';
+    idElement.style.transition = '0.5s';
   };
 
   render() {
