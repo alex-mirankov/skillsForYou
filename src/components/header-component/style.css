@@ -19,9 +19,9 @@
   width: 1170px;
 }
 
-.page {
+/*.page {
   width: 1170px;
-}
+}*/
 
 .page_margin {
   margin: 0 auto;
@@ -170,7 +170,7 @@
   color: #919191 !important;
 }
 
-@media (max-width: 1000px) {
+/*@media (max-width: 1000px) {
   .regist-enter__margin {
     margin-left: 0;
   }
@@ -194,4 +194,4 @@
     margin-top: auto;
     margin-bottom: auto;
   }
-}
+}*/

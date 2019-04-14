@@ -19,9 +19,9 @@ class OlympiadEnterContainer extends React.Component {
     }
     render() {
         return (
-            <div className="page-olympic">
+            <div className="App">
                 <p className="olympic-header">Чтобы начать свое участие в олимпиаде выбери нужный раздел</p>
-                <div className="cards-olympic">
+                <div className="page page_margin page__flex">
                     <OlympicCard
                         header={'Командная олимпиада'}
                         image={olympicTeam}

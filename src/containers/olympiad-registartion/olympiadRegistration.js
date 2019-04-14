@@ -6,7 +6,7 @@ import OlympiadRegistrationForm from '../../components/olympiad-registration-for
 class OlympiadRegistration extends React.Component {
     render() {
         return (
-            <div className="page-registration">
+            <div className="App">
                 <p className="registration-header">Регистрация для участия в олимпиаде</p>
                 <OlympiadRegistrationForm />
             </div>

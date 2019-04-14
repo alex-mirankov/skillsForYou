@@ -18,18 +18,20 @@ class OlympiadRegistrationForm extends React.Component {
     }
     render() {
         return (
-            <div className="registration-olymp-form">
-                <p className="registration-olymp-form-team-name">Команда Скилсики</p>
-                <CustomInput placeHolder={'Имя'} />
-                <CustomInput placeHolder={'Фамилия'} />
-                <div className="container-button-form">
-                    <ButtonAll
-                        styles={styles}
-                        content={'Регистрация'}
-                        action={this.handleOpenWindow}
-                    />
+            <div className="page page_margin page__flex">
+                <div className="registration-olymp-form">
+                    <p className="registration-olymp-form-team-name">Команда Скилсики</p>
+                    <CustomInput placeHolder={'Имя'} />
+                    <CustomInput placeHolder={'Фамилия'} />
+                    <div className="container-button-form">
+                        <ButtonAll
+                            styles={styles}
+                            content={'Регистрация'}
+                            action={this.handleOpenWindow}
+                        />
+                    </div>
+                    <MyModal />
                 </div>
-                <MyModal />
             </div>
         );
     }
