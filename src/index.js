@@ -19,4 +19,4 @@ return  <Provider store={store}>
 
 ReactDOM.render(<Root /> , document.getElementById("root"));
 
-serviceWorker.unregister();
+serviceWorker.register();
