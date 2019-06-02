@@ -1,9 +1,24 @@
-.task-section{
+.task-section {
     background: url('../../images/compile.png') no-repeat;
     height: 250px;
 }
 
-.section{
+.section {
     margin-bottom: 20px;
     margin-top: 20px;
+}
+
+.tasks-section {
+    display: grid;
+    grid-gap: 10px;
+    grid-column: 4;
+    grid-template-columns: 0.2fr 0.3fr 0.3fr 1fr;
+    margin: 5px 0;
+}
+
+.section-completed {
+    color: #111;
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px;
 }

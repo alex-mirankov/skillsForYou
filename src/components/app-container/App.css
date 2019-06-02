@@ -18,15 +18,25 @@
   color: #61dafb;
 }
 
-
+.olympiad-content{
+  display: grid;
+  grid-template-columns: 1fr 0.5fr;
+}
 .img{
- 
   background-repeat: no-repeat;
   background-position: center;
 }
 .img_big {
   height: 200px;
   width: 250px;
+}
+
+.img_small{
+  height: 50px;
+  width: 50px;
+}
+.img_chat{
+  background-image: url('../../images/chat-image.png');
 }
 
 .text_bold{

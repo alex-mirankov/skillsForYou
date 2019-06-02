@@ -1,0 +1,85 @@
+.chat-container{
+    background: #fff;
+    height: 80%;
+    display: block;
+    color: black;
+    border-radius: 20px;
+    display: grid;
+    
+    grid-template-rows: 0.1fr 1fr;
+}
+.c-content__chat-container{
+    margin-top: 20px;
+}
+.headet-chat{
+    display: flex;
+    align-items: center;
+    border-bottom: solid 1px;
+}
+.chat-container__header-chat{
+    margin:10px;
+}
+.header-chat__img-chat{
+    margin-left: 20px
+}
+.header-chat__text{
+    margin-left: 20px;
+}
+
+.message-content{
+    padding: 0 15px;
+}
+.header-msg{
+    display: flex;
+}
+
+.img_message{
+    height: 30px;
+    width: 30px;
+}
+.header-msg__img_message{
+    margin-right: 10px;
+}
+.header-msg__text{
+    margin-right: 10px;
+}
+.message-content__header-msg{
+    margin: 20px 0 10px;
+}
+.chat-content{
+    overflow: auto;
+    padding-bottom: 40px;
+}
+
+.main-msg{
+    background: #bbc7d2;
+    border-radius: 15px;
+    padding: 10px;
+    width: fit-content;
+}
+.message-content__main-msg{
+    margin-left: 40px;
+}
+
+.wind-content{
+    padding: 10px;
+    margin-bottom: 10px;
+    border-top: 1px solid
+}
+.wind-text{
+    max-width: 285px;
+    width: 90%;
+    max-height: 100px;
+    min-height: 50px;
+    font-size: 20px;
+}
+.wind-buttons{
+    text-align: right;
+    margin-right: 12px;
+}
+.send-btn{
+    background: #d47c17;
+    padding: 5px 24px;
+    border-radius: 8px;
+    color: white;
+}
