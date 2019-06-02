@@ -18,6 +18,48 @@
   color: #61dafb;
 }
 
+
+.img{
+ 
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.img_big {
+  height: 200px;
+  width: 250px;
+}
+
+.text_bold{
+  font-weight: bold;
+}
+
+.text_orange {
+  color: #e96c4a;
+}
+.main_top {
+  margin: 20px 0;
+}
+
+.text_padding {
+  padding: 0 10px;
+}
+.text_big {
+  font-size: 1.1em;
+}
+.text_smal {
+  font-size: 0.9em;
+}
+.text_border-bottom {
+  border-bottom: 1px solid;
+}
+.text-orange {
+  color: orange;
+}
+.title {
+  text-align: center;
+  font-size: 1.2em;
+}
+
 button{
   padding: 0;
   border: none;
@@ -34,4 +76,10 @@ button{
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.description{
+  line-height: 25px;
+  width: 570px;
 }

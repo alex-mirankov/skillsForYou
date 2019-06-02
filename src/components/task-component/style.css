@@ -1,0 +1,9 @@
+.task-section{
+    background: url('../../images/compile.png') no-repeat;
+    height: 250px;
+}
+
+.section{
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
