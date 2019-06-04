@@ -1,11 +1,10 @@
 .chat-container{
     background: #fff;
-    height: 80%;
+    height: 90%;
     display: block;
     color: black;
     border-radius: 20px;
     display: grid;
-    
     grid-template-rows: 0.1fr 1fr;
 }
 .c-content__chat-container{
@@ -67,8 +66,9 @@
     border-top: 1px solid
 }
 .wind-text{
-    max-width: 285px;
-    width: 90%;
+    max-width: 350px;
+    min-width: 350px;
+    width: 350px;
     max-height: 100px;
     min-height: 50px;
     font-size: 20px;

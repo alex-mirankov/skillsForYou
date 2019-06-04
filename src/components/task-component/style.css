@@ -1,11 +1,11 @@
 .task-section {
-    background: url('../../images/compile.png') no-repeat;
-    height: 250px;
+    height: 400px;
 }
 
 .section {
     margin-bottom: 20px;
     margin-top: 20px;
+    margin-left: 80px;
 }
 
 .tasks-section {
@@ -21,4 +21,27 @@
     background: #fff;
     border-radius: 10px;
     padding: 10px;
+    margin-left: 80px;
+}
+
+.tast-buttons{
+    padding: 20px 0;
+}
+.task{
+    position: relative;
+}
+
+.task__tast-buttons{
+    position: absolute;
+    left:0;
+}
+.task__send-btn{
+    margin-right: 20px;
+}
+.task-input{
+    height: 100%;
+    width: 600px;
+    background: #111;
+    border: none;
+    color: #fff;
 }

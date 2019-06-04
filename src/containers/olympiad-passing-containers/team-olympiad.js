@@ -45,10 +45,18 @@ const messages = [
   }
 ]
 
+const Team ={
+  owner: {
+    fullName: "Ruth",
+    urlImg: "../../../images/header_avatar2.png",
+  },
+  participants:team
+}
+
 export function OlympiadTeam() {
   return (
     <main className="main main_top">
-      <div className="page page_margin">
+      <div className="card-page page_margin">
         <Card cardSize="c-card_big">
           <PassingOlympiad
             title="Индвидуальная олимпиада"
@@ -58,8 +66,9 @@ export function OlympiadTeam() {
             hour="1"
             minutes="45"
             seconds="35"
+            team={Team}
           >
-            <div className="olympiad-content">
+            <div className="olympiad-content main__olympiad-content">
               <div>
                 <TaskOlympiad
                   number="3"
@@ -72,6 +81,7 @@ export function OlympiadTeam() {
   Qui illum nihil architecto error dolorum totam. Soluta quam dolorum. Et perferendis architecto voluptatem illo qui."
                 >
                   <>
+                   
                     <Pagination page={3} pages={15} />
                   </>
                 </TaskOlympiad>

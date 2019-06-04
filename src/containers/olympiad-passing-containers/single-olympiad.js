@@ -6,7 +6,7 @@ import { Pagination } from "../../components/common/pager";
 export function OlympiadSingle() {
   return (
     <main className="main main_top">
-      <div className="page page_margin">
+      <div className=" card-page page_margin">
         <Card cardSize="c-card_big">
           <PassingOlympiad
             title="Командная олимпиада"
@@ -17,18 +17,20 @@ export function OlympiadSingle() {
             minutes="15"
             seconds="25"
           >
-            <TaskOlympiad
-              number="3"
-              title="Задача. Как Алик пытался стать фронтером"
-              description="Dolor sit ut fugit ea. Minima ipsum sapiente. Voluptatem laudantium et. Id voluptate consequuntur et.
+            <div className="main__olympiad-content">
+              <TaskOlympiad
+                number="3"
+                title="Задача. Как Алик пытался стать фронтером"
+                description="Dolor sit ut fugit ea. Minima ipsum sapiente. Voluptatem laudantium et. Id voluptate consequuntur et.
                 Dolores adipisci totam nesciunt deleniti veritatis qui fugiat. Odit pariatur explicabo. Sit ea minus pariatur. 
 Maiores magnam cupiditate aliquid voluptas consectetur veniam corporis. Voluptatum ducimus autem cum in qui accusamus velit dicta. 
 Ducimus occaecati ullam reprehenderit omnis fugiat. Alias magni impedit est ea non optio.
 Est enim at labore eum iusto. Quidem non veritatis eum. Dolor dolor dolorum dicta quidem culpa culpa quasi repellendus.
 Qui illum nihil architecto error dolorum totam. Soluta quam dolorum. Et perferendis architecto voluptatem illo qui."
-            >
-              <Pagination page={1} pages={9} />
-            </TaskOlympiad>
+              >
+                <Pagination page={1} pages={9} />
+              </TaskOlympiad>
+            </div>
           </PassingOlympiad>
         </Card>
       </div>

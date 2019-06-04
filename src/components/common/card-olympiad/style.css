@@ -11,8 +11,8 @@
   height: 300px;
 }
 .c-card_big {
+  padding: 20px 50px;
   min-height: 800px;
-    padding: 20px 70px;
 }
 .c-body__img {
   margin: 5px 20px 0 0;
@@ -27,7 +27,7 @@
 }
 
 .c-title {
-  font-size: 20px;
+  font-size: 25px;
   font-weight: bold;
   text-transform: inherit;
 }
@@ -37,7 +37,10 @@
 }
 .c-content__section {
   margin-top: 25px;
-  margin-right: 15px;
+  margin-right: 50px;
+}
+.c-text_big{
+  font-size: 1.5em;
 }
 .c-header {
   text-align: center;
@@ -58,14 +61,17 @@
 }
 .c-content {
   display: flex;
+  position: relative;
+  align-items: center;
 }
 .c-content_text{
   margin-left: 20px;
   padding: 10px;
 }
 .section_small {
-
-  margin-left: 50px;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 .c-section{
@@ -81,4 +87,10 @@
 }
 .c-content_margin{
   margin-bottom: 20px;
+}
+
+.c-team{
+  margin: 0 20px ;
+  display: flex;
+  align-items: center;
 }

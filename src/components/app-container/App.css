@@ -20,7 +20,11 @@
 
 .olympiad-content{
   display: grid;
-  grid-template-columns: 1fr 0.5fr;
+  grid-template-columns: 1fr 0.4fr;
+}
+.main__olympiad-content{
+  position: relative;
+  min-height: 900px;
 }
 .img{
   background-repeat: no-repeat;
@@ -91,5 +95,7 @@ button{
 
 .description{
   line-height: 25px;
-  width: 570px;
+  width: 80%;
+  font-size: 20px;
+  margin-left: 80px;
 }

@@ -6,6 +6,8 @@
 }
 .nav-pagination{
     width: 570px;
+    position: absolute;
+    bottom: 0;
     margin: 20px 0;
 }
 
