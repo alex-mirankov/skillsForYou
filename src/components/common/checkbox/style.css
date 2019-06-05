@@ -1,0 +1,15 @@
+.nav-checks {
+    display: flex;
+    flex-flow: wrap;
+}
+
+.task-li {
+    display: flex;
+    font-size: 15px;
+    padding: 5px 8px;
+    cursor: pointer;
+}
+
+.li-checkbox:checked ~ .checkmark {
+  color: rgb(243, 117, 33);
+}

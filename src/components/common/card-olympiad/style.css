@@ -1,0 +1,96 @@
+.c-card {
+  margin: 0 10px;
+  background: rgb(112, 65, 145);
+  padding: 20px 35px;
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), 0 5px 10px rgba(0, 0, 0, 0.22);
+}
+.c-card_small {
+  width: 500px;
+  height: 300px;
+}
+.c-card_big {
+  padding: 20px 50px;
+  min-height: 800px;
+}
+.c-body__img {
+  margin: 5px 20px 0 0;
+}
+
+.img_olympic-solo {
+  background-image: url("../../../images/olympic-solo.png");
+}
+
+.img_olympic-team {
+  background-image: url("../../../images/olympic-team.png");
+}
+
+.c-title {
+  font-size: 25px;
+  font-weight: bold;
+  text-transform: inherit;
+}
+
+.c-title_bottom{
+  margin-bottom: 20px;
+}
+.c-content__section {
+  margin-top: 25px;
+  margin-right: 50px;
+}
+.c-text_big{
+  font-size: 1.5em;
+}
+.c-header {
+  text-align: center;
+}
+.c-body__c-header {
+  margin-bottom: 20px;
+}
+.c-context-text__text {
+  margin-bottom: 10px;
+}
+.c-context-text__btn {
+  margin: 10px 0 0;
+}
+.c-body__footer {
+  margin-top: 30px;
+  position: absolute;
+  right: 40px;
+}
+.c-content {
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+.c-content_text{
+  margin-left: 20px;
+  padding: 10px;
+}
+.section_small {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.c-section{
+  margin-top: 50px;
+}
+.circle-number{
+  background: #fff;
+  color: #FF5722;
+  padding: 8px 18px;
+  border-radius: 50%;
+  font-size: 20px;
+  font-weight: bold;
+}
+.c-content_margin{
+  margin-bottom: 20px;
+}
+
+.c-team{
+  margin: 0 20px ;
+  display: flex;
+  align-items: center;
+}

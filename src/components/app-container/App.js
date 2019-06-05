@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { MainPage } from "../../containers/main-page-container";
 import { Login } from "../../containers/login-container";
+import {OlympiadSingle,OlympiadTeam} from "../../containers/olympiad-passing-containers";
 import { Registration } from "../../containers/registration-container";
 import { TeacherRegistration } from "../../containers/teacher-registration-container";
 
@@ -24,6 +25,8 @@ class App extends Component {
           <Route exact path="/" component={MainPage} />
           <Route path="/login" component={Login} />
           <Route path="/olympic-enter" component={OlympicEnter} />
+          <Route path="/olympic-single" component={OlympiadSingle} />
+          <Route path="/olympic-team" component={OlympiadTeam} />
           <Route path="/olympic-registration" component={OlympiadRegistration} />
           <Route path="/olympic-registartion-team" component={OlympiadRegistrationTeam} />
 
