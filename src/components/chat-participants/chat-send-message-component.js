@@ -8,10 +8,9 @@ export class SendMessage extends Component {
         this.state={
             messagge: ""
         }
-        this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange(event){
+    handleChange = (event) => {
         this.setState({
             messagge: event.target.value
         });

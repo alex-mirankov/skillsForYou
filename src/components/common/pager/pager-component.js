@@ -15,23 +15,12 @@ const TITLES = {
 };
 
 class Pager extends React.Component {
-	constructor(props) {
-		super(props);
 
-		this.handleFirstPage     = this.handleFirstPage.bind(this);
-		this.handlePreviousPage  = this.handlePreviousPage.bind(this);
-		this.handleNextPage      = this.handleNextPage.bind(this);
-		this.handleLastPage      = this.handleLastPage.bind(this);
-		this.handleMorePrevPages = this.handleMorePrevPages.bind(this);
-		this.handleMoreNextPages = this.handleMoreNextPages.bind(this);
-		this.handlePageChanged   = this.handlePageChanged.bind(this);
-	}
-
-	getTitles(key) {
+	getTitles=(key)=> {
 		return this.props.titles[key] || TITLES[key];
 	}
 
-	calcBlocks() {
+	calcBlocks=()=> {
 		const props = this.props;
 		const total = props.total;
 		const blockSize = props.visiblePages;
@@ -46,25 +35,17 @@ class Pager extends React.Component {
 		};
 	}
 
-	isPrevDisabled() {
-		return this.props.current <= BASE_SHIFT;
-	}
-
-	isNextDisabled() {
-		return this.props.current >= this.props.total;
-	}
-
-	isPrevMoreHidden() {
+	isPrevMoreHidden=()=> {
 		const blocks = this.calcBlocks();
 		return (blocks.total === TITLE_SHIFT) || (blocks.current === BASE_SHIFT);
 	}
 
-	isNextMoreHidden() {
+	isNextMoreHidden=()=>{
 		const blocks = this.calcBlocks();
 		return (blocks.total === TITLE_SHIFT) || (blocks.current === blocks.total);
 	}
 
-	visibleRange() {
+	visibleRange=()=> {
 		const blocks = this.calcBlocks();
 		const start = blocks.current * blocks.size;
 		const delta = this.props.total - start;
@@ -73,48 +54,24 @@ class Pager extends React.Component {
 		return [start + TITLE_SHIFT, end + TITLE_SHIFT];
 	}
 
-	handleFirstPage() {
-		if (!this.isPrevDisabled()) {
-			this.handlePageChanged(BASE_SHIFT);
-		}
-	}
-
-	handlePreviousPage() {
-		if (!this.isPrevDisabled()) {
-			this.handlePageChanged(this.props.current - TITLE_SHIFT);
-		}
-	}
-
-	handleNextPage() {
-		if (!this.isNextDisabled()) {
-			this.handlePageChanged(this.props.current + TITLE_SHIFT);
-		}
-	}
-
-	handleLastPage() {
-		if (!this.isNextDisabled()) {
-			this.handlePageChanged(this.props.total - TITLE_SHIFT);
-		}
-	}
-
-	handleMorePrevPages() {
+	handleMorePrevPages=()=> {
 		const blocks = this.calcBlocks();
 		this.handlePageChanged((blocks.current * blocks.size) - TITLE_SHIFT);
 	}
 
     
-	handleMoreNextPages() {
+	handleMoreNextPages=()=> {
 		const blocks = this.calcBlocks();
 		this.handlePageChanged((blocks.current + TITLE_SHIFT) * blocks.size);
 	}
 
-	handlePageChanged(num) {
+	handlePageChanged=(num)=>{
 		const handler = this.props.onPageChanged;
 		if (handler) handler(num);
 	}
 
 
-	renderPages(pair) {
+	renderPages=(pair)=> {
 		return range(pair[0], pair[1]).map((num, idx) => {
 			const current = num;
 			const onClick = this.handlePageChanged.bind(this, current);
