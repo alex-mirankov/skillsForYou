@@ -6,7 +6,7 @@ import { CustomSelect } from "../custom-input/customInput";
 import CircularIndeterminate from '../loader-circle/loaderCircle';
 import axios from 'axios';
 
-import { getCourses } from '../../redux/actions/index';
+import { getCourses, getCoursesWithSearch } from '../../redux/actions/courses.action';
 import { connect } from 'react-redux';
 
 const inputValuesCategory = [
@@ -54,6 +54,15 @@ class ProgramSelectionComponent extends Component {
     axios.get('http://localhost:8000/courses')
       .then(res => this.getAllCourses(res.data))
       .catch(error => console.log(error));
+  };
+
+  handleSearch = (e) => {
+    let searchString = e.target.value;
+    console.log(searchString);
+  }
+
+  getCoursesSearch = () => {
+    
   }
 
   programSelectionLayout = () => (
@@ -86,6 +95,7 @@ class ProgramSelectionComponent extends Component {
               className="input-search__input"
               type="search"
               placeholder="Поиск...."
+              onChange={this.handleSearch}
             />
           </div>
         </span>
@@ -115,7 +125,10 @@ class ProgramSelectionComponent extends Component {
 const mapDispatchToProps = (dispatch) => ({
   getAllCourses: (data) => {
     dispatch(getCourses(data));
-  }
+  },
+  getCoursesSearch: (data) => {
+    dispatch(getCoursesWithSearch(data));
+  },
 });
 
 export const ProgramSelection = connect(null, mapDispatchToProps)(ProgramSelectionComponent);
