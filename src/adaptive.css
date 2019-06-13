@@ -11,4 +11,10 @@
     .page {
         width: 1170px;
     }
+   
+}
+@media (min-width: 1450px) {
+    .card-page{
+        width: 1350px;
+    }
 }
