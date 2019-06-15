@@ -12,6 +12,7 @@ import { Work } from "../../containers/work-page-container";
 import OlympicEnter from '../../containers/olympiad-enter-container/olympiadEnterContainer';
 import OlympiadRegistration from '../../containers/olympiad-registartion/olympiadRegistration';
 import OlympiadRegistrationTeam from '../../containers/olympiad-registration-team/olympiadRegistrationTeam';
+import { NotFoundPage } from '../../containers/not-found-page/notFoundPage';
 // import { connect } from "react-redux"; //example
 
 import "./App.css";
@@ -37,7 +38,7 @@ class App extends Component {
             component={TeacherRegistration}
           />
           <Route path="/work/:id" component={Work} />
-          <Route path="/*" component={() => "Error 404"} />
+          <Route path="/*" component={NotFoundPage} />
         </Switch>
         <Footer />
       </div>

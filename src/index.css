@@ -26,6 +26,11 @@ code {
 }
 
 @font-face{
+  font-family: 'lato';
+  src: url('fonts/lato.ttf');
+}
+
+@font-face{
   font-family: 'gilroy_extra_bold';
   src: url('fonts/gilroy_extra_bold.otf');
 }
