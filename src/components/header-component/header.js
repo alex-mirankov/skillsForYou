@@ -104,7 +104,7 @@ class HeaderComponent extends Component {
               </li>
               <li className="navigation-list__item">
                 <a
-                  href="https://www.google.com/"
+                  href=""
                   className="navigation-list__link navigation-list__link_hover"
                 >
                   Ваши возможности
@@ -120,7 +120,7 @@ class HeaderComponent extends Component {
               </li>
               <li className="navigation-list__item">
                 <a
-                  href="https://www.google.com/"
+                  href=""
                   className="navigation-list__link navigation-list__link_hover"
                 >
                   Учебные курсы
@@ -128,7 +128,7 @@ class HeaderComponent extends Component {
               </li>
               <li className="navigation-list__item">
                 <a
-                  href="https://www.google.com/"
+                  href=""
                   className="navigation-list__link navigation-list__link_hover"
                 >
                   Контакты
@@ -137,7 +137,7 @@ class HeaderComponent extends Component {
 
               <li className="navigation-list__item navigation-list__control-panel">
                 <a
-                  href="https://www.google.com/"
+                  href=""
                   className="navigation-list__link navigation-list__link_margin navigation-list__link_hover"
                 >
                   <img
@@ -147,7 +147,7 @@ class HeaderComponent extends Component {
                   />
                 </a>
                 <a
-                  href="https://www.google.com/"
+                  href=""
                   className="navigation-list__link navigation-list__link_margin navigation-list__link_hover"
                 >
                   <img
@@ -157,7 +157,7 @@ class HeaderComponent extends Component {
                   />
                 </a>
                 <a
-                  href="https://www.google.com/"
+                  href=""
                   className="navigation-list__link navigation-list__link_margin navigation-list__link_hover navigation-list__link_avatar"
                 >
                   <img

@@ -5,6 +5,7 @@ import CustomInput from '../input-registration-form/inputRegistrationForm';
 import { CustomSelect } from '../custom-input/customInput';
 import ButtonAll from '../share/button-all/buttonAll';
 import MyModal from '../modal-window/modalWindow';
+import { ShareSelect } from '../share/select/select';
 
 import { connect } from 'react-redux';
 import { openWindow } from '../../redux/actions/modal.acion';
@@ -31,36 +32,26 @@ const inputValuesDate = [
     { text: "30.09.2019", value: 3 }
 ];
 
-const stylesContainer = {
-    margin: '0 auto',
-    width: '80%',
-    height: '51px',
-    fontFamily: 'gilroy_extra_bold',
-    color: '#938e8e',
-    outline: 'none',
-    border: '2px solid #acacac',
-    fontSize: '1.5rem',
-    marginBottom: '30px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: '0',
-}
+const valueLanguage = "Язык программирования";
+const valueDate = "Дата проведения";
 
 class OlympiadRegistrationTeams extends React.Component {
     state = {
-        currentValueLanguage: "Язык программирования",
-        currentValueDate: "Дата проведения"
+        programmingLanguage: '',
+        dateStartOlympic: '',
+        firstParcipant: '',
+        secondParcipant: '',
+        thirdParcipant: '',
     };
 
     handleChangeDate = text => {
-        this.setState({ currentValueDate: text });
+        this.setState({ dateStartOlympic: text });
     };
     handleOpenWindow = () => {
         this.props.closeWindowComp();
     }
     handleChangeLanguage = text => {
-        this.setState({ currentValueLanguage: text });
+        this.setState({ programmingLanguage: text });
     };
     render() {
         return (
@@ -68,16 +59,14 @@ class OlympiadRegistrationTeams extends React.Component {
                 <CustomInput styles={styles} placeHolder={'Ник 1 го участника'} />
                 <CustomInput placeHolder={'Ник 2 го участника'} />
                 <CustomInput placeHolder={'Ник 3 го участника'} />
-                <CustomSelect
-                    stylesContainer={stylesContainer}
-                    inputValues={inputValuesLanguage}
-                    currentValue={this.state.currentValueLanguage}
+                <ShareSelect
+                    menuItemObject={inputValuesLanguage}
+                    label={valueLanguage}
                     handleChange={this.handleChangeLanguage}
                 />
-                <CustomSelect
-                    stylesContainer={stylesContainer}
-                    inputValues={inputValuesDate}
-                    currentValue={this.state.currentValueDate}
+                <ShareSelect
+                    menuItemObject={inputValuesDate}
+                    label={valueDate}
                     handleChange={this.handleChangeDate}
                 />
                 <ButtonAll
