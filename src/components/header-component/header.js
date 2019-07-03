@@ -5,12 +5,30 @@ import header_settings from "../../images/header_settings.png";
 import header_notification from "../../images/header_notofication.png";
 import header_avatar from "../../images/header_avatar.png";
 import helpImg from "../../images/help.svg";
-import signOutImg from "../../images/sign-out.svg";
 import { LongMenu } from "../menu";
 import { Slider } from "../../components/slider";
 import { withRouter } from "react-router-dom";
+import { connect } from 'react-redux';
+import { deleteUserToken } from '../../redux/actions/user.action';
 
 class HeaderComponent extends Component {
+  controlPanel = 'inline';
+  regPanel = 'flex';
+  user = () => {
+    let token = localStorage.getItem('token');
+    if (token) {
+      this.controlPanel = 'inline';
+    }
+    else {
+      this.controlPanel = 'none';
+    }
+    if (!token) {
+      this.regPanel = 'flex';
+    }
+    else {
+      this.regPanel = 'none';
+    }
+  }
   handleLoginClick = () => {
     history.push("/login");
     document.documentElement.scrollTop = 0;
@@ -32,7 +50,8 @@ class HeaderComponent extends Component {
   }
 
   logout = () => {
-    alert("Logout");
+    localStorage.removeItem('token');
+    this.props.DeleteUserToken();
   };
 
   openProfile = () => {
@@ -43,25 +62,13 @@ class HeaderComponent extends Component {
   HeaderLayout = () => {
     const { location } = this.props;
     const isMainPage = location.pathname === "/";
-    const isLoggedIn = localStorage.getItem("auth-token");
-    const logOutButton = isLoggedIn
-      ? {
-        text: "Выйти",
-        icon: signOutImg,
-        onClick: this.logout
-      }
-      : {
-        text: "Войти",
-        icon: signOutImg,
-        onClick: () => history.push("/login")
-      };
+
     const menuButtonsProperties = [
       {
-        text: "Помощь",
+        text: "Выйти",
         icon: helpImg,
-        onClick: this.openProfile
+        onClick: this.logout
       },
-      logOutButton
     ];
 
     return (
@@ -71,25 +78,21 @@ class HeaderComponent extends Component {
           } header_back-styles`}
       >
         <div className="page page_margin page_position">
-          <div className="regist-enter regist-enter__flex regist-enter__size regist-enter__margin">
-            {isLoggedIn ? (
-              <div style={{ height: "77px" }} />
-            ) : (
-                <React.Fragment>
-                  <button
-                    className="regist-enter__enter regist-enter__enter_hover"
-                    onClick={this.handleLoginClick}
-                  >
-                    Войти
+          <div className="regist-enter regist-enter__flex regist-enter__size regist-enter__margin" style={{ display: this.regPanel }}>
+            <React.Fragment>
+              <button
+                className="regist-enter__enter regist-enter__enter_hover"
+                onClick={this.handleLoginClick}
+              >
+                Войти
                 </button>
-                  <button
-                    className="regist-enter__registration regist-enter__registration_hover"
-                    onClick={this.handleRegistrationClick}
-                  >
-                    Регистрация
+              <button
+                className="regist-enter__registration regist-enter__registration_hover"
+                onClick={this.handleRegistrationClick}
+              >
+                Регистрация
                 </button>
-                </React.Fragment>
-              )}
+            </React.Fragment>
           </div>
 
           <nav className="navigation">
@@ -135,7 +138,7 @@ class HeaderComponent extends Component {
                 </a>
               </li>
 
-              <li className="navigation-list__item navigation-list__control-panel">
+              <li className="navigation-list__item navigation-list__control-panel" style={{ display: this.controlPanel }}>
                 <a
                   href=""
                   className="navigation-list__link navigation-list__link_margin navigation-list__link_hover"
@@ -180,7 +183,15 @@ class HeaderComponent extends Component {
   };
 
   render() {
+    this.user();
     return <this.HeaderLayout />;
   }
 }
-export const Header = withRouter(HeaderComponent);
+
+const mapDispatchToProps = (dispacth) => ({
+  DeleteUserToken: () => {
+    dispacth(deleteUserToken());
+  },
+})
+
+export const Header = withRouter(connect(null, mapDispatchToProps)(HeaderComponent));

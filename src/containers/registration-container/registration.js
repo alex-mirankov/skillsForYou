@@ -2,21 +2,16 @@ import React, { Component } from "react";
 import "./style.css";
 import { Redirect } from "react-router-dom";
 import { history } from "../../services/redux";
-import { registrationRequest } from "../../utils/registrationRequest";
+import axios from 'axios';
+
+import { fields } from './fields';
 export class Registration extends Component {
+  fields = fields;
   state = {
     email: "",
-    fullName: "",
-    birthday: false,
-    region: "",
-    city: "",
-    phone: false,
-    education: "",
-    motivation: "",
-    studyPlace: "",
-    workPlace: "",
-    error: false,
-    success: false
+    full_name: "",
+    password: "",
+    password_confirm: "",
   };
 
   handleChange = event => {
@@ -30,40 +25,42 @@ export class Registration extends Component {
     document.documentElement.scrollTop = 0;
   };
 
-  handleSubmit = async () => {
+  // fileSelectedHendler = (event) => {
+  //   this.setState({
+  //     avatar: event.target.files[0],
+  //   });
+  //   let formData = new FormData();
+
+  //   var blob = event.target.files[0].slice(0, event.target.files[0].size, 'image/jpeg');
+  //   let newFile = new File([blob], 'image.jpg', { type: 'image/jpeg' });
+
+  //   formData.append("img_field", newFile);
+  // }
+
+  handleSubmit = () => {
     const {
       email,
-      fullName,
-      birthday,
-      // region,
-      // city,
-      phone,
-      education,
-      motivation,
-      studyPlace,
-      workPlace
+      full_name,
+      password,
+      password_confirm,
+      avatar,
     } = this.state;
 
     const fields = {
       email,
-      full_name: fullName,
-      birthday,
-      region: 455,
-      city: 2256,
-      place_of_study: studyPlace,
-      place_of_work: workPlace,
-      education,
-      phone: phone,
-      motivation
+      full_name: full_name,
+      password: password,
+      password_confirm: password_confirm,
+      avatar: avatar,
     };
-    let response;
-    await registrationRequest(fields).then(data => (response = data));
-    if (response.error) {
-      const error = response.data[Object.keys(response.data)[0]];
-      this.setState({ error: error[0] });
-    } else {
-      this.setState({ success: true });
-    }
+    axios.post('https://skill4u.herokuapp.com/', this.state)
+      .then(e => {
+        history.push('/login');
+      })
+      .catch(error => {
+        console.log(error);
+      });
+      console.log(this.state);
   };
 
   RegistrationLayout = () => (
@@ -90,78 +87,39 @@ export class Registration extends Component {
           />
           <input
             onChange={this.handleChange}
-            value={this.state.fullName}
+            value={this.state.full_name}
             type="text"
             className="form__input"
-            id="fullName"
-            name="fullName"
-            placeholder="ФИО"
+            id="full_name"
+            name="full_name"
+            placeholder="Введите имя"
           />
           <input
             onChange={this.handleChange}
-            type="date"
+            value={this.state.password}
+            type="password"
             className="form__input"
-            id="birthday"
-            name="birthday"
-            placeholder="Дата рождения"
+            id="password"
+            name="password"
+            placeholder="Придумайте пароль"
+          />
+          <input
+            onChange={this.handleChange}
+            value={this.state.password_confirm}
+            type="password"
+            className="form__input"
+            id="password_confirm"
+            name="password_confirm"
+            placeholder="Повторите пароль"
           />
           {/* <input
-            onChange={this.handleChange}
-            type="text"
+            onChange={(e) => this.fileSelectedHendler(e)}
+            type="file"
             className="form__input"
-            id="region"
-            name="region"
-            placeholder="Регион"
-          />
-          <input
-            onChange={this.handleChange}
-            type="text"
-            className="form__input"
-            id="city"
-            name="city"
-            placeholder="Район/город"
+            id="avatar"
+            name="avatar"
+            placeholder="Выберите аватар"
           /> */}
-          <input
-            onChange={this.handleChange}
-            type="telephone"
-            className="form__input"
-            id="phone"
-            name="phone"
-            placeholder="Телефон"
-          />
-          <input
-            onChange={this.handleChange}
-            type="text"
-            className="form__input"
-            id="studyPlace"
-            name="studyPlace"
-            placeholder="Место учебы"
-          />
-          <input
-            onChange={this.handleChange}
-            type="text"
-            className="form__input"
-            id="workPlace"
-            name="workPlace"
-            placeholder="Место работы"
-          />
-          <input
-            onChange={this.handleChange}
-            type="text"
-            className="form__input"
-            id="education"
-            name="education"
-            placeholder="Образование"
-          />
-          <input
-            onChange={this.handleChange}
-            type="text"
-            className="form__input"
-            id="motivation"
-            name="motivation"
-            placeholder="Мотивация"
-          />
-
           <input
             type="button"
             onClick={this.handleSubmit}
@@ -185,8 +143,8 @@ export class Registration extends Component {
         }}
       />
     ) : (
-      <this.RegistrationLayout />
-    );
+        <this.RegistrationLayout />
+      );
     return component;
   }
 }

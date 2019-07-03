@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 import "./style.css";
 import { history } from "../../services/redux";
-import { loginRequest } from "../../utils/loginRequest";
+import axios from 'axios';
 
 export class Login extends Component {
   state = {
-    redirected: false,
     email: "",
     password: "",
-    error: false
   };
 
   handleRegistrationClick = () => {
@@ -19,14 +17,19 @@ export class Login extends Component {
   handleChange = event => {
     this.setState({
       [event.target.name]: event.target.value,
-      error: false
     });
   };
 
   handleSubmit = () => {
-    loginRequest(this.state.email, this.state.password).then(res =>
-      res ? history.push("/") : this.setState({ error: true })
-    );
+    axios.post('https://skill4u.herokuapp.com/login', this.state)
+      .then(e => {
+        localStorage.setItem('token', e.data.token);
+        console.log(e);
+        history.push('/');
+      })
+      .catch(error => {
+        console.log(error);
+      })
   };
 
   LoginLayout = () => (

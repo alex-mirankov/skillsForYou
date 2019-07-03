@@ -27,7 +27,7 @@ class OlympiadEnterContainer extends React.Component {
                         image={olympicTeam}
                         content={'Создай свою команду и начни участвовать'}
                         date={'22.01.2019'}
-                        action={this.goToSoloOlymp}
+                        action={this.goToTeamOlymp}
                         styles={styles}
                     />
                     <OlympicCard
@@ -35,7 +35,7 @@ class OlympiadEnterContainer extends React.Component {
                         image={olympicSolo}
                         content={'Любишь сражаться в одиночку?!Тогда прими участие'}
                         date={'22.01.2019'}
-                        action={this.goToTeamOlymp}
+                        action={this.goToSoloOlymp}
                     />
                 </div>
             </div>

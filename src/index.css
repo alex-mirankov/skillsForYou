@@ -10,7 +10,7 @@ body {
   min-width: 400px;
 }
 
-p {
+p, ul {
   padding: 0;
   margin: 0;
 }
