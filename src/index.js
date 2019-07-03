@@ -7,16 +7,16 @@ import { Provider } from "react-redux";
 import { ConnectedRouter } from "react-router-redux";
 
 import { history, store } from "./services/redux";
-import App from "./components/app-container/App";
+import { App } from "./components/app-container/App";
 
 const Root = () => {
-return  <Provider store={store}>
+  return <Provider store={store}>
     <ConnectedRouter history={history}>
       <App />
     </ConnectedRouter>
   </Provider>
 };
 
-ReactDOM.render(<Root /> , document.getElementById("root"));
+ReactDOM.render(<Root />, document.getElementById("root"));
 
 serviceWorker.register();
