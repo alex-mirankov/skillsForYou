@@ -1,5 +1,5 @@
 import React from "react";
-import {TaskWritting} from './task-writting-code';
+import { TaskWritting } from './task-writting-code';
 
 export function TaskOlympiad({ number, title, description, children }) {
   return (
@@ -9,11 +9,11 @@ export function TaskOlympiad({ number, title, description, children }) {
         <p className="c-title text_bold c-content_text">{title}</p>
       </div>
       <div className="description">
-          <p>{description}</p>
+        <p>{description}</p>
       </div>
       <section className="section">
-          <TaskWritting />
-          {children}
+        <TaskWritting />
+        {children}
       </section>
     </>
   );

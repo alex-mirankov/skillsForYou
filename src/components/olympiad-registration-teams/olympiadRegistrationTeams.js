@@ -7,6 +7,8 @@ import ButtonAll from '../share/button-all/buttonAll';
 import MyModal from '../modal-window/modalWindow';
 import { ShareSelect } from '../share/select/select';
 
+import axios from 'axios';
+
 import { connect } from 'react-redux';
 import { openWindow } from '../../redux/actions/modal.acion';
 
@@ -37,8 +39,8 @@ const valueDate = "Дата проведения";
 
 class OlympiadRegistrationTeams extends React.Component {
     state = {
-        programmingLanguage: '',
-        dateStartOlympic: '',
+        // programmingLanguage: '',
+        // dateStartOlympic: '',
         firstParcipant: '',
         secondParcipant: '',
         thirdParcipant: '',
@@ -47,7 +49,10 @@ class OlympiadRegistrationTeams extends React.Component {
     handleChangeDate = text => {
         this.setState({ dateStartOlympic: text });
     };
-    handleOpenWindow = () => {
+    handleRegistration = () => {
+        axios.post('', this.state)
+            .then()
+            .catch(e => console.log(e));
         this.props.closeWindowComp();
     }
     handleChangeLanguage = text => {
@@ -56,9 +61,9 @@ class OlympiadRegistrationTeams extends React.Component {
     render() {
         return (
             <div className="card-registration">
-                <CustomInput styles={styles} placeHolder={'Ник 1 го участника'} />
-                <CustomInput placeHolder={'Ник 2 го участника'} />
-                <CustomInput placeHolder={'Ник 3 го участника'} />
+                <CustomInput styles={styles} placeHolder={'Почта 1 го участника'} />
+                <CustomInput placeHolder={'Почта 2 го участника'} />
+                <CustomInput placeHolder={'Почта 3 го участника'} />
                 <ShareSelect
                     menuItemObject={inputValuesLanguage}
                     label={valueLanguage}
@@ -72,7 +77,7 @@ class OlympiadRegistrationTeams extends React.Component {
                 <ButtonAll
                     styles={stylesButton}
                     content={'Регистрация'}
-                    action={this.handleOpenWindow}
+                    action={this.handleRegistration}
                 />
                 <MyModal />
             </div>

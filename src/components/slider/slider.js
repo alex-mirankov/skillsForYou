@@ -1,14 +1,15 @@
 import React from "react";
+import './style.css';
+
 import Carousel from "nuka-carousel";
+
 import sliderGuyImg from "../../images/image-slider__guy.png";
 import sliderGuyImg2 from "../../images/kartinka_2.png";
 import sliderGuyImg3 from "../../images/kartinka_3.png";
 import mechanic_header_1 from "../../images/mechanic-header_1.png";
 import mechanic_header_2 from "../../images/mechanic_header_2.png";
 
-import "./style.css";
-
-const sliderData = [
+export const sliderData = [
   {
     text:
       "Ты давно хотел попасть в сферу IT технологий, но не хваталосмелости и навыка?!",
@@ -16,12 +17,12 @@ const sliderData = [
   },
   {
     text:
-      "2222222Ты давно хотел попасть в сферу IT технологий, но не хваталосмелости и навыка?!",
+      "Ты давно хотел попасть в сферу IT технологий, но не хваталосмелости и навыка?!",
     img: sliderGuyImg2
   },
   {
     text:
-      "333333333Ты давно хотел попасть в сферу IT технологий, но не хваталосмелости и навыка?!",
+      "Ты давно хотел попасть в сферу IT технологий, но не хваталосмелости и навыка?!",
     img: sliderGuyImg3
   }
 ];
@@ -31,12 +32,12 @@ export class Slider extends React.Component {
     const { item } = props;
     const renderArray = (
       <div className="wrapperSlider">
-      <div className="mechanic-item1">
+        <div className="mechanic-item1">
           <img
-             src={mechanic_header_1}
-             className="mechanic-item1__image"
-             alt="mechanic-item1"
-             />
+            src={mechanic_header_1}
+            className="mechanic-item1__image"
+            alt="mechanic-item1"
+          />
         </div>
         <div className="slider">
           <center>
@@ -62,18 +63,17 @@ export class Slider extends React.Component {
                 className="image-slider image-slider__size image-slider_margin image-slider__beauty"
                 alt="slider img"
               />
-              {/* <div className="image-slider image-slider__size image-slider_margin image-slider_back-styles" /> */}
             </div>
           </center>
         </div>
         <div className="mechanic-item2">
           <img
-             src={mechanic_header_2}
-             className="mechanic-item2__image"
-             alt="mechanic-item2"
-             />
+            src={mechanic_header_2}
+            className="mechanic-item2__image"
+            alt="mechanic-item2"
+          />
         </div>
-    </div>
+      </div>
     );
     return renderArray;
   };

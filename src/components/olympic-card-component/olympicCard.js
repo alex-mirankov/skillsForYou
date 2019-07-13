@@ -21,7 +21,7 @@ class OlympicCard extends React.Component {
                     </div>
                 </div>
                 <p className="olympic-timetable">
-                    <a href="/" className="olympic-timetable-link">Расписание олимпиад</a>
+                    <a href="/olympiads" className="olympic-timetable-link">Расписание олимпиад</a>
                 </p>
             </div>
         );

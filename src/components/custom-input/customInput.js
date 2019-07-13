@@ -1,9 +1,9 @@
 import React from "react";
-import "./style.css";
+import "./style.scss";
 
 export class CustomSelect extends React.Component {
   state = {
-    isOpen: false
+    isOpen: false,
   };
 
   handleClick = () => {
@@ -30,15 +30,17 @@ export class CustomSelect extends React.Component {
     const { inputValues, currentValue, handleChange } = this.props;
 
     return (
-      <div className="custom-input-container" >
-        <div className="custom-input__text" onClick={this.handleClick} style={this.props.stylesContainer}>
+      <div className="select">
+        <div className="select__label"
+          onClick={this.handleClick}
+          style={this.props.stylesContainer}>
           {currentValue}
         </div>
         {isOpen && (
-          <div className="custom-input__pop-up-panel">
+          <div className="select__pop-up">
             {inputValues.map(item => (
               <div
-                className="custom-input__value custom-input__value_hover"
+                className="select__pop-up-value custom-input__value_hover"
                 key={item.value}
                 id={item.value}
                 onClick={() => {

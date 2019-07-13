@@ -1,0 +1,44 @@
+@import '../../styles/constants.scss';
+
+.select {
+  font-size: 1.28rem;
+  font-family: $baseLightFont;
+  font-weight: 600;
+
+  &__label {
+    width: 270px;
+    height: 32px;
+    border: 1px solid $baseBlackColor;
+    border-radius: 9px;
+    margin-bottom: 15px;
+    padding-top: 5px;
+
+    cursor: pointer;
+  }
+
+  &__pop-up {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 270px;
+    position: absolute;
+    border: 1px solid silver;
+    border-radius: 10px;
+    background: white;
+
+    &-value {
+      display: flex;
+      justify-content: flex-start;
+      padding: 15px 0 15px 15px;
+      cursor: pointer;
+    }
+
+    &:last-child {
+      border-radius: 0 0 9px 9px;
+    }
+
+    &:first-child {
+      border-radius: 9px 9px 0 0;
+    }
+  }
+}
