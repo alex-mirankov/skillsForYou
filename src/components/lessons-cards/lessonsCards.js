@@ -1,56 +1,53 @@
 import React from "react";
-import cardsTacherImg from "../../images/cards-tacher-img.png";
 import { Link } from 'react-router-dom';
-import "./style.css";
+import './style.scss';
+
+import cardsTacherImg from "../../images/cards-tacher-img.png";
 
 export class LessonsCards extends React.Component {
-    render() {
-        const { image, title, sub_title, total_students, color, id } = this.props;
-        return (
-            <div className="cards cards_margin">
-                <Link to={{ pathname: '/work/' + id }}>
-                    <div className="card card_hover card__style card__size">
-                        <div className="card-header card-header__size card-header_back-style" style={{ background: color }}>
-                            <p className="card-header__main">{title}</p>
-                            <p className="card-header__content">
-                                <span className="card-header__span">Уровень:</span> {sub_title}
-                            </p>
-                        </div>
-                        <div className="card-image card-image__flex card-image__size">
-                            <img
-                                className="card-image__img-Java"
-                                src={image}
-                                alt="мужик с ноутом"
-                            />
-                        </div>
-                        <div className="card__hr" />
-                        <div className="card-info card-info_margin">
-                            <div className="card-info__flex">
-                                <p className="card-info__elem1">Количество студентов:</p>
-                                <p className="card-info__elem1 card-info__elem1_margin"> {total_students}</p>
-                            </div>
-                            <div className="card-info__flex">
-                                <p className="card-info__elem2">Изучили курс:</p>
-                                <p className="card-info__elem2 card-info__elem1_margin"> 3</p>
-                            </div>
-                        </div>
-                        <div className="card-cost card-cost_margin card-cost__flex">
-                            <div className="card-cost__teacher">
-                                <p className="card-cost__text-teacher">Учителя</p>
-                                <img
-                                    className="card-cost__image"
-                                    src={cardsTacherImg}
-                                    alt="учитель"
-                                />
-                            </div>
-                            <div className="card-cost__cost">
-                                <p className="card-cost__text-cost">Цена</p>
-                                <p className="card-cost__number">23 $</p>
-                            </div>
-                        </div>
-                    </div>
-                </Link>
+  render() {
+    const { image, title, sub_title, total_students, color, id } = this.props;
+    return (
+      <div className="cards">
+        <Link to={{ pathname: '/work/' + id }}>
+          <div className="card">
+            <div className="card__header" style={{ background: color }}>
+              <p className="card__header-title">{title}</p>
+              <p className="card__header-level">
+                <span className="card__header-level-text">Уровень:</span> {sub_title}
+              </p>
             </div>
-        );
-    }
+            <div className="card__image">
+              <img
+                className="card__image-content"
+                src={image}
+                alt="изображение курса"
+              />
+            </div>
+            <div className="card__divide" />
+            <div className="card__info">
+              <div className="card__info-stats">
+                <p className="card__info-stats-help-text">Количество студентов:</p>
+                <p className="card__info-stats-text"> {total_students}</p>
+              </div>
+              <div className="card__info-stats">
+                <p className="card__info-stats-help-text">Изучили курс:</p>
+                <p className="card__info-stats-text"> 3</p>
+              </div>
+            </div>
+            <div className="card__teacher">
+              <p className="card__teacher-text">Учителя</p>
+              <div className="card__teacher-list">
+                <img
+                  className="card-cost__image"
+                  src={cardsTacherImg}
+                  alt="учитель"
+                />
+              </div>
+            </div>
+          </div>
+        </Link>
+      </div>
+    );
+  }
 }

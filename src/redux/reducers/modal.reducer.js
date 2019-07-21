@@ -4,7 +4,7 @@ const initialState = {
     open: false,
 }
 
-const modal = (state = initialState, action) => {
+export const modal = (state = initialState, action) => {
     switch (action.type) {
         case OPEN_MODAL_WINDOW:
             return {
@@ -18,5 +18,3 @@ const modal = (state = initialState, action) => {
             return state
     }
 }
-
-export default modal;

@@ -38,3 +38,13 @@ code {
 a {
   text-decoration: none;
 }
+
+.slider-control-bottomcenter button {
+  color: rgba(255, 255, 255, 0.38) !important;
+  font-size: 40px !important;
+  padding: 0 !important;
+}
+
+.slider-control-bottomcenter {
+  bottom: 20px !important;
+}

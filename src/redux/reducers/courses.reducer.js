@@ -4,7 +4,7 @@ const initialState = {
     courses: [],
 }
 
-const courses = (state = initialState, action) => {
+export const courses = (state = initialState, action) => {
     switch (action.type) {
         case GET_COURSES:
             return {
@@ -18,5 +18,3 @@ const courses = (state = initialState, action) => {
             return state
     }
 }
-
-export default courses;

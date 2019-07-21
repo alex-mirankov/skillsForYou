@@ -1,0 +1,14 @@
+@import '../../styles/constants.scss';
+
+.modal {
+
+  &__content {
+    text-align: center;
+    color: $baseBlackColor;
+    font-family: $baseBoldFont;
+    font-size: 1.3rem;
+    margin-top: 20px;
+
+    margin-bottom: 66px;
+  }
+}

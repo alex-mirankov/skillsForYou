@@ -1,6 +1,7 @@
 import React from "react";
-import { CheckTasks } from "../../common";
-import '../style.css'
+import '../style.css';
+
+import { CheckTasks } from '../../index';
 
 export function OneComplete({ urlImg, fullName, tasksCompleted, commonTasks }) {
   return (

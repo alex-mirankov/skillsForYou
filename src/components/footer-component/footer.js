@@ -76,73 +76,71 @@ export const footerContactUs = [
 export class Footer extends Component {
   FooterLayout = () => (
     <footer className="footer">
-      <div className="page page__flex page_margin">
-        <div className="footer__social">
-          <p className="footer__social-header">Мы в социальных сетях</p>
-          <ul className="footer__social-list">
-            {
-              footerSocialLinks.map(item => {
-                return (
-                  <li className="footer__social-list__item">
-                    <a
-                      href={item.link}
-                      className="footer__social-list-link"
-                    >
-                      <img
-                        alt={item.alt}
-                        className="footer__social-list-image"
-                        src={item.image}
-                      />
-                    </a>
-                  </li>
-                );
-              })
-            }
-          </ul>
-        </div>
-
-        {
-          footerUsefulLinks.map(item => {
-            return (
-              <div className="footer__useful-links">
-                <p className="footer__useful-links-header">{item.title}</p>
-                {
-                  item.content.map(contentItem => {
-                    return (
-                      <a
-                        href={contentItem.link}
-                        className="footer__useful-links-item"
-                      >
-                        {contentItem.label}
-                      </a>
-                    );
-                  })
-                }
-              </div>
-            );
-          })
-        }
-
-        <div className="footer__useful-links">
-          <p className="footer__useful-links-header">Контакты</p>
+      <div className="footer__social">
+        <p className="footer__social-header">Мы в социальных сетях</p>
+        <ul className="footer__social-list">
           {
-            footerContactUs.map(item => {
+            footerSocialLinks.map(item => {
               return (
-                <a
-                  href={item.link}
-                  className="footer__useful-links-item"
-                >
-                  <img
-                    className="footer__useful-links-image"
-                    src={item.image}
-                    alt={item.alt}
-                  />
-                  {item.label}
-                </a>
+                <li className="footer__social-list__item">
+                  <a
+                    href={item.link}
+                    className="footer__social-list-link"
+                  >
+                    <img
+                      alt={item.alt}
+                      className="footer__social-list-image"
+                      src={item.image}
+                    />
+                  </a>
+                </li>
               );
             })
           }
-        </div>
+        </ul>
+      </div>
+
+      {
+        footerUsefulLinks.map(item => {
+          return (
+            <div className="footer__useful-links">
+              <p className="footer__useful-links-header">{item.title}</p>
+              {
+                item.content.map(contentItem => {
+                  return (
+                    <a
+                      href={contentItem.link}
+                      className="footer__useful-links-item"
+                    >
+                      {contentItem.label}
+                    </a>
+                  );
+                })
+              }
+            </div>
+          );
+        })
+      }
+
+      <div className="footer__useful-links">
+        <p className="footer__useful-links-header">Контакты</p>
+        {
+          footerContactUs.map(item => {
+            return (
+              <a
+                href={item.link}
+                className="footer__useful-links-item"
+              >
+                <img
+                  className="footer__useful-links-image"
+                  src={item.image}
+                  alt={item.alt}
+                />
+                {item.label}
+              </a>
+            );
+          })
+        }
       </div>
     </footer>
   );

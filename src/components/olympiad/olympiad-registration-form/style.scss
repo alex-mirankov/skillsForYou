@@ -1,0 +1,33 @@
+@import '../../../styles/constants.scss';
+
+.registration-olymp-form {
+  background: linear-gradient(
+    to top,
+    #4f2f82 0%,
+    #5f3789 10%,
+    #714091 21%,
+    #714091 31%,
+    #714091 40%,
+    #543184 78%,
+    #371e48 100%
+  );
+  width: 40%;
+  height: 500px;
+  border-radius: 10px;
+  padding-top: 43px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 95px;
+
+  &-team-name {
+    color: $baseWhiteColor;
+    font-family: $baseBoldFont;
+    font-size: 1.7rem;
+    margin-bottom: 73px;
+  }
+}
+
+.container-button-form {
+  margin-top: 70px;
+}

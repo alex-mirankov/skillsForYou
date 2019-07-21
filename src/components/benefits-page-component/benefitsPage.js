@@ -31,27 +31,25 @@ export const benefitsPoints = [
 
 export class Benefits extends Component {
   Benefits = () => (
-    <div className="page page_margin">
-      <div className="advantages">
-        <ul className="advantages__list">
-          {
-            benefitsPoints.map(item => {
-              return (
-                <li className="advantages__list-item">
-                  <img
-                    className="advantages__list-image"
-                    src={item.image}
-                    alt={item.alt}
-                  />
-                  <p className="advantages__list-text">
-                    {item.caption}
-                  </p>
-                </li>
-              );
-            })
-          }
-        </ul>
-      </div>
+    <div className="advantages">
+      <ul className="advantages__list">
+        {
+          benefitsPoints.map(item => {
+            return (
+              <li className="advantages__list-item">
+                <img
+                  className="advantages__list-image"
+                  src={item.image}
+                  alt={item.alt}
+                />
+                <p className="advantages__list-text">
+                  {item.caption}
+                </p>
+              </li>
+            );
+          })
+        }
+      </ul>
     </div>
   );
 

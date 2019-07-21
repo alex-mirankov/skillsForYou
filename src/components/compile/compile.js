@@ -5,11 +5,11 @@ import './style.scss';
 
 import axios from 'axios';
 
-import ButtonAll from '../share/button-all/buttonAll';
+import { ButtonAll } from '../index';
 import CodeMirror from 'react-codemirror';
 
 
-class Compile extends React.Component {
+export class Compile extends React.Component {
   constructor(props) {
     super(props);
 
@@ -19,13 +19,9 @@ class Compile extends React.Component {
       timeoutMs: 2000,
       responceBack: '',
     }
-
-    this.compileSend = this.compileSend.bind(this);
-    this.compileChange = this.compileChange.bind(this);
-    this.compileNull = this.compileNull.bind(this);
   }
 
-  compileSend() {
+  compileSend = () => {
     axios.post('http://127.0.0.1:3000/', this.state)
       .then((responce) => {
         this.setState({
@@ -38,14 +34,14 @@ class Compile extends React.Component {
       })
   }
 
-  compileChange(newCode) {
+  compileChange = (newCode) => {
     this.setState({
       code: newCode,
     })
 
   }
 
-  compileNull() {
+  compileNull = () => {
     this.setState({
       toggle: !this.state.toggle,
     });
@@ -58,7 +54,7 @@ class Compile extends React.Component {
       mode: "pascal",
     };
     return (
-      <div>
+      <div className="compile">
         <CodeMirror
           options={options}
           value={this.state.code}
@@ -66,6 +62,7 @@ class Compile extends React.Component {
         />
         <div className="compile-buttons">
           <ButtonAll
+            className="btn"
             content={'Сбросить'}
             action={this.compileNull}
           />
@@ -74,10 +71,8 @@ class Compile extends React.Component {
             action={this.compileSend}
           />
         </div>
-        <p className="compile-buttons__responce">{this.state.responceBack}</p>
+        <p className="compile__responce">{this.state.responceBack}</p>
       </div>
     );
   }
 }
-
-export default Compile;

@@ -1,20 +1,29 @@
 import React, { Component } from "react";
-import "./style.css";
-import inputSeacrhIcon from "../../images/input-seacrh__icon.png";
-import mechanic_main_1 from "../../images/mechanic_main_1.png";
-import { CustomSelect } from "../custom-input/customInput";
-import CircularIndeterminate from '../loader-circle/loaderCircle';
-import axios from 'axios';
+import './style.scss';
 
-import { getCourses, getCoursesWithSearch } from '../../redux/actions/courses.action';
+import axios from 'axios';
 import { connect } from 'react-redux';
 
+import inputSeacrhIcon from "../../images/input-seacrh__icon.png";
+import mechanic_main_1 from "../../images/mechanic_main_1.png";
+
+import {
+  CustomSelect,
+  CircularIndeterminate,
+  ButtonAll,
+} from '../index';
+
+import {
+  getCourses,
+  getCoursesWithSearch
+} from '../../redux/actions/index';
+
 const inputValuesCategory = [
-  { text: "Базы данных", value: 1, color: "rgb(231, 76, 60)" },
-  { text: "Веб разработка", value: 2, color: "rgb(241, 196, 15)" },
-  { text: "Языки программирования", value: 3, color: "rgb(41, 128, 185)" },
-  { text: "Мобильная разработка", value: 4, color: "rgb(142, 68, 173)" },
-  { text: "Другое", value: 5, color: "rgb(0, 128, 0)" }
+  { text: "Базы данных", value: 1, color: "#e74c3c" },
+  { text: "Веб разработка", value: 2, color: "#f1c40f" },
+  { text: "Языки программирования", value: 3, color: "#2944ad" },
+  { text: "Мобильная разработка", value: 4, color: "#8e44ad" },
+  { text: "Другое", value: 5, color: "#008000" }
 ];
 
 const inputValuesСomplexity = [
@@ -51,8 +60,8 @@ class ProgramSelectionComponent extends Component {
   };
 
   getCourses = () => {
-    axios.get('http://localhost:8000/courses')
-      .then(res => this.getAllCourses(res.data))
+    axios.get('https://skill4u.herokuapp.com/courses')
+      .then(res => { console.log(res.data); this.getAllCourses(res.data) })
       .catch(error => console.log(error));
   };
 
@@ -62,11 +71,11 @@ class ProgramSelectionComponent extends Component {
   }
 
   getCoursesSearch = () => {
-    
+
   }
 
   programSelectionLayout = () => (
-    <div className="page page_margin page__choose-program">
+    <div className="choose-program">
       <p className="choose-program__header">Выбери свою программу обучения</p>
       <div className="control control__flex">
         <span className="control__item">
@@ -100,18 +109,10 @@ class ProgramSelectionComponent extends Component {
           </div>
         </span>
       </div>
-
-      <button
-        className="choose-program__button choose-program__button_hover"
-        onClick={this.getCourses}
-      >
-        Начать обучение
-      </button>
-      <img
-        src={mechanic_main_1}
-        className="choose-program__mechanic"
-        alt="шестиренка"
-      />
+      <div>
+        <ButtonAll action={this.getCourses}
+          content={'Начать обучение'} />
+      </div>
       {
         this.state.loader && <CircularIndeterminate />
       }

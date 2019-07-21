@@ -1,4 +1,4 @@
-import { GET_COURSES, GET_COURSES_WITH_SEARCH } from './constants';
+import { GET_COURSES, GET_COURSES_WITH_SEARCH } from './index';
 
 export const getCourses = (data) => {
     return {

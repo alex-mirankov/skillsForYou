@@ -6,7 +6,7 @@ const initialState = {
     isDisplayRegAndLoginPanel: true,
 }
 
-const user = (state = initialState, action) => {
+export const user = (state = initialState, action) => {
     switch (action.type) {
         case GET_USER_TOKEN:
             return {
@@ -24,5 +24,3 @@ const user = (state = initialState, action) => {
             return state
     }
 }
-
-export default user;

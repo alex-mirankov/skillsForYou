@@ -1,15 +1,60 @@
 import React, { Component } from "react";
-import "./style.css";
+import './style.scss';
+
+import { withRouter } from "react-router-dom";
+import { connect } from 'react-redux';
+
 import { history } from "../../services/redux";
+import { deleteUserToken } from '../../redux/actions/index';
+import {
+  LongMenu,
+  Slider,
+} from '../index';
+
 import header_settings from "../../images/header_settings.png";
 import header_notification from "../../images/header_notofication.png";
 import header_avatar from "../../images/header_avatar.png";
 import helpImg from "../../images/help.svg";
-import { LongMenu } from "../menu";
-import { Slider } from "../../components/slider";
-import { withRouter } from "react-router-dom";
-import { connect } from 'react-redux';
-import { deleteUserToken } from '../../redux/actions/user.action';
+
+export const headerMenu = [
+  {
+    lable: 'О проекте',
+    link: '/',
+  },
+  {
+    lable: 'Ваши возможности',
+    link: '/',
+  },
+  {
+    lable: 'Олимпиады',
+    link: '/olympic-enter',
+  },
+  {
+    lable: 'Контакты',
+    link: '/olympic-enter',
+  },
+];
+
+export const headerUserMenu = [
+  {
+    link: '/',
+    image: header_settings,
+    alt: 'шестиренка',
+    class: 'header-menu-list__setting',
+  },
+  {
+    link: '/',
+    image: header_notification,
+    alt: 'колокольчик',
+    class: 'header-menu-list__notification',
+  },
+  {
+    link: '/',
+    image: header_avatar,
+    alt: 'аватар',
+    class: 'header-menu-list__avatar',
+  },
+];
 
 class HeaderComponent extends Component {
   controlPanel = 'inline';
@@ -56,7 +101,6 @@ class HeaderComponent extends Component {
 
   openProfile = () => {
     history.push("/profile");
-    alert("Profile click");
   };
 
   HeaderLayout = () => {
@@ -72,111 +116,58 @@ class HeaderComponent extends Component {
     ];
 
     return (
-      <header
-        className={`header ${
-          isMainPage ? "header__size_main-page" : "header__size"
-          } header_back-styles`}
-      >
-        <div className="page page_margin page_position">
-          <div className="regist-enter regist-enter__flex regist-enter__size regist-enter__margin" style={{ display: this.regPanel }}>
-            <React.Fragment>
-              <button
-                className="regist-enter__enter regist-enter__enter_hover"
-                onClick={this.handleLoginClick}
-              >
-                Войти
+      <header className={isMainPage ? 'header' : 'header-not-main'}>
+        <div className="header-control" style={{ display: this.regPanel }}>
+          <React.Fragment>
+            <button
+              className="header-control__btn"
+              onClick={this.handleLoginClick}
+            >
+              Войти
                 </button>
-              <button
-                className="regist-enter__registration regist-enter__registration_hover"
-                onClick={this.handleRegistrationClick}
-              >
-                Регистрация
+            <button
+              className="header-control__btn"
+              onClick={this.handleRegistrationClick}
+            >
+              Регистрация
                 </button>
-            </React.Fragment>
-          </div>
-
-          <nav className="navigation">
-            <ul className="navigation-list navigation-list_margin navigation-list_font">
-              <li className="navigation-list__item">
-                <button
-                  onClick={this.handleClickAboutUs}
-                  className="navigation-list__link navigation-list__link_hover"
-                >
-                  О проекте
-                </button>
-              </li>
-              <li className="navigation-list__item">
-                <a
-                  href=""
-                  className="navigation-list__link navigation-list__link_hover"
-                >
-                  Ваши возможности
-                </a>
-              </li>
-              <li className="navigation-list__item">
-                <button
-                  onClick={this.handleClickOlympic}
-                  className="navigation-list__link navigation-list__link_hover"
-                >
-                  Олимпиады
-                </button>
-              </li>
-              <li className="navigation-list__item">
-                <a
-                  href=""
-                  className="navigation-list__link navigation-list__link_hover"
-                >
-                  Учебные курсы
-                </a>
-              </li>
-              <li className="navigation-list__item">
-                <a
-                  href=""
-                  className="navigation-list__link navigation-list__link_hover"
-                >
-                  Контакты
-                </a>
-              </li>
-
-              <li className="navigation-list__item navigation-list__control-panel" style={{ display: this.controlPanel }}>
-                <a
-                  href=""
-                  className="navigation-list__link navigation-list__link_margin navigation-list__link_hover"
-                >
-                  <img
-                    src={header_settings}
-                    className="navigation-list__settings"
-                    alt="шестиренка"
-                  />
-                </a>
-                <a
-                  href=""
-                  className="navigation-list__link navigation-list__link_margin navigation-list__link_hover"
-                >
-                  <img
-                    src={header_notification}
-                    className="navigation-list__notification"
-                    alt="колокольчик"
-                  />
-                </a>
-                <a
-                  href=""
-                  className="navigation-list__link navigation-list__link_margin navigation-list__link_hover navigation-list__link_avatar"
-                >
-                  <img
-                    src={header_avatar}
-                    className="navigation-list__avatar"
-                    alt="аватар"
-                  />
-                </a>
-
-                <span className="navigation-list__popup-menu">
-                  <LongMenu options={menuButtonsProperties} />
-                </span>
-              </li>
-            </ul>
-          </nav>
+          </React.Fragment>
         </div>
+
+        <nav className="header-menu">
+          <ul className="header-menu-list">
+            {
+              headerMenu.map(item => {
+                return (
+                  <li className="header-menu-list__item">
+                    <a href={item.link}
+                      className="header-menu-list__link">
+                      {item.lable}
+                    </a>
+                  </li>
+                );
+              })
+            }
+            <li className="header-menu-list__item"
+              style={{ display: this.controlPanel }}>
+              {
+                headerUserMenu.map(item => {
+                  return (
+                    <a href={item.link}
+                      className="header-menu-list__link">
+                      <img src={item.image}
+                        alt={item.alt}
+                        className={item.class} />
+                    </a>
+                  );
+                })
+              }
+            </li>
+            <span className="header-menu-list__popup-menu">
+              <LongMenu options={menuButtonsProperties} />
+            </span>
+          </ul>
+        </nav>
         <div> {isMainPage ? <Slider /> : null}</div>
       </header>
     );

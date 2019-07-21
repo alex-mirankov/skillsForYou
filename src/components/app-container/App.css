@@ -1,35 +1,45 @@
-.olympiad-content{
+.page {
+  width: 1170px;
+  margin: 0 auto;
+}
+
+.olympiad-content {
   display: grid;
   grid-template-columns: 1fr 0.4fr;
 }
-.main__olympiad-content{
+
+.main__olympiad-content {
   position: relative;
   min-height: 900px;
 }
-.img{
+
+.img {
   background-repeat: no-repeat;
   background-position: center;
 }
+
 .img_big {
   height: 200px;
   width: 250px;
 }
 
-.img_small{
+.img_small {
   height: 50px;
   width: 50px;
 }
-.img_chat{
+
+.img_chat {
   background-image: url('../../images/chat-image.png');
 }
 
-.text_bold{
+.text_bold {
   font-weight: bold;
 }
 
 .text_orange {
   color: #e96c4a;
 }
+
 .main_top {
   margin: 20px 0;
 }
@@ -37,18 +47,23 @@
 .text_padding {
   padding: 0 10px;
 }
+
 .text_big {
   font-size: 1.1em;
 }
+
 .text_smal {
   font-size: 0.9em;
 }
+
 .text_border-bottom {
   border-bottom: 1px solid;
 }
+
 .text-orange {
   color: orange;
 }
+
 .title {
   text-align: center;
   font-size: 1.2em;
@@ -62,16 +77,6 @@ button {
   background-color: transparent;
   outline: none !important;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 
 .description {
   line-height: 25px;

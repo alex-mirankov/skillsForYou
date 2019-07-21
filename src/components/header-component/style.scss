@@ -1,0 +1,114 @@
+@import "../../styles/constants.scss";
+
+.header {
+  background-color: $baseHeaderBackground;
+  height: 800px;
+  position: relative;
+
+  &-not-main {
+    background-color: $baseHeaderBackground;
+    height: 200px;
+    position: relative;
+  }
+
+  &-control {
+    display: flex;
+    flex-direction: row-reverse;
+    height: auto;
+    margin-left: 170px;
+
+    &__btn {
+      width: 178px;
+      height: 38px;
+      border-radius: 10px;
+      border: 1px solid rgba(0, 0, 0, 0.45);
+      background-color: $baseWhiteColor;
+      margin: 20px 10px;
+      font-size: 1.28rem;
+      font-weight: 400;
+      font-family: $baseBoldFont;
+      cursor: pointer;
+      color: $baseFontControl;
+      outline: none;
+      transition: all 0.5s;
+  
+      &:hover {
+        background-color: $baseHoverColor;
+        box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.89);
+      }
+    }
+  }
+
+  &-menu {
+    text-align: center;
+    padding-bottom: 16px;
+
+    &-list {
+      padding: 0;
+      margin-bottom: 40px;
+      font-family: $baseBoldFont;
+
+      &__item {
+        display: inline;
+        list-style-type: none;
+        padding: 10px 22.3px 10px 0;
+      }
+
+      &__link {
+        display: inline;
+        color: $baseWhiteColor;
+        font-size: 1.61em;
+        font-weight: 700;
+        cursor: pointer;
+        text-decoration: none;
+
+        &:hover {
+          color: $baseHoverColor;
+          transition: 0.5s;
+        }
+      }
+
+      &__avatar {
+        width: 45px;
+        height: 45px;
+        margin-bottom: -15px;
+        background-color: white;
+        border-radius: 22px;
+      }
+
+      &__setting,
+      &__notification {
+        margin: 0 10px;
+      }
+
+      &__popup-menu {
+        margin-left: -13px;
+      }
+    }
+  }
+}
+
+.content_position {
+  margin-top: 200px;
+}
+
+.content__size {
+  width: 570px;
+}
+
+.main_content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.main_margin {
+  margin: 0 auto;
+}
+
+.main__size {
+  width: 1170px;
+}
+
+.MuiIconButton-label-6 {
+  color: #919191 !important;
+}

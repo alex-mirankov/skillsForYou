@@ -1,0 +1,17 @@
+@import '../../../styles/constants.scss';
+
+.registration-team-page {
+  &-header {
+    color: $olympicColor;
+    font-family: $baseBoldFont;
+    font-size: 2.5rem;
+    margin-top: 112px;
+    margin-bottom: 49px;
+    text-align: center;
+  }
+  &-cards {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 91px;
+  }
+}

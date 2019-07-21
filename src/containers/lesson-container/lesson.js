@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./style.css";
 
-import Compile from '../../components/compile/compile';
+import { Compile } from '../../components/index';
 
 export class Lesson extends Component {
   LessonLayout = () => (

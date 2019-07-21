@@ -6,6 +6,9 @@
   background-color: $baseFooterBackground;
   text-align: left;
   flex: 1 1 1;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 
   &__social {
     width: 210px;
@@ -75,10 +78,4 @@
       margin-right: 10px;
     }
   }
-}
-
-.page__flex {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
 }

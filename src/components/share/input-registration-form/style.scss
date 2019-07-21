@@ -1,0 +1,26 @@
+.custom-input {
+  width: 80%;
+  height: 51px;
+  border: none;
+  border-radius: 10px;
+  border: 2px solid #acacac;
+  text-align: center;
+  background: transparent;
+  margin-bottom: 30px;
+  outline: none;
+  font-family: "gilroy_extra_bold";
+  color: #938e8e;
+  font-size: 1.5rem;
+
+  &::-webkit-input-placeholder,
+  &::-moz-placeholder,
+  &::-ms-input-placeholder,
+  &:focus::-webkit-input-placeholder,
+  &:focus::-moz-placeholder
+  &:focus:-moz-placeholder,
+  &:focus:-ms-input-placeholder {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    color: #938e8e;
+  }
+}

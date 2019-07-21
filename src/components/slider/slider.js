@@ -1,7 +1,8 @@
 import React from "react";
-import './style.css';
+import './style.scss';
 
 import Carousel from "nuka-carousel";
+import { ButtonAll } from '../index';
 
 import sliderGuyImg from "../../images/image-slider__guy.png";
 import sliderGuyImg2 from "../../images/kartinka_2.png";
@@ -31,47 +32,29 @@ export class Slider extends React.Component {
   RenderLayout = props => {
     const { item } = props;
     const renderArray = (
-      <div className="wrapperSlider">
-        <div className="mechanic-item1">
-          <img
-            src={mechanic_header_1}
-            className="mechanic-item1__image"
-            alt="mechanic-item1"
-          />
-        </div>
-        <div className="slider">
-          <center>
-            <div className="slider__flex slider__size slider_back-styles slider_position">
-              <div className="description-slider description-slider__size description-slider_margin">
-                <p className="description-slider__header">Skills for you</p>
-                <p className="description-slider__content">
-                  шаг навстречу успеху
+      <div className="slider">
+        <div className="slider-container">
+          <div className="slider-container__slide">
+            <div className="slider-container__slide-info">
+              <p className="slider-container__slide-info-header">Skills for you</p>
+              <p className="slider-container__slide-info-description">
+                шаг навстречу успеху
+              </p>
+              <p className="slider-container__slide-info-text">
+                {item.text}
+                <br />
+                Skills for you поможет тебе, ведь именно здесь ты можешь
+                прокачать свой уровень и пройти путь от новчика до
+                профессионала.
                 </p>
-                <p className="description-slider__main">
-                  {item.text}
-                  <br />
-                  Skills for you поможет тебе, ведь именно здесь ты можешь
-                  прокачать свой уровень и пройти путь от новчика до
-                  профессионала.
-                </p>
-                <button className="description-slider__button description-slider__button_hover">
-                  Что дальше?
-                </button>
-              </div>
-              <img
-                src={item.img}
-                className="image-slider image-slider__size image-slider_margin image-slider__beauty"
-                alt="slider img"
-              />
+              <ButtonAll content={'Что дальше'} />
             </div>
-          </center>
-        </div>
-        <div className="mechanic-item2">
-          <img
-            src={mechanic_header_2}
-            className="mechanic-item2__image"
-            alt="mechanic-item2"
-          />
+            <img
+              src={item.img}
+              className="slider-container__slide-image"
+              alt="slider img"
+            />
+          </div>
         </div>
       </div>
     );
