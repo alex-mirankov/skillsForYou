@@ -44,21 +44,23 @@ class AppComponent extends Component {
         <div className="page">
           <Switch>
             <Route exact path="/" component={MainPage} />
-            <Route path="/login" component={Login} />
-            <Route path="/olympic-enter" component={OlympiadEnterContainer} />
-            <Route path="/olympic-single" component={OlympiadSingle} />
-            <Route path="/olympic-team" component={OlympiadTeam} />
-            <Route path="/olympic-registration" component={OlympiadRegistration} />
-            <Route path="/olympic-registartion-team" component={OlympiadRegistrationTeam} />
-            <Route path="/olympiads" component={OLympiadListContainer} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/olympic-enter" component={OlympiadEnterContainer} />
+            <Route exact path="/olympic-single" component={OlympiadSingle} />
+            <Route exact path="/olympic-team" component={OlympiadTeam} />
+            <Route exact path="/olympic-registration" component={OlympiadRegistration} />
+            <Route exact path="/olympic-registartion-team" component={OlympiadRegistrationTeam} />
+            <Route exact path="/olympiads" component={OLympiadListContainer} />
 
-            <Route path="/registration" component={Registration} />
+            <Route exact path="/registration" component={Registration} />
             <Route exact path="/teacher-registration" component={TeacherRegistration} />
             <Route path="/work/:id" component={Work} />
             <Route path="/*" component={NotFoundPage} />
           </Switch>
         </div>
-        <Footer />
+        <div className="app-footer">
+          <Footer />
+        </div>
       </div >
     );
   }

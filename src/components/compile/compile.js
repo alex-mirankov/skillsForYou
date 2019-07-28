@@ -45,7 +45,6 @@ export class Compile extends React.Component {
     this.setState({
       toggle: !this.state.toggle,
     });
-    console.log(this.state.toggle);
   }
 
   render() {

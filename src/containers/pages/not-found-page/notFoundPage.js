@@ -1,5 +1,5 @@
 import React from 'react';
-import './style.css';
+import './style.scss';
 
 import { history } from "../../../services/redux";
 import { ButtonAll } from '../../../components/index';
@@ -10,35 +10,28 @@ export class NotFoundPage extends React.Component {
   }
   render() {
     return (
-      <div className="content content__beauty content__restriction-width">
-        <div className="container-404-error container-404-error__size">
-          <div className="container-image container-image__position-lt">
-            <div className="container-image__image-left-top"></div>
+      <div className="not-found">
+        <div className="not-found__center">
+          <div className="not-found__lt">
+            <div className="not-found__lt-image "></div>
           </div>
-          <div className="container-image container-image__position-rt">
-            <div className="container-image__image-right-top"></div>
+          <div className="not-found__rt">
+            <div className="not-found__rt-image"></div>
           </div>
-          <div className="error-404 error-404_padding">
-            <p className="error-404__content">
-              404
-              </p>
+          <div className="not-found__404">
+            404
+        </div>
+          <div className="not-found__text">
+            Упс!
+          <br />
+            Страничка не найдена :(
+        </div>
+          <ButtonAll content={'На главную'} action={this.handleClickToMainPage} />
+          <div className="not-found__man">
+            <div className="not-found__man-image"></div>
           </div>
-          <div className="error-404 error-404__position-info">
-            <p className="error-404__content error-404__content_info">
-              Упс!
-              </p>
-            <p className="error-404__content error-404__content_info">
-              Страничка не найдена :(
-              </p>
-          </div>
-          <div className="control">
-            <ButtonAll content={'На главную'} action={this.handleClickToMainPage} />
-          </div>
-          <div className="container-image container-image__position-man">
-            <div className="container-image__image-man"></div>
-          </div>
-          <div className="container-image container-image__position-lb">
-            <div className="container-image__image-left-bottom"></div>
+          <div className="not-found__lb">
+            <div className="not-found__lb-image"></div>
           </div>
         </div>
       </div>

@@ -14,7 +14,6 @@ import {
 import header_settings from "../../images/header_settings.png";
 import header_notification from "../../images/header_notofication.png";
 import header_avatar from "../../images/header_avatar.png";
-import helpImg from "../../images/help.svg";
 
 export const headerMenu = [
   {
@@ -99,6 +98,14 @@ class HeaderComponent extends Component {
     this.props.DeleteUserToken();
   };
 
+  goToMyCabinet = () => {
+    history.push('/cabinet');
+  };
+
+  goToTeacherCabinet = () => {
+    history.push('/teacher-cabinet');
+  };
+
   openProfile = () => {
     history.push("/profile");
   };
@@ -110,8 +117,15 @@ class HeaderComponent extends Component {
     const menuButtonsProperties = [
       {
         text: "Выйти",
-        icon: helpImg,
-        onClick: this.logout
+        onClick: this.logout,
+      },
+      {
+        text: 'Личный кабинет',
+        onClick: this.goToMyCabinet,
+      },
+      {
+        text: 'Учительский кабинет',
+        onClick: this.goToTeacherCabinet,
       },
     ];
 
@@ -163,7 +177,8 @@ class HeaderComponent extends Component {
                 })
               }
             </li>
-            <span className="header-menu-list__popup-menu">
+            <span className="header-menu-list__popup-menu"
+                  style={{ display: this.controlPanel }}>
               <LongMenu options={menuButtonsProperties} />
             </span>
           </ul>

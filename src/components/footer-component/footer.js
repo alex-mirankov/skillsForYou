@@ -30,15 +30,15 @@ export const footerUsefulLinks = [
     title: 'Основное',
     content: [
       {
-        link: 'https://www.google.com/',
+        link: '/',
         label: 'Каталог',
       },
       {
-        link: 'https://www.google.com/',
+        link: '/',
         label: 'О проекте',
       },
       {
-        link: 'https://www.google.com/',
+        link: '/',
         label: 'Главная',
       },
     ],
@@ -47,11 +47,11 @@ export const footerUsefulLinks = [
     title: 'Аккаунт',
     content: [
       {
-        link: 'https://www.google.com/',
+        link: '/registration',
         label: 'Создать аккаунт',
       },
       {
-        link: 'https://www.google.com/',
+        link: '/login',
         label: 'Войти',
       },
     ],
@@ -76,71 +76,73 @@ export const footerContactUs = [
 export class Footer extends Component {
   FooterLayout = () => (
     <footer className="footer">
-      <div className="footer__social">
-        <p className="footer__social-header">Мы в социальных сетях</p>
-        <ul className="footer__social-list">
-          {
-            footerSocialLinks.map(item => {
-              return (
-                <li className="footer__social-list__item">
-                  <a
-                    href={item.link}
-                    className="footer__social-list-link"
-                  >
-                    <img
-                      alt={item.alt}
-                      className="footer__social-list-image"
-                      src={item.image}
-                    />
-                  </a>
-                </li>
-              );
-            })
-          }
-        </ul>
-      </div>
-
-      {
-        footerUsefulLinks.map(item => {
-          return (
-            <div className="footer__useful-links">
-              <p className="footer__useful-links-header">{item.title}</p>
-              {
-                item.content.map(contentItem => {
-                  return (
+      <div className="footer__content">
+        <div className="footer__social">
+          <p className="footer__social-header">Мы в социальных сетях</p>
+          <ul className="footer__social-list">
+            {
+              footerSocialLinks.map(item => {
+                return (
+                  <li className="footer__social-list__item">
                     <a
-                      href={contentItem.link}
-                      className="footer__useful-links-item"
+                      href={item.link}
+                      className="footer__social-list-link"
                     >
-                      {contentItem.label}
+                      <img
+                        alt={item.alt}
+                        className="footer__social-list-image"
+                        src={item.image}
+                      />
                     </a>
-                  );
-                })
-              }
-            </div>
-          );
-        })
-      }
+                  </li>
+                );
+              })
+            }
+          </ul>
+        </div>
 
-      <div className="footer__useful-links">
-        <p className="footer__useful-links-header">Контакты</p>
         {
-          footerContactUs.map(item => {
+          footerUsefulLinks.map(item => {
             return (
-              <a
-                href={item.link}
-                className="footer__useful-links-item"
-              >
-                <img
-                  className="footer__useful-links-image"
-                  src={item.image}
-                  alt={item.alt}
-                />
-                {item.label}
-              </a>
+              <div className="footer__useful-links">
+                <p className="footer__useful-links-header">{item.title}</p>
+                {
+                  item.content.map(contentItem => {
+                    return (
+                      <a
+                        href={contentItem.link}
+                        className="footer__useful-links-item"
+                      >
+                        {contentItem.label}
+                      </a>
+                    );
+                  })
+                }
+              </div>
             );
           })
         }
+
+        <div className="footer__useful-links">
+          <p className="footer__useful-links-header">Контакты</p>
+          {
+            footerContactUs.map(item => {
+              return (
+                <a
+                  href={item.link}
+                  className="footer__useful-links-item"
+                >
+                  <img
+                    className="footer__useful-links-image"
+                    src={item.image}
+                    alt={item.alt}
+                  />
+                  {item.label}
+                </a>
+              );
+            })
+          }
+        </div>
       </div>
     </footer>
   );

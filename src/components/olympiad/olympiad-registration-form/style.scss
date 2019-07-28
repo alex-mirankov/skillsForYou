@@ -20,11 +20,37 @@
   margin-right: auto;
   margin-bottom: 95px;
 
+  &-select {
+    display: flex;
+    justify-content: center;
+  }
+
   &-team-name {
     color: $baseWhiteColor;
     font-family: $baseBoldFont;
     font-size: 1.7rem;
     margin-bottom: 73px;
+  }
+
+  &__list {
+    width: 80%;
+    margin: 0 auto;
+    border: 1px solid $baseBorderColor;
+    border-radius: 10px;
+
+    &-item {
+      color: $baseLightFontColor;
+      padding: 10px;
+      transition: all 0.5s;
+      cursor: pointer;
+      font-family: $baseLightFont;
+      font-size: 18px;
+      border-radius: 10px;
+
+      &:hover {
+        background-color: $baseHeaderBackground;
+      }
+    }
   }
 }
 

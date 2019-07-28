@@ -2,7 +2,7 @@
 
 .header {
   background-color: $baseHeaderBackground;
-  height: 800px;
+  height: 850px;
   position: relative;
 
   &-not-main {
@@ -15,7 +15,8 @@
     display: flex;
     flex-direction: row-reverse;
     height: auto;
-    margin-left: 170px;
+    width: 1170px;
+    margin: 0 auto;
 
     &__btn {
       width: 178px;
@@ -72,7 +73,7 @@
         width: 45px;
         height: 45px;
         margin-bottom: -15px;
-        background-color: white;
+        background-color: $baseWhiteColor;
         border-radius: 22px;
       }
 

@@ -76,37 +76,38 @@ const theme = createMuiTheme({
 })
 
 export class ShareSelect extends React.Component {
-  state = {
-    selectValue: '',
-  }
-  handleSelectValue = (e) => {
-    this.setState({
-      selectValue: e.target.value,
-    });
-  }
   render() {
-    let { menuItemObject, label } = this.props;
+    let { menuItemObject, label, handleChange } = this.props;
     return (
-      <MuiThemeProvider theme={theme}>
-        <FormControl variant="outlined">
-          <InputLabel htmlFor="outlined-age-simple">
-            {label}
-          </InputLabel>
-          <Select
-            value={this.state.selectValue}
-            onChange={this.handleSelectValue}
-            input={<OutlinedInput name="age" id="outlined-age-simple" />}
-          >
-            {
-              menuItemObject.map((i) => {
-                return (
-                  <MenuItem value={i.value}>{i.text}</MenuItem>
-                );
-              })
-            }
-          </Select>
-        </FormControl>
-      </MuiThemeProvider>
+      <select>
+        {
+          menuItemObject.map((i) => {
+            return (
+              <option key={i.id} value={i.id}>{i.name}</option>
+            );
+          })
+        }
+      </select>
+      // <MuiThemeProvider theme={theme}>
+      //   <FormControl variant="outlined">
+      //     <InputLabel htmlFor="outlined-age-simple">
+      //       {label}
+      //     </InputLabel>
+      //     <Select
+      //       value={label}
+      //       onChange={handleChange}
+      //       input={<OutlinedInput name="age" id="outlined-age-simple" />}
+      //     >
+      //       {
+      //         menuItemObject.map((i) => {
+      //           return (
+      //             <MenuItem key={i.id} value={i.id}>{i.name}</MenuItem>
+      //           );
+      //         })
+      //       }
+      //     </Select>
+      //   </FormControl>
+      // </MuiThemeProvider>
     );
   }
 }

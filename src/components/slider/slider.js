@@ -7,8 +7,6 @@ import { ButtonAll } from '../index';
 import sliderGuyImg from "../../images/image-slider__guy.png";
 import sliderGuyImg2 from "../../images/kartinka_2.png";
 import sliderGuyImg3 from "../../images/kartinka_3.png";
-import mechanic_header_1 from "../../images/mechanic-header_1.png";
-import mechanic_header_2 from "../../images/mechanic_header_2.png";
 
 export const sliderData = [
   {

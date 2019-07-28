@@ -1,0 +1,77 @@
+.not-found {
+  background-color: #070b28;
+  padding-bottom: 300px;
+  width: 100%;
+  position: relative;
+
+  &__center {
+    width: 1170px;
+    margin: 0 auto
+  }
+
+  &__lt {
+    position: absolute;
+    left: 0;
+    top: 50px;
+
+    &-image {
+      width: 306px;
+      height: 334px;
+      background: url("../../../images/left-top.png") no-repeat;
+    }
+  }
+
+  &__rt {
+    position: absolute;
+    right: 50px;
+    top: 0;
+
+    &-image {
+      width: 306px;
+      height: 334px;
+      background: url("../../../images/right-top.png") no-repeat;
+    }
+  }
+
+  &__lb {
+    position: absolute;
+    left: -50px;
+    bottom: 0;
+
+    &-image {
+      width: 571px;
+      height: 253px;
+      background: url("../../../images/left-bottom.png") no-repeat;
+    }
+  }
+
+  &__404 {
+    color: #ffffff;
+    font-family: "lato";
+    font-size: 10.71rem;
+    font-weight: 400;
+    line-height: 60px;
+    letter-spacing: 30px;
+    padding-top: 200px;
+  }
+
+  &__text {
+    margin-top: 90px;
+    font-size: 3.43rem;
+    letter-spacing: 1.2px;
+    color: #ffffff;
+    font-family: "lato";
+  }
+
+  &__man {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    &-image {
+      width: 800px;
+      height: 720px;
+      background: url("../../../images/man-not-found.png") no-repeat;
+    }
+  }
+}

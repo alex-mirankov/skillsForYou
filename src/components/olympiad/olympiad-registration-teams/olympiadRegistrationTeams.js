@@ -21,35 +21,29 @@ const stylesButton = {
   margin: '30px auto 29px auto',
 }
 
-const inputValuesLanguage = [
-  { text: "JS", value: 1 },
-  { text: "C#", value: 2 },
-  { text: "Python", value: 3 },
-  { text: "Java", value: 4 },
-  { text: "C++", value: 5 }
-];
-
-const inputValuesDate = [
-  { text: "11.02.2019", value: 1 },
-  { text: "24.05.2019", value: 2 },
-  { text: "30.09.2019", value: 3 }
-];
-
-const valueLanguage = "Язык программирования";
-const valueDate = "Дата проведения";
-
 class OlympiadRegistrationTeamsComponent extends React.Component {
   state = {
-    // programmingLanguage: '',
-    // dateStartOlympic: '',
     firstParcipant: '',
     secondParcipant: '',
     thirdParcipant: '',
+    olympiadList: [],
+    selectedOlympiad: '',
   };
-
   handleChangeDate = text => {
     this.setState({ dateStartOlympic: text });
   };
+  componentDidMount() {
+    let params = {
+      headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
+    };
+    axios.get('https://skill4u.herokuapp.com/olympiad', params)
+      .then(data => {
+        this.setState({
+          olympiadList: data.data,
+        });
+      })
+      .catch(e => console.log(e));
+  }
   handleRegistration = () => {
     axios.post('https://skill4u.herokuapp.com/team/invite', this.state)
       .then(res => {
@@ -58,24 +52,20 @@ class OlympiadRegistrationTeamsComponent extends React.Component {
       })
       .catch(e => console.log(e));
   }
-  handleChangeLanguage = text => {
-    this.setState({ programmingLanguage: text });
+  handleChangeOlympiad = text => {
+    this.setState({ selectedOlympiad: text });
   };
   render() {
+    console.log(this.state.firstParcipant);
     return (
       <div className="card-registration">
         <InputRegistrationForm styles={styles} placeHolder={'Почта 1 го участника'} />
         <InputRegistrationForm placeHolder={'Почта 2 го участника'} />
         <InputRegistrationForm placeHolder={'Почта 3 го участника'} />
         <ShareSelect
-          menuItemObject={inputValuesLanguage}
-          label={valueLanguage}
-          handleChange={this.handleChangeLanguage}
-        />
-        <ShareSelect
-          menuItemObject={inputValuesDate}
-          label={valueDate}
-          handleChange={this.handleChangeDate}
+          menuItemObject={this.state.olympiadList}
+          label={this.state.selectedOlympiad}
+          handleChange={this.handleChangeOlympiad}
         />
         <ButtonAll
           styles={stylesButton}

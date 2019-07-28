@@ -7,10 +7,9 @@ import { openWindow } from '../../../redux/actions/index';
 import axios from 'axios';
 
 import {
-  InputRegistrationForm,
   ButtonAll,
   MyModal,
-  SelectOlympiad,
+  OlympiadSelect,
 } from '../../index';
 
 const styles = {
@@ -19,19 +18,34 @@ const styles = {
 
 class OlympiadRegistrationFormComponent extends React.Component {
   state = {
+    token: localStorage.getItem('token'),
     currentValue: 'Олимпиада',
+    olympiadId: 0,
     olympiadList: [],
   }
-  handleChangeOlymp = text => {
-    this.setState({ olympiad: text });
+  handleChangeOlymp = name => {
+    console.log(name);
+    for (let i = 0; i < this.state.olympiadList.length; i++) {
+      if (this.state.olympiadList[i].name === name) {
+        this.setState({olympiadId: this.state.olympiadList[i].id})
+      }
+    }
+    this.setState({ currentValue: name });
   };
-  handleOpenWindow = () => {
-    this.props.closeWindowComp();
+  handleRegisatration = () => {
+    let params = {
+      headers: { 'Authorization': 'Token ' + this.state.token }
+    };
+    axios.post('https://skill4u.herokuapp.com/team', { olympiad_id: this.state.olympiadId }, params)
+      .then(data => {
+        console.log(data);
+        this.props.closeWindowComp();
+      })
+      .catch(e => { console.log(e) });
   }
   componentDidMount() {
-    let token = localStorage.getItem('token');
     let params = {
-      headers: { 'Authorization': 'Token ' + token }
+      headers: { 'Authorization': 'Token ' + this.state.token }
     };
     axios.get('https://skill4u.herokuapp.com/olympiad', params)
       .then(data => {
@@ -45,16 +59,19 @@ class OlympiadRegistrationFormComponent extends React.Component {
   render() {
     return (
       <div className="registration-olymp-form">
-        <p className="registration-olymp-form-team-name">Команда Скилсики</p>
-        <InputRegistrationForm placeHolder={'Имя'} />
-        <InputRegistrationForm placeHolder={'Фамилия'} />
-        <SelectOlympiad handleChange={this.handleChangeOlymp}
-                        inputValues={this.state.olympiadList}/>
+        <p className="registration-olymp-form-team-name">
+          Выберите олимпиаду
+        </p>
+        <div className="registration-olymp-form-select">
+          <OlympiadSelect handleChange={this.handleChangeOlymp}
+            currentValue={this.state.currentValue}
+            inputValues={this.state.olympiadList} />
+        </div>
         <div className="container-button-form">
           <ButtonAll
             styles={styles}
             content={'Регистрация'}
-            action={this.handleOpenWindow}
+            action={this.handleRegisatration}
           />
         </div>
         <MyModal />

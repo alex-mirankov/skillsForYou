@@ -14,7 +14,7 @@ export function CheckTasks({ total, currents }) {
 class Pager extends React.Component {
 
   renderChecks() {
-    const { total, currents } = this.props;
+    const { total } = this.props;
     return range(1, total).map((num, idx) => {
       const isDone = this.props.currents.indexOf(num) !== -1;
 

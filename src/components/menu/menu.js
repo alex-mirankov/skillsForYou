@@ -47,7 +47,7 @@ export class LongMenu extends React.Component {
           PaperProps={{
             style: {
               maxHeight: ITEM_HEIGHT * 4.5,
-              width: 150,
+              width: 'auto',
             }
           }}
         >

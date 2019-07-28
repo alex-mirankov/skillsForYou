@@ -77,15 +77,15 @@ class ProgramSelectionComponent extends Component {
   programSelectionLayout = () => (
     <div className="choose-program">
       <p className="choose-program__header">Выбери свою программу обучения</p>
-      <div className="control control__flex">
-        <span className="control__item">
+      <div className="choose-program__control">
+        <span className="choose-program__control-item">
           <CustomSelect
             inputValues={inputValuesСomplexity}
             currentValue={this.state.currentValueComplexity}
             handleChange={this.handleChangeComplexity}
           />
         </span>
-        <span className="control__item">
+        <span className="choose-program__control-item">
           <CustomSelect
             inputValues={inputValuesCategory}
             currentValue={this.state.currentValueCategory}
@@ -93,15 +93,15 @@ class ProgramSelectionComponent extends Component {
           />
         </span>
 
-        <span className="control__item">
-          <div className="input-search input-search__size">
+        <span className="choose-program__control-item">
+          <div className="choose-program__control-input">
             <img
-              className="input-search__icon"
+              className="choose-program__control-icon"
               src={inputSeacrhIcon}
               alt="лупа"
             />
             <input
-              className="input-search__input"
+              className="choose-program__control-interact"
               type="search"
               placeholder="Поиск...."
               onChange={this.handleSearch}
@@ -109,7 +109,7 @@ class ProgramSelectionComponent extends Component {
           </div>
         </span>
       </div>
-      <div>
+      <div className="choose-program__button">
         <ButtonAll action={this.getCourses}
           content={'Начать обучение'} />
       </div>
