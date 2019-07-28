@@ -6,13 +6,16 @@
   width: 80%;
 
   &__label {
-    height: 32px;
+    height: 51px;
     color: $baseSelectColor;
     border: 1px solid $baseBorderSelectColor;
     border-radius: 9px;
     margin-bottom: 15px;
-    padding-top: 5px;
     cursor: pointer;
+    display: flex;
+    font-size: 1.5rem;
+    justify-content: center;
+    align-items: center;
   }
 
   &__pop-up {
