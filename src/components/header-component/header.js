@@ -30,7 +30,7 @@ export const headerMenu = [
   },
   {
     lable: 'Контакты',
-    link: '/olympic-enter',
+    link: '/',
   },
 ];
 
@@ -99,7 +99,7 @@ class HeaderComponent extends Component {
   };
 
   goToMyCabinet = () => {
-    history.push('/cabinet');
+    history.push('/myself-cabinet');
   };
 
   goToTeacherCabinet = () => {

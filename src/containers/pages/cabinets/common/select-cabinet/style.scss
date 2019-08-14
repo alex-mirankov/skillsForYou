@@ -1,0 +1,56 @@
+@import "../../../../../styles/constants.scss";
+
+.select-cabinet {
+  position: relative;
+  &__caption {
+    color: $baseCabimetCaptionColor;
+    font-family: $baseLightFont;
+    font-size: 1.7rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+
+  &__contol {
+    cursor: pointer;
+    border-radius: 5px;
+    height: 51px;
+    width: 100%;
+    border: 1px solid $baseBorderCabinerColor;
+    color: $baseCabimetCaptionColor;
+    background-color: $baseWhiteColor;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__text {
+    padding-left: 30px;
+    font-family: $baseLightFont;
+    font-size: 1.7rem;
+  }
+
+  &__icon {
+    width: 22px;
+    height: 13px;
+    padding-right: 30px;
+    background: url('../../../../../images/arrow_down.png') no-repeat;
+  }
+
+  &__pop-up {
+    border-radius: 5px;
+    border: 1px solid $baseBorderCabinerColor;
+    background-color: $baseWhiteColor;
+    position: absolute;
+    top: 110px;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+
+    &-value {
+      padding: 10px;
+      font-family: $baseLightFont;
+      font-size: 1.28rem;
+      cursor: pointer;
+    }
+  }
+}

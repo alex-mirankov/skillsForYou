@@ -1,0 +1,16 @@
+@import '../../../styles/constants.scss';
+
+.single-olympiad {
+  width: 80%;
+  margin: 100px auto 180px;
+  background-color: $baseBackgroundOlympic;
+  padding-top: 70px;
+  border-radius: 10px;
+  flex: 1 0 auto;
+
+  &__content {
+    margin: 0 auto;
+    width: 80%;
+    padding-bottom: 50px;
+  }
+}

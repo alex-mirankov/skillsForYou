@@ -8,12 +8,6 @@
   flex: 0 0 auto;
 }
 
-.page {
-  flex: 1 0 auto;
-  width: 1170px;
-  margin: 0 auto;
-}
-
 .olympiad-content {
   display: grid;
   grid-template-columns: 1fr 0.4fr;

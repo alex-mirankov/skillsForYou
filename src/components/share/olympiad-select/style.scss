@@ -4,6 +4,7 @@
   font-size: 1.28rem;
   font-family: $baseBoldFont;
   width: 80%;
+  position: relative;
 
   &__label {
     height: 51px;
@@ -22,6 +23,10 @@
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
+    position: absolute;
+    top: 55px;
+    left: 0;
+    width: 100%;
     border: 1px solid $baseBorderSelectColor;
     border-radius: 10px;
     background: white;

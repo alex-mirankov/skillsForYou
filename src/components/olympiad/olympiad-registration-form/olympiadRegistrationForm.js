@@ -24,7 +24,6 @@ class OlympiadRegistrationFormComponent extends React.Component {
     olympiadList: [],
   }
   handleChangeOlymp = name => {
-    console.log(name);
     for (let i = 0; i < this.state.olympiadList.length; i++) {
       if (this.state.olympiadList[i].name === name) {
         this.setState({olympiadId: this.state.olympiadList[i].id})

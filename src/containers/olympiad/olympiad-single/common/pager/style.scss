@@ -1,0 +1,33 @@
+@import "../../../../../styles/constants.scss";
+
+.pager {
+  height: 90px;
+  box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: $baseOlympiacNumberBackground;
+  width: 90%;
+  margin-bottom: 100px;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  &__numeric {
+    color: $baseFontPagerColor;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    font-size: 2.5rem;
+    font-family: $baseBoldFont;
+    width: 92px;
+    height: 92px;
+    cursor: pointer;
+
+    &-active {
+      color: $baseWhiteColor;
+      border-radius: 10px;
+      background-color: $baseBackgroundPagerSelectColor;
+    }
+  }
+}

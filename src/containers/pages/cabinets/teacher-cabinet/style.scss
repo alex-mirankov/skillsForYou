@@ -1,0 +1,53 @@
+@import '../../../../styles/constants.scss';
+
+.teacher-cabinet {
+  margin-top: 80px;
+  display: flex;
+  justify-content: space-between;
+
+  &__user {
+    width: 35%;
+  }
+
+  &-control {
+    width: 50%;
+
+    &__buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 50px;
+    }
+
+    &__input,
+    &__button {
+      margin-bottom: 20px;
+    }
+
+    &__button {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    &__success {
+      width: 120%;
+      margin-top: 70px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+
+      &-text {
+        text-align: center;
+        font-family: $baseLightFont;
+        font-size: 2.1rem;
+        color: $baseSuccessTextColor;
+        width: 100%;
+        margin-bottom: 50px;
+      }
+
+      &-button {
+        margin-bottom: 110px;
+      }
+    }
+  }
+}

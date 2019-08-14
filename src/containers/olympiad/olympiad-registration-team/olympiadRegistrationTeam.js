@@ -11,7 +11,7 @@ export class OlympiadRegistrationTeam extends React.Component {
       <>
         <p className="registration-team-page-header">Регистрация для участия в олимпиаде</p>
         <div className="registration-team-page-cards">
-          <OlympiadRegistrationConfirm />
+          {/* <OlympiadRegistrationConfirm /> */}
           <OlympiadRegistrationTeams />
         </div>
       </>

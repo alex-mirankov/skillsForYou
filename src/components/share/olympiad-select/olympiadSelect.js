@@ -7,7 +7,7 @@ export class OlympiadSelect extends React.Component {
   };
 
   handleClick = () => {
-      console.log(this.state.isOpen);
+    console.log(this.state.isOpen);
     const { isOpen } = this.state;
     this.setState({ isOpen: !isOpen });
   };
@@ -27,12 +27,12 @@ export class OlympiadSelect extends React.Component {
           <div className="olympiad-select__pop-up">
             {inputValues.map(item => (
               <div
-                className="olympiad-select__pop-up-value custom-input__value_hover"
+                className="olympiad-select__pop-up-value"
                 key={item.id}
                 id={item.id}
                 onClick={() => {
                   this.handleClick();
-                  handleChange(item.name);
+                  handleChange(item.name, item.value);
                 }}
               >
                 {item.name}

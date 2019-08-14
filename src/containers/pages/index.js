@@ -4,3 +4,6 @@ export * from './not-found-page/notFoundPage';
 export * from './registration-container';
 export * from './teacher-registration-container';
 export * from './work-page-container';
+export * from './cabinets/myself-cabinet/myselfCabinet';
+export * from './cabinets/teacher-cabinet/teacherCabinet';
+export * from './cabinets/common/index';

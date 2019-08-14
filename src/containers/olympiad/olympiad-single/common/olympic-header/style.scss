@@ -1,0 +1,39 @@
+@import "../../../../../styles/constants.scss";
+
+.single-olympic-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 130px;
+
+  &__image {
+    width: 265px;
+    height: 176px;
+  }
+
+  &__info {
+
+    &-olympic-name {
+      color: $baseHeaderOlympiadColor;
+      font-size: 3rem;
+      font-family: $baseBoldFont;
+      margin-bottom: 35px;
+    }
+
+    &-all-tasks,
+    &-completed-tasks {
+      color: $baseHeaderOlympicTasksColor;
+      font-weight: 400;
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      font-family: $baseBoldFont;
+
+      &-number {
+        color: $baseWhiteColor;
+        font-family: $baseBoldFont;
+        font-weight: 400;
+        font-size: 1.5rem;
+        margin-left: 10px;
+      }
+    }
+  }
+}

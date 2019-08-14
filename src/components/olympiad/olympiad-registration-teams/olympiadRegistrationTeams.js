@@ -10,7 +10,7 @@ import {
   InputRegistrationForm,
   ButtonAll,
   MyModal,
-  ShareSelect,
+  OlympiadSelect,
 } from '../../index';
 
 const styles = {
@@ -27,10 +27,8 @@ class OlympiadRegistrationTeamsComponent extends React.Component {
     secondParcipant: '',
     thirdParcipant: '',
     olympiadList: [],
-    selectedOlympiad: '',
-  };
-  handleChangeDate = text => {
-    this.setState({ dateStartOlympic: text });
+    selectedOlympiad: 'Олимпиада',
+    olympiadId: 0,
   };
   componentDidMount() {
     let params = {
@@ -38,6 +36,7 @@ class OlympiadRegistrationTeamsComponent extends React.Component {
     };
     axios.get('https://skill4u.herokuapp.com/olympiad', params)
       .then(data => {
+        console.log(data.data);
         this.setState({
           olympiadList: data.data,
         });
@@ -45,7 +44,13 @@ class OlympiadRegistrationTeamsComponent extends React.Component {
       .catch(e => console.log(e));
   }
   handleRegistration = () => {
-    axios.post('https://skill4u.herokuapp.com/team/invite', this.state)
+    let params = {
+      headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
+    };
+    let registration = {
+      
+    }
+    axios.post('https://skill4u.herokuapp.com/team/invite', params,)
       .then(res => {
         console.log(res);
         this.props.closeWindowComp();
@@ -53,20 +58,24 @@ class OlympiadRegistrationTeamsComponent extends React.Component {
       .catch(e => console.log(e));
   }
   handleChangeOlympiad = text => {
+    for (let i = 0; i < this.state.olympiadList.length; i++) {
+      if (this.state.olympiadList[i].text === text) {
+        this.setState({ olympiadId: this.state.olympiadList[i].id })
+      }
+    }
     this.setState({ selectedOlympiad: text });
   };
   render() {
-    console.log(this.state.firstParcipant);
     return (
       <div className="card-registration">
         <InputRegistrationForm styles={styles} placeHolder={'Почта 1 го участника'} />
         <InputRegistrationForm placeHolder={'Почта 2 го участника'} />
         <InputRegistrationForm placeHolder={'Почта 3 го участника'} />
-        <ShareSelect
-          menuItemObject={this.state.olympiadList}
-          label={this.state.selectedOlympiad}
-          handleChange={this.handleChangeOlympiad}
-        />
+        <div className="card-registration__select">
+          <OlympiadSelect handleChange={this.handleChangeOlympiad}
+            currentValue={this.state.selectedOlympiad}
+            inputValues={this.state.olympiadList} />
+        </div>
         <ButtonAll
           styles={stylesButton}
           content={'Регистрация'}

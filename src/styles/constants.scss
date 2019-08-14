@@ -1,29 +1,48 @@
 $baseLightFont: "gilroy_light";
 $baseBoldFont: "gilroy_extra_bold";
 
-$baseBlackColor: #000000;
-$baseWhiteColor: #ffffff;
-$baseLightFontColor: #fffefe;
-
+/*--------------grey colors--------------*/
+$baseHomeWorkDescriptionColor: #5b5a5a;
+$baseHomeWorkWhoColor: #716d6d;
+$baseEmailCabinetColor: #545454;
 $baseFooterBackground: #434242;
-$baseHeaderBackground: #2d1e57;
-
-$baseBorderColor: #cfcdcd;
 $baseSelectColor: #938e8e;
 $baseBorderSelectColor: #acacac;
 $baseDivideCardColor: #7d7d7d;
-
-$olympicColor: #141313;
-
-$baseHomeWorkBackgroundColor: #fcfcfc;
-$baseHomeWorkWhoColor: #716d6d;
-$baseHomeWorkLinkColor: #0d6672;
-$baseHomeWorkDescriptionColor: #5b5a5a;
-
-$baseHoverColor: #feaf55;
-
-$baseFontControl: #6f6464;
-
+$baseCabimetCaptionColor: #757575;
 $baseInputColor: #c5bcbc;
+$baseBorderColor: #cfcdcd;
+$baseFontControl: #6f6464;
+$baseBorderCabinerColor: #c2c2c2;
+$baseDivideBackrground: #cbcbcb;
+$baseOlympiacNumberBackground: #ebebeb;
+$baseOlympicDescriptionColor: #ececec;
+$baseTimerTextColor: #e8e8e8;
 
+/*--------------orange colors--------------*/
+$baseHoverColor: #feaf55;
 $baseBackgroundButtonColor: #fd9901;
+$baseStepCreateColor: #fb901d;
+$baseHeaderOlympicTasksColor: #ff8400;
+$baseBackgroundPagerSelectColor:#fc840e;
+
+/*--------------white colors--------------*/
+$baseWhiteColor: #ffffff;
+$baseLightFontColor: #fffefe;
+$baseHomeWorkBackgroundColor: #fcfcfc;
+$baseStepColor: #f1f1f1;
+$baseHeaderOlympiadColor: #faf8f8;
+
+/*--------------black colors--------------*/
+$baseNameCabinetColor: #202020;
+$baseCoursesCabinetColor: #161616;
+$olympicColor: #141313;
+$baseBlackColor: #000000;
+$baseSuccessTextColor: #191919;
+$baseLessonCardCaptionColor: #323131;
+$baseFontPagerColor: #010101;
+
+/*--------------other colors--------------*/
+$baseHeaderBackground: #2d1e57;
+$baseHomeWorkLinkColor: #0d6672;
+$baseBackgroundOlympic: #714091;

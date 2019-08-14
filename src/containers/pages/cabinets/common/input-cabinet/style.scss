@@ -1,0 +1,22 @@
+@import '../../../../../styles/constants.scss';
+.input-cabinet {
+
+  &__caption {
+    color: $baseCabimetCaptionColor;
+    font-family: $baseLightFont;
+    font-size: 1.7rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+
+  &__input {
+    border-radius: 5px;
+    border: 1px solid $baseBorderCabinerColor;
+    background-color: $baseWhiteColor;
+    width: 100%;
+    height: 51px;
+    font-family: $baseLightFont;
+    font-size: 1.7rem;
+    outline: none;
+  }
+}
