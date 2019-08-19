@@ -1,3 +1,3 @@
 export * from './olympiad/index';
 export * from './pages/index';
-export * from './lesson-container';
+export * from './lesson-container/lesson';

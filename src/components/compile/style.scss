@@ -1,3 +1,5 @@
+@import '../../styles/constants.scss';
+
 .compile {
   width: 70%;
   height: 500px;
@@ -14,9 +16,12 @@
     }
   }
 
-  &__responce {
+  &-responce {
     max-width: 500px;
     margin-top: 20px;
+    color: $baseBackgroundProgress;
+    font-size: 1.28rem;
+    font-family: $baseBoldFont;
   }
 }
 

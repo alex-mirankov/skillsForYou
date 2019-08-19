@@ -1,32 +1,31 @@
 import React from 'react';
 import './style.scss';
 
-export class OlympicTask extends React.Component {
+import { connect } from 'react-redux';
+
+class OlympicTaskComponent extends React.Component {
   render() {
+    let { currentTaskNumeric, currentTaskName, currentTaskDescription } = this.props;
     return (
       <div className="olympic-task">
         <div className="olympic-task__name">
-          <div className="olympic-task__name-number">3</div>
+          <div className="olympic-task__name-number">{currentTaskNumeric}</div>
           <div className="olympic-task__name-text">
-            Задача. Как Алик пытался стать фронтером
+            {currentTaskName}
           </div>
         </div>
         <div className="olympic-task__description">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-          nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-          deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit
-          voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-          illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo
-          enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
-          consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro
-          quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia
-          non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
-        voluptatem.
+          {currentTaskDescription}
         </div>
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  currentTaskNumeric: state.singleOlympiad.currentOlympiad.id,
+  currentTaskName: state.singleOlympiad.currentOlympiad.name,
+  currentTaskDescription: state.singleOlympiad.currentOlympiad.description,
+});
+
+export const OlympicTask = connect(mapStateToProps)(OlympicTaskComponent);

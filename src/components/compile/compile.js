@@ -15,19 +15,19 @@ export class Compile extends React.Component {
 
     this.state = {
       code: 'print (\"hello\")',
-      language: 'pascal',
+      language: 'python',
       timeoutMs: 2000,
       responceBack: '',
     }
   }
 
   compileSend = () => {
-    axios.post('http://127.0.0.1:3000/', this.state)
+    axios.post('https://sandbox-skill4u.herokuapp.com', this.state)
       .then((responce) => {
         this.setState({
-          responceBack: responce.data[0].combined,
+          responceBack: responce.data[0].stdout,
         });
-        console.log(responce.data[0].combined);
+        console.log(responce.data[0].stdout);
       })
       .catch((error) => {
         console.log(error);
@@ -41,16 +41,10 @@ export class Compile extends React.Component {
 
   }
 
-  compileNull = () => {
-    this.setState({
-      toggle: !this.state.toggle,
-    });
-  }
-
   render() {
     let options = {
       lineNumbers: true,
-      mode: "pascal",
+      mode: "python",
     };
     return (
       <div className="compile">
@@ -62,15 +56,15 @@ export class Compile extends React.Component {
         <div className="compile-buttons">
           <ButtonAll
             className="btn"
-            content={'Сбросить'}
-            action={this.compileNull}
+            content={'Запустить'}
+            action={this.compileSend}
           />
           <ButtonAll
             content={'Отправить'}
             action={this.compileSend}
           />
         </div>
-        <p className="compile__responce">{this.state.responceBack}</p>
+        <p className="compile-responce">{this.state.responceBack}</p>
       </div>
     );
   }

@@ -1,9 +1,10 @@
 import React from 'react';
 import './style.scss';
 
-const array = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+import { connect } from 'react-redux';
+import { setNumericOlympiad } from '../../../../../redux/actions/index';
 
-export class Pager extends React.Component {
+class PagerComponent extends React.Component {
   state = {
     currentPage: '',
   };
@@ -11,10 +12,10 @@ export class Pager extends React.Component {
     this.setState({
       currentPage: item,
     });
+    this.props.SetNumericOlympiad(item.id);
   }
   render() {
     let { allTasks } = this.props;
-    console.log(allTasks);
     return (
       <div className="pager">
         {
@@ -31,3 +32,11 @@ export class Pager extends React.Component {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  SetNumericOlympiad: (id) => {
+    dispatch(setNumericOlympiad(id));
+  },
+})
+
+export const Pager = connect(null, mapDispatchToProps)(PagerComponent);

@@ -3,7 +3,6 @@ export * from './checkbox/index';
 export * from './custom-input/customInput';
 export * from './input-registration-form/inputRegistrationForm';
 export * from './loader-circle/loaderCircle';
-export * from './pager/index';
 export * from './select/select';
 export * from './shareCheckBox/shareCheckBox';
 export * from './timer/timer';

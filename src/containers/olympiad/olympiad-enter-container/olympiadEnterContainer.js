@@ -20,9 +20,9 @@ const warningText = 'Чтобы принять участи в олимпиад�
 
 export class OlympiadEnterContainerWithRedux extends React.Component {
   Registration = () => (
-    <>
-      <p className="olympic-header">Чтобы начать свое участие в олимпиаде выбери нужный раздел</p>
-      <div className="olympic-content">
+    <div className="olympic-enter">
+      <p className="olympic-enter__header">Чтобы начать свое участие в олимпиаде выбери нужный раздел</p>
+      <div className="olympic-enter__content">
         <OlympicCard
           header={'Командная олимпиада'}
           image={olympicTeam}
@@ -39,7 +39,7 @@ export class OlympiadEnterContainerWithRedux extends React.Component {
           action={this.goToSoloOlymp}
         />
       </div>
-    </>
+    </div>
   );
   goToSoloOlymp = () => {
     history.push('/olympic-registration');

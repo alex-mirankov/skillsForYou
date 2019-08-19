@@ -1,0 +1,101 @@
+@import "../../styles/constants.scss";
+
+.progress-navigation {
+  border-radius: 10px;
+  border: 1px solid $baseBorderColor;
+  background-color: $baseBackgroundProgress;
+  width: 370px;
+  height: 808px;
+  margin-top: 200px;
+
+  &-header {
+    display: flex;
+    border-bottom: 1px solid $baseBorderColor;
+    padding: 25px 0 15px 20px;
+
+    &__img {
+      width: 38px;
+      height: 32px;
+      margin-right: 20px;
+    }
+
+    &__text {
+      color: $baseColorLesson;
+      font-family: $baseBoldFont;
+      font-size: 24px;
+    }
+  }
+
+  &-lesson-name {
+    display: flex;
+    padding: 25px 0 15px 20px;
+    border-bottom: 1px solid $baseBorderColor;
+
+    &__img {
+      width: 50px;
+      height: 50px;
+      margin-right: 8px;
+    }
+
+    &__text {
+      font-size: 24px;
+      font-family: $baseBoldFont;
+      font-weight: 700;
+      line-height: 2;
+    }
+  }
+
+  &-list {
+    padding: 25px 0 48px 20px;
+
+    &__text {
+      color: $baseBlackColor;
+      font-family: $baseBoldFont;
+      font-size: 1.7rem;
+    }
+
+    &__first {
+      margin-top: 38px;
+      width: 290px;
+      display: flex;
+    }
+
+    &__img {
+      width: 23px;
+      height: 23px;
+      margin-right: 14px;
+    }
+
+    &__lesson-name {
+      color: $baseLessonColor;
+      font-size: 1.42rem;
+      font-family: $baseLightFont;
+    }
+
+    &__lesson {
+      margin-top: 20px;
+      display: flex;
+
+      &-img {
+        width: 23px;
+        height: 23px;
+        margin-right: 14px;
+      }
+
+      &-name {
+        color: $baseBlackColor;
+        font-size: 1.22rem;
+        font-family: $baseLightFont;
+      }
+
+      &-count {
+        color: $baseLessonColor;
+        font-size: 1.42rem;
+        font-family: $baseLightFont;
+        width: 10px;
+        height: 16px;
+        margin-right: 26px;
+      }
+    }
+  }
+}

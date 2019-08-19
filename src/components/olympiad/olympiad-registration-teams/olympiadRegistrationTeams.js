@@ -48,9 +48,9 @@ class OlympiadRegistrationTeamsComponent extends React.Component {
       headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
     };
     let registration = {
-      
+
     }
-    axios.post('https://skill4u.herokuapp.com/team/invite', params,)
+    axios.post('https://skill4u.herokuapp.com/team/invite', params)
       .then(res => {
         console.log(res);
         this.props.closeWindowComp();

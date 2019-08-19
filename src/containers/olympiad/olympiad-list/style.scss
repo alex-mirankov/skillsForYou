@@ -1,0 +1,10 @@
+.olympiads-list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 10px;
+
+  &__card {
+    margin: 10px;
+  }
+}

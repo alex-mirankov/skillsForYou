@@ -1,7 +1,11 @@
 @import '../../../styles/constants.scss';
 
-.olympic {
-  &-header {
+.olympic-enter {
+  width: 1170px;
+  margin: 0 auto;
+  flex: 1 0 auto;
+
+  &__header {
     margin: 0 auto;
     text-align: center;
     color: $olympicColor;
@@ -13,7 +17,7 @@
     margin-bottom: 65px;
   }
 
-  &-content {
+  &__content {
     display: flex;
     justify-content: space-between;
   }

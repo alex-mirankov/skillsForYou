@@ -1,10 +1,16 @@
-@import '../../../styles/constants.scss';
+@import "../../../styles/constants.scss";
 
-.registration-header {
+.registration-single {
+  width: 1170px;
+  margin: 0 auto;
+  flex: 1 0 auto;
+
+  &__header {
     color: $olympicColor;
     font-family: $baseBoldFont;
     font-size: 2.5rem;
     text-align: center;
     margin-top: 110px;
     margin-bottom: 48px;
+  }
 }

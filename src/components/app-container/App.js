@@ -15,12 +15,12 @@ import {
   Login,
   MainPage,
   Work,
-  OlympiadTeam,
   NotFoundPage,
   MyselfCabinet,
   TeacherCabinet,
   OlympiadSingle,
 } from '../../containers/index';
+
 import {
   Header,
   Footer,
@@ -47,7 +47,6 @@ class AppComponent extends Component {
             <Route exact path="/" component={MainPage} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/olympic-enter" component={OlympiadEnterContainer} />
-            <Route exact path="/olympic-team" component={OlympiadTeam} />
             <Route exact path="/olympic-single" component={OlympiadSingle} />
             <Route exact path="/olympic-registration" component={OlympiadRegistration} />
             <Route exact path="/olympic-registartion-team" component={OlympiadRegistrationTeam} />

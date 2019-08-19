@@ -3,6 +3,9 @@ import './style.scss';
 
 import axios from 'axios';
 
+import { connect } from 'react-redux';
+import { setCurrentOlympiadTask } from '../../../redux/actions/single-olympiad';
+
 import {
   OlympicHeader,
   OlympicTask,
@@ -13,11 +16,14 @@ import {
   Compile,
 } from '../../../components';
 
-export class OlympiadSingle extends React.Component {
+class OlympiadSingleComponent extends React.Component {
   state = {
     olympiad: null,
     allTasks: [],
     comleteTasks: 0,
+    currentTaskNumeric: 0,
+    currentTaskName: '',
+    currentTaskDescription: ''
   };
   componentDidMount() {
     let params = {
@@ -32,17 +38,40 @@ export class OlympiadSingle extends React.Component {
       })
       .catch(err => console.log(err));
   }
+  setCurrentOlympiad = () => {
+    this.state.allTasks.map(item => {
+      if (this.props.olympiadId == item.id) {
+        this.props.SetCurrentOlympiadTask(
+          { id: item.id, name: item.task, description: item.task }
+        )
+      };
+    });
+  }
   render() {
+    this.setCurrentOlympiad();
     return (
       <div className="single-olympiad">
         <div className="single-olympiad__content">
           <OlympicHeader allTasks={this.state.allTasks}
-                          comleteTasks={this.state.comleteTasks}/>
-          <OlympicTask />
+            comleteTasks={this.state.comleteTasks} />
+          <OlympicTask allTasks={this.state.allTasks}
+            olympiadId={this.props.olympiadId} />
           <Compile />
-          <Pager allTasks={this.state.allTasks}/>
+          <Pager allTasks={this.state.allTasks} />
         </div>
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  olympiadId: state.singleOlympiad.numericOlympiad,
+});
+
+const mapDispathToProps = (dispatch) => ({
+  SetCurrentOlympiadTask: (olympiad) => {
+    dispatch(setCurrentOlympiadTask(olympiad));
+  },
+})
+
+export const OlympiadSingle = connect(mapStateToProps, mapDispathToProps)(OlympiadSingleComponent)

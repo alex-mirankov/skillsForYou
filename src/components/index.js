@@ -1,6 +1,4 @@
 export * from './benefits-page-component/benefitsPage';
-export * from './chat-component/chat';
-export * from './chat-participants/index';
 export * from './compile/compile';
 export * from './footer-component/footer';
 export * from './header-component/header';

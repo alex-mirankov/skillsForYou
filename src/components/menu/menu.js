@@ -4,7 +4,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import PropTypes from "prop-types";
-import "./style.css";
+import './style.scss';
 
 const ITEM_HEIGHT = 48;
 
@@ -35,7 +35,7 @@ export class LongMenu extends React.Component {
           aria-owns={open ? "long-menu" : undefined}
           aria-haspopup="true"
           onClick={this.handleClick}
-          className="menu__icon_color"
+          className="menu__icon"
         >
           <MoreVertIcon />
         </IconButton>
@@ -56,7 +56,7 @@ export class LongMenu extends React.Component {
               key={option.text}
               onClick={() => this.handleClose(option.onClick)}
             >
-              <div className="menu-item__text">{option.text}</div>
+              <div className="menu__text">{option.text}</div>
             </MenuItem>
           ))}
         </Menu>

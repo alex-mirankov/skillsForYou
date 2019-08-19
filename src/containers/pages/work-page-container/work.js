@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import './style.scss';
 
 import { Lesson } from "../../index";
 import {
   HomeWork,
-  Chat,
   RightSideBar
 } from '../../../components/index';
 
@@ -13,12 +13,13 @@ export class Work extends Component {
   }
   render() {
     return (
-      <>
-        <Lesson />
-        <HomeWork />
-        <Chat />
+      <div className="work-page">
+        <div className="work-page__main">
+          <Lesson />
+          <HomeWork />
+        </div>
         <RightSideBar />
-      </>
+      </div>
     );
   }
 }

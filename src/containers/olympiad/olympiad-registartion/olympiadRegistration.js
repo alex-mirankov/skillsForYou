@@ -6,10 +6,10 @@ import { OlympiadRegistrationForm } from '../../../components/olympiad/index';
 export class OlympiadRegistration extends React.Component {
   render() {
     return (
-      <>
-        <p className="registration-header">Регистрация для участия в олимпиаде</p>
+      <div className="registration-single">
+        <p className="registration-single__header">Регистрация для участия в олимпиаде</p>
         <OlympiadRegistrationForm />
-      </>
+      </div>
     );
   }
 }
