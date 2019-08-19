@@ -2,6 +2,25 @@ import React from 'react';
 import './style.scss';
 
 export class Timer extends React.Component {
+  state = {
+    allSeconds: 7200,
+    hours: 0,
+    minuts: 0,
+    seconds: 0,
+  }
+  componentDidMount() {
+    setInterval(() => {
+      this.timerFunction();
+    }, 1000);
+  }
+  timerFunction = () => {
+    this.setState({
+      allSeconds: this.state.allSeconds - 1,
+      hours: this.state.allSeconds / 3600 ^ 0,
+      minuts: (this.state.allSeconds - this.state.hours * 3600) / 60 ^ 0,
+      seconds: this.state.allSeconds - this.state.hours * 3600 - this.state.minuts * 60,
+    });
+  }
   render() {
     return (
       <div className="timer">
@@ -11,7 +30,7 @@ export class Timer extends React.Component {
         <div className="timer__clock">
           <div className="timer__clock-time">
             <div className="timer__clock-time-number">
-              2
+              {this.state.hours}
             </div>
             <div className="timer__clock-time-text">
               часов
@@ -19,7 +38,7 @@ export class Timer extends React.Component {
           </div>
           <div className="timer__clock-time">
             <div className="timer__clock-time-number">
-              13
+              {this.state.minuts}
             </div>
             <div className="timer__clock-time-text">
               минут
@@ -27,7 +46,7 @@ export class Timer extends React.Component {
           </div>
           <div className="timer__clock-time">
             <div className="timer__clock-time-number">
-              25
+              {this.state.seconds}
             </div>
             <div className="timer__clock-time-text">
               секунд

@@ -5,7 +5,6 @@ export * from './input-registration-form/inputRegistrationForm';
 export * from './loader-circle/loaderCircle';
 export * from './select/select';
 export * from './shareCheckBox/shareCheckBox';
-export * from './timer/timer';
 export * from './select-olympiad/selectOlympiad';
 export * from './warning-component/warning';
 export * from './olympiad-select/olympiadSelect';
