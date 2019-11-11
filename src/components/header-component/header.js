@@ -134,7 +134,7 @@ class HeaderComponent extends Component {
     ];
 
     return (
-      <header className={isMainPage ? 'header-main-page' : 'header-not-main'}>
+      <header className={isMainPage ? 'header-main-page' : 'header-main-page-not-main'}>
         <div className="header-main-page-control" style={{ display: this.regPanel }}>
           <React.Fragment>
             <button

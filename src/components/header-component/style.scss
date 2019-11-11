@@ -9,7 +9,13 @@
     background-color: $baseHeaderBackground;
     height: 70px;
     position: relative;
+
+    
   }
+  // &-not-main+&-control+&-menu ul li a{
+  //   background-color: rgb(206, 50, 50) ;
+  //   color:$baseHeaderBackground !important; 
+  // }
 
   &-control {
     display: flex;
@@ -43,11 +49,13 @@
   &-menu {
     text-align: center;
     padding-bottom: 16px;
+    
 
     &-list {
       padding: 0;
       margin-bottom: 10px;
       font-family: $baseBoldFont;
+
 
       &__item {
         display: inline;

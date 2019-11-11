@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter, Route, Switch } from "react-router-dom";
 import './App.css';
-
+import CreateTestMain from '../../components-psycoModule/createTestMainComponent/createTestMainContainer';
 import { connect } from "react-redux";
 import { getUserToken } from '../../redux/actions/user.action';
  import testsContainer from '../../components-psycoModule/containerComponent'
@@ -64,6 +64,9 @@ class AppComponent extends Component {
             <Route exact path="/teacher-registration" component={TeacherRegistration} />
 
             <Route exact path="/tests/:Npage" component={testsContainer} />
+            <Route exact path='/tests/createTest/:testType' component={testsContainer} />
+            <Route exact path='/tests/passingTest/:testId' component={testsContainer} />
+
 
             <Route path="/work/:id" component={Work} />
             <Route path="/*" component={NotFoundPage} />

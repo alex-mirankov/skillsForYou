@@ -27,8 +27,11 @@ $white: #ffffff;
   }
 
   &container &trigger_edit {
+    margin-top: 10px;
     color: $white;
     background-color: $purple_1;
+    font-family: "Gilroy";
+    font-size: 18px;
     font-weight: 400;
   }
 
@@ -66,7 +69,7 @@ $white: #ffffff;
     display: inline-block;
     width: 260px;
     color: #2b2a2a;
-    font-family: "Gilroy";
+    font-family: "gilroy";
     font-size: 20px;
     font-weight: 700;
     line-height: 24px;

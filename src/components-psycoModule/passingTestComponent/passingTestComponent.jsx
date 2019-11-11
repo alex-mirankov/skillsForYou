@@ -98,8 +98,8 @@ class passForm extends Component {
     let items = [];
     console.log(this.state.groupResultIndexes)
     for (let i = 0; i < this.state.groupResultIndexes.length; i++) {
-      item = <div className="result-div-item" key={i}> <img src={this.props.passingTestResults[this.state.groupResultIndexes[i]].result_img} alt='' />
-        <p>
+      item = <div className="passing-block__result-div-item" key={i}> <img className="passing-block__result-img-item" src={this.props.passingTestResults[this.state.groupResultIndexes[i]].result_img} alt='' />
+        <p className="pussing-block__results-p">
           {this.props.passingTestResults[this.state.groupResultIndexes[i]].result}
         </p></div>
       console.log(this.props.passingTestResults[this.state.groupResultIndexes[i]].result)
@@ -502,8 +502,8 @@ class passForm extends Component {
 
           <div className="passing-block__results" id="resultBlock">
             {!this.state.chaptersResultState ?
-              <div> <img src={passingTestResults[this.state.resultIndex].result_img} alt='' />
-                <p>
+              <div> <img className="passing-block__results-img" src={passingTestResults[this.state.resultIndex].result_img} alt='' />
+                <p className="pussing-block__results-p">
                   {this.props.passingTest.test_type === "first" ?
                     passingTestResults[this.state.resultIndex].result :
                     passingTestResults[this.state.resultIndex].description
@@ -511,7 +511,7 @@ class passForm extends Component {
                 </p>
               </div>
               : this.createChaptersResult()}
-            <Link to="/" onClick={() => { this.setState({ superObj: {} }); setIndexOfQuestion(0); }}>Завершить</Link>
+            <label className="passing-block__end-btn" onClick={() => { this.setState({ superObj: {} }); setIndexOfQuestion(0);this.props.history.push('/tests/0') }}>Завершить</label>
           </div>
 
           <div className="passing-block__results" id="chapterResult">
@@ -520,7 +520,7 @@ class passForm extends Component {
               {passingTestResults[this.state.resultIndex].result}
             </p>
             {this.props.questIndex !== testContent.length - 1 ? <button
-              className="passing-block__button"
+              className="passing-block__button passing-block__button_large"
               onClick={() => {
                 this.changeChapter();
                 this.changeCurrentQuestion(this.props.questIndex + 1);
