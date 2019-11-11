@@ -29,4 +29,4 @@ export const fields = [
         placeholder: 'Выберите аватар',
         type: 'file',
     },
-]
+];

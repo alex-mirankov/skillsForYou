@@ -6,14 +6,18 @@ import { setNumericOlympiad } from '../../../../../redux/actions/index';
 
 class PagerComponent extends React.Component {
   state = {
-    currentPage: '',
+    currentPage: this.props.currentPage,
   };
+
   handlePagerChange = (item) => {
-    this.setState({
-      currentPage: item,
-    });
-    this.props.SetNumericOlympiad(item.id);
+    if (item !== this.state.currentPage) {
+      this.setState({
+        currentPage: item,
+      });
+      this.props.SetNumericOlympiad(item);
+    }
   }
+
   render() {
     let { allTasks } = this.props;
     return (
@@ -21,8 +25,8 @@ class PagerComponent extends React.Component {
         {
           allTasks.map((item, index) => {
             return (
-              <div className={`pager__numeric ${item === this.state.currentPage ? 'pager__numeric-active' : null}`}
-                onClick={() => this.handlePagerChange(item)}>
+              <div className={`pager__numeric ${item.id === this.state.currentPage ? 'pager__numeric-active' : null}`}
+                onClick={() => this.handlePagerChange(item.id)}>
                 {index + 1}
               </div>
             );

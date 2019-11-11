@@ -8,11 +8,13 @@ export class Timer extends React.Component {
     minuts: 0,
     seconds: 0,
   }
+
   componentDidMount() {
     setInterval(() => {
       this.timerFunction();
     }, 1000);
   }
+
   timerFunction = () => {
     this.setState({
       allSeconds: this.state.allSeconds - 1,
@@ -21,6 +23,7 @@ export class Timer extends React.Component {
       seconds: this.state.allSeconds - this.state.hours * 3600 - this.state.minuts * 60,
     });
   }
+
   render() {
     return (
       <div className="timer">

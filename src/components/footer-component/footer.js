@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import './style.scss';
 
-import socialFacebook from "../../images/social-facebook.png";
-import socialViber from "../../images/social-viber.png";
-import socialVk from "../../images/social-vk.png";
-import socialMail from "../../images/social-mail.png";
-import socialTelephone from "../../images/social-telephone.png";
+import socialFacebook from "../../images/social-facebook.svg";
+import socialViber from "../../images/social-viber.svg";
+import socialVk from "../../images/social-vk.svg";
+import socialMail from "../../images/social-mail.svg";
+import socialTelephone from "../../images/social-telephone.svg";
 
 export const footerSocialLinks = [
   {

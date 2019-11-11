@@ -11,9 +11,9 @@ import {
   Slider,
 } from '../index';
 
-import header_settings from "../../images/header_settings.png";
-import header_notification from "../../images/header_notofication.png";
-import header_avatar from "../../images/header_avatar.png";
+import header_settings from "../../images/header_settings.svg";
+import header_notification from "../../images/header_notification.svg";
+import header_avatar from "../../images/header_avatar.svg";
 
 export const headerMenu = [
   {

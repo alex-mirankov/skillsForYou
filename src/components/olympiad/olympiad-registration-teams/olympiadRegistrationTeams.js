@@ -1,5 +1,5 @@
 import React from 'react';
-import './style.css';
+import './style.scss';
 
 import axios from 'axios';
 import { connect } from 'react-redux';
@@ -30,11 +30,12 @@ class OlympiadRegistrationTeamsComponent extends React.Component {
     selectedOlympiad: 'Олимпиада',
     olympiadId: 0,
   };
+
   componentDidMount() {
     let params = {
       headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
     };
-    axios.get('https://skill4u.herokuapp.com/olympiad', params)
+    axios.get('https://sandbox-skill4u.herokuapp.com/olympiad', params)
       .then(data => {
         console.log(data.data);
         this.setState({
@@ -43,6 +44,7 @@ class OlympiadRegistrationTeamsComponent extends React.Component {
       })
       .catch(e => console.log(e));
   }
+
   handleRegistration = () => {
     let params = {
       headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
@@ -57,6 +59,7 @@ class OlympiadRegistrationTeamsComponent extends React.Component {
       })
       .catch(e => console.log(e));
   }
+
   handleChangeOlympiad = text => {
     for (let i = 0; i < this.state.olympiadList.length; i++) {
       if (this.state.olympiadList[i].text === text) {
@@ -64,7 +67,8 @@ class OlympiadRegistrationTeamsComponent extends React.Component {
       }
     }
     this.setState({ selectedOlympiad: text });
-  };
+  }
+
   render() {
     return (
       <div className="card-registration">
@@ -76,11 +80,9 @@ class OlympiadRegistrationTeamsComponent extends React.Component {
             currentValue={this.state.selectedOlympiad}
             inputValues={this.state.olympiadList} />
         </div>
-        <ButtonAll
-          styles={stylesButton}
+        <ButtonAll styles={stylesButton}
           content={'Регистрация'}
-          action={this.handleRegistration}
-        />
+          action={this.handleRegistration} />
         <MyModal />
       </div>
     );

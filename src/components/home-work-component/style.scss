@@ -5,7 +5,6 @@
   border: 1px solid $baseBorderColor;
   background-color: $baseBorderColor;
   border-radius: 10px;
-  margin-top: 50px;
 
   &__header {
     border-bottom: 1px solid $baseBorderColor;
@@ -41,7 +40,7 @@
   }
 
   &__description {
-    padding: 30px 40px 100px 30px;
+    padding: 10px 30px;
     color: $baseHomeWorkDescriptionColor;
     font-size: 1.28rem;
     font-family: $baseLightFont;

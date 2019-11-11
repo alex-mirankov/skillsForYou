@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import "./style.css";
+import "./style.scss";
 import { Redirect } from "react-router-dom";
 import { history } from "../../../services/redux";
 import axios from 'axios';
 
 import { fields } from './fields';
+import { InputRegistrationForm, ButtonAll } from '../../../components/share';
+import { authInputStyle, submitBtnStyles } from '../login-container/login';
 export class Registration extends Component {
   fields = fields;
   state = {
@@ -53,66 +55,40 @@ export class Registration extends Component {
       password_confirm: password_confirm,
       avatar: avatar,
     };
-    axios.post('https://skill4u.herokuapp.com/', this.state)
+    axios.post('https://sandbox-skill4u.herokuapp.com/', this.state)
       .then(e => {
         history.push('/login');
       })
       .catch(error => {
         console.log(error);
       });
-      console.log(this.state);
+    console.log(this.state);
   };
 
   RegistrationLayout = () => (
-    <main className="main">
-      <section className="registration-container registration-container__size registration-container__margin">
-        <div className="registration-container__header">
-          <p className="registration-container__blank-name">Бланк студента</p>
-          <button
-            onClick={this.handleRegistrationTeacherClick}
-            className="registration-container__link registration-container__link_hover"
-          >
-            Вы не студент?
-          </button>
-        </div>
-        <div className="form form_align-content" name="form-student-blank">
-          <input
-            onChange={this.handleChange}
-            value={this.state.email}
-            type="email"
-            className="form__input"
-            id="email"
-            name="email"
-            placeholder="Электронная почта"
-          />
-          <input
-            onChange={this.handleChange}
-            value={this.state.full_name}
-            type="text"
-            className="form__input"
-            id="full_name"
-            name="full_name"
-            placeholder="Введите имя"
-          />
-          <input
-            onChange={this.handleChange}
-            value={this.state.password}
-            type="password"
-            className="form__input"
-            id="password"
-            name="password"
-            placeholder="Придумайте пароль"
-          />
-          <input
-            onChange={this.handleChange}
-            value={this.state.password_confirm}
-            type="password"
-            className="form__input"
-            id="password_confirm"
-            name="password_confirm"
-            placeholder="Повторите пароль"
-          />
-          {/* <input
+    <section className="registration">
+      <div className="registration-header">
+        <p className="registration-header__enter-text">Бланк студента</p>
+        <button onClick={this.handleRegistrationTeacherClick}
+          className="registration-header__status">
+          Вы не студент?
+        </button>
+      </div>
+      <div className="registration__form">
+      <InputRegistrationForm placeHolder={'Электронная почта'}
+                              styles={authInputStyle} />
+      <InputRegistrationForm placeHolder={'Имя'}
+                              styles={authInputStyle} />
+      <InputRegistrationForm placeHolder={'Пароль'}
+                              styles={authInputStyle}
+                              type={'password'} />
+      <InputRegistrationForm placeHolder={'Повторите пароль'}
+                              styles={authInputStyle}
+                              type={'password'} />
+      <ButtonAll action={this.handleSubmit}
+                  content={'Зарегистрироваться'}
+                  styles={submitBtnStyles} />
+        {/* <input
             onChange={(e) => this.fileSelectedHendler(e)}
             type="file"
             className="form__input"
@@ -120,19 +96,8 @@ export class Registration extends Component {
             name="avatar"
             placeholder="Выберите аватар"
           /> */}
-          <input
-            type="button"
-            onClick={this.handleSubmit}
-            className="form__submit form__submit_hover"
-            name="form__submit-id-submit"
-            value="Зарегистрироваться"
-          />
-          <p style={{ color: "red" }}>
-            {this.state.error ? this.state.error : null}
-          </p>
-        </div>
-      </section>
-    </main>
+      </div>
+    </section>
   );
   render() {
     const component = this.state.success ? (

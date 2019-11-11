@@ -19,6 +19,8 @@ import {
   MyselfCabinet,
   TeacherCabinet,
   OlympiadSingle,
+  OlympiadScorePage,
+  CreateOlympiadPage,
 } from '../../containers/index';
 
 import {
@@ -39,18 +41,21 @@ class AppComponent extends Component {
   render() {
     return (
       <div className="app">
-        <Header
-          className="app-header"
+        <Header className="app-header"
           controlPanel={this.props.isDisplayControlPanel}
           regLogPanel={this.props.isDisplayRegAndLoginPanel} />
+        <div className="app-main">
           <Switch>
             <Route exact path="/" component={MainPage} />
             <Route exact path="/login" component={Login} />
+
             <Route exact path="/olympic-enter" component={OlympiadEnterContainer} />
-            <Route exact path="/olympic-single" component={OlympiadSingle} />
+            <Route exact path="/olympic-single/:id" component={OlympiadSingle} />
             <Route exact path="/olympic-registration" component={OlympiadRegistration} />
             <Route exact path="/olympic-registartion-team" component={OlympiadRegistrationTeam} />
             <Route exact path="/olympiads" component={OLympiadListContainer} />
+            <Route exact path="/olympiad-score" component={OlympiadScorePage} />
+            <Route exact path="/create-olympiad" component={CreateOlympiadPage} />
 
             <Route exact path="/myself-cabinet" component={MyselfCabinet} />
             <Route exact path="/teacher-cabinet" component={TeacherCabinet} />
@@ -60,6 +65,7 @@ class AppComponent extends Component {
             <Route path="/work/:id" component={Work} />
             <Route path="/*" component={NotFoundPage} />
           </Switch>
+        </div>
         <div className="app-footer">
           <Footer />
         </div>

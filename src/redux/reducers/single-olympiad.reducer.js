@@ -13,6 +13,7 @@ export const singleOlympiad = (state = initialState, action) => {
   switch (action.type) {
     case SET_NUMERIC_SINGLE_OLYMPIAD_TASK:
       return {
+        ...state,
         numericOlympiad: action.payload,
       }
     case SET_CURRENT_OLYMPIAD_TASK:

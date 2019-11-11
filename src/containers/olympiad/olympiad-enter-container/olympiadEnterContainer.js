@@ -41,12 +41,15 @@ export class OlympiadEnterContainerWithRedux extends React.Component {
       </div>
     </div>
   );
+
   goToSoloOlymp = () => {
     history.push('/olympic-registration');
   }
+
   goToTeamOlymp = () => {
     history.push('/olympic-registartion-team');
   }
+
   render() {
     return (
       <>

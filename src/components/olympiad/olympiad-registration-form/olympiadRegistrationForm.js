@@ -31,22 +31,24 @@ class OlympiadRegistrationFormComponent extends React.Component {
     }
     this.setState({ currentValue: name });
   };
+
   handleRegisatration = () => {
     let params = {
       headers: { 'Authorization': 'Token ' + this.state.token }
     };
-    axios.post('https://skill4u.herokuapp.com/team', { olympiad_id: this.state.olympiadId }, params)
+    axios.post('https://sandbox-skill4u.herokuapp.com/olympiad/registration', { olympiad_id: this.state.olympiadId }, params)
       .then(data => {
         console.log(data);
         this.props.closeWindowComp();
       })
       .catch(e => { console.log(e) });
   }
+
   componentDidMount() {
     let params = {
       headers: { 'Authorization': 'Token ' + this.state.token }
     };
-    axios.get('https://skill4u.herokuapp.com/olympiad', params)
+    axios.get('https://sandbox-skill4u.herokuapp.com/olympiad', params)
       .then(data => {
         console.log(data.data);
         this.setState({
@@ -67,13 +69,15 @@ class OlympiadRegistrationFormComponent extends React.Component {
             inputValues={this.state.olympiadList} />
         </div>
         <div className="container-button-form">
-          <ButtonAll
-            styles={styles}
+          <ButtonAll styles={styles}
             content={'Регистрация'}
-            action={this.handleRegisatration}
-          />
+            action={this.handleRegisatration} />
         </div>
-        <MyModal />
+        <MyModal headerText={'Спасибо за регистрацию!'}
+                  descriptionText={`
+                    Каждому участнику придет уведомление на почту
+                    для  подтверждения участия в олимпиаде.
+                  `} />
       </div>
     );
   }

@@ -7,3 +7,5 @@ export * from './work-page-container';
 export * from './cabinets/myself-cabinet/myselfCabinet';
 export * from './cabinets/teacher-cabinet/teacherCabinet';
 export * from './cabinets/common/index';
+export * from './olympiad-score/olympiadScore';
+export * from './create-olympiad/createOlympiad';

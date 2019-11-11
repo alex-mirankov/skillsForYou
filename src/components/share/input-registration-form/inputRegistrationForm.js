@@ -6,7 +6,9 @@ export const InputRegistrationForm = (props) => {
 		<input
 			className="custom-input"
 			placeholder={props.placeHolder}
+			onChange={props.action}
 			style={props.styles}
+			type={props.type}
 		/>
 	);
 }

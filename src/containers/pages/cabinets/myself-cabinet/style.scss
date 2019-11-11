@@ -1,0 +1,30 @@
+@import '../../../../styles/constants.scss';
+
+.my-self-cabinet {
+
+  &__header {
+    font-size: 1.71rem;
+    font-family: $baseBoldFont;
+    margin-top: 40px;
+    color: $baseBlackColor;
+    display: flex;
+    justify-content: center;
+  }
+
+  &-olympiad-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    width: 80%;
+    margin: 20px auto;
+    border-top: 2px solid $baseBorderCabinerColor;
+    border-bottom: 2px solid $baseBorderCabinerColor;
+  }
+
+  &__loader {
+    display: flex;
+    justify-content: center;
+  }
+
+}

@@ -1,0 +1,56 @@
+@import "../../../styles/constants.scss";
+
+.registration {
+  height: 340px;
+  width: 420px;
+  padding-top: 40px;
+  background: lightgrey;
+  border-radius: 10px;
+  margin: 50px auto;
+
+  &-header {
+    display: flex;
+    justify-content: space-around;
+
+    &__enter-text {
+      font-size: 24px;
+      color: #6f6464;
+      font-family: "gilroy_extra_bold";
+      text-align: center;
+    }
+
+    &__status {
+      line-height: 2.6;
+      font-size: 14px;
+      color: #6f6464;
+      font-family: "gilroy_light";
+      cursor: pointer;
+
+      &:hover {
+        color: #fffefe;
+        transition: 0.5s;
+      }
+    }
+  }
+
+  &__form {
+    text-align: center;
+  }
+
+}
+
+.form__submit {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  width: 230px;
+  height: 44px;
+  border-radius: 10px;
+  background-color: #feaf55;
+  border: none;
+  color: #fffefe;
+  font-family: "gilroy_extra_bold";
+  font-size: 1.28rem;
+  font-weight: 400;
+  cursor: pointer;
+  outline: none;
+}

@@ -1,13 +1,14 @@
 import React from "react";
 import './style.scss';
 
+import { CircularIndeterminate } from '../../share';
+
 export class OlympiadSelect extends React.Component {
   state = {
     isOpen: false,
   };
 
   handleClick = () => {
-    console.log(this.state.isOpen);
     const { isOpen } = this.state;
     this.setState({ isOpen: !isOpen });
   };
@@ -25,6 +26,13 @@ export class OlympiadSelect extends React.Component {
         </div>
         {isOpen && (
           <div className="olympiad-select__pop-up">
+            {
+              inputValues.length === 0
+              ? <div className="olympiad-select__loader">
+                  <CircularIndeterminate />
+                </div>
+              : null
+            }
             {inputValues.map(item => (
               <div
                 className="olympiad-select__pop-up-value"

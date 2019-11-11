@@ -1,8 +1,7 @@
 @import '../../styles/constants.scss';
 
 .choose-program {
-  margin-top: 145px !important;
-  margin-bottom: 145px !important;
+  margin-bottom: 60px !important;
   position: relative;
   text-align: center;
 
@@ -11,7 +10,8 @@
     font-family: $baseBoldFont;
     font-size: 2.57rem;
     font-weight: 400;
-    margin-bottom: 150px;
+    margin-bottom: 60px;
+    margin-top: 60px;
   }
 
   &__control {

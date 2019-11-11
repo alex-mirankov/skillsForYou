@@ -40,7 +40,7 @@ class ModalWindow extends React.Component {
   };
 
   render() {
-    const { classes, open } = this.props;
+    const { classes, open, headerText, descriptionText } = this.props;
 
     return (
       <div>
@@ -53,11 +53,10 @@ class ModalWindow extends React.Component {
         >
           <div style={getModalStyle()} className={classes.paper}>
             <p className="modal__content">
-              Спасибо за регистрацию!
+              {headerText}
             </p>
             <p className="modal__content">
-              Каждому участнику придет уведомление на почту
-              для  подтверждения участия в олимпиаде.
+              {descriptionText}
             </p>
             <SimpleModalWrapped />
           </div>

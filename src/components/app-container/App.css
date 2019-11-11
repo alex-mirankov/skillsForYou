@@ -4,6 +4,10 @@
   min-height: 100%;
 }
 
+.app-main {
+  flex: 1 0 auto;
+}
+
 .app-footer {
   flex: 0 0 auto;
 }

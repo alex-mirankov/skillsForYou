@@ -3,9 +3,7 @@ import './style.scss';
 
 import imageHeader from '../../../../../images/javascript2-img-start.png';
 
-import {
-  Timer,
-} from '../../../../../components';
+import { Timer } from '../../../../../components';
 
 export class OlympicHeader extends React.Component {
   render() {

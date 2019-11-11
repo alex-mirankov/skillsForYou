@@ -1,0 +1,72 @@
+@import '../../../styles/constants.scss';
+
+.olympic-card {
+  width: 570px;
+  height: 380px;
+  box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.59);
+  border-radius: 10px;
+  background-color: $baseBackgroundOlympic;
+  margin-bottom: 40px;
+
+  &__header {
+    text-align: center;
+    color: $baseHeaderOlympiadColor;
+    font-family: $baseBoldFont;
+    font-size: 30px;
+    font-weight: 400;
+    margin-top: 36px;
+  }
+
+  &-content {
+    display: flex;
+    margin-top: 36px;
+
+    &__image {
+      height: 150px;
+      margin-left: 20px;
+    }
+
+    &-info {
+      &__text {
+        color: $baseHeaderOlympiadColor;
+        font-family: $baseLightFont;
+        font-size: 24px;
+        font-weight: 300;
+        margin-bottom: 23px;
+
+        &-span {
+          color: $baseHeaderOlympicTasksColor;
+        }
+      }
+
+      &__date {
+        color: $baseWhiteColor;
+        font-family: $baseLightFont;
+        font-size: 18px;
+        font-weight: 300;
+        margin-bottom: 28px;
+      }
+    }
+
+    &__image {
+      width: 400px;
+      height: 200px;
+      margin-left: 20px;
+    }
+  }
+
+  &-timetable {
+    color: $baseLinkOlympiadColor;
+    font-family: $baseLightFont;
+    font-size: 14px;
+    font-weight: 300;
+    text-align: right;
+    margin-right: 17px;
+    margin-top: 30px;
+
+    &__link {
+      color: $baseLinkOlympiadColor;
+    }
+  }
+
+}

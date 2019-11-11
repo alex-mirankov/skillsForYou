@@ -1,0 +1,78 @@
+@import "../../../styles/constants.scss";
+
+.create-olympiad {
+  width: 1170px;
+  margin: 0 auto;
+
+  &__header {
+    font-size: 1.71rem;
+    font-family: $baseBoldFont;
+    margin-top: 40px;
+    color: $baseBlackColor;
+    display: flex;
+    justify-content: center;
+  }
+
+  &-general {
+    display: flex;
+    justify-content: space-between;
+
+    &-info {
+      margin-top: 20px;
+      width: 47%;
+      & input {
+        margin-bottom: 20px;
+      }
+    }
+
+    &-task {
+      margin-top: 20px;
+      width: 47%;
+
+      & input {
+        margin-bottom: 20px;
+      }
+
+      &__examples {
+
+        &-add-btn {
+          display: flex;
+          align-items: center;
+
+          & div {
+            margin-left: 10px;
+          }
+        }
+      }
+
+      &__examples,
+      &-files {
+        border: 2px solid $baseBorderCabinerColor;
+        border-radius: 10px;
+        padding: 10px;
+      }
+
+      &__create-btn {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+
+        & div {
+          margin-left: 10px;
+        }
+      }
+
+      &__submit-btn {
+        margin-top: 40px;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      &-files {
+        margin-top: 20px;
+      }
+
+    }
+  }
+}

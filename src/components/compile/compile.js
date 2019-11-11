@@ -10,24 +10,34 @@ import CodeMirror from 'react-codemirror';
 
 
 export class Compile extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      code: 'print (\"hello\")',
-      language: 'python',
-      timeoutMs: 2000,
-      responceBack: '',
-    }
+  state = {
+    code: `Program Hello;
+    begin
+      writeln('Привіт, світ!');
+    End.`,
+    language: 'pascal',
+    responceBack: '',
+    loading: false,
   }
 
   compileSend = () => {
-    axios.post('https://sandbox-skill4u.herokuapp.com', this.state)
+    let params = {
+      headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
+    };
+    let compileConfig = {
+      code: this.state.code,
+      language: this.state.language,
+      olympiad_id: this.props.olympiad_id,
+      task_id: this.props.task_id,
+    };
+    console.log(compileConfig);
+    axios.post(`${this.props.path}`, compileConfig, params)
       .then((responce) => {
         this.setState({
-          responceBack: responce.data[0].stdout,
+          responceBack: responce.data.score
         });
-        console.log(responce.data[0].stdout);
+        sessionStorage.setItem(`task${compileConfig.task_id}`, responce.data.score)
+        console.log(responce.data.score);
       })
       .catch((error) => {
         console.log(error);
@@ -44,27 +54,21 @@ export class Compile extends React.Component {
   render() {
     let options = {
       lineNumbers: true,
-      mode: "python",
+      mode: "pascal",
     };
+
     return (
       <div className="compile">
-        <CodeMirror
-          options={options}
+        <CodeMirror options={options}
           value={this.state.code}
           onChange={this.compileChange}
         />
         <div className="compile-buttons">
-          <ButtonAll
-            className="btn"
-            content={'Запустить'}
-            action={this.compileSend}
-          />
-          <ButtonAll
-            content={'Отправить'}
+          <ButtonAll content={'Отправить'}
             action={this.compileSend}
           />
         </div>
-        <p className="compile-responce">{this.state.responceBack}</p>
+        {/* <p className="compile-responce">{this.state.responceBack}</p> */}
       </div>
     );
   }

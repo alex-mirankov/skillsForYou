@@ -2,12 +2,12 @@
 
 .header {
   background-color: $baseHeaderBackground;
-  height: 850px;
+  height: 770px;
   position: relative;
 
   &-not-main {
     background-color: $baseHeaderBackground;
-    height: 200px;
+    height: 70px;
     position: relative;
   }
 
@@ -46,7 +46,7 @@
 
     &-list {
       padding: 0;
-      margin-bottom: 40px;
+      margin-bottom: 10px;
       font-family: $baseBoldFont;
 
       &__item {

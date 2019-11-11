@@ -13,6 +13,7 @@ import {
 import {
   ButtonAll,
 } from '../../../../components/index';
+import { history } from '../../../../services/redux';
 
 const gradient = 'linear-gradient(to top, #4f2f82 0%, #5f3789 10%, #714091 21%, #714091 31%, #714091 40%, #543184 78%, #371e48 100%)';
 
@@ -21,16 +22,23 @@ export class TeacherCabinet extends React.Component {
     category: '',
     level: '',
   }
+
   handleChangeCategory = (name) => {
     this.setState({
       category: name,
     });
   };
+
   handleChangeLevel = (name) => {
     this.setState({
       level: name,
     });
   };
+
+  goToCreateOlympiad = () => {
+    history.push('/create-olympiad');
+  }
+
   render() {
     const level = [
       {
@@ -84,6 +92,7 @@ export class TeacherCabinet extends React.Component {
               <ButtonAll styles={{ width: '46%', background: gradient }} content={'Список курсов'} />
               <ButtonAll styles={{ width: '46%' }} content={'Новый курс'} />
             </div>
+            <ButtonAll content={'Создать олимпиаду'} action={this.goToCreateOlympiad} />
             <div className="teacher-cabinet-control__input">
               <InputCabinet caption={'Заголовок'} />
             </div>
@@ -97,7 +106,7 @@ export class TeacherCabinet extends React.Component {
               <SelectCabinet inputValues={level}
                               caption={'Уровень'}
                               handleChange={this.handleChangeLevel}
-                              currentValue={this.state.level}/>
+                              currentValue={this.state.level} />
             </div>
             <div className="teacher-cabinet-control__input">
               <SelectCabinet inputValues={category}
