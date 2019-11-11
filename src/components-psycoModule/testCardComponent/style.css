@@ -1,0 +1,107 @@
+.ui.card .ui.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.ui.card {
+    height: 100%;
+}
+.button-container {
+    height: 52%;
+}
+
+#cardImage {
+    position: relative;
+    z-index: 1;
+}
+
+.ui.cards>.card, .ui.cards>.card>.content {
+    /* height: 100%; */
+    /* height: 600px; */
+    background-color: #efecec;
+}
+
+.ui.cards>.card>.content>.header:not(.ui) {
+    color: #171717;
+    line-height: 30px;
+    font-family: Gilroy;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.ui.cards>.card>.content>.meta:not(.ui) {
+    color: #ff8400;
+    line-height: 36px;
+    font-family: Gilroy;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.card-button {
+    margin: 10px auto;
+    padding: 14px;
+    width: 56%;
+    cursor: pointer;
+    transition: 0.2s;
+    border: solid 2px #6b2a98;
+    border-radius: 6px;
+    background-color: #efecec;
+    text-align: center;
+    color: #6b2a98;
+    font-weight: 700;
+    font-size: 18px;
+    font-family: Gilroy;
+}
+
+.card-button:hover {
+    color: white;
+    background-color: #6b2a98;
+}
+
+.opacity-div {
+    /* z-index: 0;
+    position: absolute;
+    opacity: 0.8;
+    width: 100%;
+    height: 52%;
+    background-color: rgb(22, 10, 10); */
+}
+
+.btn-div {
+    z-index: 0;
+    position: absolute;
+    width: 100%;
+    height: 52%;
+   
+}
+.button-container:hover .opacity-div {
+    z-index: 19;
+    transition: 0.4s
+}
+.button-container:hover .btn-div {
+    z-index: 20;
+}
+.test-card{
+    height: 100%;
+}
+.test-card__button {
+    display: block;
+    margin: 30px auto;
+    width: 165px;
+    height: 38px;
+    cursor: pointer;
+    color: #ffffff;
+    box-shadow: 3px 5px 6px rgba(0, 0, 0, 0.1);
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    background-color: #ff8400;
+    font-family: "Gilroy";
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.test-card__button:hover {
+    transition: 0.2s;
+    background-color: #842cc1;
+}

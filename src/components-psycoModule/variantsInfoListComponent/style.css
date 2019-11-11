@@ -1,0 +1,47 @@
+.variant-block__container {
+    margin-top: 10px;
+    padding: 6px;
+    border-radius: 10px;
+    border: 1px solid #b7b7b7;
+    background-color: #ffffff;
+    color: #212121;
+    font-family: Gilroy;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.variant-block__content {
+    position: relative;
+    display: flex;
+}
+
+.variant-block__img {
+    display: block;
+    width: 160px;
+    margin-left: 5px;
+}
+
+.variant-block__left {
+    width: 27%;
+    display: flex;
+}
+
+.variant-block__right {
+    width: 73%;
+    display: flex;
+}
+
+.variant-block__text {
+    position: relative;
+    word-wrap: break-word;
+    width: 80%;
+}
+
+.variant-block__nfPrice {
+    width: 4%;
+}
+
+.variant-block__state {
+    width: 16%;
+    padding-left: 6px;
+}

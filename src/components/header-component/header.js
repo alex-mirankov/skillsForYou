@@ -32,6 +32,10 @@ export const headerMenu = [
     lable: 'Контакты',
     link: '/',
   },
+  {
+    lable: 'Тесты',
+    link: '/tests/0',
+  },
 ];
 
 export const headerUserMenu = [
@@ -130,17 +134,17 @@ class HeaderComponent extends Component {
     ];
 
     return (
-      <header className={isMainPage ? 'header' : 'header-not-main'}>
-        <div className="header-control" style={{ display: this.regPanel }}>
+      <header className={isMainPage ? 'header-main-page' : 'header-not-main'}>
+        <div className="header-main-page-control" style={{ display: this.regPanel }}>
           <React.Fragment>
             <button
-              className="header-control__btn"
+              className="header-main-page-control__btn"
               onClick={this.handleLoginClick}
             >
               Войти
                 </button>
             <button
-              className="header-control__btn"
+              className="header-main-page-control__btn"
               onClick={this.handleRegistrationClick}
             >
               Регистрация
@@ -148,27 +152,27 @@ class HeaderComponent extends Component {
           </React.Fragment>
         </div>
 
-        <nav className="header-menu">
-          <ul className="header-menu-list">
+        <nav className="header-main-page-menu">
+          <ul className="header-main-page-menu-list">
             {
               headerMenu.map(item => {
                 return (
-                  <li className="header-menu-list__item">
+                  <li className="header-main-page-menu-list__item">
                     <a href={item.link}
-                      className="header-menu-list__link">
+                      className="header-main-page-menu-list__link">
                       {item.lable}
                     </a>
                   </li>
                 );
               })
             }
-            <li className="header-menu-list__item"
+            <li className="header-main-page-menu-list__item"
               style={{ display: this.controlPanel }}>
               {
                 headerUserMenu.map(item => {
                   return (
                     <a href={item.link}
-                      className="header-menu-list__link">
+                      className="header-main-page-menu-list__link">
                       <img src={item.image}
                         alt={item.alt}
                         className={item.class} />
@@ -177,7 +181,7 @@ class HeaderComponent extends Component {
                 })
               }
             </li>
-            <span className="header-menu-list__popup-menu"
+            <span className="header-main-page-menu-list__popup-menu"
                   style={{ display: this.controlPanel }}>
               <LongMenu options={menuButtonsProperties} />
             </span>

@@ -4,7 +4,7 @@ import './App.css';
 
 import { connect } from "react-redux";
 import { getUserToken } from '../../redux/actions/user.action';
-
+ import testsContainer from '../../components-psycoModule/containerComponent'
 import {
   OLympiadListContainer,
   OlympiadEnterContainer,
@@ -62,6 +62,9 @@ class AppComponent extends Component {
 
             <Route exact path="/registration" component={Registration} />
             <Route exact path="/teacher-registration" component={TeacherRegistration} />
+
+            <Route exact path="/tests/:Npage" component={testsContainer} />
+
             <Route path="/work/:id" component={Work} />
             <Route path="/*" component={NotFoundPage} />
           </Switch>
