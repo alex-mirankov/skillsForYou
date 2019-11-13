@@ -6,6 +6,7 @@ import CreateTestMain from './createTestMainComponent/createTestMainContainer';
 import PassingTest from './passingTestComponent/passingTestContainer';
 import UserComponent from './userComponent/UserContainer';
 import SearchResults from './searchResultsComponent/searchResultsContainer'
+import './style.css';
 class containerComponent extends Component {
 
   constructor(props) {
@@ -18,7 +19,8 @@ class containerComponent extends Component {
   render() {
 
     return (
-      <Container>
+      <div className="psyco-block">
+      <Container className="psyco-block__container">
 
         <UserComponent />
 
@@ -28,6 +30,7 @@ class containerComponent extends Component {
         <Route exact path='/tests/passingTest/:testId' component={PassingTest} />
         <Route exact path='/tests/searchResults' component={SearchResults} />
       </Container>
+      </div>
     )
 
   }
