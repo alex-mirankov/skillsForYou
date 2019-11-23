@@ -1,25 +1,25 @@
-.ui.card .ui.image {
+.test-card .ui.card .test-card .ui.image {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.ui.card {
+.test-card .ui.card {
     height: 100%;
 }
 
-.ui.cards>.card {
+.show-tests-block__tests.ui.cards>.card {
     background-color: #efecec;
 }
 
-.ui.cards>.card>.content {
+.show-tests-block__tests.ui.cards>.card>.content {
     /* height: 100%; */
     height: 200px;
     overflow: auto;
     background-color: #efecec;
 }
 
-.ui.cards>.card>.content>.header:not(.ui) {
+.show-tests-block__tests.ui.cards>.card>.content>.header:not(.ui) {
     color: #171717;
     line-height: 30px;
     font-family: Gilroy;
@@ -27,7 +27,7 @@
     font-weight: 600;
 }
 
-.ui.cards>.card>.content>.meta:not(.ui) {
+.show-tests-block__tests.ui.cards>.card>.content>.meta:not(.ui) {
     color: #ff8400;
     line-height: 36px;
     font-family: Gilroy;
@@ -56,18 +56,17 @@
     background-color: #6b2a98;
 }
 
-.test-card__button-container {
-    height: 52%;
+.test_card__button-container {
+    height: 42%;
     position: relative;
 }
 
 #cardImage {
-    /* position: relative;
-    z-index: 1; */
-    height: 200px;
+    height: 100%;
+    width: 100%;
 }
 
-.test-card__opacity-div {
+.test_card__opacity-div {
     z-index: 0;
     position: absolute;
     opacity: 0.8;
@@ -76,22 +75,22 @@
     background-color: rgb(22, 10, 10);
 }
 
-.test-card__btn-div {
+.test_card__btn-div {
     z-index: 0;
     position: absolute;
     width: 100%;
-    height: 52%;
+    height: 100%;
 }
 
-.test-card__button-container:hover .test-card__opacity-div {
+.test_card__button-container:hover .test_card__opacity-div {
     z-index: 19;
 }
 
-.test-card__button-container:hover .test-card__btn-div {
+.test_card__button-container:hover .test_card__btn-div {
     z-index: 20;
 }
 
-.test-card__content {
+.test-card__content{
     height: 100%;
 }
 

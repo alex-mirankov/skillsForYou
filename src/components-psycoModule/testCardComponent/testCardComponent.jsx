@@ -27,9 +27,9 @@ class testCard extends Component {
 
     return (
       <Card className="test-card">
-        <div className="test-card__button-container">
-          <div className="test-card__opacity-div"></div>
-          <div className="test-card__btn-div">
+        <div className="test_card__button-container">
+          <div className="test_card__opacity-div"></div>
+          <div className="test_card__btn-div">
             <button className="test-card__button" onClick={() => { this.goEditTheTest() }}>изменить</button>
 
             <DeleteTestComponent testId={this.props.currentTest.id}></DeleteTestComponent>
