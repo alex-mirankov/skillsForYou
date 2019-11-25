@@ -1,6 +1,6 @@
 .not-found {
   background-color: #070b28;
-  padding-bottom: 300px;
+  padding-bottom: 320px;
   width: 100%;
   position: relative;
 
@@ -61,6 +61,14 @@
     letter-spacing: 1.2px;
     color: #ffffff;
     font-family: "lato";
+
+    & > div {
+      margin-bottom: 20px;
+  
+      & + div {
+        margin-bottom: 20px;
+      }
+    }
   }
 
   &__man {

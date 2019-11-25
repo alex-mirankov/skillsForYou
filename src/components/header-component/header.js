@@ -118,6 +118,10 @@ class HeaderComponent extends Component {
     history.push('/create-olympiad');
   }
 
+  handleClickGoTests = () => {
+    history.push('/tests/1');
+  }
+
   HeaderLayout = () => {
     const { location } = this.props;
     // const isMainPage = location.pathname === "/";
@@ -174,6 +178,10 @@ class HeaderComponent extends Component {
             <button className="header-main-page-control__btn"
                     onClick={this.handleClickAboutUs}>
                 На главную
+            </button>
+            <button className="header-main-page-control__btn"
+                    onClick={this.handleClickGoTests}>
+                Тесты
             </button>
           </React.Fragment>
         </div>

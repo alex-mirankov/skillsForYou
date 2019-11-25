@@ -22,9 +22,8 @@ export class NotFoundPage extends React.Component {
             404
         </div>
           <div className="not-found__text">
-            Упс!
-          <br />
-            Страничка не найдена :(
+            <div>Упс!</div>
+            <div>Страничка не найдена :(</div>
         </div>
           <ButtonAll content={'На главную'} action={this.handleClickToMainPage} />
           <div className="not-found__man">

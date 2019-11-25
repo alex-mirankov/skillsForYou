@@ -63,14 +63,14 @@ class AppComponent extends Component {
 
             <Route exact path="/registration" component={Registration} />
             <Route exact path="/teacher-registration" component={TeacherRegistration} />
-{/* 
+
             <Route exact path="/tests/:Npage" component={testsContainer} />
             <Route exact path='/tests/createTest/:testType' component={testsContainer} />
-            <Route exact path='/tests/passingTest/:testId' component={testsContainer} /> */}
+            <Route exact path='/tests/passingTest/:testId' component={testsContainer} />
 
 
-            {/* <Route path="/work/:id" component={Work} />
-            <Route path="/*" component={NotFoundPage} /> */}
+            {/* <Route path="/work/:id" component={Work} /> */}
+            <Route path="/*" component={NotFoundPage} />
           </Switch>
         </div>
         <div className="app-footer">
