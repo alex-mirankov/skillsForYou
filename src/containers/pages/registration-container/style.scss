@@ -1,9 +1,9 @@
 @import "../../../styles/constants.scss";
 
 .registration {
-  height: 340px;
   width: 420px;
   padding-top: 40px;
+  padding-bottom: 20px;
   background: lightgrey;
   border-radius: 10px;
   margin: 50px auto;
@@ -11,8 +11,10 @@
   &-header {
     display: flex;
     justify-content: space-around;
+    align-items: center;
 
     &__enter-text {
+      margin: 0;
       font-size: 24px;
       color: #6f6464;
       font-family: "gilroy_extra_bold";
@@ -20,6 +22,7 @@
     }
 
     &__status {
+      margin: 0;
       line-height: 2.6;
       font-size: 14px;
       color: #6f6464;

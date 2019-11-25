@@ -14,11 +14,30 @@ export class Registration extends Component {
     full_name: "",
     password: "",
     password_confirm: "",
+    is_teacher: false,
   };
 
-  handleChange = event => {
+  handleChangeEmail = event => {
     this.setState({
-      [event.target.name]: event.target.value
+      email: event.target.value
+    });
+  };
+
+  handleChangeFullName = event => {
+    this.setState({
+      full_name: event.target.value
+    });
+  };
+
+  handleChangePassword = event => {
+    this.setState({
+      password: event.target.value
+    });
+  };
+
+  handleChangePasswordConfirm = event => {
+    this.setState({
+      password_confirm: event.target.value
     });
   };
 
@@ -55,13 +74,18 @@ export class Registration extends Component {
       password_confirm: password_confirm,
       avatar: avatar,
     };
-    axios.post('https://sandbox-skill4u.herokuapp.com/', this.state)
-      .then(e => {
+    if (this.state.password === this.state.password_confirm) {
+      axios.post('http://165.22.92.120/registration/', this.state)
+      .then(res => {
+        console.log(res);
         history.push('/login');
       })
       .catch(error => {
         console.log(error);
       });
+    } else {
+      console.log('пароли не совпадают!')
+    }
     console.log(this.state);
   };
 
@@ -76,15 +100,19 @@ export class Registration extends Component {
       </div>
       <div className="registration__form">
       <InputRegistrationForm placeHolder={'Электронная почта'}
-                              styles={authInputStyle} />
+                              styles={authInputStyle}
+                              action={this.handleChangeEmail} />
       <InputRegistrationForm placeHolder={'Имя'}
-                              styles={authInputStyle} />
+                              styles={authInputStyle}
+                              action={this.handleChangeFullName} />
       <InputRegistrationForm placeHolder={'Пароль'}
                               styles={authInputStyle}
-                              type={'password'} />
+                              type={'password'}
+                              action={this.handleChangePassword} />
       <InputRegistrationForm placeHolder={'Повторите пароль'}
                               styles={authInputStyle}
-                              type={'password'} />
+                              type={'password'}
+                              action={this.handleChangePasswordConfirm} />
       <ButtonAll action={this.handleSubmit}
                   content={'Зарегистрироваться'}
                   styles={submitBtnStyles} />
@@ -96,6 +124,11 @@ export class Registration extends Component {
             name="avatar"
             placeholder="Выберите аватар"
           /> */}
+          {
+            this.state.password === this.state.password_confirm
+            ? null
+            : <p>Пароли не совпадают</p>
+          }
       </div>
     </section>
   );

@@ -16,56 +16,56 @@ import header_notification from "../../images/header_notification.svg";
 import header_avatar from "../../images/header_avatar.svg";
 
 export const headerMenu = [
-  {
-    lable: 'О проекте',
-    link: '/',
-  },
-  {
-    lable: 'Ваши возможности',
-    link: '/',
-  },
-  {
-    lable: 'Олимпиады',
-    link: '/olympic-enter',
-  },
-  {
-    lable: 'Контакты',
-    link: '/',
-  },
-  {
-    lable: 'Тесты',
-    link: '/tests/0',
-  },
+  // {
+  //   lable: 'О проекте',
+  //   link: '/',
+  // },
+  // {
+  //   lable: 'Ваши возможности',
+  //   link: '/',
+  // },
+  // {
+  //   lable: 'Олимпиады',
+  //   link: '/olympic-enter',
+  // },
+  // {
+  //   lable: 'Контакты',
+  //   link: '/',
+  // },
+  // {
+  //   lable: 'Тесты',
+  //   link: '/tests/0',
+  // },
 ];
 
 export const headerUserMenu = [
-  {
-    link: '/',
-    image: header_settings,
-    alt: 'шестиренка',
-    class: 'header-menu-list__setting',
-  },
-  {
-    link: '/',
-    image: header_notification,
-    alt: 'колокольчик',
-    class: 'header-menu-list__notification',
-  },
-  {
-    link: '/',
-    image: header_avatar,
-    alt: 'аватар',
-    class: 'header-menu-list__avatar',
-  },
+  // {
+  //   link: '/',
+  //   image: header_settings,
+  //   alt: 'шестиренка',
+  //   class: 'header-menu-list__setting',
+  // },
+  // {
+  //   link: '/',
+  //   image: header_notification,
+  //   alt: 'колокольчик',
+  //   class: 'header-menu-list__notification',
+  // },
+  // {
+  //   link: '/',
+  //   image: header_avatar,
+  //   alt: 'аватар',
+  //   class: 'header-menu-list__avatar',
+  // },
 ];
 
 class HeaderComponent extends Component {
-  controlPanel = 'inline';
+  controlPanel = 'flex';
   regPanel = 'flex';
   user = () => {
     let token = localStorage.getItem('token');
     if (token) {
-      this.controlPanel = 'inline';
+      this.controlPanel = 'flex';
     }
     else {
       this.controlPanel = 'none';
@@ -114,9 +114,14 @@ class HeaderComponent extends Component {
     history.push("/profile");
   };
 
+  goToCreateOlympiad = () => {
+    history.push('/create-olympiad');
+  }
+
   HeaderLayout = () => {
     const { location } = this.props;
-    const isMainPage = location.pathname === "/";
+    // const isMainPage = location.pathname === "/";
+    const isMainPage = false;
 
     const menuButtonsProperties = [
       {
@@ -152,6 +157,27 @@ class HeaderComponent extends Component {
           </React.Fragment>
         </div>
 
+        <div className="header-main-page-control" style={{ display: this.controlPanel }}>
+          <React.Fragment>
+            <button className="header-main-page-control__btn"
+                    onClick={this.logout}>
+                Выйти
+            </button>
+            <button className="header-main-page-control__btn"
+                    onClick={this.goToCreateOlympiad}>
+                Создать олимпиаду
+            </button>
+            <button className="header-main-page-control__btn"
+                    onClick={this.goToMyCabinet}>
+                Личный кабинет
+            </button>
+            <button className="header-main-page-control__btn"
+                    onClick={this.handleClickAboutUs}>
+                На главную
+            </button>
+          </React.Fragment>
+        </div>
+
         <nav className="header-main-page-menu">
           <ul className="header-main-page-menu-list">
             {
@@ -181,10 +207,10 @@ class HeaderComponent extends Component {
                 })
               }
             </li>
-            <span className="header-main-page-menu-list__popup-menu"
+            {/* <span className="header-main-page-menu-list__popup-menu"
                   style={{ display: this.controlPanel }}>
               <LongMenu options={menuButtonsProperties} />
-            </span>
+            </span> */}
           </ul>
         </nav>
         <div> {isMainPage ? <Slider /> : null}</div>

@@ -4,8 +4,10 @@ import './style.scss';
 import { history } from '../../../../services/redux';
 import axios from 'axios';
 import { ButtonAll, CircularIndeterminate } from '../../../../components';
+import { connect } from 'react-redux';
 
-export class MyselfCabinet extends React.Component {
+
+export class MyselfCabinetWithRedux extends React.Component {
   state = {
     userOlympiads: []
   };
@@ -14,7 +16,7 @@ export class MyselfCabinet extends React.Component {
     let params = {
       headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
     };
-    axios.get('https://sandbox-skill4u.herokuapp.com/me', params)
+    axios.get('http://165.22.92.120/me', params)
       .then((data) => {
         this.getUserOlympiads(data.data.olympiad_list);
       })
@@ -33,12 +35,11 @@ export class MyselfCabinet extends React.Component {
     history.push(`/olympic-single/${id}`);
   }
 
-  render() {
-    return (
-      <>
-        <div className="my-self-cabinet__header">Участие в олимпиадах:</div>
-        {
-          this.state.userOlympiads.length === 0
+  renderComponent = () => (
+    <>
+      <div className="my-self-cabinet__header">Участие в олимпиадах:</div>
+      {
+        this.state.userOlympiads.length === 0
           ? <div className="my-self-cabinet__loader"><CircularIndeterminate /></div>
           : this.state.userOlympiads.map(olympiad => {
             return (
@@ -48,12 +49,26 @@ export class MyselfCabinet extends React.Component {
                   {new Date(olympiad.start_olympiad).toLocaleString()}
                 </div>
                 <ButtonAll content={'Участвовать'}
-                          action={() => this.goToSelectOlympic(olympiad.id)}/>
+                  action={() => this.goToSelectOlympic(olympiad.id)} />
               </div>
             );
           })
-        }
+      }
+    </>
+  )
+
+  render() {
+    return (
+      <>
+        {this.props.user ? <this.renderComponent /> : history.push('/')}
       </>
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  user: state.user.userToken,
+});
+
+export const MyselfCabinet = connect(mapStateToProps)(MyselfCabinetWithRedux);
+

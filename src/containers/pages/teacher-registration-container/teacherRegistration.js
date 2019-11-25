@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./style.css";
 import { history } from "../../../services/redux";
+import axios from 'axios';
 
 import {
   InputRegistrationForm,
@@ -17,8 +18,64 @@ export class TeacherRegistration extends Component {
     full_name: "",
     password: "",
     password_confirm: "",
+    is_teacher: true,
   };
-  handleRegistrationClick = () => {
+
+  handleSubmit = () => {
+    const {
+      email,
+      full_name,
+      password,
+      password_confirm,
+      avatar,
+    } = this.state;
+
+    const fields = {
+      email,
+      full_name: full_name,
+      password: password,
+      password_confirm: password_confirm,
+      avatar: avatar,
+    };
+    if (this.state.password === this.state.password_confirm) {
+      axios.post('http://165.22.92.120/registration/', this.state)
+      .then(e => {
+        history.push('/login');
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    } else {
+      console.log('пароли не совпадают!')
+    }
+    console.log(this.state);
+  };
+
+  handleChangeEmail = event => {
+    this.setState({
+      email: event.target.value
+    });
+  };
+
+  handleChangeFullName = event => {
+    this.setState({
+      full_name: event.target.value
+    });
+  };
+
+  handleChangePassword = event => {
+    this.setState({
+      password: event.target.value
+    });
+  };
+
+  handleChangePasswordConfirm = event => {
+    this.setState({
+      password_confirm: event.target.value
+    });
+  };
+
+  handleRegistrationTeacherClick = () => {
     history.push("/registration");
     document.documentElement.scrollTop = 0;
   };
@@ -34,15 +91,19 @@ export class TeacherRegistration extends Component {
       </div>
       <div className="registration__form">
       <InputRegistrationForm placeHolder={'Электронная почта'}
-                              styles={authInputStyle} />
+                              styles={authInputStyle}
+                              action={this.handleChangeEmail} />
         <InputRegistrationForm placeHolder={'Имя'}
-                              styles={authInputStyle} />
+                              styles={authInputStyle}
+                              action={this.handleChangeFullName} />
         <InputRegistrationForm placeHolder={'Пароль'}
                               styles={authInputStyle}
-                              type={'password'} />
+                              type={'password'}
+                              action={this.handleChangePassword} />
         <InputRegistrationForm placeHolder={'Повторите пароль'}
                               styles={authInputStyle}
-                              type={'password'} />
+                              type={'password'}
+                              action={this.handleChangePasswordConfirm} />
         <ButtonAll action={this.handleSubmit}
                     content={'Зарегистрироваться'}
                     styles={submitBtnStyles} />

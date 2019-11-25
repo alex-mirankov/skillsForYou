@@ -14,7 +14,7 @@ import {
 } from './common';
 
 import {
-  Compile, ButtonAll,
+  Compile, ButtonAll, Warning
 } from '../../../components';
 
 class OlympiadSingleComponent extends React.Component {
@@ -38,7 +38,7 @@ class OlympiadSingleComponent extends React.Component {
     let params = {
       headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
     };
-    axios.get('https://sandbox-skill4u.herokuapp.com/olympiad/1', params)
+    axios.get('http://165.22.92.120/olympiad/1', params)
       .then(data => {
         this.setState({
           olympiad: data.data,
@@ -46,7 +46,7 @@ class OlympiadSingleComponent extends React.Component {
         });
       })
       .catch(err => console.log(err));
-    axios.get('https://sandbox-skill4u.herokuapp.com/me', params)
+    axios.get('http://165.22.92.120/me', params)
       .then(data => {
         this.setState({
           userName: data.data.full_name
@@ -72,42 +72,49 @@ class OlympiadSingleComponent extends React.Component {
       key = sessionStorage.key(i);
       score = Number(sessionStorage.getItem(key));
     }
-    localStorage.setItem('user', this.state.userName);
-    localStorage.setItem(`${this.state.userName}Score`, score);
+    // localStorage.setItem('user', this.state.userName);
+    localStorage.setItem(`${this.state.userName}`, score);
     this.setState({
       score: score,
     });
     history.push('/olympiad-score');
   }
 
+  renderComponent = () => (
+    <div className="single-olympiad">
+      <div className="single-olympiad__content">
+        <OlympicHeader allTasks={this.state.allTasks}
+          comleteTasks={this.state.comleteTasks} />
+        <OlympicTask allTasks={this.state.allTasks}
+          olympiadId={this.props.olympiadId} />
+        <Compile path={'http://165.22.92.120/olympiad/checker'}
+          task_id={this.props.olympiadId}
+          olympiad_id={'1'} />
+        <Pager allTasks={this.state.allTasks}
+          currentPage={this.props.olympiadId} />
+        {
+          this.state.allTasks.length === this.props.olympiadId
+            ? <ButtonAll action={this.showOlympiadResults}
+              content={'Завершить олимпиаду'} />
+            : null
+        }
+      </div>
+    </div>
+  )
+
   render() {
     this.setCurrentOlympiad();
     return (
-      <div className="single-olympiad">
-        <div className="single-olympiad__content">
-          <OlympicHeader allTasks={this.state.allTasks}
-            comleteTasks={this.state.comleteTasks} />
-          <OlympicTask allTasks={this.state.allTasks}
-            olympiadId={this.props.olympiadId} />
-          <Compile path={'https://sandbox-skill4u.herokuapp.com/olympiad/checker'}
-                    task_id={this.props.olympiadId}
-                    olympiad_id={'1'} />
-          <Pager allTasks={this.state.allTasks}
-                  currentPage={this.props.olympiadId} />
-          {
-            this.state.allTasks.length === this.props.olympiadId
-              ? <ButtonAll action={this.showOlympiadResults}
-                        content={'Завершить олимпиаду'} />
-              : null
-          }
-        </div>
-      </div>
+      <>
+        {this.props.user ? <this.renderComponent /> : history.push('/')}
+      </>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
   olympiadId: state.singleOlympiad.numericOlympiad,
+  user: state.user.userToken,
 });
 
 const mapDispathToProps = (dispatch) => ({

@@ -35,7 +35,7 @@ class OlympiadRegistrationTeamsComponent extends React.Component {
     let params = {
       headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
     };
-    axios.get('https://sandbox-skill4u.herokuapp.com/olympiad', params)
+    axios.get('http://165.22.92.120/olympiad', params)
       .then(data => {
         console.log(data.data);
         this.setState({

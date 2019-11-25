@@ -22,7 +22,7 @@ export class OlympicHeader extends React.Component {
             <span className="single-olympic-header__info-completed-tasks-number">{comleteTasks}</span>
           </p>
         </div>
-        <Timer />
+        {/* <Timer /> */}
       </div>
     );
   }

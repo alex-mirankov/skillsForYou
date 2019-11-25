@@ -31,6 +31,8 @@
     border-radius: 10px;
     background: white;
     color: $baseSelectColor;
+    height: 400px;
+    overflow: overlay;
 
     &-value {
       display: flex;

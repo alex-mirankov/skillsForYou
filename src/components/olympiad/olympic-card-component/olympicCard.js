@@ -8,7 +8,7 @@ export class OlympicCard extends React.Component {
 		let { header, image, content, date, action, styles } = this.props;
 		return (
 			<div className="olympic-card">
-				<p className="olympic-card__header">{header}</p>
+				<div className="olympic-card__header">{header}</div>
 				<div className="olympic-card-content">
 					<img className="olympic-card-content__image" src={image} alt="Фото" style={styles} />
 					<div className="olympic-card-content-info">
@@ -19,9 +19,9 @@ export class OlympicCard extends React.Component {
 						<ButtonAll content={'Участвовать'} action={action} />
 					</div>
 				</div>
-				<p className="olympic-card-timetable">
+				{/* <p className="olympic-card-timetable">
 					<a href="/olympiads" className="olympic-card-timetable__link">Расписание олимпиад</a>
-				</p>
+				</p> */}
 			</div>
 		);
 	}

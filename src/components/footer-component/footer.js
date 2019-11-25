@@ -29,14 +29,14 @@ export const footerUsefulLinks = [
   {
     title: 'Основное',
     content: [
-      {
-        link: '/',
-        label: 'Каталог',
-      },
-      {
-        link: '/',
-        label: 'О проекте',
-      },
+      // {
+      //   link: '/',
+      //   label: 'Каталог',
+      // },
+      // {
+      //   link: '/',
+      //   label: 'О проекте',
+      // },
       {
         link: '/',
         label: 'Главная',

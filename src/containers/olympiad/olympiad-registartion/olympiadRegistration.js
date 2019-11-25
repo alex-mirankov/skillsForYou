@@ -1,15 +1,29 @@
 import React from 'react';
 import './style.scss';
+import { history } from '../../../services/redux';
+import { connect } from 'react-redux';
 
 import { OlympiadRegistrationForm } from '../../../components/olympiad/index';
 
-export class OlympiadRegistration extends React.Component {
+export class OlympiadRegistrationWithRedux extends React.Component {
+  renderComponent = () => (
+    <div className="registration-single">
+      <div className="registration-single__header">Регистрация для участия в олимпиаде</div>
+      <OlympiadRegistrationForm />
+    </div>
+  );
+
   render() {
     return (
-      <div className="registration-single">
-        <p className="registration-single__header">Регистрация для участия в олимпиаде</p>
-        <OlympiadRegistrationForm />
-      </div>
+      <>
+        {this.props.user ? <this.renderComponent /> : history.push('/')}
+      </>
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  user: state.user.userToken,
+});
+
+export const OlympiadRegistration = connect(mapStateToProps)(OlympiadRegistrationWithRedux);

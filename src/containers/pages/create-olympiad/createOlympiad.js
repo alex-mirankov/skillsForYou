@@ -8,6 +8,8 @@ import {
 } from '../index';
 import { ButtonAll } from '../../../components';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { history } from '../../../services/redux';
 
 export const inputDataTypeOptions = [
   {
@@ -23,7 +25,7 @@ export const outputDataTypeOptions = [
   },
 ];
 
-export class CreateOlympiadPage extends React.Component {
+export class CreateOlympiadPageWithRedux extends React.Component {
   state = {
     tasks: [],
     name: '',
@@ -222,118 +224,136 @@ export class CreateOlympiadPage extends React.Component {
   }
 
   createOlympiad = () => {
-    let olympiad = this.state.olympiad;
-    let params = {
-      headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
-    };
+    try {
+      let olympiad = this.state.olympiad;
+      let params = {
+        headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
+      };
 
-    olympiad.push({
-      task: this.state.tasks,
-      name: this.state.olympiad_name,
-      duration: Number(this.state.olympiad_duration),
-      start_olympiad: this.state.olympiad_start,
-      end_olympiad: this.state.olympiad_end,
-      max_participations: Number(this.state.olympiad_max_participations),
-    });
-
-    this.setState({
-      olympiad: olympiad,
-      isOlympiadCreated: true,
-    });
-
-    setTimeout(() => {
-      this.setState({
-        isOlympiadCreated: false,
-        olympiad: [],
-      })
-    }, 4000);
-
-    axios.post('https://sandbox-skill4u.herokuapp.com/olympiad/create/', this.state.olympiad, params)
-      .then(data => {
-        console.log(data);
-      })
-      .catch(e => {
-        console.log(e);
+      olympiad.push({
+        task: this.state.tasks,
+        name: this.state.olympiad_name,
+        duration: Number(this.state.olympiad_duration),
+        start_olympiad: new Date(this.state.olympiad_start).toISOString(),
+        end_olympiad: new Date(this.state.olympiad_end).toISOString(),
+        max_participations: Number(this.state.olympiad_max_participations),
       });
 
-    console.log(this.state.olympiad);
+      this.setState({
+        olympiad: olympiad,
+        isOlympiadCreated: true,
+      });
+
+      setTimeout(() => {
+        this.setState({
+          isOlympiadCreated: false,
+          olympiad: [],
+        })
+      }, 4000);
+
+      axios.post('http://165.22.92.120/olympiad/create/', this.state.olympiad, params)
+        .then(data => {
+          console.log(data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+        console.log(this.state.olympiad);
+    } catch {
+      history.push('/');
+    }
   }
+
+  renderComponent = () => (
+    <div className="create-olympiad">
+      <div className="create-olympiad__header">Создание олимпиады</div>
+
+      <div className="create-olympiad-general">
+        <div className="create-olympiad-general-info">
+          <InputCabinet caption={'Название олимпиады'}
+            handleChange={this.handleChangeOlympiadName} />
+          <InputCabinet caption={'Продолжительность олимпиады'}
+            handleChange={this.handleChangeOlympiadDuration} />
+          <InputCabinet caption={'Дата старта'}
+            handleChange={this.handleChangeOlympiadStartDate}
+            placeholder={'dd/mm/yyyy'} />
+          <InputCabinet caption={'Дата окончания'}
+            handleChange={this.handleChangeOlympiadEndDate}
+            placeholder={'dd/mm/yyyy'} />
+          <InputCabinet caption={'Максимальное количество участников'}
+            handleChange={this.handleChangeOlympiadMaxParticipations} />
+        </div>
+        <div className="create-olympiad-general-task">
+          <InputCabinet caption={'Название задачи'}
+            handleChange={this.handleChangeName} />
+          <SelectCabinet caption={'Тип входящих данных'}
+            inputValues={inputDataTypeOptions}
+            handleChange={this.handleChangeInputDataType}
+            currentValue={this.state.input_data_type} />
+          <SelectCabinet caption={'Тип выходящих данных'}
+            inputValues={outputDataTypeOptions}
+            handleChange={this.handleChangeOutputDataType}
+            currentValue={this.state.output_data_type} />
+          <InputCabinet caption={'Лимит на память'}
+            handleChange={this.handleChangeMemory} />
+          <InputCabinet caption={'Лимит на время'}
+            handleChange={this.handleChangeTime} />
+          <TextareaCabinet caption={'Описание задачи'}
+            handleChange={this.handleChangeTaskDescription} />
+          <TextareaCabinet caption={'Входные значения(описание)'}
+            handleChange={this.handleChangeInputData} />
+          <TextareaCabinet caption={'Выходящие значения(описание)'}
+            handleChange={this.handleChangeOutputData} />
+          <InputCabinet caption={'Количество тестов'}
+            handleChange={this.handleChangeNumberOfTests} />
+          <div className="create-olympiad-general-task__examples">
+            <InputCabinet caption={'Входные значения'}
+              handleChange={this.handleChangeInputValue} />
+            <InputCabinet caption={'Выходящие значения'}
+              handleChange={this.handleChangeOutputValue} />
+            <div className="create-olympiad-general-task__examples-add-btn">
+              <ButtonAll content={'Добавить пример'}
+                action={this.addExample} />
+              {this.state.isExampleAdded ? <div>Пример добавлен!</div> : null}
+            </div>
+          </div>
+          <div className="create-olympiad-general-task-files">
+            <div>In</div>
+            <input type='file'
+              onChange={(e) => this.handleImageChange(e)} />
+            <div>Out</div>
+            <input type='file'
+              onChange={(e) => this.handleImageChange(e)} />
+          </div>
+          <div className="create-olympiad-general-task__create-btn">
+            <ButtonAll content={'Добавить задачу'}
+              action={this.addTaskOlympiad} />
+            {this.state.isTaskAdded ? <div>Задача добавлена!</div> : null}
+          </div>
+        </div>
+      </div>
+
+      <div className="create-olympiad-general-task__submit-btn">
+        <ButtonAll content={'Создать олимпиаду'}
+          action={this.createOlympiad}
+          styles={{ width: '50%' }} />
+        {this.state.isOlympiadCreated ? <div>Олимпиада создана!</div> : null}
+      </div>
+    </div>
+  );
 
   render() {
     return (
-      <div className="create-olympiad">
-        <div className="create-olympiad__header">Создание олимпиады</div>
-
-        <div className="create-olympiad-general">
-          <div className="create-olympiad-general-info">
-          <InputCabinet caption={'Название олимпиады'}
-                        handleChange={this.handleChangeOlympiadName} />
-          <InputCabinet caption={'Продолжительность олимпиады'}
-                        handleChange={this.handleChangeOlympiadDuration} />
-          <InputCabinet caption={'Дата старта'}
-                        handleChange={this.handleChangeOlympiadStartDate} />
-          <InputCabinet caption={'Дата окончания'}
-                        handleChange={this.handleChangeOlympiadEndDate} />
-          <InputCabinet caption={'Максимальное количество участников'}
-                        handleChange={this.handleChangeOlympiadMaxParticipations} />
-          </div>
-          <div className="create-olympiad-general-task">
-            <InputCabinet caption={'Название задачи'}
-                          handleChange={this.handleChangeName} />
-            <SelectCabinet caption={'Тип входящих данных'}
-                            inputValues={inputDataTypeOptions}
-                            handleChange={this.handleChangeInputDataType}
-                            currentValue={this.state.input_data_type} />
-            <SelectCabinet caption={'Тип выходящих данных'}
-                            inputValues={outputDataTypeOptions}
-                            handleChange={this.handleChangeOutputDataType}
-                            currentValue={this.state.output_data_type} />
-            <InputCabinet caption={'Лимит на память'}
-                          handleChange={this.handleChangeMemory} />
-            <InputCabinet caption={'Лимит на время'}
-                          handleChange={this.handleChangeTime} />
-            <TextareaCabinet caption={'Описание задачи'}
-                              handleChange={this.handleChangeTaskDescription} />
-            <TextareaCabinet caption={'Входные значения(описание)'}
-                              handleChange={this.handleChangeInputData} />
-            <TextareaCabinet caption={'Выходящие значения(описание)'}
-                              handleChange={this.handleChangeOutputData} />
-            <InputCabinet caption={'Количество тестов'}
-                          handleChange={this.handleChangeNumberOfTests} />
-            <div className="create-olympiad-general-task__examples">
-              <InputCabinet caption={'Входные значения'}
-                            handleChange={this.handleChangeInputValue} />
-              <InputCabinet caption={'Выходящие значения'}
-                            handleChange={this.handleChangeOutputValue} />
-              <div className="create-olympiad-general-task__examples-add-btn">
-                <ButtonAll content={'Добавить пример'}
-                            action={this.addExample} />
-                {this.state.isExampleAdded ? <div>Пример добавлен!</div> : null}
-              </div>
-            </div>
-            <div className="create-olympiad-general-task-files">
-              <div>In</div>
-              <input type='file'
-                      onChange={(e)=>this.handleImageChange(e)} />
-              <div>Out</div>
-              <input type='file'
-                      onChange={(e)=>this.handleImageChange(e)} />
-            </div>
-            <div className="create-olympiad-general-task__create-btn">
-              <ButtonAll content={'Добавить задачу'} 
-                          action={this.addTaskOlympiad} />
-              {this.state.isTaskAdded ? <div>Задача добавлена!</div> : null}
-            </div>
-          </div>
-        </div>
-
-        <div className="create-olympiad-general-task__submit-btn">
-            <ButtonAll content={'Создать олимпиаду'}
-                      action={this.createOlympiad}
-                      styles={{width: '50%'}} />
-            {this.state.isOlympiadCreated ? <div>Олимпиада создана!</div> : null}
-          </div>
-      </div>
+      <>
+        {window.localStorage.getItem('token') ? <this.renderComponent /> : history.push('/')}
+      </>
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  user: state.user.userToken,
+});
+
+export const CreateOlympiadPage = connect(mapStateToProps)(CreateOlympiadPageWithRedux);
+

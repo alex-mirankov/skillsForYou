@@ -16,21 +16,21 @@ const styles = {
   marginRight: '50px',
 }
 
-const warningText = 'Чтобы принять участи в олимпиаде необходимо войти в аккаунт';
+const warningText = 'Чтобы принять участие в олимпиаде необходимо войти в аккаунт';
 
 export class OlympiadEnterContainerWithRedux extends React.Component {
   Registration = () => (
     <div className="olympic-enter">
-      <p className="olympic-enter__header">Чтобы начать свое участие в олимпиаде выбери нужный раздел</p>
+      <div className="olympic-enter__header">Чтобы начать свое участие в олимпиаде выбери нужный раздел</div>
       <div className="olympic-enter__content">
-        <OlympicCard
+        {/* <OlympicCard
           header={'Командная олимпиада'}
           image={olympicTeam}
           content={'Создай свою команду и начни участвовать'}
           date={'22.01.2019'}
           action={this.goToTeamOlymp}
           styles={styles}
-        />
+        /> */}
         <OlympicCard
           header={'Индивидуальная олимпиада'}
           image={olympicSolo}
@@ -53,7 +53,7 @@ export class OlympiadEnterContainerWithRedux extends React.Component {
   render() {
     return (
       <>
-        {this.props.user ? <this.Registration /> : <Warning warningText={warningText} />}
+        {window.localStorage.getItem('token') ? <this.Registration /> : <Warning warningText={warningText} />}
       </>
     );
   }

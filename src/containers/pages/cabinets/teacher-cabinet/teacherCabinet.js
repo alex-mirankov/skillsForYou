@@ -79,21 +79,21 @@ export class TeacherCabinet extends React.Component {
     return (
       <>
         <div className="teacher-cabinet">
-          <div className="teacher-cabinet__user">
+          {/* <div className="teacher-cabinet__user">
             <UserInfo
               name={'Тимофей Титов'}
               email={'timofeytitov@gmail.com'}
               title={'Преподаватель'}
               amount_courses={'4'}
               amount_lessons={'4'} />
-          </div>
+          </div> */}
           <div className="teacher-cabinet-control">
-            <div className="teacher-cabinet-control__buttons">
+            {/* <div className="teacher-cabinet-control__buttons">
               <ButtonAll styles={{ width: '46%', background: gradient }} content={'Список курсов'} />
               <ButtonAll styles={{ width: '46%' }} content={'Новый курс'} />
-            </div>
+            </div> */}
             <ButtonAll content={'Создать олимпиаду'} action={this.goToCreateOlympiad} />
-            <div className="teacher-cabinet-control__input">
+            {/* <div className="teacher-cabinet-control__input">
               <InputCabinet caption={'Заголовок'} />
             </div>
             <div className="teacher-cabinet-control__input">
@@ -127,7 +127,7 @@ export class TeacherCabinet extends React.Component {
               </div>
             </div>
             <LessonCardComponent />
-            <StepComponent />
+            <StepComponent /> */}
           </div>
         </div>
       </>

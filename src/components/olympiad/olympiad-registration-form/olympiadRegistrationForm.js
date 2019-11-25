@@ -36,7 +36,7 @@ class OlympiadRegistrationFormComponent extends React.Component {
     let params = {
       headers: { 'Authorization': 'Token ' + this.state.token }
     };
-    axios.post('https://sandbox-skill4u.herokuapp.com/olympiad/registration', { olympiad_id: this.state.olympiadId }, params)
+    axios.post('http://165.22.92.120/olympiad/registration', { olympiad_id: this.state.olympiadId }, params)
       .then(data => {
         console.log(data);
         this.props.closeWindowComp();
@@ -48,7 +48,7 @@ class OlympiadRegistrationFormComponent extends React.Component {
     let params = {
       headers: { 'Authorization': 'Token ' + this.state.token }
     };
-    axios.get('https://sandbox-skill4u.herokuapp.com/olympiad', params)
+    axios.get('http://165.22.92.120/olympiad', params)
       .then(data => {
         console.log(data.data);
         this.setState({
@@ -66,7 +66,8 @@ class OlympiadRegistrationFormComponent extends React.Component {
         <div className="registration-olymp-form-select">
           <OlympiadSelect handleChange={this.handleChangeOlymp}
             currentValue={this.state.currentValue}
-            inputValues={this.state.olympiadList} />
+            inputValues={this.state.olympiadList}
+            isResponseExist={this.state.isResponseExist} />
         </div>
         <div className="container-button-form">
           <ButtonAll styles={styles}

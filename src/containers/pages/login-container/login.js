@@ -37,23 +37,26 @@ export class Login extends Component {
     document.documentElement.scrollTop = 0;
   };
 
-  handleChange = event => {
-    /*----------------------------------------------------*/
+  handleChangeLogin = event => {
     this.setState({
-      [event.target.name]: event.target.value,
+      email: event.target.value,
     });
-    /*----------------------------------------------------*/
+  };
+
+  handleChangePassword = event => {
+    this.setState({
+      password: event.target.value,
+    });
   };
 
   handleSubmit = () => {
-    console.log(this.state);
-    axios.post('https://sandbox-skill4u.herokuapp.com/login/', this.state)
-      .then(e => {
-        localStorage.setItem('token', e.data.token);
+    axios.post('http://165.22.92.120/login/', this.state)
+      .then(res => {
+        console.log(res);
+        localStorage.setItem('token', res.data.token);
         history.push('/');
       })
       .catch(_error => { })
-      localStorage.setItem('token', 'c3041a471021f8945250808721184958271766a6');
   };
 
   LoginLayout = () => (
@@ -67,14 +70,16 @@ export class Login extends Component {
       </div>
       <div className="login-form">
         <InputRegistrationForm placeHolder={'Логин'}
-                              styles={authInputStyle} />
+                              styles={authInputStyle}
+                              action={this.handleChangeLogin} />
         <InputRegistrationForm placeHolder={'Пароль'}
                               styles={authInputStyle}
-                              type={'password'} />
-        <a className="login-form__forgot-password"
+                              type={'password'}
+                              action={this.handleChangePassword} />
+        {/* <a className="login-form__forgot-password"
           href="https://www.google.com">
           Забыли пароль?
-        </a>
+        </a> */}
         <ButtonAll action={this.handleSubmit}
                     content={'Войти'}
                     styles={submitBtnStyles} />

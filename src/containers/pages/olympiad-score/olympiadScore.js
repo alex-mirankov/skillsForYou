@@ -1,9 +1,11 @@
 import React from 'react';
 import './style.scss';
+import { history } from '../../../services/redux';
+import { connect } from 'react-redux';
 
 import { CircularIndeterminate } from '../../../components';
 
-export class OlympiadScorePage extends React.Component {
+export class OlympiadScorePageWithRedux extends React.Component {
   state = {
     results: [],
   };
@@ -29,12 +31,11 @@ export class OlympiadScorePage extends React.Component {
     console.log(this.state.results.map(item => console.log(item)));
   }
 
-  render() {
-    return (
-      <>
-        <div className="olympiad-score__header">Результаты</div>
-        {
-          this.state.results.length === 0
+  renderComponent = () => (
+    <>
+      <div className="olympiad-score__header">Результаты</div>
+      {
+        this.state.results.length === 0
           ? <div className="olympiad-score__loader"><CircularIndeterminate /></div>
           : this.state.results.map(item => {
             return (
@@ -44,8 +45,21 @@ export class OlympiadScorePage extends React.Component {
               </div>
             );
           })
-        }
+      }
+    </>
+  )
+
+  render() {
+    return (
+      <>
+        {this.props.user ? <this.renderComponent /> : history.push('/')}
       </>
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  user: state.user.userToken,
+});
+
+export const OlympiadScorePage = connect(mapStateToProps)(OlympiadScorePageWithRedux);
