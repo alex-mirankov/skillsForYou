@@ -21,7 +21,7 @@ class OlympiadRegistrationFormComponent extends React.Component {
     token: localStorage.getItem('token'),
     currentValue: 'Олимпиада',
     olympiadId: 0,
-    olympiadList: [],
+    olympiadList: '',
   }
   handleChangeOlymp = name => {
     for (let i = 0; i < this.state.olympiadList.length; i++) {
@@ -44,7 +44,7 @@ class OlympiadRegistrationFormComponent extends React.Component {
       .catch(e => { console.log(e) });
   }
 
-  componentDidMount() {
+  getOlympiads = () => {
     let params = {
       headers: { 'Authorization': 'Token ' + this.state.token }
     };
@@ -57,6 +57,10 @@ class OlympiadRegistrationFormComponent extends React.Component {
       })
       .catch(e => console.log(e));
   }
+
+  componentDidMount() {
+    this.getOlympiads();
+  }
   render() {
     return (
       <div className="registration-olymp-form">
@@ -67,7 +71,7 @@ class OlympiadRegistrationFormComponent extends React.Component {
           <OlympiadSelect handleChange={this.handleChangeOlymp}
             currentValue={this.state.currentValue}
             inputValues={this.state.olympiadList}
-            isResponseExist={this.state.isResponseExist} />
+            loadFinished={this.state.loadFinished} />
         </div>
         <div className="container-button-form">
           <ButtonAll styles={styles}

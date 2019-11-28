@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 
 export class MyselfCabinetWithRedux extends React.Component {
   state = {
-    userOlympiads: []
+    userOlympiads: ''
   };
 
   componentDidMount() {
@@ -40,7 +40,7 @@ export class MyselfCabinetWithRedux extends React.Component {
     <>
       <div className="my-self-cabinet__header">Участие в олимпиадах:</div>
       {
-        this.state.userOlympiads.length === 0
+        !this.state.userOlympiads
           ? <div className="my-self-cabinet__loader"><CircularIndeterminate /></div>
           : this.state.userOlympiads.map(olympiad => {
             return (
@@ -54,6 +54,11 @@ export class MyselfCabinetWithRedux extends React.Component {
               </div>
             );
           })
+      }
+      {
+        this.state.userOlympiads.length === 0
+        ? <div className="my-self-cabinet__loader-text">Вы не участвуете в олимпиадах</div>
+        : null
       }
     </>
   )

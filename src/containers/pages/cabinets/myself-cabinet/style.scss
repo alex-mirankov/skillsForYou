@@ -25,6 +25,14 @@
   &__loader {
     display: flex;
     justify-content: center;
+
+    &-text {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      font-family: "gilroy_extra_bold";
+      font-size: 1.3rem;
+    }
   }
 
 }
