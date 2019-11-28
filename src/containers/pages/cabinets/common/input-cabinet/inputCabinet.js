@@ -1,5 +1,6 @@
 import React from 'react';
 import './style.scss';
+import { element } from 'prop-types';
 
 export class InputCabinet extends React.Component {
   componentDidMount() {
@@ -7,7 +8,7 @@ export class InputCabinet extends React.Component {
     var dateEnd = document.querySelectorAll('.input-cabinet__date')[1];
     var dateInputMask = function dateInputMask(elm) {
       elm.addEventListener('keypress', function (e) {
-        if (e.keyCode < 47 || e.keyCode > 57) {
+        if ((e.keyCode < 48) || (e.keyCode >= 57 && e.keyCode <= 96) || (e.keyCode >= 105)) {
           e.preventDefault();
         }
         var len = elm.value.length;
@@ -16,12 +17,17 @@ export class InputCabinet extends React.Component {
             e.preventDefault();
           }
         }
+    
         if (len === 2) {
+          if(parseInt(elm.value)>12){
+            elm.value="12"
+          }
           elm.value += '/';
         }
         if (len === 5) {
           elm.value += '/';
         }
+
       });
     };
 
@@ -34,7 +40,8 @@ export class InputCabinet extends React.Component {
       <>
         <div className="input-cabinet">
           <div className="input-cabinet__caption">{caption}</div>
-          <input className={"input-cabinet__input" + " " + dateClass}
+          <input className={"input-cabinet__input " + dateClass}
+            maxLength={dateClass ? 10 : null}
             type="text"
             onChange={handleChange}
             placeholder={placeholder} />
