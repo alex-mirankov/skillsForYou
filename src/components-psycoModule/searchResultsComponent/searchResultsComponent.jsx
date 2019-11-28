@@ -3,12 +3,12 @@ import axios from 'axios';
 import { Container } from 'semantic-ui-react';
 import './style.css';
 
-
+var tst;
 class SearchResults extends Component {
   state = {
-    results: []
+    results: [],
+    tests: null
   }
-
 
   tableToExcel(tableId) {
     var htmltable = document.getElementById(tableId);
@@ -16,7 +16,19 @@ class SearchResults extends Component {
     window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html));
   }
 
+  componentDidMount() {
+    const { setTests } = this.props
+    this.setState({ currentPageNumber: this.props.match.params.Npage });
+    axios.get('https://psychotestmodule.herokuapp.com/tests/')
+      .then((response) => {
 
+        this.setState({ tests: response.data });
+
+      })
+      .catch(e => {
+        console.log(e)
+      })
+  }
 
 
   checkResTes() {
@@ -35,22 +47,31 @@ class SearchResults extends Component {
         console.log(e)
       })
   }
+  setDataList() {
+    let namesArr = this.state.tests.map(elem => {
+      return <option value={elem.test_name}>{elem.test_name}</option>;
+    });
+    return namesArr;
+  }
   render() {
 
-    const { } = this.props;
+    const { tests, isReady } = this.props;
     return (
       <Container className="search-res-block">
-        <div className="search-res-block__container">
+        {this.state.tests ? <div className="search-res-block__container">
           <div className="search-res-block__title">
-            <label className="search-res-block__label">ID ученика: </label>
-            <input className="search-res-block__input" type="text" id="pupID"></input>
-            <label className="search-res-block__label">ID теста: </label>
-            <input className="search-res-block__input" type="text" id="testID"></input>
-
+            <label className="search-res-block__label">Email ученика: </label>
+            <input className="search-res-block__input" type="text" id="pupEmail"></input>
+            <label className="search-res-block__label">Название теста</label>
+            <input className="search-res-block__input search-res-block__input_list" id="testName" list="queryTests"></input>
+            <datalist id="queryTests">
+              {this.setDataList()}
+            </datalist>
             <button className="search-res-block__btn" onClick={() => { this.checkResTes() }}>Найти</button>
-            <button className="search-res-block__btn" onClick={() => { this.tableToExcel('testTable') }}>Экспорт в Excel</button>
-
-
+            <div>
+            
+              <button className="search-res-block__btn search-res-block__btn_excel" onClick={() => { this.tableToExcel('testTable') }}>Экспорт в Excel</button>
+            </div>
           </div>
 
           <table className="search-res-block__table" id="testTable">
@@ -70,11 +91,11 @@ class SearchResults extends Component {
                 <td className="search-res-block__td">{res.test_id}</td>
                 <td className="search-res-block__td">{res.test_count_point}</td>
                 <td className="search-res-block__td">{res.test_result}</td>
-              </tr>) : ""}
+              </tr>) : null}
             </tbody>
           </table>
 
-        </div>
+        </div> : <div className="lds-facebook"><div></div><div></div><div></div></div>}
       </Container>
     )
   }

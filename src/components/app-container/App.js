@@ -67,7 +67,7 @@ class AppComponent extends Component {
             <Route exact path="/tests/:Npage" component={testsContainer} />
             <Route exact path='/tests/createTest/:testType' component={testsContainer} />
             <Route exact path='/tests/passingTest/:testId' component={testsContainer} />
-
+            <Route exact path='/tests/search/searchResults' component={testsContainer} />
 
             {/* <Route path="/work/:id" component={Work} /> */}
             <Route path="/*" component={NotFoundPage} />

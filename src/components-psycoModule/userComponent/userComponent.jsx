@@ -1,12 +1,33 @@
 import React, { Component } from 'react';
 import { Input } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom'
+import axios from 'axios';
 import './style.css';
 class Filter extends Component {
 
   constructor(props) {
     super(props)
     this.goCreateTest = this.goCreateTest.bind(this)
+  }
+  componentDidMount() {
+    let params = {
+      headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
+    };
+    let UserObj = {}
+    axios.get('http://165.22.92.120/me', params)
+      .then((data) => {
+        console.log(data.data)
+        UserObj.id = data.data.id;
+        UserObj.email = data.data.email;
+        UserObj.avatar = data.data.avatar;
+        UserObj.full_name = data.data.full_name;
+        UserObj.is_teacher = data.data.is_teacher;
+        this.props.setUserInfo(UserObj);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
   }
 
   goCreateTest(testType) {
@@ -33,11 +54,13 @@ class Filter extends Component {
   goToTheTests() {
     this.props.history.push('/tests/0');
   }
-  goSearchResults(){
-    this.props.history.push('/tests/searchResults');
+  goSearchResults() {
+    this.props.history.push('/tests/search/searchResults');
   }
+  //  <div className="user-block__info-text"><i className="fas fa-pencil-alt"></i><span className="user-block__edit"> Редактировать</span></div>
+  //    <div className="user-block__info-text"><i className="fas fa-sign-out-alt"></i><span className="user-block__logOut"> Выйти</span></div>
   render() {
-    const { setFilter, searchQuery, setSearchQuery, changeTestType } = this.props;
+    const { setFilter, searchQuery, setSearchQuery, changeTestType, userFullName, userEmail, userTeacherStatus } = this.props;
 
     return (
       <div className="user-block">
@@ -50,12 +73,10 @@ class Filter extends Component {
               </div>
             </div>
             <div className="user-block__info">
-              <div className="user-block__info-text"><span className="user-block__name">Тимофей Титов</span></div>
+              <div className="user-block__info-text"><span className="user-block__name">{userFullName}</span></div>
               <div className="user-block__info-text user-block__info-text_margin">
-                <span className="user-block__email"><i className="far fa-envelope"></i> titov.timoha@mail.ru</span></div>
-              <p className="user-block__status">Преподаватель</p>
-              <div className="user-block__info-text"><i className="fas fa-pencil-alt"></i><span className="user-block__edit"> Редактировать</span></div>
-              <div className="user-block__info-text"><i className="fas fa-sign-out-alt"></i><span className="user-block__logOut"> Выйти</span></div>
+                <span className="user-block__email"><i className="far fa-envelope"></i> {userEmail}</span></div>
+              <p className="user-block__status">{userTeacherStatus ? "Преподаватель" : "Ученик"}</p>
             </div>
           </div>
           <div className="user-block__tests-config">

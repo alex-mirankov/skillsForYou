@@ -18,6 +18,7 @@ export class MyselfCabinetWithRedux extends React.Component {
     };
     axios.get('http://165.22.92.120/me', params)
       .then((data) => {
+        console.log(data.data)
         this.getUserOlympiads(data.data.olympiad_list);
       })
       .catch(err => {

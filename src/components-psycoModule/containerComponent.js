@@ -28,7 +28,7 @@ class containerComponent extends Component {
         <Route exact path='/tests/createTest/:testType' component={CreateTestMain} />
         <Route exact path='/tests/editTest' component={CreateTestMain} />
         <Route exact path='/tests/passingTest/:testId' component={PassingTest} />
-        <Route exact path='/tests/searchResults' component={SearchResults} />
+        <Route exact path='/tests/search/searchResults' component={SearchResults} />
       </Container>
       </div>
     )

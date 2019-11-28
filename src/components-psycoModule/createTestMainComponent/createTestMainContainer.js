@@ -10,7 +10,7 @@ import * as resultsAction from '../../redux/actions/resultsAction';
 import { bindActionCreators } from 'redux';
 import CreateTestMain from './createTestMainComponent'
 
-const mapStateToProps = ({ tests, questions, results, timer }) => ({
+const mapStateToProps = ({ tests, questions, results, timer, user }) => ({
   activePage: tests.activePage,
   activeState: questions.activeState,
   questions: questions.items,
@@ -21,6 +21,11 @@ const mapStateToProps = ({ tests, questions, results, timer }) => ({
   editTest: tests.editTest,
   editTestResults: tests.editTestResults,
   editTestContent: tests.editTestContent,
+  userId: user.id,
+  userAvater: user.avatar,
+  userEmail: user.email,
+  userFullName: user.full_name,
+  userTeacherStatus: user.is_teacher
 
 });
 

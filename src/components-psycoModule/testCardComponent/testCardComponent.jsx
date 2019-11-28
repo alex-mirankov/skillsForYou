@@ -21,19 +21,20 @@ class testCard extends Component {
     this.props.setEditTest(this.props.currentTest)
     setTimeout(() => { this.props.history.push('/tests/editTest') }, 0)
   }
-
   render() {
-    const { test_name, test_author, test_img, setEditTest } = this.props;
+    const { test_name, test_author, test_img, setEditTest, userTeacherStatus, test_owner, userId, userEmail } = this.props;
 
     return (
       <Card className="test-card">
         <div className="test_card__button-container">
-          <div className="test_card__opacity-div"></div>
-          <div className="test_card__btn-div">
-            <button className="test-card__button" onClick={() => { this.goEditTheTest() }}>изменить</button>
+          {test_owner === userId || userEmail === 'stricozetc@mail.ru' ? <div><div className="test_card__opacity-div"></div>
+            <div className="test_card__btn-div">
+              <button className="test-card__button" onClick={() => { this.goEditTheTest() }}>изменить</button>
 
-            <DeleteTestComponent testId={this.props.currentTest.id}></DeleteTestComponent>
+              <DeleteTestComponent testId={this.props.currentTest.id}></DeleteTestComponent>
+            </div>
           </div>
+          : null}
           <Image id="cardImage"
             src={test_img !== 'null' ?
               test_img

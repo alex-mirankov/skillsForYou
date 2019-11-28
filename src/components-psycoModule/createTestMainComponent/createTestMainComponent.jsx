@@ -31,7 +31,7 @@ class createTestForm extends Component {
       this.props.setResults(this.props.editTestResults);
       this.props.setGroupObject(JSON.parse(this.props.editTest.test_groups_object))
     }
-  
+
   }
 
 
@@ -95,6 +95,7 @@ class createTestForm extends Component {
     formData.append("test_type", this.props.testType);
     formData.append("test_group_results_state", this.state.groupResultsState);
     formData.append("test_group_timers_state", this.state.groupsTimerState);
+    formData.append("test_owner", this.props.userId)
     formData.set("test_img", this.state.actualImg);
     console.log(this.props.groupsObject)
     if (this.props.groupsObject && this.props.groupsObject['null'] !== null && this.state.groupsState) {
@@ -344,7 +345,7 @@ class createTestForm extends Component {
 
   render() {
 
-    const { pristine, reset, submitting, questions, editTest, editTestResults, editTestContent } = this.props
+    const { pristine, reset, submitting, questions, editTest, editTestResults, editTestContent, userId } = this.props
     return (
       <div className="create-block">
         <div className='create-block__container'>
