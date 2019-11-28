@@ -276,10 +276,13 @@ export class CreateOlympiadPageWithRedux extends React.Component {
             handleChange={this.handleChangeOlympiadDuration} />
           <InputCabinet caption={'Дата старта'}
             handleChange={this.handleChangeOlympiadStartDate}
-            placeholder={'dd/mm/yyyy'} />
+            placeholder={'mm/dd/yyyy'} 
+            dateClass='input-cabinet__date'/>
           <InputCabinet caption={'Дата окончания'}
             handleChange={this.handleChangeOlympiadEndDate}
-            placeholder={'dd/mm/yyyy'} />
+            placeholder={'mm/dd/yyyy'} 
+            dateClass='input-cabinet__date'
+            />
           <InputCabinet caption={'Максимальное количество участников'}
             handleChange={this.handleChangeOlympiadMaxParticipations} />
         </div>
