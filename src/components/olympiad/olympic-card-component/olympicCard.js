@@ -10,7 +10,7 @@ export class OlympicCard extends React.Component {
 			<div className="olympic-card">
 				<div className="olympic-card__header">{header}</div>
 				<div className="olympic-card-content">
-					<img className="olympic-card-content__image" src={image} alt="Фото" style={styles} />
+					<div className="olympic-card__img-container"><img className="olympic-card-content__image" src={image} alt="Фото" style={styles} /></div>
 					<div className="olympic-card-content-info">
 						<p className="olympic-card-content-info__text">{content}
 							<span className="olympic-card-content-info__text-span"> прямо сейчас!</span>
