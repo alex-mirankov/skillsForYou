@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Card, Image } from 'semantic-ui-react';
 import './style.css';
 import { withRouter } from 'react-router-dom';
-import DeleteTestComponent from '../deleteTestComponent/deleteTestContainer'
+import DeleteTestComponent from '../deleteTestComponent/deleteTestContainer';
+import testCardImg from '../../images/standart-test-card.png';
 class testCard extends Component {
   constructor(props) {
     super(props)
@@ -25,10 +26,10 @@ class testCard extends Component {
     const { test_name, test_author, test_img, setEditTest } = this.props;
 
     return (
-      <Card>
-        <div className="button-container">
-          <div className="opacity-div"></div>
-          <div className="btn-div">
+      <Card className="test-card">
+        <div className="test_card__button-container">
+          <div className="test_card__opacity-div"></div>
+          <div className="test_card__btn-div">
             <button className="test-card__button" onClick={() => { this.goEditTheTest() }}>изменить</button>
 
             <DeleteTestComponent testId={this.props.currentTest.id}></DeleteTestComponent>
@@ -36,16 +37,16 @@ class testCard extends Component {
           <Image id="cardImage"
             src={test_img !== 'null' ?
               test_img
-              : 'https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/befbcde0-9b36-11e6-95b9-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg'} >
+              : testCardImg} >
 
           </Image>
 
         </div>
-        <Card.Content className="test-card">
+        <Card.Content className="test-card__content">
           <Card.Header>{test_name}</Card.Header>
           <Card.Meta>{test_author}</Card.Meta>
         </Card.Content>
-        <button className="card-button" onClick={() => { this.goPassTheTest() }} >Пройти тест</button>
+        <button className="test-card__card-button" onClick={() => { this.goPassTheTest() }} >Пройти тест</button>
         <div></div>
       </Card>
     )

@@ -1,8 +1,10 @@
 .questionCard {
     margin-top: 30px;
 }
-
-.list-block__container {
+.ui.card.list-block{
+    height: 100%;
+}
+.ui.card .content.list-block__container {
     border-radius: 10px;
     background-color: #efecec;
     color: #1b1b1b;
@@ -12,7 +14,7 @@
     line-height: 24px;
 }
 
-.list-block__quest-img {
+.ui.card .list-block__quest-img {
     width: 200px;
 }
 
