@@ -31,8 +31,7 @@
     border-radius: 10px;
     background: white;
     color: $baseSelectColor;
-    height: 400px;
-    overflow: overlay;
+    overflow: hidden;
 
     &-value {
       display: flex;
@@ -46,5 +45,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    &-text {
+      margin: 20px 0;
+    }
   }
 }

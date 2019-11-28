@@ -16,6 +16,7 @@ export class OlympiadSelect extends React.Component {
   render() {
     const { isOpen } = this.state;
     const { inputValues, currentValue, handleChange } = this.props;
+    console.log(inputValues);
 
     return (
       <div className="olympiad-select">
@@ -27,9 +28,16 @@ export class OlympiadSelect extends React.Component {
         {isOpen && (
           <div className="olympiad-select__pop-up">
             {
-              inputValues.length === 0
+              !inputValues
               ? <div className="olympiad-select__loader">
                   <CircularIndeterminate />
+                </div>
+              : null
+            }
+            {
+              inputValues.length === 0
+              ? <div className="olympiad-select__loader-text">
+                  Нет созданных олимпиад
                 </div>
               : null
             }
