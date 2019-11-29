@@ -277,11 +277,11 @@ export class CreateOlympiadPageWithRedux extends React.Component {
           <InputCabinet caption={'Дата старта'}
             handleChange={this.handleChangeOlympiadStartDate}
             placeholder={'mm/dd/yyyy'} 
-            dateClass='input-cabinet__date'/>
+            isMaskThere={true}/>
           <InputCabinet caption={'Дата окончания'}
             handleChange={this.handleChangeOlympiadEndDate}
             placeholder={'mm/dd/yyyy'} 
-            dateClass='input-cabinet__date'
+            isMaskThere={true}
             />
           <InputCabinet caption={'Максимальное количество участников'}
             handleChange={this.handleChangeOlympiadMaxParticipations} />
