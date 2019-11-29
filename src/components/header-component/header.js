@@ -119,7 +119,7 @@ class HeaderComponent extends Component {
   }
 
   handleClickGoTests = () => {
-    history.push('/tests/1');
+    history.push('/tests/0');
   }
 
   HeaderLayout = () => {
