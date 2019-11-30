@@ -16,7 +16,7 @@ const mapStateToProps = ({ tests, filter, user }) => ({
   testType: tests.testType,
   editTestState: tests.editTestState,
   userId: user.id,
-  userAvater: user.avatar,
+  userAvatar: user.avatar,
   userEmail: user.email,
   userFullName: user.full_name,
   userTeacherStatus: user.is_teacher

@@ -10,19 +10,24 @@ import * as setQuestionTimer from '../../redux/actions/setQuestionTimer';
 import * as setGroupTimer from '../../redux/actions/setGroupTimer';
 import * as setGroupObjectAction from '../../redux/actions/setGroupObjectAction';
 
-const mapStateToProps = ({ questions, tests, results, timer }) => ({
+const mapStateToProps = ({ questions, tests, results, timer, user }) => ({
   passingTest: tests.passingTest,
   questIndex: questions.index,
   questReady: questions.indexReady,
   testType: tests.testType,
   passingTestResults: tests.passingTestResults,
-  groups_object:tests.groups_object,
+  groups_object: tests.groups_object,
   testContent: tests.passingTestContent,
   isReadyToPass: tests.isReadyToPass,
   questionMinutes: timer.questionMinutes,
   questionSeconds: timer.questionSeconds,
   questionGroupMinutes: timer.questionGroupMinutes,
   questionGroupSeconds: timer.questionGroupSeconds,
+  userId: user.id,
+  userAvatar: user.avatar,
+  userEmail: user.email,
+  userFullName: user.full_name,
+  userTeacherStatus: user.is_teacher
 });
 
 const mapDispatchToProps = dispatch => ({

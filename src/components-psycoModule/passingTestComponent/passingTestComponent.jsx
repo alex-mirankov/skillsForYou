@@ -30,6 +30,7 @@ class passForm extends Component {
       testComplete: true,
       groupTimersStates: {},
       groupResultIndexes: [],
+      groupResultPoints: [],
       chaptersResultState: false,
       chapterBtnState: true
     };
@@ -92,11 +93,32 @@ class passForm extends Component {
     window.removeEventListener("beforeunload", this.onUnload)
 
   }
-  createChaptersResult() {
+  createChaptersResult(testContent) {
     console.log("ЗАПУСТИЛОСЬ")
     let item = null;
     let items = [];
-    console.log(this.state.groupResultIndexes)
+    // let resultsTextArr = [];
+    // let resultsText = '';
+    // this.props.passingTest.test_check_sum
+    // .filter((elem, index) => this.state.groupResultIndexes.indexOf(index.toString()))
+    // .map((elem, index) => {
+    //   resultsTextArr.push(elem.result);
+    // })
+    this.props.passingTest.test_content = JSON.stringify(testContent);
+    this.props.passingTest.person_id = JSON.stringify(this.props.userId);
+    this.props.passingTest.user_email = JSON.stringify(this.props.userEmail);
+    this.props.passingTest.user_full_name = JSON.stringify(this.props.userFullName);
+    this.props.passingTest.results_indexes = JSON.stringify(this.state.groupResultIndexes);
+   
+    this.props.passingTest.count_point = JSON.stringify(this.state.groupResultPoints);
+    console.log(JSON.stringify(this.props.passingTest));
+    let url = 'https://psychotestmodule.herokuapp.com/save_result_group_test/';
+    axios.post(url, this.props.passingTest)
+      .then((response) => {
+        console.log('Сохранилось');
+      }).catch(e => {
+        console.log(e);
+      })
     for (let i = 0; i < this.state.groupResultIndexes.length; i++) {
       item = <div className="passing-block__result-div-item" key={i}> <img className="passing-block__result-img-item" src={this.props.passingTestResults[this.state.groupResultIndexes[i]].result_img} alt='' />
         <p className="pussing-block__results-p">
@@ -118,10 +140,10 @@ class passForm extends Component {
     }
     else {
       this.props.passingTest.test_content = JSON.stringify(testContent);
-      console.log(JSON.stringify(testContent))
-      console.log(this.props.passingTest.test_check_sum)
+      this.props.passingTest.person_id = JSON.stringify(this.props.userId);
+      this.props.passingTest.user_email = JSON.stringify(this.props.userEmail);
+      this.props.passingTest.user_full_name = JSON.stringify(this.props.userFullName);
       let url = null;
-      console.log(this.props.passingTest)
       if (this.props.passingTest.test_type === "first") {
         url = 'https://psychotestmodule.herokuapp.com/oneway/';
       }
@@ -160,6 +182,9 @@ class passForm extends Component {
     }
     let url = 'https://psychotestmodule.herokuapp.com/exam/group/';
     this.props.passingTest.test_content = JSON.stringify(testContent);
+    this.props.passingTest.person_id = JSON.stringify(this.props.userId);
+    this.props.passingTest.user_email = JSON.stringify(this.props.userEmail);
+    this.props.passingTest.user_full_name = JSON.stringify(this.props.userFullName);
     let passTest = this.props.passingTest;
     passTest.current_group = this.state.currentGroup.toString();
     console.log(passTest)
@@ -167,9 +192,13 @@ class passForm extends Component {
       .then((response) => {
         console.log(response)
         let indexes = this.state.groupResultIndexes;
-        indexes.push(Number(response.data))
+        indexes.push(Number(response.data.index))
         this.setState({ groupResultIndexes: indexes })
-        this.setState({ resultIndex: Number(response.data) })
+        this.setState({ resultIndex: Number(response.data.index) })
+
+        let points = this.state.groupResultPoints;
+        points.push(Number(response.data.point))
+        this.setState({ groupResultPoints: points })
 
         document.getElementById("passBlock").style.display = "none";
         document.getElementById("questionMapContainer").style.display = "none";
@@ -408,7 +437,7 @@ class passForm extends Component {
   }
   createQuestionMap(testContent) {
     let items = [];
- 
+
     if (testContent && testContent[this.props.questIndex].group && !this.state.currentGroup) {
       this.setState({ currentGroup: testContent[this.props.questIndex].group })
     }
@@ -510,8 +539,8 @@ class passForm extends Component {
                   }
                 </p>
               </div>
-              : this.createChaptersResult()}
-            <label className="passing-block__end-btn" onClick={() => { this.setState({ superObj: {} }); setIndexOfQuestion(0);this.props.history.push('/tests/0') }}>Завершить</label>
+              : this.createChaptersResult(testContent)}
+            <label className="passing-block__end-btn" onClick={() => { this.setState({ superObj: {} }); setIndexOfQuestion(0); this.props.history.push('/tests/0') }}>Завершить</label>
           </div>
 
           <div className="passing-block__results" id="chapterResult">
