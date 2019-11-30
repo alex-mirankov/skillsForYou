@@ -39,7 +39,7 @@ class SearchResults extends Component {
       userEmail = -1;
     }
     let searchObj = {
-      user_email: userEmail,
+      user_email: '"'+userEmail+'"',
       test_id: testId
     }
     console.log(searchObj)
