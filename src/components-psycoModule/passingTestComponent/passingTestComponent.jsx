@@ -94,20 +94,12 @@ class passForm extends Component {
 
   }
   createChaptersResult(testContent) {
-    console.log("ЗАПУСТИЛОСЬ")
     let item = null;
     let items = [];
-    // let resultsTextArr = [];
-    // let resultsText = '';
-    // this.props.passingTest.test_check_sum
-    // .filter((elem, index) => this.state.groupResultIndexes.indexOf(index.toString()))
-    // .map((elem, index) => {
-    //   resultsTextArr.push(elem.result);
-    // })
     this.props.passingTest.test_content = JSON.stringify(testContent);
     this.props.passingTest.person_id = JSON.stringify(this.props.userId);
-    this.props.passingTest.user_email = JSON.stringify(this.props.userEmail);
-    this.props.passingTest.user_full_name = JSON.stringify(this.props.userFullName);
+    this.props.passingTest.user_email = this.props.userEmail;
+    this.props.passingTest.user_full_name = this.props.userFullName;
     this.props.passingTest.results_indexes = JSON.stringify(this.state.groupResultIndexes);
    
     this.props.passingTest.count_point = JSON.stringify(this.state.groupResultPoints);
@@ -140,9 +132,9 @@ class passForm extends Component {
     }
     else {
       this.props.passingTest.test_content = JSON.stringify(testContent);
-      this.props.passingTest.person_id = JSON.stringify(this.props.userId);
-      this.props.passingTest.user_email = JSON.stringify(this.props.userEmail);
-      this.props.passingTest.user_full_name = JSON.stringify(this.props.userFullName);
+      this.props.passingTest.person_id = this.props.userId;
+      this.props.passingTest.user_email = this.props.userEmail;
+      this.props.passingTest.user_full_name = this.props.userFullName;
       let url = null;
       if (this.props.passingTest.test_type === "first") {
         url = 'https://psychotestmodule.herokuapp.com/oneway/';

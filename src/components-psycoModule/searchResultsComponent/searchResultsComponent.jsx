@@ -39,7 +39,7 @@ class SearchResults extends Component {
       userEmail = -1;
     }
     let searchObj = {
-      user_email: '"'+userEmail+'"',
+      user_email: userEmail,
       test_id: testId
     }
     console.log(searchObj)
@@ -101,9 +101,9 @@ class SearchResults extends Component {
               {this.state.results ? this.state.results.map((res, ind) => <tr key={ind} className="search-res-block__tr">
                 <td className="search-res-block__td">{res.id}</td>
                 <td className="search-res-block__td">{res.person_id}</td>
-                <td className="search-res-block__td">{res.test_id}</td>
                 <td className="search-res-block__td">{res.user_email}</td>
                 <td className="search-res-block__td">{res.user_full_name}</td>
+                <td className="search-res-block__td">{res.test_id}</td>
                 <td className="search-res-block__td">{res.test_count_point}</td>
                 <td className="search-res-block__td">{res.test_result}</td>
               </tr>) : null}
