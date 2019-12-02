@@ -66,7 +66,7 @@ export class MyselfCabinetWithRedux extends React.Component {
   render() {
     return (
       <>
-        {this.props.user ? <this.renderComponent /> : <div className="my-self-cabinet__unogger">Вы не залогинились!</div>}
+        <this.renderComponent /> 
       </>
     );
   }
