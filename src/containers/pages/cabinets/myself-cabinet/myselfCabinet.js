@@ -37,7 +37,7 @@ export class MyselfCabinetWithRedux extends React.Component {
   }
 
   renderComponent = () => (
-    <div>
+    <>
       <div className="my-self-cabinet__header">Участие в олимпиадах:</div>
       {
         !this.state.userOlympiads
@@ -60,7 +60,7 @@ export class MyselfCabinetWithRedux extends React.Component {
         ? <div className="my-self-cabinet__loader-text">Вы не участвуете в олимпиадах</div>
         : null
       }
-    </div>
+    </>
   )
 
   render() {
