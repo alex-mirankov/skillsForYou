@@ -91,12 +91,12 @@ class SearchResults extends Component {
             <tbody>
               <tr className="search-res-block__tr">
                 <td className="search-res-block__td search-res-block__td_title">ID</td>
-                <td className="search-res-block__td search-res-block__td_title">PERSON ID</td>
-                <td className="search-res-block__td search-res-block__td_title">USER EMAIL</td>
-                <td className="search-res-block__td search-res-block__td_title">USER FULL NAME</td>
-                <td className="search-res-block__td search-res-block__td_title">TEST ID</td>
-                <td className="search-res-block__td search-res-block__td_title">КОЛИЧЕСТВО БАЛЛОВ</td>
-                <td className="search-res-block__td search-res-block__td_title search-res-block__td_result">РЕЗУЛЬТАТ</td>
+                <td className="search-res-block__td search-res-block__td_title">ID пользователя</td>
+                <td className="search-res-block__td search-res-block__td_title">Почта пользователя</td>
+                <td className="search-res-block__td search-res-block__td_title">Имя</td>
+                <td className="search-res-block__td search-res-block__td_title">ID теста</td>
+                <td className="search-res-block__td search-res-block__td_title">Количество баллов</td>
+                <td className="search-res-block__td search-res-block__td_title search-res-block__td_result">Результат</td>
               </tr>
               {this.state.results ? this.state.results.map((res, ind) => <tr key={ind} className="search-res-block__tr">
                 <td className="search-res-block__td">{res.id}</td>

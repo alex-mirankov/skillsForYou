@@ -435,10 +435,10 @@ class createTestForm extends Component {
             </div>
             <div className="create-block__button-div">
               <button className="create-block__form-button" type="button" onClick={this.handleSubmit}>
-                Submit
+                Создать
         </button>
               <button className="create-block__form-button" type="button" onClick={reset}>
-                Clear Values
+                Очистить поля
         </button>
             </div>
           </form>
