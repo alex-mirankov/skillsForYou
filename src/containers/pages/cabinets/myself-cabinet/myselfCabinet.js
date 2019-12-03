@@ -38,6 +38,7 @@ export class MyselfCabinetWithRedux extends React.Component {
 
   renderComponent = () => (
     <>
+    {console.log(this.state)}
       <div className="my-self-cabinet__header">Участие в олимпиадах:</div>
       {
         !this.state.userOlympiads
@@ -57,8 +58,8 @@ export class MyselfCabinetWithRedux extends React.Component {
       }
       {
         this.state.userOlympiads.length === 0
-        ? <div className="my-self-cabinet__loader-text">Вы не участвуете в олимпиадах</div>
-        : null
+          ? <div className="my-self-cabinet__loader-text">Вы не участвуете в олимпиадах</div>
+          : null
       }
     </>
   )
@@ -66,7 +67,7 @@ export class MyselfCabinetWithRedux extends React.Component {
   render() {
     return (
       <>
-        <this.renderComponent /> 
+        {localStorage.getItem('token') ? <this.renderComponent /> : <div className="my-self-cabinet__unlogged">Вы должны войти в свой аккаунт или зарегестрироваться.</div>}
       </>
     );
   }
