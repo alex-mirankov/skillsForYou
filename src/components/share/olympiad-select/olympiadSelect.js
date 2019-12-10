@@ -39,21 +39,20 @@ export class OlympiadSelect extends React.Component {
               ? <div className="olympiad-select__loader-text">
                   Нет созданных олимпиад
                 </div>
-              : null
+              : inputValues.map(item => (
+                <div
+                  className="olympiad-select__pop-up-value"
+                  key={item.id}
+                  id={item.id}
+                  onClick={() => {
+                    this.handleClick();
+                    handleChange(item.name, item.value);
+                  }}
+                >
+                  {item.name}
+                </div>
+              ))
             }
-            {inputValues.map(item => (
-              <div
-                className="olympiad-select__pop-up-value"
-                key={item.id}
-                id={item.id}
-                onClick={() => {
-                  this.handleClick();
-                  handleChange(item.name, item.value);
-                }}
-              >
-                {item.name}
-              </div>
-            ))}
           </div>
         )}
       </div>

@@ -38,7 +38,7 @@ class OlympiadSingleComponent extends React.Component {
     let params = {
       headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
     };
-    axios.get('http://165.22.92.120/olympiad/1', params)
+    axios.get('http://165.22.92.120:81/olympiad/1', params)
       .then(data => {
         this.setState({
           olympiad: data.data,
@@ -46,7 +46,7 @@ class OlympiadSingleComponent extends React.Component {
         });
       })
       .catch(err => console.log(err));
-    axios.get('http://165.22.92.120/me', params)
+    axios.get('http://165.22.92.120:81/me', params)
       .then(data => {
         this.setState({
           userName: data.data.full_name
@@ -87,7 +87,7 @@ class OlympiadSingleComponent extends React.Component {
           comleteTasks={this.state.comleteTasks} />
         <OlympicTask allTasks={this.state.allTasks}
           olympiadId={this.props.olympiadId} />
-        <Compile path={'http://165.22.92.120/olympiad/checker'}
+        <Compile path={'http://165.22.92.120:81/olympiad/checker'}
           task_id={this.props.olympiadId}
           olympiad_id={'1'} />
         <Pager allTasks={this.state.allTasks}

@@ -21,7 +21,7 @@ class OlympiadRegistrationFormComponent extends React.Component {
     token: localStorage.getItem('token'),
     currentValue: 'Олимпиада',
     olympiadId: 0,
-    olympiadList: '',
+    olympiadList: [],
   }
   handleChangeOlymp = name => {
     for (let i = 0; i < this.state.olympiadList.length; i++) {
@@ -36,7 +36,7 @@ class OlympiadRegistrationFormComponent extends React.Component {
     let params = {
       headers: { 'Authorization': 'Token ' + this.state.token }
     };
-    axios.post('http://165.22.92.120/olympiad/registration', { olympiad_id: this.state.olympiadId }, params)
+    axios.post('http://165.22.92.120:81/olympiad/registration', { olympiad_id: this.state.olympiadId }, params)
       .then(data => {
         console.log(data);
         this.props.closeWindowComp();
@@ -48,7 +48,7 @@ class OlympiadRegistrationFormComponent extends React.Component {
     let params = {
       headers: { 'Authorization': 'Token ' + this.state.token }
     };
-    axios.get('http://165.22.92.120/olympiad', params)
+    axios.get('http://165.22.92.120:81/olympiad', params)
       .then(data => {
         console.log(data.data);
         this.setState({

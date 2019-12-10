@@ -50,7 +50,7 @@ export class Login extends Component {
   };
 
   handleSubmit = () => {
-    axios.post('http://165.22.92.120/login/', this.state)
+    axios.post('http://165.22.92.120:81/login/', this.state)
       .then(res => {
         console.log(res);
         localStorage.setItem('token', res.data.token);
