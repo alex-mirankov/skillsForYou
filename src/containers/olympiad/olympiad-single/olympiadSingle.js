@@ -13,9 +13,7 @@ import {
   Pager,
 } from './common';
 
-import {
-  Compile, ButtonAll, Warning
-} from '../../../components';
+import { Compile, ButtonAll } from '../../../components';
 
 class OlympiadSingleComponent extends React.Component {
   state = {
@@ -72,7 +70,6 @@ class OlympiadSingleComponent extends React.Component {
       key = sessionStorage.key(i);
       score = Number(sessionStorage.getItem(key));
     }
-    // localStorage.setItem('user', this.state.userName);
     localStorage.setItem(`${this.state.userName}`, score);
     this.setState({
       score: score,
@@ -106,7 +103,7 @@ class OlympiadSingleComponent extends React.Component {
     this.setCurrentOlympiad();
     return (
       <>
-        {this.props.user ? <this.renderComponent /> : history.push('/')}
+        {localStorage.getItem('token') ? <this.renderComponent /> : history.push('/')}
       </>
     );
   }

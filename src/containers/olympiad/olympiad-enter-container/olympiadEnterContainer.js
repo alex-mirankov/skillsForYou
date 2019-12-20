@@ -10,11 +10,6 @@ import {
 } from '../../../components/index';
 
 import olympicSolo from '../../../images/olympic-solo.png';
-import olympicTeam from '../../../images/olympic-team.png';
-
-const styles = {
-  marginRight: '50px',
-}
 
 const warningText = 'Чтобы принять участие в олимпиаде необходимо войти в аккаунт';
 
@@ -23,14 +18,6 @@ export class OlympiadEnterContainerWithRedux extends React.Component {
     <div className="olympic-enter">
       <div className="olympic-enter__header">Чтобы начать свое участие в олимпиаде выбери нужный раздел</div>
       <div className="olympic-enter__content">
-        {/* <OlympicCard
-          header={'Командная олимпиада'}
-          image={olympicTeam}
-          content={'Создай свою команду и начни участвовать'}
-          date={'22.01.2019'}
-          action={this.goToTeamOlymp}
-          styles={styles}
-        /> */}
         <OlympicCard
           header={'Индивидуальная олимпиада'}
           image={olympicSolo}

@@ -52,7 +52,6 @@ export class Login extends Component {
   handleSubmit = () => {
     axios.post('http://165.22.92.120:81/login/', this.state)
       .then(res => {
-        console.log(res);
         localStorage.setItem('token', res.data.token);
         history.push('/');
       })
@@ -76,10 +75,6 @@ export class Login extends Component {
                               styles={authInputStyle}
                               type={'password'}
                               action={this.handleChangePassword} />
-        {/* <a className="login-form__forgot-password"
-          href="https://www.google.com">
-          Забыли пароль?
-        </a> */}
         <ButtonAll action={this.handleSubmit}
                     content={'Войти'}
                     styles={submitBtnStyles} />

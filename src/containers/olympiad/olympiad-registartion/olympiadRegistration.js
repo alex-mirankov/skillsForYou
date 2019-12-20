@@ -16,7 +16,7 @@ export class OlympiadRegistrationWithRedux extends React.Component {
   render() {
     return (
       <>
-        {this.props.user ? <this.renderComponent /> : history.push('/')}
+        {localStorage.getItem('token') ? <this.renderComponent /> : history.push('/')}
       </>
     );
   }

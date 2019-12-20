@@ -46,9 +46,7 @@ export class TeacherRegistration extends Component {
         console.log(error);
       });
     } else {
-      console.log('пароли не совпадают!')
     }
-    console.log(this.state);
   };
 
   handleChangeEmail = event => {

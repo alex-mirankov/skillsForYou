@@ -37,7 +37,6 @@ class OlympiadRegistrationTeamsComponent extends React.Component {
     };
     axios.get('http://165.22.92.120:81/olympiad', params)
       .then(data => {
-        console.log(data.data);
         this.setState({
           olympiadList: data.data,
         });
@@ -49,9 +48,6 @@ class OlympiadRegistrationTeamsComponent extends React.Component {
     let params = {
       headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
     };
-    let registration = {
-
-    }
     axios.post('https://skill4u.herokuapp.com/team/invite', params)
       .then(res => {
         console.log(res);

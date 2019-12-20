@@ -220,7 +220,6 @@ export class CreateOlympiadPageWithRedux extends React.Component {
     }
 
     reader.readAsDataURL(file);
-    console.log(file);
   }
 
   createOlympiad = () => {
@@ -253,12 +252,10 @@ export class CreateOlympiadPageWithRedux extends React.Component {
 
       axios.post('http://165.22.92.120:81/olympiad/create/', this.state.olympiad, params)
         .then(data => {
-          console.log(data);
         })
         .catch(e => {
           console.log(e);
         });
-        console.log(this.state.olympiad);
     } catch {
       history.push('/');
     }

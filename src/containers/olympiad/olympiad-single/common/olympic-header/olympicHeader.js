@@ -3,8 +3,6 @@ import './style.scss';
 
 import imageHeader from '../../../../../images/javascript2-img-start.png';
 
-import { Timer } from '../../../../../components';
-
 export class OlympicHeader extends React.Component {
   render() {
     let { allTasks, comleteTasks } = this.props;
@@ -18,11 +16,7 @@ export class OlympicHeader extends React.Component {
           <p className="single-olympic-header__info-all-tasks">Всего заданий:
             <span className="single-olympic-header__info-all-tasks-number">{allTasks.length}</span>
           </p>
-          <p className="single-olympic-header__info-completed-tasks">Выполнено:
-            <span className="single-olympic-header__info-completed-tasks-number">{comleteTasks}</span>
-          </p>
         </div>
-        {/* <Timer /> */}
       </div>
     );
   }

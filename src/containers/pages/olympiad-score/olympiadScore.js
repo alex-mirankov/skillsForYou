@@ -1,6 +1,7 @@
 import React from 'react';
 import './style.scss';
 import { history } from '../../../services/redux';
+import axios from 'axios';
 import { connect } from 'react-redux';
 
 import { CircularIndeterminate } from '../../../components';
@@ -11,24 +12,33 @@ export class OlympiadScorePageWithRedux extends React.Component {
   };
 
   componentDidMount() {
-    let key = 0;
-    let array = [];
-    for (let i = 0; i < localStorage.length; i++) {
-      key = localStorage.key(i);
+    this.getUserScoreFromBacked();
+  }
 
-      if (key.indexOf('token') === -1) {
-        array.push(
-          {
-            participant: key,
-            score: localStorage.getItem(key),
-          }
-        );
-        this.setState({
-          results: array,
-        });
-      }
+  getUserScoreFromBacked = () => {
+    let params = {
+      headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
+    };
+    axios.get('http://165.22.92.120:81/olympiad/1/score', params)
+      .then((data) => {
+        this.getSoreFromAllUsers(data.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
+
+  getSoreFromAllUsers = (participants) => {
+    let array = [];
+    for (let item in participants) {
+      array.push({
+        participant: item,
+        score: participants[item].total_score,
+      })
+      this.setState({
+        results: array,
+      });
     }
-    console.log(this.state.results.map(item => console.log(item)));
   }
 
   renderComponent = () => (
@@ -52,7 +62,7 @@ export class OlympiadScorePageWithRedux extends React.Component {
   render() {
     return (
       <>
-        {this.props.user ? <this.renderComponent /> : history.push('/')}
+        {localStorage.getItem('token') ? <this.renderComponent /> : history.push('/')}
       </>
     );
   }

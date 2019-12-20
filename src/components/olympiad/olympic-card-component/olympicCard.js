@@ -19,9 +19,6 @@ export class OlympicCard extends React.Component {
 						<ButtonAll content={'Участвовать'} action={action} />
 					</div>
 				</div>
-				{/* <p className="olympic-card-timetable">
-					<a href="/olympiads" className="olympic-card-timetable__link">Расписание олимпиад</a>
-				</p> */}
 			</div>
 		);
 	}

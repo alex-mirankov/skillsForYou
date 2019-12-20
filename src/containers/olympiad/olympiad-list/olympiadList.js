@@ -14,7 +14,6 @@ export class OLympiadListContainer extends React.Component {
     };
     axios.get('https://skill4u.herokuapp.com/olympiad', params)
       .then(data => {
-        console.log(data.data);
         this.setState({
           olympiads: data.data
         });

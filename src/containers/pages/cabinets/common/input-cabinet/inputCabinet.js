@@ -1,6 +1,5 @@
 import React from 'react';
 import './style.scss';
-import { element } from 'prop-types';
 import InputMask from 'react-input-mask';
 export class InputCabinet extends React.Component {
 

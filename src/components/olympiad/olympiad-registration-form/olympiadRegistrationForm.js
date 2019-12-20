@@ -38,7 +38,6 @@ class OlympiadRegistrationFormComponent extends React.Component {
     };
     axios.post('http://165.22.92.120:81/olympiad/registration', { olympiad_id: this.state.olympiadId }, params)
       .then(data => {
-        console.log(data);
         this.props.closeWindowComp();
       })
       .catch(e => { console.log(e) });
@@ -50,7 +49,6 @@ class OlympiadRegistrationFormComponent extends React.Component {
     };
     axios.get('http://165.22.92.120:81/olympiad', params)
       .then(data => {
-        console.log(data.data);
         this.setState({
           olympiadList: data.data,
         });

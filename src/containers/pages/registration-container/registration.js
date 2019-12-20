@@ -46,18 +46,6 @@ export class Registration extends Component {
     document.documentElement.scrollTop = 0;
   };
 
-  // fileSelectedHendler = (event) => {
-  //   this.setState({
-  //     avatar: event.target.files[0],
-  //   });
-  //   let formData = new FormData();
-
-  //   var blob = event.target.files[0].slice(0, event.target.files[0].size, 'image/jpeg');
-  //   let newFile = new File([blob], 'image.jpg', { type: 'image/jpeg' });
-
-  //   formData.append("img_field", newFile);
-  // }
-
   handleSubmit = () => {
     const {
       email,
@@ -83,10 +71,7 @@ export class Registration extends Component {
       .catch(error => {
         console.log(error);
       });
-    } else {
-      console.log('пароли не совпадают!')
-    }
-    console.log(this.state);
+    } else { }
   };
 
   RegistrationLayout = () => (
@@ -116,14 +101,6 @@ export class Registration extends Component {
       <ButtonAll action={this.handleSubmit}
                   content={'Зарегистрироваться'}
                   styles={submitBtnStyles} />
-        {/* <input
-            onChange={(e) => this.fileSelectedHendler(e)}
-            type="file"
-            className="form__input"
-            id="avatar"
-            name="avatar"
-            placeholder="Выберите аватар"
-          /> */}
           {
             this.state.password === this.state.password_confirm
             ? null

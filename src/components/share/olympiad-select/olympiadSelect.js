@@ -16,7 +16,6 @@ export class OlympiadSelect extends React.Component {
   render() {
     const { isOpen } = this.state;
     const { inputValues, currentValue, handleChange } = this.props;
-    console.log(inputValues);
 
     return (
       <div className="olympiad-select">
