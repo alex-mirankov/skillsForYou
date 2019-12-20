@@ -50,7 +50,6 @@ class testResults extends Component {
 
 
     formData.forEach(function (value, key) {
-      console.log(key)
 
       if (key === "result_img" + index) {
         resultObject["result_img"] = variantImg[index];
@@ -125,7 +124,6 @@ class testResults extends Component {
       resultArr = this.secondTypeHandler(formData, variantImg)
     }
     setResults(resultArr);
-    console.log(resultArr)
   }
 
   insertCurrentData(currentVariants) {

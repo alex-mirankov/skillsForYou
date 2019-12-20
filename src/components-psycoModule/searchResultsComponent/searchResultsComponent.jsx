@@ -42,7 +42,6 @@ class SearchResults extends Component {
       user_email: userEmail,
       test_id: testId
     }
-    console.log(searchObj)
     let url = "https://psychotestmodule.herokuapp.com/results/";
     axios.post(url, searchObj)
       .then((response) => {
@@ -62,7 +61,6 @@ class SearchResults extends Component {
     return namesArr;
   }
   render() {
-    console.log(this.props.userId)
     const { tests, isReady } = this.props;
     return (
       <Container className="search-res-block">

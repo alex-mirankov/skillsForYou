@@ -16,7 +16,6 @@ class Filter extends Component {
     let UserObj = {}
     axios.get('http://165.22.92.120:81/me', params)
       .then((data) => {
-        console.log(data.data)
         UserObj.id = data.data.id;
         UserObj.email = data.data.email;
         UserObj.avatar = data.data.avatar;
@@ -39,7 +38,6 @@ class Filter extends Component {
     }
     if (testType !== this.props.testType && this.props.testType !== null) {
       alert = window.confirm("При переходе на создание теста другого типа, все созданыые вопросы будут удалены, перейти?");
-      console.log(alert)
       if (alert) {
         this.props.setQuests([]);
         this.props.history.push('/tests/createTest/' + testType)

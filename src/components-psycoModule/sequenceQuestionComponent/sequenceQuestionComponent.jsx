@@ -172,7 +172,6 @@ class sequenceQuestion extends Component {
 
     setQuests(questionsArray);
     variantsCount = 0;
-    console.log(JSON.stringify(object))
   }
   insertCurrentData(editVariants) {
     if (typeof editVariants !== "undefined") {
@@ -254,10 +253,8 @@ class sequenceQuestion extends Component {
       groupsTimerState,
       editQuest,
       title } = this.props
-    console.log(this.state.notFullPriceState)
     const renderField = ({ input, label, type, answer, index, meta: { touched, error } }) => (
       <div className="variants-block__variant-info">
-        {console.log(this.state.notFullPriceArr)}
         <label>{label}</label>
 
         <input

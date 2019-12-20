@@ -81,7 +81,6 @@ class oneVarQuest extends Component {
     object["type_question"] = "one_answer";
 
     formData.forEach(function (value, key) {
-      console.log(key)
       if (key === 'questImg') {
         object[key] = actualImg;
       }
@@ -115,7 +114,6 @@ class oneVarQuest extends Component {
     }
 
     if (testType === 'first') {
-      console.log(testType)
       object = this.props.firstTypeHandler(object, document.forms.oneVariantForm, variantImg, this.props.variantsCount, this.state.notFullPriceState)
     }
     else if (testType === 'second') {
@@ -133,7 +131,6 @@ class oneVarQuest extends Component {
 
     setQuests(questionsArray);
     this.props.setVariantsCount(0);
-    console.log(object)
   }
 
   createSelectItems(results, editVariants, index, editCount) {
@@ -220,7 +217,6 @@ class oneVarQuest extends Component {
       <div>
 
         <label>{label}</label>
-        {console.log(this.state.notFullPriceArr)}
         <div className="variants-block__variant-info">
           <input
             className="variants-block__price-var"

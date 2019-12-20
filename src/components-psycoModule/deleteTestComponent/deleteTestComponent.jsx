@@ -25,7 +25,6 @@ class deleteTest extends Component {
                     }    
                 });
                 this.props.setTests(testArray);
-                console.log("удалено")
             }).catch(e => {
                 console.log(e)
             })

@@ -137,6 +137,10 @@ textarea {
 .create-block__form-button:hover {
     background-color: #8527c6;
 }
+.create-block__form-button:disabled {
+    background-color: rgb(145, 133, 133);
+    cursor: auto;
+}
 
 .create-block__form-button:active {
     background-color: #943bd3;
@@ -174,7 +178,7 @@ select {
     margin-bottom: 80px;
 }
 
-.create-block__sort-btn{
+.create-block__sort-btn {
     width: 300px;
     height: 46px;
     margin: 10px;
@@ -188,13 +192,16 @@ select {
     font-size: 18px;
     font-weight: 400;
 }
-.create-block__sort-btn:hover{
+
+.create-block__sort-btn:hover {
     background-color: #fc8e19;
 }
-.create-block__sort-btn:active{
+
+.create-block__sort-btn:active {
     background-color: #f8ab58;
 }
-.create-block__sort-btn:focus{
+
+.create-block__sort-btn:focus {
     outline: none;
 }
 

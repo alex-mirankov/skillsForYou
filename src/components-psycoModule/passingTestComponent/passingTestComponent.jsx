@@ -52,8 +52,6 @@ class passForm extends Component {
     window.addEventListener("beforeunload", this.onUnload)
   }
   componentWillMount() {
-    console.log("сработало")
-    //поправил баг, тестируется
     if (!this.props.questIndex) {
       this.props.setIndexOfQuestion(0);
     }
@@ -76,7 +74,6 @@ class passForm extends Component {
           return a.group - b.group;
         })
       }
-      console.log(content)
       test.test_content = content;
       this.props.setPassingTest(test)
     })
@@ -103,11 +100,9 @@ class passForm extends Component {
     this.props.passingTest.results_indexes = JSON.stringify(this.state.groupResultIndexes);
    
     this.props.passingTest.count_point = JSON.stringify(this.state.groupResultPoints);
-    console.log(JSON.stringify(this.props.passingTest));
     let url = 'https://psychotestmodule.herokuapp.com/save_result_group_test/';
     axios.post(url, this.props.passingTest)
       .then((response) => {
-        console.log('Сохранилось');
       }).catch(e => {
         console.log(e);
       })
@@ -116,7 +111,6 @@ class passForm extends Component {
         <p className="pussing-block__results-p">
           {this.props.passingTestResults[this.state.groupResultIndexes[i]].result}
         </p></div>
-      console.log(this.props.passingTestResults[this.state.groupResultIndexes[i]].result)
 
       items.push(item);
     }
@@ -144,7 +138,6 @@ class passForm extends Component {
       }
       axios.post(url, this.props.passingTest)
         .then((response) => {
-          console.log(response)
           this.setState({ testComplete: true })
           document.getElementById("passBlock").remove();
           document.getElementById("questionMapContainer").remove();
@@ -179,10 +172,8 @@ class passForm extends Component {
     this.props.passingTest.user_full_name = JSON.stringify(this.props.userFullName);
     let passTest = this.props.passingTest;
     passTest.current_group = this.state.currentGroup.toString();
-    console.log(passTest)
     axios.post(url, passTest)
       .then((response) => {
-        console.log(response)
         let indexes = this.state.groupResultIndexes;
         indexes.push(Number(response.data.index))
         this.setState({ groupResultIndexes: indexes })
@@ -202,7 +193,6 @@ class passForm extends Component {
 
   changeChapter() {
     this.setState({ currentGroup: this.props.testContent[this.props.questIndex + 1].group })
-    console.log(this.state.currentGroup)
     document.getElementById("passBlock").style.display = "block";
     document.getElementById("questionMapContainer").style.display = "inline-block";
     document.getElementById("chapterResult").style.display = "none";
@@ -412,11 +402,9 @@ class passForm extends Component {
               timersStates[testContent[this.props.questIndex].group] = "activated";
               this.setState({ groupTimersStates: timersStates })
               //asdasdasd
-              console.log(this.state.groupTimersStates)
               clearInterval(this.state.groupTimerInterval);
               if (this.props.groups_object[testContent[this.props.questIndex].group]
               ) {
-                console.log("Запуск таймера")
                 this.startGroupTimer(testContent[this.props.questIndex].group);
               }
 
@@ -461,7 +449,6 @@ class passForm extends Component {
   activateGroupTimer() {
     if (this.props.groups_object[this.props.testContent[this.props.questIndex].group]
     ) {
-      console.log("Запуск таймера")
       this.startGroupTimer(this.props.testContent[this.props.questIndex].group);
     }
 

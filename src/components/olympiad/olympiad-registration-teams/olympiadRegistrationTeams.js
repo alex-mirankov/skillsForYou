@@ -50,7 +50,7 @@ class OlympiadRegistrationTeamsComponent extends React.Component {
     };
     axios.post('https://skill4u.herokuapp.com/team/invite', params)
       .then(res => {
-        console.log(res);
+
         this.props.closeWindowComp();
       })
       .catch(e => console.log(e));

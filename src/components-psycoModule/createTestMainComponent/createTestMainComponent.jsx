@@ -24,7 +24,6 @@ class createTestForm extends Component {
   }
   componentWillMount() {
     this.props.changeTestType(this.props.match.params.testType);
-    console.log(this.props.editTest)
     if (this.props.editTest) {
       this.props.changeTestType(this.props.editTest.test_type);
       this.props.setQuests(this.props.editTestContent);
@@ -51,12 +50,11 @@ class createTestForm extends Component {
     // this.setState({ groupResultsState: false })
     document.getElementById('switchGroupsTimers').disabled = true;
     document.getElementById('switchGroupResults').disabled = true;
-    console.log(this.state.groupsState)
+
     if (this.props.editTest) {
       // this.switchGroupsHandler();
       if (this.props.editTest.test_group_timers_state || this.props.editTest.test_group_results_state || this.props.editTest.test_groups_object !== "null") {
-        console.log(!JSON.parse(this.props.editTest.test_groups_object).hasOwnProperty("null"))
-        console.log(this.props.editTest.test_group_results_state)
+
         this.switchGroupsHandler();
         this.setState({ groupsTimerState: this.props.editTest.test_group_timers_state })
         this.setState({ groupResultsState: this.props.editTest.test_group_results_state })
@@ -97,7 +95,6 @@ class createTestForm extends Component {
     formData.append("test_group_timers_state", this.state.groupsTimerState);
     formData.append("test_owner", this.props.userId)
     formData.set("test_img", this.state.actualImg);
-    console.log(this.props.groupsObject)
     if (this.props.groupsObject && this.props.groupsObject['null'] !== null && this.state.groupsState) {
       formData.append("test_groups_object", JSON.stringify(this.props.groupsObject));
     }
@@ -110,13 +107,6 @@ class createTestForm extends Component {
     })
     formData.append("test_question_count", this.props.questions.length);
     formData.append("test_old_versions", "");
-    formData.forEach(function (value, key) {
-      console.log(key);
-      console.log(value);
-      if (key == "test_question_count") {
-        console.log(typeof value);
-      }
-    });
     if (this.props.editTest) {
       let saveOldTest = window.confirm("Сохранять предыдущую версию теста?");
       if (saveOldTest) {
@@ -125,10 +115,8 @@ class createTestForm extends Component {
         if (OldTestName) {
           axios.get('https://psychotestmodule.herokuapp.com/save_old_version/?id=' + this.props.editTest.id + "&name=" + OldTestName)
             .then((response) => {
-              console.log("пред версия сохранена")
               axios.put('https://psychotestmodule.herokuapp.com/tests/' + this.props.editTest.id + "/", formData)
                 .then((response) => {
-                  console.log("изменено")
                 }).catch(e => {
                   console.log(e)
                 })
@@ -140,7 +128,6 @@ class createTestForm extends Component {
       else {
         axios.put('https://psychotestmodule.herokuapp.com/tests/' + this.props.editTest.id + "/", formData)
           .then((response) => {
-            console.log("изменено")
           }).catch(e => {
             console.log(e)
           })
@@ -151,6 +138,7 @@ class createTestForm extends Component {
       axios.post('https://psychotestmodule.herokuapp.com/tests/', formData)
         .then((response) => {
         }).catch(e => {
+          alert("Не удалось сохранить тест, проверьте заполнены ли все поля.")
           console.log(e)
         })
     }
@@ -166,7 +154,6 @@ class createTestForm extends Component {
     var formData = new FormData(currentForm);
 
     formData.forEach(function (value, key) {
-      console.log(key)
       if (key !== 'questImg' && key !== 'question') {
 
         if (key === "variant_img" + index) {
@@ -194,7 +181,6 @@ class createTestForm extends Component {
           index++;
         }
         if (key === "answerState") {
-          console.log("Выпало")
           objectVariant["answer_state"] = 1;
           rightCount++;
           allVariants[roll] = objectVariant;
@@ -216,7 +202,6 @@ class createTestForm extends Component {
     }
     );
     object["variants"] = allVariants;
-    console.log(allVariants)
     object["number_answers"] = rightCount;
     return object;
   }
@@ -262,17 +247,14 @@ class createTestForm extends Component {
     var formData = form;
     var propName = null;
     var propValue = null;
-    console.log(form)
     let groupObj = groupsObject;
     formData.forEach((value, key) => {
 
       if (key === "groupName") {
-        console.log(value)
         propName = value;
       }
       if (key === "groupTimer") {
         propValue = value;
-        console.log(value)
       }
     })
     if (propName) {
@@ -281,7 +263,6 @@ class createTestForm extends Component {
       }
       groupObj[propName] = propValue;
     }
-    console.log(groupObj)
     setGroupObject(groupObj);
   }
   handleGroups(value, groupsObject, groupsTimerState) {
@@ -315,18 +296,15 @@ class createTestForm extends Component {
       questArr.forEach(
         elem => {
           if (Number(elem.group)) {
-            console.log(elem)
             numGroupsArr.push(elem);
           }
           else {
-            console.log(elem)
             stringGroupsArr.push(elem);
           }
         }
       )
       numGroupsArr.sort(this.sortNumber);
       stringGroupsArr.sort(this.sortStrings)
-      console.log(numGroupsArr)
       resultArr = [...numGroupsArr, ...stringGroupsArr]
       this.props.setQuests(resultArr);
       this.OpenHandler();
@@ -434,7 +412,7 @@ class createTestForm extends Component {
               </div>
             </div>
             <div className="create-block__button-div">
-              <button className="create-block__form-button" type="button" onClick={this.handleSubmit}>
+              <button className="create-block__form-button" type="button" onClick={this.handleSubmit} disabled={this.props.results.length===0 || this.props.questions.length===0}>
                 Создать
         </button>
               <button className="create-block__form-button" type="button" onClick={reset}>

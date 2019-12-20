@@ -17,8 +17,6 @@ class ShowAllTests extends Component {
     axios.get('https://psychotestmodule.herokuapp.com/tests/')
       .then((response) => {
         setTests(response.data);
-        console.log(response.data);
-
       })
       .catch(e => {
         console.log(e)
@@ -54,7 +52,6 @@ class ShowAllTests extends Component {
             : null
           }
 
-          {tests ? console.log(tests.length) : ""}
         </div>
 
         <div className="show-tests-block__container">
@@ -79,8 +76,6 @@ class ShowAllTests extends Component {
               ? <button className="show-test-block__swbtn show-test-block__swbtn_right" onClick={() => { this.switchPage(true) }}>Далее</button>
               : null
             }
-
-            {tests ? console.log(tests.length) : ""}
 
           </div>
         </div>

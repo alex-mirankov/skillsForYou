@@ -118,7 +118,6 @@ class manyVarQuest extends Component {
     }
     setQuests(questionsArray);
     this.props.setVariantsCount(0);
-    console.log(JSON.stringify(object))
   }
 
   createSelectItems(results, editVariants, index, editCount) {

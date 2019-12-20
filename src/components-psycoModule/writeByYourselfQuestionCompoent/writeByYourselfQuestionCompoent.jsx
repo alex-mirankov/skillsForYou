@@ -122,7 +122,6 @@ class writeByYourselfQuest extends Component {
     }
 
     setQuests(questionsArray);
-    console.log(object)
   }
   setCurrentQuestionImg() {
     this.setState({ actualImg: this.props.editQuest && this.props.editQuest.questImg ? this.props.editQuest.questImg : "" })
