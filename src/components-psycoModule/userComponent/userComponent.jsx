@@ -81,9 +81,9 @@ class Filter extends Component {
             <ul className="user-block__config-container">
               <li className="user-block__create-test">Создать новый тест <i className="fas fa-angle-down iconTests"></i>
                 <ul className="user-block_create-ul">
-                  <li className="user-block_create-li" onClick={() => { this.goCreateTest('first') }}>Создать тест1</li>
+                  <li className="user-block_create-li" onClick={() => { this.goCreateTest('first') }}>Создать тест</li>
 
-                  <li className="user-block_create-li" onClick={() => { this.goCreateTest('second') }}>Создать тест2</li>
+                  <li className="user-block_create-li" onClick={() => { this.goCreateTest('second') }}>Создать тест(классы)</li>
                 </ul>
               </li>
               <li className="user-block__all-tests" onClick={() => { this.goToTheTests() }}>Все тесты</li>

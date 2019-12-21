@@ -153,6 +153,9 @@
     transition: 0.2s;
     background-color: #fdad00;
 }
+.user-block_create-li_small{
+    font-size: 15px;
+}
 .user-block_search-res{
     width: 30%;
     height: 53px;
