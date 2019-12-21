@@ -1,11 +1,12 @@
-.show-tests-block__switch {
+.show-tests-block__ {
+  &switch {
     margin: 20px auto;
     display: flex;
     justify-content: center;
     width: 40%;
-}
+  }
 
-.show-test-block__swbtn {
+  &swbtn {
     display: block;
     width: 130px;
     height: 46px;
@@ -18,15 +19,16 @@
     font-family: "Gilroy";
     font-size: 18px;
     font-weight: 400;
-}
-.show-test-block__swbtn:focus{
+  }
+  &swbtn:focus {
     outline: none;
-}
-.show-test-block__swbtn_left:hover{
+  }
+  &swbtn_left:hover {
     padding-left: 5px;
     background-color: #fd911e;
-}
-.show-test-block__swbtn_right:hover{
+  }
+  &swbtn_right:hover {
     padding-right: 5px;
     background-color: #fd911e;
+  }
 }

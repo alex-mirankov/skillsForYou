@@ -1,20 +1,21 @@
-.search-res-block__container {
+.search-res-block__ {
+  &container {
     display: block;
-}
-.search-res-block__title{
+  }
+  &title {
     width: 95%;
     margin: 0 auto;
-}
-.search-res-block__label {
+  }
+  &label {
     margin-right: 10px;
     color: #2b2a2a;
     font-family: "Gilroy";
     font-size: 20px;
     font-weight: 400;
     line-height: 24px;
-}
+  }
 
-.search-res-block__input {
+  &input {
     margin-right: 10px;
     padding-left: 8px;
     width: 150px;
@@ -26,16 +27,16 @@
     font-family: "Gilroy";
     font-size: 14px;
     font-weight: 500;
-}
-.search-res-block__input:focus{
+  }
+  &input:focus {
     outline: none;
     color: black;
-}
-.search-res-block__input_list{
+  }
+  &input_list {
     width: 300px;
-}
+  }
 
-.search-res-block__btn {
+  &btn {
     display: inline-block;
     width: 240px;
     height: 46px;
@@ -48,23 +49,22 @@
     font-family: "Gilroy";
     font-size: 18px;
     font-weight: 400;
-}
+  }
 
-.search-res-block__btn:hover {
-    transition: .2s;
+  &btn:hover {
+    transition: 0.2s;
     background-color: #8331be;
-}
+  }
 
-.search-res-block__btn:focus {
+  &btn:focus {
     outline: none;
-}
-.search-res-block__btn_excel{
+  }
+  &btn_excel {
     display: block;
     margin: 10px auto;
     width: 400px;
-   
-}
-.search-res-block__table {
+  }
+  &table {
     margin-top: 20px;
     width: 100%;
     border: 1px solid black;
@@ -74,25 +74,26 @@
     font-size: 20px;
     font-weight: 400;
     line-height: 24px;
-}
+  }
 
-.search-res-block__td {
+  &td {
     border: 1px solid black;
     text-align: center;
-}
+  }
 
-.search-res-block__td_title {
+  &td_title {
     font-weight: 500;
-}
+  }
 
-.search-res-block__td_title:last-child {
+  &td_title:last-child {
     border-right: none;
-}
+  }
 
-.search-res-block__td_result {
+  &td_result {
     width: 40%;
-}
+  }
 
-.search-res-block__tr:hover {
+  &tr:hover {
     background-color: #d09ff3;
+  }
 }

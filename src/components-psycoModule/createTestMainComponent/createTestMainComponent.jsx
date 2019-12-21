@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { Grid, GridColumn } from 'semantic-ui-react';
-import '../../indexStyles.css';
-import './style.css';
+import '../../indexStyles.scss';
+import './style.scss';
 import axios from 'axios';
 import CreateTestContent from "../createTestContentComponent/createTestContentContainer"
 import AddToList from '../addToListComponent/addToListContainer';

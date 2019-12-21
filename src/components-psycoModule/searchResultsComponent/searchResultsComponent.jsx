@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Container } from 'semantic-ui-react';
-import './style.css';
+import './style.scss';
 
-var tst;
 class SearchResults extends Component {
   state = {
     results: [],

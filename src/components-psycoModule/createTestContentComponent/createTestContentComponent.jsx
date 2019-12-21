@@ -3,7 +3,7 @@ import { Field, reduxForm } from 'redux-form'
 import { Grid, GridColumn } from 'semantic-ui-react';
 // import '../../indexStyles.css';
 // import './style.css';
-import './style.css';
+import './style.scss';
 import OneVariantQuestion from '../oneVariantQuestionComponent/oneVariantQuestionContainer';
 import ManyVariantQuestion from '../manyVariantsQuestionComponent/manyVariantsQuestionContainer';
 import SequenceQuestion from '../sequenceQuestionComponent/sequenceQuestionContainer'

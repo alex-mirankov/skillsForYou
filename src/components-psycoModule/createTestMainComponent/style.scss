@@ -1,44 +1,44 @@
 textarea {
-    resize: none;
+  resize: none;
 }
-
-.create-block__container {
+.create-block__ {
+  &container {
     position: relative;
     margin: 0;
     width: 100%;
     display: flex;
     font-family: "Gilroy";
-}
+  }
 
-.create-block__main-form {
+  &main-form {
     padding: 35px;
     border-radius: 10px;
     background-color: #efecec;
-}
+  }
 
-.create-block__input-field {
+  &input-field {
     margin-top: 42px;
     width: 570px;
     display: flex;
     position: relative;
-}
+  }
 
-.create-block__input-field:first-child {
+  &input-field:first-child {
     margin-top: 15px;
-}
+  }
 
-.create-block__label {
+  &label {
     font-size: 19px;
     font-weight: 700;
-}
+  }
 
-.create-block__test-input {
+  &test-input {
     position: absolute;
     right: 0;
     width: 300px;
-}
+  }
 
-.create-block__input-textarea {
+  &input-textarea {
     padding-left: 6px;
     padding-top: 4px;
     width: 300px;
@@ -46,24 +46,24 @@ textarea {
     border-radius: 10px;
     border: 1px solid #b7b7b7;
     background-color: #ffffff;
-}
+  }
 
-.create-block__input-textarea:focus {
+  &input-textarea:focus {
     outline: none;
     border: 1px solid black;
     background-color: rgb(190, 190, 190);
-}
+  }
 
-.create-block__input-textarea_large {
+  &input-textarea_large {
     height: 80px;
-}
+  }
 
-.create-block__input-field input[type=file]::-webkit-file-upload-button {
+  &input-field input[type="file"]::-webkit-file-upload-button {
     visibility: hidden;
-}
+  }
 
-.create-block__input-field input[type=file] {
-    content: 'Select some files';
+  &input-field input[type="file"] {
+    content: "Select some files";
     background: linear-gradient(top, #f9f9f9, #e3e3e3);
     border: 1px solid #999;
     border-radius: 3px;
@@ -74,28 +74,28 @@ textarea {
     text-shadow: 1px 1px #fff;
     font-weight: 700;
     font-size: 10pt;
-}
+  }
 
-.create-block__switches {
+  &switches {
     padding-top: 60px;
     width: 350px;
-}
+  }
 
-.create-block__check {
+  &check {
     position: absolute;
     z-index: -1;
     opacity: 0;
-}
+  }
 
-.create-block__check+label {
+  &check + label {
     position: relative;
     display: block;
     width: 270px;
     cursor: pointer;
-}
+  }
 
-.create-block__check+label:after {
-    content: '\2714';
+  &check + label:after {
+    content: "\2714";
     position: absolute;
     right: -10%;
     padding-top: 2px;
@@ -105,80 +105,61 @@ textarea {
     border-radius: 50%;
     text-align: center;
     color: white;
-}
+  }
 
-.create-block__check:checked+label:after {
+  &check:checked + label:after {
     background-color: #6b2a98;
-}
+  }
 
-.create-block__check:disabled+label:after {
+  &check:disabled + label:after {
     background-color: #5e5d5f;
-}
+  }
 
-.create-block__button-div {
+  &button-div {
     margin-top: 25px;
     display: flex;
     justify-content: space-around;
-}
+  }
 
-.create-block__form-button {
+  &form-button {
     width: 33%;
     height: 45px;
     cursor: pointer;
-    transition: .1s;
+    transition: 0.1s;
     color: white;
     background-color: #ff8400;
     box-shadow: 3px 5px 6px rgba(0, 0, 0, 0.1);
     border: none;
     border-radius: 10px;
     font-size: 20px;
-}
+  }
 
-.create-block__form-button:hover {
+  &form-button:hover {
     background-color: #8527c6;
-}
-.create-block__form-button:disabled {
+  }
+  &form-button:disabled {
     background-color: rgb(145, 133, 133);
     cursor: auto;
-}
+  }
 
-.create-block__form-button:active {
+  &form-button:active {
     background-color: #943bd3;
-}
+  }
 
-.create-block__form-button:focus {
+  &form-button:focus {
     outline: 0;
-}
+  }
 
-.create-block__form-button:last-child {
+  &form-button:last-child {
     margin-right: 0;
-}
+  }
 
-button {
-    margin: 10px 10px 0 0;
-}
-
-.addQuest {
-    position: absolute;
-    right: 0;
-    z-index: 2;
-}
-
-.mainInform {
-    display: flex;
-    width: 400px;
-}
-
-select {
-    width: 200px;
-}
-
-.create-block__questions-cards {
+  &questions-cards {
     margin-top: 30px;
     margin-bottom: 80px;
-}
+  }
 
-.create-block__sort-btn {
+  &sort-btn {
     width: 300px;
     height: 46px;
     margin: 10px;
@@ -191,40 +172,56 @@ select {
     font-family: "Gilroy";
     font-size: 18px;
     font-weight: 400;
-}
+  }
 
-.create-block__sort-btn:hover {
+  &sort-btn:hover {
     background-color: #fc8e19;
-}
+  }
 
-.create-block__sort-btn:active {
+  &sort-btn:active {
     background-color: #f8ab58;
-}
+  }
 
-.create-block__sort-btn:focus {
+  &sort-btn:focus {
     outline: none;
+  }
+  &input-field_hidden {
+    visibility: hidden;
+  }
+}
+button {
+  margin: 10px 10px 0 0;
 }
 
+.addQuest {
+  position: absolute;
+  right: 0;
+  z-index: 2;
+}
+
+.mainInform {
+  display: flex;
+  width: 400px;
+}
+
+select {
+  width: 200px;
+}
 #insertDataOneVariant {
-    display: none;
+  display: none;
 }
 
 #insertDataManyVariant {
-    display: none;
+  display: none;
 }
 
 #insertDataResult {
-    display: none;
+  display: none;
 }
 
 #insertDataSequenceVariant {
-    display: none;
+  display: none;
 }
-
-.create-block__input-field_hidden {
-    visibility: hidden;
-}
-
 .absolute {
-    position: absolute;
+  position: absolute;
 }

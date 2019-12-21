@@ -3,7 +3,7 @@ import axios from 'axios';
 import Cards from '../testCardComponent/testCardContainer';
 import { Container } from 'semantic-ui-react';
 import { Card } from 'semantic-ui-react';
-import './style.css';
+import './style.scss';
 
 
 class ShowAllTests extends Component {
@@ -43,12 +43,12 @@ class ShowAllTests extends Component {
         <div className="show-tests-block__switch">
           {
             this.props.match.params.Npage > 0
-              ? <button className="show-test-block__swbtn show-test-block__swbtn_left" onClick={() => { this.switchPage(false) }}>Назад</button>
+              ? <button className="show-tests-block__swbtn show-tests-block__swbtn_left" onClick={() => { this.switchPage(false) }}>Назад</button>
               : null
           }
 
           {tests && tests.length - (this.props.match.params.Npage+1 * 12) > 1
-            ? <button className="show-test-block__swbtn show-test-block__swbtn_right" onClick={() => { this.switchPage(true) }}>Далее</button>
+            ? <button className="show-tests-block__swbtn show-tests-block__swbtn_right" onClick={() => { this.switchPage(true) }}>Далее</button>
             : null
           }
 
@@ -68,12 +68,12 @@ class ShowAllTests extends Component {
 
             {
               this.props.match.params.Npage > 0
-                ? <button className="show-test-block__swbtn show-test-block__swbtn_left" onClick={() => { this.switchPage(false) }}>Назад</button>
+                ? <button className="show-tests-block__swbtn show-tests-block__swbtn_left" onClick={() => { this.switchPage(false) }}>Назад</button>
                 : null
             }
 
             {tests && tests.length - (this.props.match.params.Npage+1 * 12) > 1
-              ? <button className="show-test-block__swbtn show-test-block__swbtn_right" onClick={() => { this.switchPage(true) }}>Далее</button>
+              ? <button className="show-tests-block__swbtn show-tests-block__swbtn_right" onClick={() => { this.switchPage(true) }}>Далее</button>
               : null
             }
 

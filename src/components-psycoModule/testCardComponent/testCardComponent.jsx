@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Card, Image } from 'semantic-ui-react';
-import './style.css';
+import './style.scss';
 import { withRouter } from 'react-router-dom';
 import DeleteTestComponent from '../deleteTestComponent/deleteTestContainer';
 import testCardImg from '../../images/standart-test-card.png';
@@ -26,9 +26,9 @@ class testCard extends Component {
 
     return (
       <Card className="test-card">
-        <div className="test_card__button-container">
-          {test_owner === userId || userEmail === 'stricozetc@mail.ru' ? <div><div className="test_card__opacity-div"></div>
-            <div className="test_card__btn-div">
+        <div className="test-card__button-container">
+          {test_owner === userId || userEmail === 'stricozetc@mail.ru' ? <div><div className="test-card__opacity-div"></div>
+            <div className="test-card__btn-div">
               <button className="test-card__button" onClick={() => { this.goEditTheTest() }}>изменить</button>
 
               <DeleteTestComponent testId={this.props.currentTest.id}></DeleteTestComponent>

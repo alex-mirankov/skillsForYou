@@ -4,7 +4,7 @@ import { Button, Image, Modal } from 'semantic-ui-react'
 // import validate from '../validate';
 import axios from 'axios';
 import { Container } from 'semantic-ui-react';
-import './style.css';
+import './style.scss';
 
 class testResults extends Component {
   state = {

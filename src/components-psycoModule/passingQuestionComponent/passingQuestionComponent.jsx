@@ -3,7 +3,7 @@ import { reduxForm } from 'redux-form'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
-import "./style.css"
+import "./style.scss"
 import TimerComponent from '../timerComponent/timerContainer'
 
 

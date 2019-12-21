@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Input } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom'
 import axios from 'axios';
-import './style.css';
+import './style.scss';
 class Filter extends Component {
 
   constructor(props) {
@@ -80,10 +80,10 @@ class Filter extends Component {
           <div className="user-block__tests-config">
             <ul className="user-block__config-container">
               <li className="user-block__create-test">Создать новый тест <i className="fas fa-angle-down iconTests"></i>
-                <ul className="user-block_create-ul">
-                  <li className="user-block_create-li" onClick={() => { this.goCreateTest('first') }}>Создать тест</li>
+                <ul className="user-block__create-ul">
+                  <li className="user-block__create-li" onClick={() => { this.goCreateTest('first') }}>Создать тест</li>
 
-                  <li className="user-block_create-li" onClick={() => { this.goCreateTest('second') }}>Создать тест(классы)</li>
+                  <li className="user-block__create-li user-block__create-li_small" onClick={() => { this.goCreateTest('second') }}>Создать тест(классы)</li>
                 </ul>
               </li>
               <li className="user-block__all-tests" onClick={() => { this.goToTheTests() }}>Все тесты</li>
@@ -99,10 +99,10 @@ class Filter extends Component {
                   placeholder="Введите запрос"></Input>
               </li>
               <li className="user-block__filter">Фильтр <i className="fas fa-angle-down iconFilter"></i>
-                <ul className="user-block_filter-ul">
-                  <li className="user-block_filter-li" onClick={setFilter.bind(this, 'All')}>Все</li>
-                  <li className="user-block_filter-li" onClick={setFilter.bind(this, 'title')}>По алфавиту</li>
-                  <li className="user-block_filter-li" onClick={setFilter.bind(this, 'author')}>По автору</li>
+                <ul className="user-block__filter-ul">
+                  <li className="user-block__filter-li" onClick={setFilter.bind(this, 'All')}>Все</li>
+                  <li className="user-block__filter-li" onClick={setFilter.bind(this, 'title')}>По алфавиту</li>
+                  <li className="user-block__filter-li" onClick={setFilter.bind(this, 'author')}>По автору</li>
                 </ul>
               </li>
             </ul>
@@ -110,7 +110,7 @@ class Filter extends Component {
             <ul className="user-block__config-container">
               <li className="user-block__search-container" ></li>
 
-              <li className="user-block_search-res" onClick={() => { this.goSearchResults() }}>Поиск результатов</li>
+              <li className="user-block__search-res" onClick={() => { this.goSearchResults() }}>Поиск результатов</li>
             </ul>
           </div>
 

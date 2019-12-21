@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Card } from 'semantic-ui-react';
 import VariantsInfo from '../variantsInfoListComponent/variantsInfoListContainer'
-import './addToListStyle.css';
+import './addToListStyle.scss';
 
 import OneVariantQuestion from '../oneVariantQuestionComponent/oneVariantQuestionContainer';
 import ManyVariantQuestion from '../manyVariantsQuestionComponent/manyVariantsQuestionContainer';

@@ -1,8 +1,9 @@
-.passing-block__btn-div {
+.passing-block__ {
+  &btn-div {
     position: relative;
-}
+  }
 
-.passing-block__button {
+  &button {
     margin: 30px 20px 30px 0;
     width: 165px;
     height: 38px;
@@ -16,22 +17,22 @@
     font-family: "Gilroy";
     font-size: 18px;
     font-weight: 600;
-}
+  }
 
-.passing-block__button:hover {
+  &button:hover {
     transition: 0.2s;
     background-color: #842cc1;
-}
+  }
 
-.passing-block__button:first-child {
+  &button:first-child {
     margin-left: 120px;
-}
+  }
 
-.passing-block__button_large {
+  &button_large {
     width: 310px;
-}
+  }
 
-.passing-block__results {
+  &results {
     display: none;
     margin-bottom: 20px;
     padding: 20px;
@@ -39,9 +40,9 @@
     font-family: "Gilroy";
     font-size: 18px;
     font-weight: 400;
-}
+  }
 
-.passing-block__result-div-item {
+  &result-div-item {
     margin-top: 10px;
     padding: 8px;
     border: solid 3px #ff8400;
@@ -49,24 +50,24 @@
     font-family: "Gilroy";
     font-size: 18px;
     font-weight: 400;
-}
+  }
 
-.passing-block__question-map-container {
+  &question-map-container {
     width: 100%;
     margin-bottom: 10px;
     overflow-y: auto;
-}
+  }
 
-.passing-block__question-map {
+  &question-map {
     height: 120px;
     margin: 10px 0;
     padding: 0;
     display: flex;
     flex-wrap: wrap;
     list-style: none;
-}
+  }
 
-.passing-block__question-map-item {
+  &question-map-item {
     display: block;
     margin: 3px 10px;
     width: 57px;
@@ -81,32 +82,32 @@
     font-size: 30px;
     font-weight: 600;
     line-height: 54px;
-}
+  }
 
-.passing-block__question-map-item_disabled {
+  &question-map-item_disabled {
     display: none;
-}
+  }
 
-.passing-block__question-map-item:hover {
+  &question-map-item:hover {
     background-color: #842cc1;
-}
+  }
 
-.passing-block__question-map-item_answered {
+  &question-map-item_answered {
     background-color: rgb(38, 86, 177);
-}
+  }
 
-.passing-block__question-map-item_active {
+  &question-map-item_active {
     background-color: #842cc1;
-}
+  }
 
-.passing-block__decorate {
+  &decorate {
     position: absolute;
     width: 20%;
     bottom: -35px;
     right: 0;
-}
+  }
 
-.passing-block__end-btn {
+  &end-btn {
     margin-top: 10px;
     width: 300px;
     height: 46px;
@@ -122,14 +123,15 @@
     font-family: "Gilroy";
     font-size: 18px;
     font-weight: 400;
-}
+  }
 
-.passing-block__end-btn:hover {
+  &end-btn:hover {
     padding-left: 5px;
     background-color: #ff9626;
-}
+  }
 
-.passing-block__end-btn:active {
+  &end-btn:active {
     padding-left: 5px;
     background-color: #f0a351;
+  }
 }
