@@ -67,7 +67,7 @@ class Filter extends Component {
           <div className="user-block__profile">
             <div className="user-block__logo">
               <div className="user-block__logo-content">
-                <p className="user-block__logo-text">TT</p>
+                <p className="user-block__logo-text">{userFullName ? userFullName.substr(0, 1).toUpperCase() : null}</p>
               </div>
             </div>
             <div className="user-block__info">
