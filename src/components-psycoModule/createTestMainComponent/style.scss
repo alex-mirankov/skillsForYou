@@ -188,6 +188,15 @@ textarea {
   &input-field_hidden {
     visibility: hidden;
   }
+  &complete-label{
+    color:green;
+    font-family: Gilroy;
+    font-size: 21px;
+    font-weight: 600;
+  }
+  &complete-label::after{
+    content: '   \2713';
+  }
 }
 button {
   margin: 10px 10px 0 0;

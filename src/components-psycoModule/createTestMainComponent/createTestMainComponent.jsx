@@ -355,7 +355,9 @@ class createTestForm extends Component {
             <div className='create-block__input-field'>
               <label className="create-block__label">Логотип теста</label>
               <div className='create-block__test-input'>
-                <input type="file" name="test_img" onChange={this.FileSelectedHendler}></input><br></br>
+                <input type="file" name="test_img" onChange={this.FileSelectedHendler}></input>
+                {this.state.actualImg ? <label className='create-block__complete-label'></label> : null}
+                <br></br>
               </div>
             </div>
             <div className='create-block__input-field'>
@@ -412,7 +414,7 @@ class createTestForm extends Component {
               </div>
             </div>
             <div className="create-block__button-div">
-              <button className="create-block__form-button" type="button" onClick={this.handleSubmit} disabled={this.props.results.length===0 || this.props.questions.length===0}>
+              <button className="create-block__form-button" type="button" onClick={this.handleSubmit} disabled={this.props.results.length === 0 || this.props.questions.length === 0}>
                 Создать
         </button>
               <button className="create-block__form-button" type="button" onClick={reset}>
