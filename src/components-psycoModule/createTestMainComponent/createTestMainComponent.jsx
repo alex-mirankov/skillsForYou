@@ -25,6 +25,9 @@ class createTestForm extends Component {
   componentWillMount() {
     this.props.changeTestType(this.props.match.params.testType);
     if (this.props.editTest) {
+      if (this.props.editTest.test_img && this.props.editTest.test_img !== 'null') {
+        this.setState({ actualImg: this.props.editTest.test_img });
+      }
       this.props.changeTestType(this.props.editTest.test_type);
       this.props.setQuests(this.props.editTestContent);
       this.props.setResults(this.props.editTestResults);

@@ -38,7 +38,7 @@ class testCard extends Component {
           <Image id="cardImage"
             src={test_img !== 'null' ?
               test_img
-              : testCardImg} >
+              : testCardImg}>
 
           </Image>
 
