@@ -56,7 +56,7 @@ export class MyselfCabinetWithRedux extends React.Component {
               <div className="my-self-cabinet-olympiad-list">
                 <div className="my-self-cabinet-olympiad-list__name">{olympiad.name}</div>
                 <div className="my-self-cabinet-olympiad-list__start-date">
-                  {new Date(olympiad.start_olympiad).toLocaleString()}
+                  {new Date(olympiad.start_olympiad).toLocaleDateString()}
                 </div>
                 <ButtonAll content={'Участвовать'}
                   action={() => this.goToSelectOlympic(olympiad.id)}
