@@ -1,21 +1,27 @@
 @import "../../../styles/constants.scss";
 
-.button-all {
-  width: 170px;
-  height: 44px;
+.button {
+  &-all {
+    width: 170px;
+    height: 44px;
+  
+    border-radius: 10px;
+    border: none;
+    background-color: $baseBackgroundButtonColor;
+    cursor: pointer;
+    display: block;
+    outline: none;
+  
+    color: $baseLightFontColor;
+    font-family: $baseBoldFont;
+    font-size: 1.28rem;
+    font-weight: 400;
+    text-align: center;
+  
+    box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.3);
+  }
 
-  border-radius: 10px;
-  border: none;
-  background-color: $baseBackgroundButtonColor;
-  cursor: pointer;
-  display: block;
-  outline: none;
-
-  color: $baseLightFontColor;
-  font-family: $baseBoldFont;
-  font-size: 1.28rem;
-  font-weight: 400;
-  text-align: center;
-
-  box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.3);
+  &-disabled {
+    background-color: $baseBorderSelectColor;
+  }
 }

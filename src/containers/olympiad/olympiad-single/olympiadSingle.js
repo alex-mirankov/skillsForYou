@@ -89,12 +89,8 @@ class OlympiadSingleComponent extends React.Component {
           olympiad_id={'1'} />
         <Pager allTasks={this.state.allTasks}
           currentPage={this.props.olympiadId} />
-        {
-          this.state.allTasks.length === this.props.olympiadId
-            ? <ButtonAll action={this.showOlympiadResults}
-              content={'Завершить олимпиаду'} />
-            : null
-        }
+        <ButtonAll action={this.showOlympiadResults}
+                  content={'Завершить олимпиаду'}/>
       </div>
     </div>
   )

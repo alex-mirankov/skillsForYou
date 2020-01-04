@@ -32,6 +32,14 @@ export class MyselfCabinetWithRedux extends React.Component {
     });
   }
 
+  validationDate = (endDate) => {
+    if (new Date(endDate) > new Date()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   goToSelectOlympic = (id) => {
     history.push(`/olympic-single/${id}`);
   }
@@ -51,7 +59,8 @@ export class MyselfCabinetWithRedux extends React.Component {
                   {new Date(olympiad.start_olympiad).toLocaleString()}
                 </div>
                 <ButtonAll content={'Участвовать'}
-                  action={() => this.goToSelectOlympic(olympiad.id)} />
+                  action={() => this.goToSelectOlympic(olympiad.id)}
+                  isDisabled={this.validationDate(olympiad.end_olympiad)}/>
               </div>
             );
           })
