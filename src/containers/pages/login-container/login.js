@@ -6,6 +6,7 @@ import { history } from '../../../services/redux';
 import {
   InputRegistrationForm,
   ButtonAll,
+  CircularIndeterminate,
 } from '../../../components/share';
 
 export const authInputStyle = {
@@ -30,6 +31,7 @@ export class Login extends Component {
   state = {
     email: '',
     password: '',
+    isLoaderShown: false,
   };
 
   handleRegistrationClick = () => {
@@ -50,12 +52,19 @@ export class Login extends Component {
   };
 
   handleSubmit = () => {
+    this.setState({
+      isLoaderShown: true,
+    });
     axios.post('http://165.22.92.120:81/login/', this.state)
       .then(res => {
         localStorage.setItem('token', res.data.token);
         history.push('/');
       })
-      .catch(_error => { })
+      .catch(_error => {
+        this.setState({
+          isLoaderShown: false,
+        });
+      })
   };
 
   LoginLayout = () => (
@@ -78,6 +87,11 @@ export class Login extends Component {
         <ButtonAll action={this.handleSubmit}
                     content={'Войти'}
                     styles={submitBtnStyles} />
+        {
+          this.state.isLoaderShown
+            ? <CircularIndeterminate />
+            : null
+        }
       </div>
     </section>
   );

@@ -5,7 +5,11 @@ import { history } from "../../../services/redux";
 import axios from 'axios';
 
 import { fields } from './fields';
-import { InputRegistrationForm, ButtonAll } from '../../../components/share';
+import {
+  InputRegistrationForm,
+  ButtonAll,
+  CircularIndeterminate,
+} from '../../../components/share';
 import { authInputStyle, submitBtnStyles } from '../login-container/login';
 export class Registration extends Component {
   fields = fields;
@@ -15,6 +19,7 @@ export class Registration extends Component {
     password: "",
     password_confirm: "",
     is_teacher: false,
+    isLoaderShown: false,
   };
 
   handleChangeEmail = event => {
@@ -63,13 +68,19 @@ export class Registration extends Component {
       avatar: avatar,
     };
     if (this.state.password === this.state.password_confirm) {
-      axios.post('http://165.22.92.120:81/registration/', this.state)
-      .then(res => {
-        console.log(res);
+      this.setState({
+        isLoaderShown: true,
+      });
+      axios.post('http://165.22.92.120:81/registration/', fields)
+      .then(_res => {
         history.push('/login');
+
       })
       .catch(error => {
         console.log(error);
+        this.setState({
+          isLoaderShown: true,
+        });
       });
     } else { }
   };
@@ -105,6 +116,11 @@ export class Registration extends Component {
             this.state.password === this.state.password_confirm
             ? null
             : <p>Пароли не совпадают</p>
+          }
+          {
+            this.state.isLoaderShown
+              ? <CircularIndeterminate />
+              : null
           }
       </div>
     </section>
