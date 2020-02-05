@@ -36,7 +36,7 @@ class OlympiadRegistrationFormComponent extends React.Component {
     let params = {
       headers: { 'Authorization': 'Token ' + this.state.token }
     };
-    axios.post('http://165.22.92.120:81/olympiad/registration', { olympiad_id: this.state.olympiadId }, params)
+    axios.post('http://165.22.92.120:82/olympiad/registration', { olympiad_id: this.state.olympiadId }, params)
       .then(data => {
         this.props.closeWindowComp();
       })
@@ -47,7 +47,7 @@ class OlympiadRegistrationFormComponent extends React.Component {
     let params = {
       headers: { 'Authorization': 'Token ' + this.state.token }
     };
-    axios.get('http://165.22.92.120:81/olympiad', params)
+    axios.get('http://165.22.92.120:82/olympiad', params)
       .then(data => {
         this.setState({
           olympiadList: data.data,

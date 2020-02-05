@@ -16,7 +16,7 @@ export class MyselfCabinetWithRedux extends React.Component {
     let params = {
       headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
     };
-    axios.get('http://165.22.92.120:81/me', params)
+    axios.get('http://165.22.92.120:82/me', params)
       .then((data) => {
         console.log(data.data)
         this.getUserOlympiads(data.data.olympiad_list);
@@ -59,8 +59,7 @@ export class MyselfCabinetWithRedux extends React.Component {
                   {new Date(olympiad.start_olympiad).toLocaleDateString()}
                 </div>
                 <ButtonAll content={'Участвовать'}
-                  action={() => this.goToSelectOlympic(olympiad.id)}
-                  isDisabled={this.validationDate(olympiad.end_olympiad)}/>
+                  action={() => this.goToSelectOlympic(olympiad.id)}/>
               </div>
             );
           })

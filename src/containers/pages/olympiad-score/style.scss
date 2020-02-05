@@ -12,14 +12,26 @@
   }
 
   &__table {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     padding: 15px;
+    border-collapse: collapse;
     width: 80%;
     margin: 20px auto;
-    border-top: 2px solid $baseBorderCabinerColor;
-    border-bottom: 2px solid $baseBorderCabinerColor;
+  
+    &-row-header {
+      background: $baseOlympiacNumberBackground;
+    }
+
+    &-ceil-header {
+      border: 1px solid $baseDivideBackrground;
+      text-align: center;
+      
+    }
+
+    &-ceil-body {
+      height: 50px;
+      padding: 15px;
+      border: 1px solid $baseDivideBackrground;
+    }
   }
 
   &__loader {

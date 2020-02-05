@@ -38,7 +38,7 @@ export class TeacherRegistration extends Component {
       avatar: avatar,
     };
     if (this.state.password === this.state.password_confirm) {
-      axios.post('http://165.22.92.120:81/registration/', this.state)
+      axios.post('http://165.22.92.120:82/registration/', this.state)
       .then(e => {
         history.push('/login');
       })

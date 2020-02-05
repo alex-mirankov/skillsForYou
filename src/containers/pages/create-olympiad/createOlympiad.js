@@ -250,7 +250,7 @@ export class CreateOlympiadPageWithRedux extends React.Component {
         })
       }, 4000);
 
-      axios.post('http://165.22.92.120:81/olympiad/create/', this.state.olympiad, params)
+      axios.post('http://165.22.92.120:82/olympiad/create/', this.state.olympiad, params)
         .then(data => {
         })
         .catch(e => {

@@ -9,6 +9,9 @@ import { CircularIndeterminate } from '../../../components';
 export class OlympiadScorePageWithRedux extends React.Component {
   state = {
     results: [],
+    tasks: [],
+    tableRowHeader: ['RK', 'TEAM', 'SLV.', 'TIME'],
+    renderArr: [''],
   };
 
   componentDidMount() {
@@ -19,8 +22,17 @@ export class OlympiadScorePageWithRedux extends React.Component {
     let params = {
       headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
     };
-    axios.get('http://165.22.92.120:81/olympiad/1/score', params)
+    axios.get('http://165.22.92.120:82/olympiad/1/score', params)
       .then((data) => {
+        axios.get('http://165.22.92.120:82/olympiad', params)
+          .then(data => {
+            this.setState({
+              tasks: data.data[0].task,
+            });
+          })
+          .catch(e => {
+            console.log(e);
+          });
         this.getSoreFromAllUsers(data.data);
       })
       .catch((e) => {
@@ -47,12 +59,45 @@ export class OlympiadScorePageWithRedux extends React.Component {
       {
         this.state.results.length === 0
           ? <div className="olympiad-score__loader"><CircularIndeterminate /></div>
-          : this.state.results.map(item => {
+          : this.state.renderArr.map(item => {
             return (
-              <div className="olympiad-score__table">
-                <div>Участник: {item.participant}</div>
-                <div>Результат: {item.score}</div>
-              </div>
+              <table className="olympiad-score__table">
+                <tr className="olympiad-score__table-row-header">
+                  {
+                    this.state.tableRowHeader.map(item => {
+                      return (
+                        <td className="olympiad-score__table-ceil-header">{item}</td>
+                      );
+                    })
+                  }
+                  {
+                    this.state.tasks.map((_item, index) => {
+                      return (
+                        <td className="olympiad-score__table-ceil-header">{index + 1}</td>
+                      );
+                    })
+                  }
+                </tr>
+                {
+                  this.state.results.map(item => {
+                    return (
+                      <tr className="olympiad-score__table-row-body">
+                        <td className="olympiad-score__table-ceil-body">1</td>
+                        <td className="olympiad-score__table-ceil-body">Team</td>
+                        <td className="olympiad-score__table-ceil-body">Slv.</td>
+                        <td className="olympiad-score__table-ceil-body">Time</td>
+                        {
+                          this.state.tasks.map((_item, index) => {
+                            return (
+                              <td className="olympiad-score__table-ceil-body">{index + 1}</td>
+                            );
+                          })
+                        }
+                    </tr>
+                    );
+                  })
+                }
+              </table>
             );
           })
       }
