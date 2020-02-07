@@ -84,8 +84,8 @@ class OlympiadSingleComponent extends React.Component {
           comleteTasks={this.state.comleteTasks} />
         <OlympicTask allTasks={this.state.allTasks}
           olympiadId={this.props.olympiadId} />
-        <Compile path={'http://165.22.92.120:82/olympiad/checker'}
-          task_id={this.props.olympiadId}
+        <Compile path={'http://165.22.92.120:82/olympiad/taskcheck'}
+          serial_number={this.props.olympiadId}
           olympiad_id={'1'} />
         <Pager allTasks={this.state.allTasks}
           currentPage={this.props.olympiadId} />

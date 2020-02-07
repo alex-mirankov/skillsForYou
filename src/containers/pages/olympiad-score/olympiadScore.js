@@ -10,7 +10,7 @@ export class OlympiadScorePageWithRedux extends React.Component {
   state = {
     results: [],
     tasks: [],
-    tableRowHeader: ['RK', 'TEAM', 'SLV.', 'TIME'],
+    tableRowHeader: ['RK', 'TEAM'],
     renderArr: [''],
   };
 
@@ -24,6 +24,12 @@ export class OlympiadScorePageWithRedux extends React.Component {
     };
     axios.get('http://165.22.92.120:82/olympiad/1/score', params)
       .then((data) => {
+        data.data.map(item => {
+          item.score = Object.values(item.score);
+        });
+        this.setState({
+          results: data.data,
+        });
         axios.get('http://165.22.92.120:82/olympiad', params)
           .then(data => {
             this.setState({
@@ -33,24 +39,10 @@ export class OlympiadScorePageWithRedux extends React.Component {
           .catch(e => {
             console.log(e);
           });
-        this.getSoreFromAllUsers(data.data);
       })
       .catch((e) => {
         console.log(e);
       });
-  }
-
-  getSoreFromAllUsers = (participants) => {
-    let array = [];
-    for (let item in participants) {
-      array.push({
-        participant: item,
-        score: participants[item].total_score,
-      })
-      this.setState({
-        results: array,
-      });
-    }
   }
 
   renderComponent = () => (
@@ -83,17 +75,17 @@ export class OlympiadScorePageWithRedux extends React.Component {
                     return (
                       <tr className="olympiad-score__table-row-body">
                         <td className="olympiad-score__table-ceil-body">1</td>
-                        <td className="olympiad-score__table-ceil-body">Team</td>
-                        <td className="olympiad-score__table-ceil-body">Slv.</td>
-                        <td className="olympiad-score__table-ceil-body">Time</td>
+                        <td className="olympiad-score__table-ceil-body">{item.participant}</td>
                         {
-                          this.state.tasks.map((_item, index) => {
+                          item.score.map(scoreValue => {
                             return (
-                              <td className="olympiad-score__table-ceil-body">{index + 1}</td>
+                              <>
+                                <td className="olympiad-score__table-ceil-body">{scoreValue}</td>
+                              </>
                             );
                           })
                         }
-                    </tr>
+                      </tr>
                     );
                   })
                 }

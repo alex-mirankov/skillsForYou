@@ -58,6 +58,7 @@ export class Registration extends Component {
       password,
       password_confirm,
       avatar,
+      is_teacher,
     } = this.state;
 
     const fields = {
@@ -66,6 +67,7 @@ export class Registration extends Component {
       password: password,
       password_confirm: password_confirm,
       avatar: avatar,
+      is_teacher: is_teacher,
     };
     if (this.state.password === this.state.password_confirm) {
       this.setState({
