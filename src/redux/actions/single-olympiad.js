@@ -7,9 +7,29 @@ export const setNumericOlympiad = (id) => {
   }
 }
 
-export const setCurrentOlympiadTask = ({ id: id, name: name, description: description }) => {
+export const setCurrentOlympiadTask = ({
+  id: id,
+  name: name,
+  description: description,
+  time_limit: time_limit,
+  input_data: input_data,
+  output_data: output_data,
+  memory_limit: memory_limit,
+  examples: examples,
+  input_type: input_type,
+}) => {
   return {
     type: SET_CURRENT_OLYMPIAD_TASK,
-    payload: { id: id, name: name, description: description }
+    payload: {
+      id: id,
+      name: name,
+      description: description,
+      time_limit: time_limit,
+      input_data: input_data,
+      output_data: output_data,
+      memory_limit: memory_limit,
+      examples: examples,
+      input_type: input_type,
+    }
   }
 }

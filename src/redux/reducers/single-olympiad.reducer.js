@@ -23,6 +23,12 @@ export const singleOlympiad = (state = initialState, action) => {
           id: action.payload.id,
           name: action.payload.name,
           description: action.payload.description,
+          input_data: action.payload.input_data,
+          output_data: action.payload.output_data,
+          memory_limit: action.payload.memory_limit,
+          time_limit: action.payload.time_limit,
+          examples: action.payload.examples,
+          input_type: action.payload.input_type,
         }
       }
     default:

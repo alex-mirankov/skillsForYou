@@ -57,7 +57,17 @@ class OlympiadSingleComponent extends React.Component {
     this.state.allTasks.map(item => {
       if (this.props.olympiadId == item.id) {
         this.props.SetCurrentOlympiadTask(
-          { id: item.id, name: item.name, description: item.task }
+          {
+            id: item.id,
+            name: item.name,
+            description: item.task,
+            input_data: item.input_data,
+            output_data: item.output_data,
+            memory_limit: item.memory_limit,
+            time_limit: item.time_limit,
+            examples: item.examples,
+            input_type: item.input_data_type,
+          }
         )
       };
     });
