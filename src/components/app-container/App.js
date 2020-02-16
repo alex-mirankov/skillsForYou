@@ -50,7 +50,7 @@ class AppComponent extends Component {
 
             <Route exact path="/olympic-single/:id" component={OlympiadSingle} />
             <Route exact path="/olympic-registration" component={OlympiadRegistration} />
-            <Route exact path="/olympiad-score" component={OlympiadScorePage} />
+            <Route exact path="/olympiad-score/:id" component={OlympiadScorePage} />
             <Route exact path="/create-olympiad" component={CreateOlympiadPage} />
 
             <Route exact path="/myself-cabinet" component={MyselfCabinet} />

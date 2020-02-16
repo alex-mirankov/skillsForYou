@@ -52,6 +52,41 @@ export class CreateOlympiadPageWithRedux extends React.Component {
     isExampleAdded: false,
     isTaskAdded: false,
     isOlympiadCreated: false,
+    olympiadId: 0,
+    serialNumber: 0,
+  }
+
+  componentDidMount = () => {
+    let params = {
+      headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
+    };
+    axios.get('http://165.22.92.120:82/olympiad/', params)
+      .then((data) => {
+        this.setState({
+          olympiadId: data.data[data.data.length - 1].id + 1,
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  uploadFiles = () => {
+    let params = {
+      headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
+    };
+    let filesObject = {
+      serial_number: this.state.serialNumber,
+      olympiad_id: this.state.olympiadId,
+      files: this.state.files,
+    };
+    axios.post('http://165.22.92.120:82/fileupload/', filesObject, params)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   handleChangeName = (data) => {
@@ -189,6 +224,7 @@ export class CreateOlympiadPageWithRedux extends React.Component {
     this.setState({
       tasks: tasks,
       isTaskAdded: true,
+      serialNumber: this.state.serialNumber + 1,
     });
 
     setTimeout(() => {
@@ -324,6 +360,8 @@ export class CreateOlympiadPageWithRedux extends React.Component {
             <div>Out</div>
             <input type='file'
               onChange={(e) => this.handleImageChange(e)} />
+            <ButtonAll content={'Загрузить файлы'}
+              action={this.uploadFiles} />
           </div>
           <div className="create-olympiad-general-task__create-btn">
             <ButtonAll content={'Добавить задачу'}

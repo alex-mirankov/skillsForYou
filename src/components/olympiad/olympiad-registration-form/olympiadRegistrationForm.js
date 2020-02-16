@@ -49,6 +49,7 @@ class OlympiadRegistrationFormComponent extends React.Component {
     };
     axios.get('http://165.22.92.120:82/olympiad', params)
       .then(data => {
+        console.log(data);
         this.setState({
           olympiadList: data.data,
         });

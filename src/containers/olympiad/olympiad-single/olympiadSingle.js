@@ -30,13 +30,14 @@ class OlympiadSingleComponent extends React.Component {
     },
     score: 0,
     userName: '',
+    olympiadID: Number(window.location.pathname.match(/\d+/)),
   };
 
   componentDidMount() {
     let params = {
       headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
     };
-    axios.get('http://165.22.92.120:82/olympiad/1', params)
+    axios.get(`http://165.22.92.120:82/olympiad/${this.state.olympiadID}`, params)
       .then(data => {
         this.setState({
           olympiad: data.data,
@@ -84,7 +85,7 @@ class OlympiadSingleComponent extends React.Component {
     this.setState({
       score: score,
     });
-    history.push('/olympiad-score');
+    history.push(`/olympiad-score/${this.state.olympiadID}`);
   }
 
   renderComponent = () => (
@@ -96,7 +97,7 @@ class OlympiadSingleComponent extends React.Component {
           olympiadId={this.props.olympiadId} />
         <Compile path={'http://165.22.92.120:82/olympiad/taskcheck'}
           serial_number={this.props.olympiadId}
-          olympiad_id={'1'} />
+          olympiad_id={this.state.olympiadID} />
         <Pager allTasks={this.state.allTasks}
           currentPage={this.props.olympiadId} />
         <ButtonAll action={this.showOlympiadResults}

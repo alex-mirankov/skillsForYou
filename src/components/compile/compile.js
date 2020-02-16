@@ -34,10 +34,17 @@ export class CompileComponent extends React.Component {
     axios.post(`${this.props.path}`, compileConfig, params)
       .then((responce) => {
         console.log(responce);
-        this.setState({
-          isLoaded: true,
-          checkerText: responce.data.error,
-        });
+        if (responce.data.error === null) {
+          this.setState({
+            isLoaded: true,
+            checkerText: 'Ошибок нет!',
+          });
+        } else {
+          this.setState({
+            isLoaded: true,
+            checkerText: responce.data.error,
+          });
+        }
         this.props.closeWindowComp();
       })
       .catch((error) => {

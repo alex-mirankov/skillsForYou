@@ -44,9 +44,12 @@ export class MyselfCabinetWithRedux extends React.Component {
     history.push(`/olympic-single/${id}`);
   }
 
+  goToResultsOlympic = id => {
+    history.push(`/olympiad-score/${id}`);
+  }
+
   renderComponent = () => (
     <>
-    {console.log(this.state)}
       <div className="my-self-cabinet__header">Участие в олимпиадах:</div>
       {
         !this.state.userOlympiads
@@ -58,8 +61,12 @@ export class MyselfCabinetWithRedux extends React.Component {
                 <div className="my-self-cabinet-olympiad-list__start-date">
                   {new Date(olympiad.start_olympiad).toLocaleDateString()}
                 </div>
-                <ButtonAll content={'Участвовать'}
-                  action={() => this.goToSelectOlympic(olympiad.id)}/>
+                <div>
+                  <ButtonAll content={'Участвовать'}
+                    action={() => this.goToSelectOlympic(olympiad.id)}/>
+                  <ButtonAll content={'Результаты'}
+                    action={() => this.goToResultsOlympic(olympiad.id)}/>
+                </div>
               </div>
             );
           })
@@ -86,4 +93,3 @@ const mapStateToProps = (state) => ({
 });
 
 export const MyselfCabinet = connect(mapStateToProps)(MyselfCabinetWithRedux);
-

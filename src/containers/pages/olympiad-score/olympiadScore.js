@@ -12,6 +12,7 @@ export class OlympiadScorePageWithRedux extends React.Component {
     tasks: [],
     tableRowHeader: ['RK', 'TEAM'],
     renderArr: [''],
+    olympiadID: Number(window.location.pathname.match(/\d+/)),
   };
 
   componentDidMount() {
@@ -22,11 +23,12 @@ export class OlympiadScorePageWithRedux extends React.Component {
     let params = {
       headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
     };
-    axios.get('http://165.22.92.120:82/olympiad/1/score', params)
+    axios.get(`http://165.22.92.120:82/olympiad/${this.state.olympiadID}/score`, params)
       .then((data) => {
         data.data.map(item => {
           item.score = Object.values(item.score);
         });
+        console.log(data);
         this.setState({
           results: data.data,
         });
@@ -69,12 +71,13 @@ export class OlympiadScorePageWithRedux extends React.Component {
                       );
                     })
                   }
+                  <td className="olympiad-score__table-ceil-header">Total</td>
                 </tr>
                 {
-                  this.state.results.map(item => {
+                  this.state.results.map((item, index) => {
                     return (
                       <tr className="olympiad-score__table-row-body">
-                        <td className="olympiad-score__table-ceil-body">1</td>
+                        <td className="olympiad-score__table-ceil-body">{index + 1}</td>
                         <td className="olympiad-score__table-ceil-body">{item.participant}</td>
                         {
                           item.score.map(scoreValue => {
@@ -85,6 +88,7 @@ export class OlympiadScorePageWithRedux extends React.Component {
                             );
                           })
                         }
+                        <td className="olympiad-score__table-ceil-body">{item.total_score}</td>
                       </tr>
                     );
                   })
