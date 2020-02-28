@@ -61,7 +61,7 @@ export class CreateOlympiadPageWithRedux extends React.Component {
     let params = {
       headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
     };
-    axios.get('http://165.22.92.120:82/olympiad/', params)
+    axios.get('http://165.22.92.120:81/olympiad/', params)
       .then((data) => {
         this.setState({
           olympiadId: data.data[data.data.length - 1].id + 1,
@@ -88,7 +88,7 @@ export class CreateOlympiadPageWithRedux extends React.Component {
     };
     let responceFiles = {
       upload: async() => {
-        await fetch('http://165.22.92.120:82/fileupload/tests/', options)
+        await fetch('http://165.22.92.120:81/fileupload/tests/', options)
       }
     }
     responceFiles.upload()
@@ -295,7 +295,7 @@ export class CreateOlympiadPageWithRedux extends React.Component {
       });
       console.log(this.state.olympiad);
 
-      axios.post('http://165.22.92.120:82/olympiad/create/', this.state.olympiad, params)
+      axios.post('http://165.22.92.120:81/olympiad/create/', this.state.olympiad, params)
         .then(data => {
           this.setState({
             isOlympiadCreated: true,

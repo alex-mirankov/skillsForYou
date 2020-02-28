@@ -19,7 +19,7 @@ export class MyselfCabinetWithRedux extends React.Component {
     let params = {
       headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
     };
-    axios.get('http://165.22.92.120:82/me', params)
+    axios.get('http://165.22.92.120:81/me', params)
       .then((data) => {
         console.log(data.data)
         this.getUserOlympiads(data.data.olympiad_list);
@@ -55,7 +55,7 @@ export class MyselfCabinetWithRedux extends React.Component {
     };
     let responceArchive = {
       upload: async() => {
-        await fetch('http://165.22.92.120:82/fileupload/archive/', options)
+        await fetch('http://165.22.92.120:81/fileupload/archive/', options)
       }
     }
     responceArchive.upload()
@@ -101,7 +101,7 @@ export class MyselfCabinetWithRedux extends React.Component {
     let config = {
       olympiad_id: id,
     };
-    axios.post('http://165.22.92.120:82/olympiad/unregistration', config, params)
+    axios.post('http://165.22.92.120:81/olympiad/unregistration', config, params)
       .then((data) => {
         this.getAllUserOlympiads();
       })
@@ -145,7 +145,7 @@ export class MyselfCabinetWithRedux extends React.Component {
                         : null
                       }
                     </form>
-                    <a href={`http://165.22.92.120:82/download/archive/${olympiad.id}`} download>
+                    <a href={`http://165.22.92.120:81/download/archive/${olympiad.id}`} download>
                       <ButtonAll content={'Скачать архив'} />
                     </a>
                     <ButtonAll content={'Прекратить участие'}

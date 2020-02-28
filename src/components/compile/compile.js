@@ -65,7 +65,7 @@ export class CompileComponent extends React.Component {
       serial_number: this.props.serial_number,
       olympiad_id: this.props.olympiad_id,
     };
-    axios.post(`http://165.22.92.120:82/olympiad/checker`, compileConfig, params)
+    axios.post(`http://165.22.92.120:81/olympiad/checker`, compileConfig, params)
       .then((responce) => {
         this.setState({
           isLoaded: true,

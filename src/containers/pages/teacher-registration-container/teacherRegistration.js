@@ -44,7 +44,7 @@ export class TeacherRegistration extends Component {
       this.setState({
         isLoaderShown: true,
       });
-      axios.post('http://165.22.92.120:82/registration/', fields)
+      axios.post('http://165.22.92.120:81/registration/', fields)
       .then(e => {
         history.push('/login');
       })
