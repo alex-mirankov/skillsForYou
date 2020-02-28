@@ -6,7 +6,7 @@ import {
   TextareaCabinet,
   SelectCabinet,
 } from '../index';
-import { ButtonAll } from '../../../components';
+import { ButtonAll, CircularIndeterminate } from '../../../components';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { history } from '../../../services/redux';
@@ -52,8 +52,9 @@ export class CreateOlympiadPageWithRedux extends React.Component {
     isExampleAdded: false,
     isTaskAdded: false,
     isOlympiadCreated: false,
+    isOlympiadCreatedError: false,
     olympiadId: 0,
-    serialNumber: 0,
+    serialNumber: 1,
   }
 
   componentDidMount = () => {
@@ -64,29 +65,43 @@ export class CreateOlympiadPageWithRedux extends React.Component {
       .then((data) => {
         this.setState({
           olympiadId: data.data[data.data.length - 1].id + 1,
-        })
+        });
       })
       .catch((err) => {
         console.log(err);
       });
   }
 
-  uploadFiles = () => {
-    let params = {
-      headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
+  uploadFiles = (e) => {
+    e.preventDefault();
+    this.setState({
+      isFilesLoaderShown: true,
+    });
+    const formData = new FormData(document.getElementById('uploadFiles'));
+    const options = {
+      mode: 'cors',
+      method: 'POST',
+      headers: {
+        'Authorization': 'Token ' + localStorage.getItem('token'),
+      },
+      body: formData,
     };
-    let filesObject = {
-      serial_number: this.state.serialNumber,
-      olympiad_id: this.state.olympiadId,
-      files: this.state.files,
-    };
-    axios.post('http://165.22.92.120:82/fileupload/', filesObject, params)
-      .then((data) => {
-        console.log(data);
+    let responceFiles = {
+      upload: async() => {
+        await fetch('http://165.22.92.120:82/fileupload/tests/', options)
+      }
+    }
+    responceFiles.upload()
+      .then(data => {
+        this.setState({
+          isFilesLoaderShown: false,
+        });
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch(err => {
+        this.setState({
+          isFilesLoaderShown: false,
+        });
+      })
   }
 
   handleChangeName = (data) => {
@@ -219,6 +234,7 @@ export class CreateOlympiadPageWithRedux extends React.Component {
       examples: this.state.examples,
       files: this.state.files,
       examples_images: this.state.examples_images,
+      serial_number: this.state.serialNumber,
     });
 
     this.setState({
@@ -276,20 +292,32 @@ export class CreateOlympiadPageWithRedux extends React.Component {
 
       this.setState({
         olympiad: olympiad,
-        isOlympiadCreated: true,
       });
-
-      setTimeout(() => {
-        this.setState({
-          isOlympiadCreated: false,
-          olympiad: [],
-        })
-      }, 4000);
+      console.log(this.state.olympiad);
 
       axios.post('http://165.22.92.120:82/olympiad/create/', this.state.olympiad, params)
         .then(data => {
+          this.setState({
+            isOlympiadCreated: true,
+          });
+          setTimeout(() => {
+            this.setState({
+              isOlympiadCreated: false,
+              olympiad: [],
+            })
+          }, 4000);
         })
         .catch(e => {
+          this.setState({
+            isOlympiadCreatedError: true,
+            olympiad: [],
+            tasks: [],
+          })
+          setTimeout(() => {
+            this.setState({
+              isOlympiadCreatedError: false,
+            })
+          }, 4000);
           console.log(e);
         });
     } catch {
@@ -353,16 +381,30 @@ export class CreateOlympiadPageWithRedux extends React.Component {
               {this.state.isExampleAdded ? <div>Пример добавлен!</div> : null}
             </div>
           </div>
-          <div className="create-olympiad-general-task-files">
+          <form id="uploadFiles"
+                className="create-olympiad-general-task-files"
+                encType="multipart/form-data">
             <div>In</div>
+            <input value={this.state.olympiadId} name="olympiad_id" style={{display: 'none'}}/>
+            <input value={this.state.serialNumber} name="serial_number" style={{display: 'none'}}/>
             <input type='file'
+              name="files"
               onChange={(e) => this.handleImageChange(e)} />
             <div>Out</div>
             <input type='file'
+              name="files"
               onChange={(e) => this.handleImageChange(e)} />
-            <ButtonAll content={'Загрузить файлы'}
-              action={this.uploadFiles} />
-          </div>
+            <button type="submit"
+                    className="create-olympiad-general-task-files__btn"
+                    onClick={(e) => {this.uploadFiles(e)}}>
+              Загрузить файлы
+            </button>
+            {
+              this.state.isFilesLoaderShown
+              ? <CircularIndeterminate />
+              : null
+            }
+          </form>
           <div className="create-olympiad-general-task__create-btn">
             <ButtonAll content={'Добавить задачу'}
               action={this.addTaskOlympiad} />
@@ -376,6 +418,7 @@ export class CreateOlympiadPageWithRedux extends React.Component {
           action={this.createOlympiad}
           styles={{ width: '50%' }} />
         {this.state.isOlympiadCreated ? <div>Олимпиада создана!</div> : null}
+        {this.state.isOlympiadCreatedError ? <div>Ошибка при создании олимпиады!</div> : null}
       </div>
     </div>
   );

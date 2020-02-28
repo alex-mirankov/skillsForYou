@@ -110,10 +110,10 @@ class HeaderComponent extends Component {
                     onClick={this.handleClickGoTests}>
                 Тесты
             </button>
-            {/* <button className="header-main-page-control__btn"
+            <button className="header-main-page-control__btn"
                     onClick={this.goToCreateOlympiad}>
                 Создать олимпиаду
-            </button> */}
+            </button>
           </React.Fragment>
         </div>
       </header>

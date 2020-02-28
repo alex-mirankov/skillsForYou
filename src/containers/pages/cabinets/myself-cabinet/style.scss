@@ -1,5 +1,30 @@
 @import '../../../../styles/constants.scss';
 
+#uploadArchive {
+  text-align: center;
+  margin-top: 10px;
+
+  &__btn {
+    width: 170px;
+    height: 44px;
+  
+    border-radius: 10px;
+    border: none;
+    background-color: $baseBackgroundButtonColor;
+    cursor: pointer;
+    display: block;
+    outline: none;
+  
+    color: $baseLightFontColor;
+    font-family: $baseBoldFont;
+    font-size: 1.28rem;
+    font-weight: 400;
+    text-align: center;
+  
+    box-shadow: 3px 4px 5px rgba(97, 70, 70, 0.3);
+  }
+}
+
 .my-self-cabinet {
 
   &__header {

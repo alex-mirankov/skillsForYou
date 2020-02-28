@@ -9,10 +9,13 @@ import { connect } from 'react-redux';
 
 export class MyselfCabinetWithRedux extends React.Component {
   state = {
-    userOlympiads: ''
+    userOlympiads: '',
+    olympiadId: '',
+    files: [],
+    isArchiveLoaderShown: false,
   };
 
-  componentDidMount() {
+  getAllUserOlympiads = () => {
     let params = {
       headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
     };
@@ -26,9 +29,52 @@ export class MyselfCabinetWithRedux extends React.Component {
       });
   }
 
+  componentDidMount() {
+    this.getAllUserOlympiads();
+  }
+
   getUserOlympiads = (olymdiads) => {
     this.setState({
       userOlympiads: olymdiads,
+    });
+  }
+
+  uploadArchive = (e) => {
+    e.preventDefault();
+    this.setState({
+      isArchiveLoaderShown: true,
+    });
+    const formData = new FormData(document.getElementById('uploadArchive'));
+    const options = {
+      mode: 'cors',
+      method: 'POST',
+      headers: {
+        'Authorization': 'Token ' + localStorage.getItem('token'),
+      },
+      body: formData,
+    };
+    let responceArchive = {
+      upload: async() => {
+        await fetch('http://165.22.92.120:82/fileupload/archive/', options)
+      }
+    }
+    responceArchive.upload()
+      .then(data => {
+        this.setState({
+          isArchiveLoaderShown: false,
+        });
+      })
+      .catch(err => {
+        this.setState({
+          isArchiveLoaderShown: false,
+        });
+      })
+  }
+
+  handleArchiveChange(e, id) {
+    e.preventDefault();
+    this.setState({
+      olympiadId: id,
     });
   }
 
@@ -48,6 +94,22 @@ export class MyselfCabinetWithRedux extends React.Component {
     history.push(`/olympiad-score/${id}`);
   }
 
+  unsubscribeFromOlympiad = (id) => {
+    let params = {
+      headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
+    };
+    let config = {
+      olympiad_id: id,
+    };
+    axios.post('http://165.22.92.120:82/olympiad/unregistration', config, params)
+      .then((data) => {
+        this.getAllUserOlympiads();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
   renderComponent = () => (
     <>
       <div className="my-self-cabinet__header">Участие в олимпиадах:</div>
@@ -61,11 +123,33 @@ export class MyselfCabinetWithRedux extends React.Component {
                 <div className="my-self-cabinet-olympiad-list__start-date">
                   {new Date(olympiad.start_olympiad).toLocaleDateString()}
                 </div>
-                <div>
+                <div className="my-self-cabinet-olympiad-list__controls">
                   <ButtonAll content={'Участвовать'}
-                    action={() => this.goToSelectOlympic(olympiad.id)}/>
+                    action={() => this.goToSelectOlympic(olympiad.id)}
+                    isDisabled={new Date(olympiad.start_olympiad) < new Date()}/>
                   <ButtonAll content={'Результаты'}
                     action={() => this.goToResultsOlympic(olympiad.id)}/>
+                    <form id="uploadArchive" encType="multipart/form-data">
+                      <input value={olympiad.id} name="olympiad_id" style={{display: 'none'}}/>
+                      <input type='file'
+                              onChange={(e) => this.handleArchiveChange(e, olympiad.id)}
+                              name="files" />
+                      <button id="uploadArchive__btn"
+                              type="submit"
+                              onClick={(e) => {this.uploadArchive(e)}}>
+                        Загрузить архив
+                      </button>
+                      {
+                        this.state.isArchiveLoaderShown
+                        ? <CircularIndeterminate />
+                        : null
+                      }
+                    </form>
+                    <a href={`http://165.22.92.120:82/download/archive/${olympiad.id}`} download>
+                      <ButtonAll content={'Скачать архив'} />
+                    </a>
+                    <ButtonAll content={'Прекратить участие'}
+                              action={() => this.unsubscribeFromOlympiad(olympiad.id)}/>
                 </div>
               </div>
             );

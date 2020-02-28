@@ -19,6 +19,7 @@ export class TeacherRegistration extends Component {
     password: "",
     password_confirm: "",
     is_teacher: true,
+    isLoaderShown: false,
   };
 
   handleSubmit = () => {
@@ -28,6 +29,7 @@ export class TeacherRegistration extends Component {
       password,
       password_confirm,
       avatar,
+      is_teacher,
     } = this.state;
 
     const fields = {
@@ -36,9 +38,13 @@ export class TeacherRegistration extends Component {
       password: password,
       password_confirm: password_confirm,
       avatar: avatar,
+      is_teacher: is_teacher,
     };
     if (this.state.password === this.state.password_confirm) {
-      axios.post('http://165.22.92.120:82/registration/', this.state)
+      this.setState({
+        isLoaderShown: true,
+      });
+      axios.post('http://165.22.92.120:82/registration/', fields)
       .then(e => {
         history.push('/login');
       })
