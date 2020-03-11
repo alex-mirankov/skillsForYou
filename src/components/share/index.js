@@ -8,3 +8,4 @@ export * from './shareCheckBox/shareCheckBox';
 export * from './select-olympiad/selectOlympiad';
 export * from './warning-component/warning';
 export * from './olympiad-select/olympiadSelect';
+export * from './textarea-registration-form/textareaRegistrationForm';

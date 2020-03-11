@@ -33,18 +33,37 @@ export class MyselfCabinetWithRedux extends React.Component {
     this.getAllUserOlympiads();
   }
 
+  getTaskUrl = (olympiadId, serialNumber) => {
+    let params = {
+      headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
+    };
+    let options = {
+      olympiad_id: olympiadId,
+      serial_number: serialNumber,
+    }
+    axios.post('http://165.22.92.120:81/download/decision', options , params)
+      .then((data) => {
+        console.log(data);
+        window.location.assign(`http://165.22.92.120:81/${data.data.url}`);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
   getUserOlympiads = (olymdiads) => {
+    console.log(olymdiads);
     this.setState({
       userOlympiads: olymdiads,
     });
   }
 
-  uploadArchive = (e) => {
+  uploadArchive = (e, olympiadId) => {
     e.preventDefault();
     this.setState({
       isArchiveLoaderShown: true,
     });
-    const formData = new FormData(document.getElementById('uploadArchive'));
+    const formData = new FormData(document.getElementById(`uploadArchive${olympiadId}`));
     const options = {
       mode: 'cors',
       method: 'POST',
@@ -65,17 +84,11 @@ export class MyselfCabinetWithRedux extends React.Component {
         });
       })
       .catch(err => {
+        console.log(err);
         this.setState({
           isArchiveLoaderShown: false,
         });
       })
-  }
-
-  handleArchiveChange(e, id) {
-    e.preventDefault();
-    this.setState({
-      olympiadId: id,
-    });
   }
 
   validationDate = (endDate) => {
@@ -92,6 +105,32 @@ export class MyselfCabinetWithRedux extends React.Component {
 
   goToResultsOlympic = id => {
     history.push(`/olympiad-score/${id}`);
+  }
+
+  olympiadStart = id => {
+    let params = {
+      headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
+    };
+    axios.get(`http://165.22.92.120:81/olympiad/${id}/start`, params)
+    .then((data) => {
+      console.log(data);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
+
+  olympiadEnd = id => {
+    let params = {
+      headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
+    };
+    axios.get(`http://165.22.92.120:81/olympiad/${id}/end`, params)
+    .then((data) => {
+      console.log(data);
+    })
+    .catch(err => {
+      console.log(err);
+    });
   }
 
   unsubscribeFromOlympiad = (id) => {
@@ -124,19 +163,21 @@ export class MyselfCabinetWithRedux extends React.Component {
                   {new Date(olympiad.start_olympiad).toLocaleDateString()}
                 </div>
                 <div className="my-self-cabinet-olympiad-list__controls">
+                  <ButtonAll content={'Начать олимпиаду'}
+                      action={() => this.olympiadStart(olympiad.id)}
+                    />
                   <ButtonAll content={'Участвовать'}
                     action={() => this.goToSelectOlympic(olympiad.id)}
-                    isDisabled={new Date(olympiad.start_olympiad) < new Date()}/>
+                    />
                   <ButtonAll content={'Результаты'}
                     action={() => this.goToResultsOlympic(olympiad.id)}/>
-                    <form id="uploadArchive" encType="multipart/form-data">
+                    <form id={`uploadArchive${olympiad.id}`} encType="multipart/form-data">
                       <input value={olympiad.id} name="olympiad_id" style={{display: 'none'}}/>
                       <input type='file'
-                              onChange={(e) => this.handleArchiveChange(e, olympiad.id)}
                               name="files" />
                       <button id="uploadArchive__btn"
                               type="submit"
-                              onClick={(e) => {this.uploadArchive(e)}}>
+                              onClick={(e) => {this.uploadArchive(e, olympiad.id)}}>
                         Загрузить архив
                       </button>
                       {
@@ -145,11 +186,21 @@ export class MyselfCabinetWithRedux extends React.Component {
                         : null
                       }
                     </form>
-                    <a href={`http://165.22.92.120:81/download/archive/${olympiad.id}`} download>
+                    <a href={`http://skills4u-olymp.ru:81/download/archive/${olympiad.id}`} download>
                       <ButtonAll content={'Скачать архив'} />
                     </a>
+                      {
+                        olympiad.task.map(item => {
+                          return(
+                            <ButtonAll action={() => this.getTaskUrl(olympiad.id, item.serial_number)} content={`Скачать решение ${item.serial_number} задачи`} />
+                          )
+                        })
+                      }
                     <ButtonAll content={'Прекратить участие'}
                               action={() => this.unsubscribeFromOlympiad(olympiad.id)}/>
+                    <ButtonAll content={'Закончить олимпиаду'}
+                      action={() => this.olympiadEnd(olympiad.id)}
+                    />
                 </div>
               </div>
             );

@@ -6,6 +6,7 @@ import axios from 'axios';
 import {
   InputRegistrationForm,
   ButtonAll,
+  TextareaRegistrationForm,
 } from '../../../components/share';
 import {
   authInputStyle,
@@ -17,8 +18,13 @@ export class TeacherRegistration extends Component {
     email: "",
     full_name: "",
     password: "",
-    password_confirm: "",
     is_teacher: true,
+    password_confirm: "",
+    region: '',
+    city: '',
+    place_of_work: '',
+    motivation: '',
+    education: '',
     isLoaderShown: false,
   };
 
@@ -28,8 +34,12 @@ export class TeacherRegistration extends Component {
       full_name,
       password,
       password_confirm,
-      avatar,
       is_teacher,
+      region,
+      city,
+      place_of_work,
+      motivation,
+      education,
     } = this.state;
 
     const fields = {
@@ -37,8 +47,12 @@ export class TeacherRegistration extends Component {
       full_name: full_name,
       password: password,
       password_confirm: password_confirm,
-      avatar: avatar,
       is_teacher: is_teacher,
+      region: region,
+      city: city,
+      place_of_work: place_of_work,
+      motivation: motivation,
+      education: education,
     };
     if (this.state.password === this.state.password_confirm) {
       this.setState({
@@ -55,27 +69,9 @@ export class TeacherRegistration extends Component {
     }
   };
 
-  handleChangeEmail = event => {
+  handleChangeControls = event => {
     this.setState({
-      email: event.target.value
-    });
-  };
-
-  handleChangeFullName = event => {
-    this.setState({
-      full_name: event.target.value
-    });
-  };
-
-  handleChangePassword = event => {
-    this.setState({
-      password: event.target.value
-    });
-  };
-
-  handleChangePasswordConfirm = event => {
-    this.setState({
-      password_confirm: event.target.value
+      [event.target.name]: event.target.value
     });
   };
 
@@ -90,24 +86,51 @@ export class TeacherRegistration extends Component {
         <p className="registration-header__enter-text">Бланк учителя</p>
         <button onClick={this.handleRegistrationTeacherClick}
                 className="registration-header__status">
-          Вы не студент?
+          Вы не учитель?
         </button>
       </div>
       <div className="registration__form">
       <InputRegistrationForm placeHolder={'Электронная почта'}
                               styles={authInputStyle}
-                              action={this.handleChangeEmail} />
+                              action={this.handleChangeControls}
+                              name={'email'} />
         <InputRegistrationForm placeHolder={'Имя'}
                               styles={authInputStyle}
-                              action={this.handleChangeFullName} />
+                              action={this.handleChangeControls}
+                              name={'full_name'} />
         <InputRegistrationForm placeHolder={'Пароль'}
                               styles={authInputStyle}
                               type={'password'}
-                              action={this.handleChangePassword} />
+                              action={this.handleChangeControls}
+                              name={'password'} />
         <InputRegistrationForm placeHolder={'Повторите пароль'}
                               styles={authInputStyle}
                               type={'password'}
-                              action={this.handleChangePasswordConfirm} />
+                              action={this.handleChangeControls}
+                              name={'password_confirm'} />
+        <InputRegistrationForm placeHolder={'Регион'}
+                              styles={authInputStyle}
+                              type={'text'}
+                              action={this.handleChangeControls}
+                              name={'region'} />
+        <InputRegistrationForm placeHolder={'Город'}
+                              styles={authInputStyle}
+                              type={'text'}
+                              action={this.handleChangeControls}
+                              name={'city'} />
+        <InputRegistrationForm placeHolder={'Место работы'}
+                              styles={authInputStyle}
+                              type={'text'}
+                              action={this.handleChangeControls}
+                              name={'place_of_work'} />
+        <InputRegistrationForm placeHolder={'Образование'}
+                              styles={authInputStyle}
+                              type={'text'}
+                              action={this.handleChangeControls}
+                              name={'education'} />
+        <TextareaRegistrationForm placeholder={'Мотивация'}
+                                  action={this.handleChangeControls}
+                                  name={'motivation'}/>
         <ButtonAll action={this.handleSubmit}
                     content={'Зарегистрироваться'}
                     styles={submitBtnStyles} />

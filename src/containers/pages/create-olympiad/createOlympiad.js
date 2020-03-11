@@ -6,10 +6,12 @@ import {
   TextareaCabinet,
   SelectCabinet,
 } from '../index';
-import { ButtonAll, CircularIndeterminate } from '../../../components';
+import { ButtonAll, CircularIndeterminate } from '../../../components/share';
+import { MyModal } from '../../../components/index';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { history } from '../../../services/redux';
+import { openWindow } from '../../../redux/actions/index';
 
 export const inputDataTypeOptions = [
   {
@@ -43,33 +45,22 @@ export class CreateOlympiadPageWithRedux extends React.Component {
     output_data_value: '',
     olympiad_name: '',
     olympiad_duration: 0,
-    olympiad_start: '',
-    olympiad_end: '',
+    olympiad_start: new Date(),
+    olympiad_end: new Date(),
     olympiad_max_participations: '',
-    olympiad: [],
+    olympiad: {},
     examples_images: [],
+    taskCount: [],
 
     isExampleAdded: false,
     isTaskAdded: false,
     isOlympiadCreated: false,
     isOlympiadCreatedError: false,
+    isFilesAvailable: false,
     olympiadId: 0,
     serialNumber: 1,
-  }
-
-  componentDidMount = () => {
-    let params = {
-      headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
-    };
-    axios.get('http://165.22.92.120:81/olympiad/', params)
-      .then((data) => {
-        this.setState({
-          olympiadId: data.data[data.data.length - 1].id + 1,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    serialNumberTask: 1,
+    createOlympiadText: '',
   }
 
   uploadFiles = (e) => {
@@ -104,12 +95,6 @@ export class CreateOlympiadPageWithRedux extends React.Component {
       })
   }
 
-  handleChangeName = (data) => {
-    this.setState({
-      name: data.target.value,
-    });
-  };
-
   handleChangeInputDataType = (data) => {
     this.setState({
       input_data_type: data,
@@ -122,83 +107,17 @@ export class CreateOlympiadPageWithRedux extends React.Component {
     });
   };
 
-  handleChangeMemory = (data) => {
+  handleChangeControl = (data) => {
     this.setState({
-      memory_limit: data.target.value,
+      [data.target.name]: data.target.value,
     });
   };
 
-  handleChangeTime = (data) => {
+  handleChangeTaskFiles = data => {
     this.setState({
-      time_limit: data.target.value,
+      serialNumber: data,
     });
-  };
-
-  handleChangeTaskDescription = (data) => {
-    this.setState({
-      task: data.target.value,
-    });
-  };
-
-  handleChangeInputData = (data) => {
-    this.setState({
-      input_data: data,
-    });
-  };
-
-  handleChangeOutputData = (data) => {
-    this.setState({
-      output_data: data,
-    });
-  };
-
-  handleChangeNumberOfTests = (data) => {
-    this.setState({
-      number_of_tests: data.target.value,
-    });
-  };
-
-  handleChangeInputValue = (data) => {
-    this.setState({
-      input_data_value: data.target.value,
-    });
-  };
-
-  handleChangeOutputValue = (data) => {
-    this.setState({
-      output_data_value: data.target.value,
-    });
-  };
-
-  handleChangeOlympiadName = (data) => {
-    this.setState({
-      olympiad_name: data.target.value,
-    });
-  };
-
-  handleChangeOlympiadDuration = (data) => {
-    this.setState({
-      olympiad_duration: data.target.value,
-    });
-  };
-
-  handleChangeOlympiadStartDate = (data) => {
-    this.setState({
-      olympiad_start: data.target.value,
-    });
-  };
-
-  handleChangeOlympiadEndDate = (data) => {
-    this.setState({
-      olympiad_end: data.target.value,
-    });
-  };
-
-  handleChangeOlympiadMaxParticipations = (data) => {
-    this.setState({
-      olympiad_max_participations: data.target.value,
-    });
-  };
+  }
 
   addExample = () => {
     let examplesArray = this.state.examples;
@@ -221,6 +140,9 @@ export class CreateOlympiadPageWithRedux extends React.Component {
 
   addTaskOlympiad = () => {
     let tasks = this.state.tasks;
+    this.setState({
+      serialNumberTask: this.state.serialNumberTask + 1,
+    });
     tasks.push({
       name: this.state.name,
       input_data_type: this.state.input_data_type,
@@ -234,13 +156,12 @@ export class CreateOlympiadPageWithRedux extends React.Component {
       examples: this.state.examples,
       files: this.state.files,
       examples_images: this.state.examples_images,
-      serial_number: this.state.serialNumber,
+      serial_number: this.state.serialNumberTask,
     });
 
     this.setState({
       tasks: tasks,
       isTaskAdded: true,
-      serialNumber: this.state.serialNumber + 1,
     });
 
     setTimeout(() => {
@@ -274,55 +195,83 @@ export class CreateOlympiadPageWithRedux extends React.Component {
     reader.readAsDataURL(file);
   }
 
+  pushTaskCount = (count) => {
+    let array = [];
+    for(let i = 1; i <= count; i++) {
+      array.push({
+        value: i,
+        text: i
+      });
+    }
+    this.setState({
+      taskCount: array,
+    });
+  }
+
   createOlympiad = () => {
-    try {
       let olympiad = this.state.olympiad;
       let params = {
         headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
       };
 
-      olympiad.push({
+      olympiad = {
         task: this.state.tasks,
         name: this.state.olympiad_name,
         duration: Number(this.state.olympiad_duration),
         start_olympiad: new Date(this.state.olympiad_start).toISOString(),
         end_olympiad: new Date(this.state.olympiad_end).toISOString(),
         max_participations: Number(this.state.olympiad_max_participations),
-      });
+      };
 
       this.setState({
         olympiad: olympiad,
       });
-      console.log(this.state.olympiad);
+      console.log(olympiad);
 
-      axios.post('http://165.22.92.120:81/olympiad/create/', this.state.olympiad, params)
+      axios.post('http://165.22.92.120:81/olympiad/create/', olympiad, params)
         .then(data => {
+          this.pushTaskCount(data.data.task.length);
+          if (data.status === 200 || data.status === 201) {
+            this.setState({
+              createOlympiadText: 'Олимпиада создана. Теперь можно загрузить файлы к задачам'
+            });
+          }
           this.setState({
             isOlympiadCreated: true,
+            isFilesAvailable: true,
+            olympiadId: data.data.id,
           });
           setTimeout(() => {
             this.setState({
               isOlympiadCreated: false,
-              olympiad: [],
+              olympiad: {},
             })
           }, 4000);
+          this.props.closeWindowComp();
         })
         .catch(e => {
+          if (Object.values(e)[2].status === 400) {
+            this.setState({
+              createOlympiadText: 'Ошибка при создании олимпиады. Пожалуйста, проверьте введенные данные'
+            });
+          } else if (Object.values(e)[2].status === 500) {
+            this.setState({
+              createOlympiadText: 'Ошибка при создании олимпиады. Сервер недоступен, попробуйте позже'
+            });
+          }
           this.setState({
             isOlympiadCreatedError: true,
-            olympiad: [],
+            olympiad: {},
             tasks: [],
+            createOlympiadError: e.error
           })
           setTimeout(() => {
             this.setState({
               isOlympiadCreatedError: false,
             })
           }, 4000);
-          console.log(e);
+          this.props.closeWindowComp();
         });
-    } catch {
-      history.push('/');
-    }
   }
 
   renderComponent = () => (
@@ -332,58 +281,79 @@ export class CreateOlympiadPageWithRedux extends React.Component {
       <div className="create-olympiad-general">
         <div className="create-olympiad-general-info">
           <InputCabinet caption={'Название олимпиады'}
-            handleChange={this.handleChangeOlympiadName} />
+                        handleChange={this.handleChangeControl}
+                        name={'olympiad_name'} />
           <InputCabinet caption={'Продолжительность олимпиады'}
-            handleChange={this.handleChangeOlympiadDuration} />
+                        handleChange={this.handleChangeControl}
+                        name={'olympiad_duration'} />
           <InputCabinet caption={'Дата старта'}
-            handleChange={this.handleChangeOlympiadStartDate}
-            placeholder={'mm/dd/yyyy'} 
-            isMaskThere={true}/>
+                        handleChange={this.handleChangeControl}
+                        placeholder={'mm/dd/yyyy'} 
+                        isMaskThere={true}
+                        name={'olympiad_start'} />
           <InputCabinet caption={'Дата окончания'}
-            handleChange={this.handleChangeOlympiadEndDate}
-            placeholder={'mm/dd/yyyy'} 
-            isMaskThere={true}
-            />
+                        handleChange={this.handleChangeControl}
+                        placeholder={'mm/dd/yyyy'}
+                        isMaskThere={true}
+                        name={'olympiad_end'} />
           <InputCabinet caption={'Максимальное количество участников'}
-            handleChange={this.handleChangeOlympiadMaxParticipations} />
+                        handleChange={this.handleChangeControl}
+                        name={'olympiad_max_participations'} />
         </div>
         <div className="create-olympiad-general-task">
           <InputCabinet caption={'Название задачи'}
-            handleChange={this.handleChangeName} />
+                        handleChange={this.handleChangeControl}
+                        name={'name'} />
           <SelectCabinet caption={'Тип входящих данных'}
-            inputValues={inputDataTypeOptions}
-            handleChange={this.handleChangeInputDataType}
-            currentValue={this.state.input_data_type} />
+                        inputValues={inputDataTypeOptions}
+                        handleChange={this.handleChangeInputDataType}
+                        currentValue={this.state.input_data_type} />
           <SelectCabinet caption={'Тип выходящих данных'}
-            inputValues={outputDataTypeOptions}
-            handleChange={this.handleChangeOutputDataType}
-            currentValue={this.state.output_data_type} />
+                        inputValues={outputDataTypeOptions}
+                        handleChange={this.handleChangeOutputDataType}
+                        currentValue={this.state.output_data_type} />
           <InputCabinet caption={'Лимит на память'}
-            handleChange={this.handleChangeMemory} />
+                        handleChange={this.handleChangeControl}
+                        name={'memory_limit'} />
           <InputCabinet caption={'Лимит на время'}
-            handleChange={this.handleChangeTime} />
+                        handleChange={this.handleChangeControl}
+                        name={'time_limit'} />
           <TextareaCabinet caption={'Описание задачи'}
-            handleChange={this.handleChangeTaskDescription} />
+                            handleChange={this.handleChangeControl}
+                            name={'task'} />
           <TextareaCabinet caption={'Входные значения(описание)'}
-            handleChange={this.handleChangeInputData} />
+                            handleChange={this.handleChangeControl}
+                            name={'input_data'} />
           <TextareaCabinet caption={'Выходящие значения(описание)'}
-            handleChange={this.handleChangeOutputData} />
+                            handleChange={this.handleChangeControl}
+                            name={'output_data'} />
           <InputCabinet caption={'Количество тестов'}
-            handleChange={this.handleChangeNumberOfTests} />
+                        handleChange={this.handleChangeControl}
+                        name={'number_of_tests'} />
           <div className="create-olympiad-general-task__examples">
             <InputCabinet caption={'Входные значения'}
-              handleChange={this.handleChangeInputValue} />
+                          handleChange={this.handleChangeControl}
+                          name={'input_data_value'} />
             <InputCabinet caption={'Выходящие значения'}
-              handleChange={this.handleChangeOutputValue} />
+                          handleChange={this.handleChangeControl}
+                          name={'output_data_value'} />
             <div className="create-olympiad-general-task__examples-add-btn">
               <ButtonAll content={'Добавить пример'}
-                action={this.addExample} />
+                          action={this.addExample} />
               {this.state.isExampleAdded ? <div>Пример добавлен!</div> : null}
             </div>
           </div>
           <form id="uploadFiles"
                 className="create-olympiad-general-task-files"
                 encType="multipart/form-data">
+            {
+              this.state.isFilesAvailable
+              ? <SelectCabinet caption={'Задача'}
+                                inputValues={this.state.taskCount}
+                                handleChange={this.handleChangeTaskFiles}
+                                currentValue={this.state.serialNumber} />
+              : null
+            }
             <div>In</div>
             <input value={this.state.olympiadId} name="olympiad_id" style={{display: 'none'}}/>
             <input value={this.state.serialNumber} name="serial_number" style={{display: 'none'}}/>
@@ -394,11 +364,15 @@ export class CreateOlympiadPageWithRedux extends React.Component {
             <input type='file'
               name="files"
               onChange={(e) => this.handleImageChange(e)} />
-            <button type="submit"
-                    className="create-olympiad-general-task-files__btn"
-                    onClick={(e) => {this.uploadFiles(e)}}>
-              Загрузить файлы
-            </button>
+            {
+              this.state.isFilesAvailable
+              ? <button type="submit"
+                        className="create-olympiad-general-task-files__btn"
+                        onClick={(e) => {this.uploadFiles(e)}}>
+                  Загрузить файлы
+                </button>
+              : null
+            }
             {
               this.state.isFilesLoaderShown
               ? <CircularIndeterminate />
@@ -407,7 +381,7 @@ export class CreateOlympiadPageWithRedux extends React.Component {
           </form>
           <div className="create-olympiad-general-task__create-btn">
             <ButtonAll content={'Добавить задачу'}
-              action={this.addTaskOlympiad} />
+                        action={this.addTaskOlympiad} />
             {this.state.isTaskAdded ? <div>Задача добавлена!</div> : null}
           </div>
         </div>
@@ -415,11 +389,12 @@ export class CreateOlympiadPageWithRedux extends React.Component {
 
       <div className="create-olympiad-general-task__submit-btn">
         <ButtonAll content={'Создать олимпиаду'}
-          action={this.createOlympiad}
-          styles={{ width: '50%' }} />
+                    action={this.createOlympiad}
+                    styles={{ width: '50%' }} />
         {this.state.isOlympiadCreated ? <div>Олимпиада создана!</div> : null}
         {this.state.isOlympiadCreatedError ? <div>Ошибка при создании олимпиады!</div> : null}
       </div>
+      <MyModal descriptionText={this.state.createOlympiadText}/>
     </div>
   );
 
@@ -436,5 +411,11 @@ const mapStateToProps = (state) => ({
   user: state.user.userToken,
 });
 
-export const CreateOlympiadPage = connect(mapStateToProps)(CreateOlympiadPageWithRedux);
+const mapDispatchToProps = (dispatch) => ({
+  closeWindowComp: () => {
+    dispatch(openWindow());
+  }
+});
+
+export const CreateOlympiadPage = connect(mapStateToProps, mapDispatchToProps)(CreateOlympiadPageWithRedux);
 

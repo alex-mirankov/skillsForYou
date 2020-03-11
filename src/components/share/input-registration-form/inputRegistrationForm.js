@@ -9,6 +9,7 @@ export const InputRegistrationForm = (props) => {
 			onChange={props.action}
 			style={props.styles}
 			type={props.type}
+			name={props.name}
 		/>
 	);
 }

@@ -55,8 +55,9 @@ class OlympiadSingleComponent extends React.Component {
   }
 
   setCurrentOlympiad = () => {
-    this.state.allTasks.map(item => {
-      if (this.props.olympiadId == item.id) {
+    this.state.allTasks.map((item, index) => {
+      console.log(this.state.allTasks);
+      if (this.props.olympiadId == index + 1) {
         this.props.SetCurrentOlympiadTask(
           {
             id: item.id,

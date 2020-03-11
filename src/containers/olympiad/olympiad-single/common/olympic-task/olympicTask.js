@@ -63,7 +63,7 @@ class OlympicTaskComponent extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  currentTaskNumeric: state.singleOlympiad.currentOlympiad.id,
+  currentTaskNumeric: state.singleOlympiad.numericOlympiad,
   currentTaskName: state.singleOlympiad.currentOlympiad.name,
   currentTaskDescription: state.singleOlympiad.currentOlympiad.description,
   inputData: state.singleOlympiad.currentOlympiad.input_data,

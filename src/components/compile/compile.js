@@ -33,7 +33,6 @@ export class CompileComponent extends React.Component {
     };
     axios.post(`${this.props.path}`, compileConfig, params)
       .then((responce) => {
-        console.log(responce);
         if (responce.data.error === null) {
           this.setState({
             isLoaded: true,
@@ -48,7 +47,12 @@ export class CompileComponent extends React.Component {
         this.props.closeWindowComp();
       })
       .catch((error) => {
-        console.log(error);
+        if(Object.value(error)[2].status === 500) {
+          this.setState({
+            checkerText: 'Ошибка на сервере',
+          });
+        }
+        this.props.closeWindowComp();
       })
     setTimeout(() => {
       this.isLoaded();
@@ -67,13 +71,25 @@ export class CompileComponent extends React.Component {
     };
     axios.post(`http://165.22.92.120:81/olympiad/checker`, compileConfig, params)
       .then((responce) => {
+        if (responce.data.error === null) {
+          this.setState({
+            isLoaded: true,
+            checkerText: 'Ошибок нет! Решение отправлено',
+          });
+        }
         this.setState({
           isLoaded: true,
         });
-        sessionStorage.setItem(`task${compileConfig.task_id}`, responce.data.score)
+        sessionStorage.setItem(`task${compileConfig.task_id}`, responce.data.score);
+        this.props.closeWindowComp();
       })
       .catch((error) => {
-        console.log(error);
+        if(Object.value(error)[2].status === 500) {
+          this.setState({
+            checkerText: 'Ошибка на сервере',
+          });
+        }
+        this.props.closeWindowComp();
       })
     setTimeout(() => {
       this.isLoaded();
@@ -111,11 +127,6 @@ export class CompileComponent extends React.Component {
           <ButtonAll content={'Отправить финальный результат'}
             action={this.compileSendToFinale}
           />
-          {
-            this.state.isLoaded
-              ? <p class="compile__text">Задача отправлена!</p>
-              : null
-          }
         </div>
         <MyModal descriptionText={this.state.checkerText}/>
       </div>

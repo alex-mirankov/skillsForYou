@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
 import axios from 'axios';
 import './style.scss';
 
@@ -8,6 +9,8 @@ import {
   ButtonAll,
   CircularIndeterminate,
 } from '../../../components/share';
+import { MyModal } from '../../../components/index';
+import { openWindow } from '../../../redux/actions/index';
 
 export const authInputStyle = {
   background: '#fff',
@@ -27,7 +30,7 @@ export const submitBtnStyles = {
   marginTop: '40px',
 }
 
-export class Login extends Component {
+export class LoginComponent extends Component {
   state = {
     email: '',
     password: '',
@@ -39,28 +42,27 @@ export class Login extends Component {
     document.documentElement.scrollTop = 0;
   };
 
-  handleChangeLogin = event => {
+  handleChangeControl = event => {
     this.setState({
-      email: event.target.value,
+      [event.target.name]: event.target.value,
     });
-  };
-
-  handleChangePassword = event => {
-    this.setState({
-      password: event.target.value,
-    });
-  };
+  }
 
   handleSubmit = () => {
     this.setState({
       isLoaderShown: true,
     });
-    axios.post('http://165.22.92.120:81/login/', this.state)
+    let options = {
+      email: this.state.email,
+      password: this.state.password
+    }
+    axios.post('http://165.22.92.120:81/login/', options)
       .then(res => {
         localStorage.setItem('token', res.data.token);
         history.push('/');
       })
       .catch(_error => {
+        this.props.closeWindowComp();
         this.setState({
           isLoaderShown: false,
         });
@@ -79,11 +81,13 @@ export class Login extends Component {
       <div className="login-form">
         <InputRegistrationForm placeHolder={'Логин'}
                               styles={authInputStyle}
-                              action={this.handleChangeLogin} />
+                              action={this.handleChangeControl}
+                              name={'email'} />
         <InputRegistrationForm placeHolder={'Пароль'}
                               styles={authInputStyle}
                               type={'password'}
-                              action={this.handleChangePassword} />
+                              action={this.handleChangeControl}
+                              name={'password'} />
         <ButtonAll action={this.handleSubmit}
                     content={'Войти'}
                     styles={submitBtnStyles} />
@@ -93,9 +97,18 @@ export class Login extends Component {
             : null
         }
       </div>
+      <MyModal descriptionText={'Неправильный логин или пароль'}/>
     </section>
   );
   render() {
     return <this.LoginLayout />;
   }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  closeWindowComp: () => {
+    dispatch(openWindow());
+  }
+});
+
+export const Login = connect(null, mapDispatchToProps)(LoginComponent);

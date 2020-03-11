@@ -25,8 +25,8 @@ class PagerComponent extends React.Component {
         {
           allTasks.map((item, index) => {
             return (
-              <div className={`pager__numeric ${item.id === this.state.currentPage ? 'pager__numeric-active' : null}`}
-                onClick={() => this.handlePagerChange(item.id)}>
+              <div className={`pager__numeric ${index + 1 === this.state.currentPage ? 'pager__numeric-active' : null}`}
+                onClick={() => this.handlePagerChange(index + 1)}>
                 {index + 1}
               </div>
             );

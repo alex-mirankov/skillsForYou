@@ -28,15 +28,21 @@ export class OlympiadScorePageWithRedux extends React.Component {
         data.data.map(item => {
           item.score = Object.values(item.score);
         });
-        console.log(data);
+        console.log(data.data);
         this.setState({
           results: data.data,
         });
         axios.get('http://165.22.92.120:81/olympiad', params)
           .then(data => {
-            this.setState({
-              tasks: data.data[0].task,
+            let olympiad = data.data.find((element) => {
+              if (element.id == this.state.olympiadID) {
+                return true;
+              }
             });
+            this.setState({
+              tasks: olympiad.task,
+            });
+            console.log(data.data);
           })
           .catch(e => {
             console.log(e);
@@ -72,6 +78,7 @@ export class OlympiadScorePageWithRedux extends React.Component {
                     })
                   }
                   <td className="olympiad-score__table-ceil-header">Total</td>
+                  <td className="olympiad-score__table-ceil-header">Time</td>
                 </tr>
                 {
                   this.state.results.map((item, index) => {
@@ -89,6 +96,7 @@ export class OlympiadScorePageWithRedux extends React.Component {
                           })
                         }
                         <td className="olympiad-score__table-ceil-body">{item.total_score}</td>
+                        <td className="olympiad-score__table-ceil-body">{item.time}</td>
                       </tr>
                     );
                   })
