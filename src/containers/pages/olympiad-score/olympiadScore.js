@@ -23,7 +23,7 @@ export class OlympiadScorePageWithRedux extends React.Component {
     let params = {
       headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
     };
-    axios.get(`http://165.22.92.120:81/olympiad/${this.state.olympiadID}/score`, params)
+    axios.get(`http://skills4u-olymp.ru:81/olympiad/${this.state.olympiadID}/score`, params)
       .then((data) => {
         data.data.map(item => {
           item.score = Object.values(item.score);
@@ -32,7 +32,7 @@ export class OlympiadScorePageWithRedux extends React.Component {
         this.setState({
           results: data.data,
         });
-        axios.get('http://165.22.92.120:81/olympiad', params)
+        axios.get('http://skills4u-olymp.ru:81/olympiad', params)
           .then(data => {
             let olympiad = data.data.find((element) => {
               if (element.id == this.state.olympiadID) {

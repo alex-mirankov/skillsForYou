@@ -19,7 +19,7 @@ export class MyselfCabinetWithRedux extends React.Component {
     let params = {
       headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
     };
-    axios.get('http://165.22.92.120:81/me', params)
+    axios.get('http://skills4u-olymp.ru:81/me', params)
       .then((data) => {
         console.log(data.data)
         this.getUserOlympiads(data.data.olympiad_list);
@@ -41,10 +41,10 @@ export class MyselfCabinetWithRedux extends React.Component {
       olympiad_id: olympiadId,
       serial_number: serialNumber,
     }
-    axios.post('http://165.22.92.120:81/download/decision', options , params)
+    axios.post('http://skills4u-olymp.ru:81/download/decision', options , params)
       .then((data) => {
         console.log(data);
-        window.location.assign(`http://165.22.92.120:81/${data.data.url}`);
+        window.location.assign(`http://skills4u-olymp.ru:81/${data.data.url}`);
       })
       .catch(err => {
         console.log(err);
@@ -74,7 +74,7 @@ export class MyselfCabinetWithRedux extends React.Component {
     };
     let responceArchive = {
       upload: async() => {
-        await fetch('http://165.22.92.120:81/fileupload/archive/', options)
+        await fetch('http://skills4u-olymp.ru:81/fileupload/archive/', options)
       }
     }
     responceArchive.upload()
@@ -111,7 +111,7 @@ export class MyselfCabinetWithRedux extends React.Component {
     let params = {
       headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
     };
-    axios.get(`http://165.22.92.120:81/olympiad/${id}/start`, params)
+    axios.get(`http://skills4u-olymp.ru:81/olympiad/${id}/start`, params)
     .then((data) => {
       console.log(data);
     })
@@ -124,7 +124,7 @@ export class MyselfCabinetWithRedux extends React.Component {
     let params = {
       headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
     };
-    axios.get(`http://165.22.92.120:81/olympiad/${id}/end`, params)
+    axios.get(`http://skills4u-olymp.ru:81/olympiad/${id}/end`, params)
     .then((data) => {
       console.log(data);
     })
@@ -140,7 +140,7 @@ export class MyselfCabinetWithRedux extends React.Component {
     let config = {
       olympiad_id: id,
     };
-    axios.post('http://165.22.92.120:81/olympiad/unregistration', config, params)
+    axios.post('http://skills4u-olymp.ru:81/olympiad/unregistration', config, params)
       .then((data) => {
         this.getAllUserOlympiads();
       })

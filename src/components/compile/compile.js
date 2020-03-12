@@ -69,7 +69,7 @@ export class CompileComponent extends React.Component {
       serial_number: this.props.serial_number,
       olympiad_id: this.props.olympiad_id,
     };
-    axios.post(`http://165.22.92.120:81/olympiad/checker`, compileConfig, params)
+    axios.post(`http://skills4u-olymp.ru:81/olympiad/checker`, compileConfig, params)
       .then((responce) => {
         if (responce.data.error === null) {
           this.setState({

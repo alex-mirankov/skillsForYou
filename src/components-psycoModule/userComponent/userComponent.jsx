@@ -14,7 +14,7 @@ class Filter extends Component {
       headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
     };
     let UserObj = {}
-    axios.get('http://165.22.92.120:81/me', params)
+    axios.get('http://skills4u-olymp.ru:81/me', params)
       .then((data) => {
         UserObj.id = data.data.id;
         UserObj.email = data.data.email;

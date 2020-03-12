@@ -79,7 +79,7 @@ export class CreateOlympiadPageWithRedux extends React.Component {
     };
     let responceFiles = {
       upload: async() => {
-        await fetch('http://165.22.92.120:81/fileupload/tests/', options)
+        await fetch('http://skills4u-olymp.ru:81/fileupload/tests/', options)
       }
     }
     responceFiles.upload()
@@ -228,7 +228,7 @@ export class CreateOlympiadPageWithRedux extends React.Component {
       });
       console.log(olympiad);
 
-      axios.post('http://165.22.92.120:81/olympiad/create/', olympiad, params)
+      axios.post('http://skills4u-olymp.ru:81/olympiad/create/', olympiad, params)
         .then(data => {
           this.pushTaskCount(data.data.task.length);
           if (data.status === 200 || data.status === 201) {

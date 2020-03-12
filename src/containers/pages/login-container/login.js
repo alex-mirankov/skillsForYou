@@ -56,7 +56,7 @@ export class LoginComponent extends Component {
       email: this.state.email,
       password: this.state.password
     }
-    axios.post('http://165.22.92.120:81/login/', options)
+    axios.post('http://skills4u-olymp.ru:81/login/', options)
       .then(res => {
         localStorage.setItem('token', res.data.token);
         history.push('/');
