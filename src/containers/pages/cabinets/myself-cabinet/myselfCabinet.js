@@ -6,7 +6,6 @@ import axios from 'axios';
 import { ButtonAll, CircularIndeterminate } from '../../../../components';
 import { connect } from 'react-redux';
 
-
 export class MyselfCabinetWithRedux extends React.Component {
   state = {
     userOlympiads: '',
@@ -58,39 +57,6 @@ export class MyselfCabinetWithRedux extends React.Component {
     });
   }
 
-  uploadArchive = (e, olympiadId) => {
-    e.preventDefault();
-    this.setState({
-      isArchiveLoaderShown: true,
-    });
-    const formData = new FormData(document.getElementById(`uploadArchive${olympiadId}`));
-    const options = {
-      mode: 'cors',
-      method: 'POST',
-      headers: {
-        'Authorization': 'Token ' + localStorage.getItem('token'),
-      },
-      body: formData,
-    };
-    let responceArchive = {
-      upload: async() => {
-        await fetch('http://skills4u-olymp.ru:81/fileupload/archive/', options)
-      }
-    }
-    responceArchive.upload()
-      .then(data => {
-        this.setState({
-          isArchiveLoaderShown: false,
-        });
-      })
-      .catch(err => {
-        console.log(err);
-        this.setState({
-          isArchiveLoaderShown: false,
-        });
-      })
-  }
-
   validationDate = (endDate) => {
     if (new Date(endDate) > new Date()) {
       return true;
@@ -100,37 +66,20 @@ export class MyselfCabinetWithRedux extends React.Component {
   }
 
   goToSelectOlympic = (id) => {
-    history.push(`/olympic-single/${id}`);
-  }
-
-  goToResultsOlympic = id => {
-    history.push(`/olympiad-score/${id}`);
-  }
-
-  olympiadStart = id => {
     let params = {
       headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
     };
     axios.get(`http://skills4u-olymp.ru:81/olympiad/${id}/start`, params)
     .then((data) => {
-      console.log(data);
+      history.push(`/olympic-single/${id}`);
     })
     .catch(err => {
       console.log(err);
     });
   }
 
-  olympiadEnd = id => {
-    let params = {
-      headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
-    };
-    axios.get(`http://skills4u-olymp.ru:81/olympiad/${id}/end`, params)
-    .then((data) => {
-      console.log(data);
-    })
-    .catch(err => {
-      console.log(err);
-    });
+  goToResultsOlympic = id => {
+    history.push(`/olympiad-score/${id}`);
   }
 
   unsubscribeFromOlympiad = (id) => {
@@ -163,29 +112,11 @@ export class MyselfCabinetWithRedux extends React.Component {
                   {new Date(olympiad.start_olympiad).toLocaleDateString()}
                 </div>
                 <div className="my-self-cabinet-olympiad-list__controls">
-                  <ButtonAll content={'Начать олимпиаду'}
-                      action={() => this.olympiadStart(olympiad.id)}
-                    />
                   <ButtonAll content={'Участвовать'}
-                    action={() => this.goToSelectOlympic(olympiad.id)}
+                              action={() => this.goToSelectOlympic(olympiad.id)}
                     />
                   <ButtonAll content={'Результаты'}
                     action={() => this.goToResultsOlympic(olympiad.id)}/>
-                    <form id={`uploadArchive${olympiad.id}`} encType="multipart/form-data">
-                      <input value={olympiad.id} name="olympiad_id" style={{display: 'none'}}/>
-                      <input type='file'
-                              name="files" />
-                      <button id="uploadArchive__btn"
-                              type="submit"
-                              onClick={(e) => {this.uploadArchive(e, olympiad.id)}}>
-                        Загрузить архив
-                      </button>
-                      {
-                        this.state.isArchiveLoaderShown
-                        ? <CircularIndeterminate />
-                        : null
-                      }
-                    </form>
                     <a href={`http://skills4u-olymp.ru:81/download/archive/${olympiad.id}`} download>
                       <ButtonAll content={'Скачать архив'} />
                     </a>
@@ -198,9 +129,6 @@ export class MyselfCabinetWithRedux extends React.Component {
                       }
                     <ButtonAll content={'Прекратить участие'}
                               action={() => this.unsubscribeFromOlympiad(olympiad.id)}/>
-                    <ButtonAll content={'Закончить олимпиаду'}
-                      action={() => this.olympiadEnd(olympiad.id)}
-                    />
                 </div>
               </div>
             );

@@ -76,17 +76,16 @@ class OlympiadSingleComponent extends React.Component {
   }
 
   showOlympiadResults = () => {
-    let key = 0;
-    let score = 0;
-    for (let i = 0; i < sessionStorage.length; i++) {
-      key = sessionStorage.key(i);
-      score = Number(sessionStorage.getItem(key));
-    }
-    localStorage.setItem(`${this.state.userName}`, score);
-    this.setState({
-      score: score,
+    let params = {
+      headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
+    };
+    axios.get(`http://skills4u-olymp.ru:81/olympiad/${this.state.olympiadID}/end`, params)
+    .then((data) => {
+      history.push(`/olympiad-score/${this.state.olympiadID}`);
+    })
+    .catch(err => {
+      console.log(err);
     });
-    history.push(`/olympiad-score/${this.state.olympiadID}`);
   }
 
   renderComponent = () => (

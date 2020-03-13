@@ -208,6 +208,39 @@ export class CreateOlympiadPageWithRedux extends React.Component {
     });
   }
 
+  uploadArchive = (e, olympiadId) => {
+    e.preventDefault();
+    this.setState({
+      isArchiveLoaderShown: true,
+    });
+    const formData = new FormData(document.getElementById(`uploadArchive${olympiadId}`));
+    const options = {
+      mode: 'cors',
+      method: 'POST',
+      headers: {
+        'Authorization': 'Token ' + localStorage.getItem('token'),
+      },
+      body: formData,
+    };
+    let responceArchive = {
+      upload: async() => {
+        await fetch('http://skills4u-olymp.ru:81/fileupload/archive/', options)
+      }
+    }
+    responceArchive.upload()
+      .then(data => {
+        this.setState({
+          isArchiveLoaderShown: false,
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({
+          isArchiveLoaderShown: false,
+        });
+      })
+  }
+
   createOlympiad = () => {
       let olympiad = this.state.olympiad;
       let params = {
@@ -359,11 +392,13 @@ export class CreateOlympiadPageWithRedux extends React.Component {
             <input value={this.state.serialNumber} name="serial_number" style={{display: 'none'}}/>
             <input type='file'
               name="files"
-              onChange={(e) => this.handleImageChange(e)} />
+              onChange={(e) => this.handleImageChange(e)}
+              multiple/>
             <div>Out</div>
             <input type='file'
               name="files"
-              onChange={(e) => this.handleImageChange(e)} />
+              onChange={(e) => this.handleImageChange(e)}
+              multiple/>
             {
               this.state.isFilesAvailable
               ? <button type="submit"
@@ -379,6 +414,21 @@ export class CreateOlympiadPageWithRedux extends React.Component {
               : null
             }
           </form>
+          <form id={`uploadArchive${this.state.olympiadId}`} encType="multipart/form-data">
+                      <input value={this.state.olympiadId} name="olympiad_id" style={{display: 'none'}}/>
+                      <input type='file'
+                              name="files" />
+                      <button id="uploadArchive__btn"
+                              type="submit"
+                              onClick={(e) => {this.uploadArchive(e, this.state.olympiadId)}}>
+                        Загрузить архив
+                      </button>
+                      {
+                        this.state.isArchiveLoaderShown
+                        ? <CircularIndeterminate />
+                        : null
+                      }
+                    </form>
           <div className="create-olympiad-general-task__create-btn">
             <ButtonAll content={'Добавить задачу'}
                         action={this.addTaskOlympiad} />
