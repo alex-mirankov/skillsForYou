@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import './style.scss';
+import axios from 'axios';
 
 import { withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
@@ -8,6 +9,21 @@ import { history } from "../../services/redux";
 import { deleteUserToken } from '../../redux/actions/index';
 
 class HeaderComponent extends Component {
+  state = {
+    isTeacher: false,
+  }
+  componentDidMount() {
+    let params = {
+      headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
+    };
+    axios.get(`http://skills4u-olymp.ru:81/me`, params)
+      .then(data => {
+        this.setState({
+          isTeacher: data.data.is_teacher
+        });
+      })
+      .catch(err => console.log(err));
+  }
   controlPanel = 'flex';
   regPanel = 'flex';
   user = () => {
@@ -110,10 +126,14 @@ class HeaderComponent extends Component {
                     onClick={this.handleClickGoTests}>
                 Тесты
             </button>
-            <button className="header-main-page-control__btn"
-                    onClick={this.goToCreateOlympiad}>
-                Создать олимпиаду
-            </button>
+            {
+              this.state.isTeacher
+              ? <button className="header-main-page-control__btn"
+                        onClick={this.goToCreateOlympiad}>
+                    Создать олимпиаду
+                </button>
+              : null
+            }
           </React.Fragment>
         </div>
       </header>
