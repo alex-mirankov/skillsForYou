@@ -1,7 +1,7 @@
 import React from 'react';
-import './style.scss';
-
 import { connect } from 'react-redux';
+
+import './style.scss';
 
 class OlympicTaskComponent extends React.Component {
   render() {

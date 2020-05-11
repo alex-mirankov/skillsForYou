@@ -1,22 +1,26 @@
-import React, { Component } from "react";
-import './style.scss';
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import axios from 'axios';
 
-import { withRouter } from "react-router-dom";
-import { connect } from 'react-redux';
+import './style.scss';
 
-import { history } from "../../services/redux";
+import { history } from '../../services/redux';
 import { deleteUserToken } from '../../redux/actions/index';
+import { baseUrl } from '../../config/api-config';
 
 class HeaderComponent extends Component {
+  controlPanel = 'flex';
+  regPanel = 'flex';
   state = {
     isTeacher: false,
   }
+
   componentDidMount() {
     let params = {
       headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
     };
-    axios.get(`http://skills4u-olymp.ru:81/me`, params)
+    axios.get(`${baseUrl}/me`, params)
       .then(data => {
         this.setState({
           isTeacher: data.data.is_teacher
@@ -24,40 +28,15 @@ class HeaderComponent extends Component {
       })
       .catch(err => console.log(err));
   }
-  controlPanel = 'flex';
-  regPanel = 'flex';
+
   user = () => {
     let token = localStorage.getItem('token');
-    if (token) {
-      this.controlPanel = 'flex';
-    }
-    else {
-      this.controlPanel = 'none';
-    }
-    if (!token) {
-      this.regPanel = 'flex';
-    }
-    else {
-      this.regPanel = 'none';
-    }
+    this.controlPanel = token ? 'flex' : 'none';
+    this.regPanel = !token ? 'flex' : 'none';
   }
-  handleLoginClick = () => {
-    history.push("/login");
-    document.documentElement.scrollTop = 0;
-  };
 
-  handleRegistrationClick = () => {
-    history.push("/registration");
-    document.documentElement.scrollTop = 0;
-  };
-
-  handleClickAboutUs = () => {
-    history.push("/");
-    document.documentElement.scrollTop = 0;
-  };
-
-  handleClickOlympic = () => {
-    history.push('/olympic-enter');
+  navigateTo(route) {
+    history.push(route);
     document.documentElement.scrollTop = 0;
   }
 
@@ -65,26 +44,6 @@ class HeaderComponent extends Component {
     localStorage.removeItem('token');
     this.props.DeleteUserToken();
   };
-
-  goToMyCabinet = () => {
-    history.push('/myself-cabinet');
-  };
-
-  goToTeacherCabinet = () => {
-    history.push('/teacher-cabinet');
-  };
-
-  openProfile = () => {
-    history.push("/profile");
-  };
-
-  goToCreateOlympiad = () => {
-    history.push('/create-olympiad');
-  }
-
-  handleClickGoTests = () => {
-    history.push('/tests/0');
-  }
 
   HeaderLayout = () => {
     const isMainPage = false;
@@ -95,13 +54,13 @@ class HeaderComponent extends Component {
           <React.Fragment>
             <button
               className="header-main-page-control__btn"
-              onClick={this.handleLoginClick}
+              onClick={() => this.navigateTo('/login')}
             >
               Войти
                 </button>
             <button
               className="header-main-page-control__btn"
-              onClick={this.handleRegistrationClick}
+              onClick={() => this.navigateTo('/registration')}
             >
               Регистрация
                 </button>
@@ -115,21 +74,21 @@ class HeaderComponent extends Component {
                 Выйти
             </button>
             <button className="header-main-page-control__btn"
-                    onClick={this.goToMyCabinet}>
+                    onClick={() => this.navigateTo('/myself-cabinet')}>
                 Личный кабинет
             </button>
             <button className="header-main-page-control__btn"
-                    onClick={this.handleClickAboutUs}>
+                    onClick={() => this.navigateTo('/')}>
                 На главную
             </button>
             <button className="header-main-page-control__btn"
-                    onClick={this.handleClickGoTests}>
+                    onClick={() => this.navigateTo('/tests/0')}>
                 Тесты
             </button>
             {
               this.state.isTeacher
               ? <button className="header-main-page-control__btn"
-                        onClick={this.goToCreateOlympiad}>
+                        onClick={() => this.navigateTo('/create-olympiad')}>
                     Создать олимпиаду
                 </button>
               : null

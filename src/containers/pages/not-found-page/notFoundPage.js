@@ -1,13 +1,15 @@
 import React from 'react';
+
 import './style.scss';
 
-import { history } from "../../../services/redux";
+import { history } from '../../../services/redux';
 import { ButtonAll } from '../../../components/index';
 
 export class NotFoundPage extends React.Component {
   handleClickToMainPage = () => {
     history.push('/');
   }
+
   render() {
     return (
       <div className="not-found">

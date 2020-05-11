@@ -1,16 +1,14 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+
 import './style.scss';
 
 import { history } from '../../../services/redux';
-import {
-  InputRegistrationForm,
-  ButtonAll,
-  CircularIndeterminate,
-} from '../../../components/share';
+import { InputRegistrationForm, ButtonAll, CircularIndeterminate } from '../../../components/share';
 import { MyModal } from '../../../components/index';
 import { openWindow } from '../../../redux/actions/index';
+import { baseUrl } from '../../../config/api-config';
 
 export const authInputStyle = {
   background: '#fff',
@@ -35,12 +33,12 @@ export class LoginComponent extends Component {
     email: '',
     password: '',
     isLoaderShown: false,
-  };
+  }
 
   handleRegistrationClick = () => {
-    history.push("/registration");
+    history.push('/registration');
     document.documentElement.scrollTop = 0;
-  };
+  }
 
   handleChangeControl = event => {
     this.setState({
@@ -55,8 +53,9 @@ export class LoginComponent extends Component {
     let options = {
       email: this.state.email,
       password: this.state.password
-    }
-    axios.post('http://skills4u-olymp.ru:81/login/', options)
+    };
+
+    axios.post(`${baseUrl}/login/`, options)
       .then(res => {
         localStorage.setItem('token', res.data.token);
         history.push('/');

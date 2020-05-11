@@ -1,19 +1,15 @@
 import React from 'react';
-import './style.scss';
-
+import { connect } from 'react-redux';
 import axios from 'axios';
 
-import { connect } from 'react-redux';
+import './style.scss';
+
 import { setCurrentOlympiadTask } from '../../../redux/actions/single-olympiad';
 import { history } from "../../../services/redux";
 
-import {
-  OlympicHeader,
-  OlympicTask,
-  Pager,
-} from './common';
-
+import { OlympicHeader, OlympicTask, Pager } from './common';
 import { Compile, ButtonAll } from '../../../components';
+import { baseUrl } from '../../../config/api-config';
 
 class OlympiadSingleComponent extends React.Component {
   state = {
@@ -37,7 +33,7 @@ class OlympiadSingleComponent extends React.Component {
     let params = {
       headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
     };
-    axios.get(`http://skills4u-olymp.ru:81/olympiad/${this.state.olympiadID}`, params)
+    axios.get(`${baseUrl}/olympiad/${this.state.olympiadID}`, params)
       .then(data => {
         this.setState({
           olympiad: data.data,
@@ -45,7 +41,8 @@ class OlympiadSingleComponent extends React.Component {
         });
       })
       .catch(err => console.log(err));
-    axios.get('http://skills4u-olymp.ru:81/me', params)
+
+    axios.get(`${baseUrl}/me`, params)
       .then(data => {
         this.setState({
           userName: data.data.full_name
@@ -56,8 +53,8 @@ class OlympiadSingleComponent extends React.Component {
 
   setCurrentOlympiad = () => {
     this.state.allTasks.map((item, index) => {
-      console.log(this.state.allTasks);
-      if (this.props.olympiadId == index + 1) {
+
+      if (Number(this.props.olympiadId) === index + 1) {
         this.props.SetCurrentOlympiadTask(
           {
             id: item.id,
@@ -79,7 +76,8 @@ class OlympiadSingleComponent extends React.Component {
     let params = {
       headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
     };
-    axios.get(`http://skills4u-olymp.ru:81/olympiad/${this.state.olympiadID}/end`, params)
+
+    axios.get(`${baseUrl}/olympiad/${this.state.olympiadID}/end`, params)
     .then((data) => {
       history.push(`/olympiad-score/${this.state.olympiadID}`);
     })
@@ -95,7 +93,7 @@ class OlympiadSingleComponent extends React.Component {
           comleteTasks={this.state.comleteTasks} />
         <OlympicTask allTasks={this.state.allTasks}
           olympiadId={this.props.olympiadId} />
-        <Compile path={'http://skills4u-olymp.ru:81/olympiad/taskcheck'}
+        <Compile path={`${baseUrl}/olympiad/taskcheck`}
           serial_number={this.props.olympiadId}
           olympiad_id={this.state.olympiadID} />
         <Pager allTasks={this.state.allTasks}
@@ -110,7 +108,11 @@ class OlympiadSingleComponent extends React.Component {
     this.setCurrentOlympiad();
     return (
       <>
-        {localStorage.getItem('token') ? <this.renderComponent /> : history.push('/')}
+        {
+          localStorage.getItem('token')
+          ? <this.renderComponent />
+          : history.push('/')
+        }
       </>
     );
   }

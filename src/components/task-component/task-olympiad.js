@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+
 import { Compile } from '../index';
 
 export function TaskOlympiad({ number, title, description, children }) {

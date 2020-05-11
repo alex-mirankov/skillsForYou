@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { withRouter, Route, Switch } from "react-router-dom";
+import React, { Component } from 'react';
+import { withRouter, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './App.css';
 
-import { connect } from "react-redux";
 import { getUserToken } from '../../redux/actions/user.action';
 import testsContainer from '../../components-psycoModule/containerComponent'
 import {
@@ -19,10 +19,7 @@ import {
   CreateOlympiadPage,
 } from '../../containers/index';
 
-import {
-  Header,
-  Footer,
-} from '../index';
+import { Header, Footer } from '../index';
 
 class AppComponent extends Component {
   componentDidMount() {

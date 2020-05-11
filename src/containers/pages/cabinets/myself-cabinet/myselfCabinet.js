@@ -1,10 +1,12 @@
 import React from 'react';
+import axios from 'axios';
+import { connect } from 'react-redux';
+
 import './style.scss';
 
 import { history } from '../../../../services/redux';
-import axios from 'axios';
 import { ButtonAll, CircularIndeterminate } from '../../../../components';
-import { connect } from 'react-redux';
+import { baseUrl } from '../../../../config/api-config';
 
 export class MyselfCabinetWithRedux extends React.Component {
   state = {
@@ -12,13 +14,14 @@ export class MyselfCabinetWithRedux extends React.Component {
     olympiadId: '',
     files: [],
     isArchiveLoaderShown: false,
-  };
+  }
 
   getAllUserOlympiads = () => {
     let params = {
       headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
     };
-    axios.get('http://skills4u-olymp.ru:81/me', params)
+
+    axios.get(`${baseUrl}/me`, params)
       .then((data) => {
         console.log(data.data)
         this.getUserOlympiads(data.data.olympiad_list);
@@ -36,14 +39,16 @@ export class MyselfCabinetWithRedux extends React.Component {
     let params = {
       headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
     };
+
     let options = {
       olympiad_id: olympiadId,
       serial_number: serialNumber,
-    }
-    axios.post('http://skills4u-olymp.ru:81/download/decision', options , params)
+    };
+
+    axios.post(`${baseUrl}/download/decision`, options , params)
       .then((data) => {
         console.log(data);
-        window.location.assign(`http://skills4u-olymp.ru:81/${data.data.url}`);
+        window.location.assign(`${baseUrl}/${data.data.url}`);
       })
       .catch(err => {
         console.log(err);
@@ -51,26 +56,22 @@ export class MyselfCabinetWithRedux extends React.Component {
   }
 
   getUserOlympiads = (olymdiads) => {
-    console.log(olymdiads);
     this.setState({
       userOlympiads: olymdiads,
     });
   }
 
   validationDate = (endDate) => {
-    if (new Date(endDate) > new Date()) {
-      return true;
-    } else {
-      return false;
-    }
+    return new Date(endDate) > new Date() ? true : false;
   }
 
   goToSelectOlympic = (id) => {
     let params = {
       headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
     };
-    axios.get(`http://skills4u-olymp.ru:81/olympiad/${id}/start`, params)
-    .then((data) => {
+
+    axios.get(`${baseUrl}/olympiad/${id}/start`, params)
+    .then((_data) => {
       history.push(`/olympic-single/${id}`);
     })
     .catch(err => {
@@ -86,10 +87,12 @@ export class MyselfCabinetWithRedux extends React.Component {
     let params = {
       headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
     };
+
     let config = {
       olympiad_id: id,
     };
-    axios.post('http://skills4u-olymp.ru:81/olympiad/unregistration', config, params)
+
+    axios.post(`${baseUrl}/olympiad/unregistration`, config, params)
       .then((data) => {
         this.getAllUserOlympiads();
       })
@@ -117,7 +120,7 @@ export class MyselfCabinetWithRedux extends React.Component {
                     />
                   <ButtonAll content={'Результаты'}
                     action={() => this.goToResultsOlympic(olympiad.id)}/>
-                    <a href={`http://skills4u-olymp.ru:81/download/archive/${olympiad.id}`} download>
+                    <a href={`${baseUrl}/download/archive/${olympiad.id}`} download>
                       <ButtonAll content={'Скачать архив'} />
                     </a>
                       {
@@ -145,7 +148,13 @@ export class MyselfCabinetWithRedux extends React.Component {
   render() {
     return (
       <>
-        {localStorage.getItem('token') ? <this.renderComponent /> : <div className="my-self-cabinet__unlogged">Вы должны войти в свой аккаунт или зарегестрироваться.</div>}
+        {
+          localStorage.getItem('token')
+            ? <this.renderComponent />
+            : <div className="my-self-cabinet__unlogged">
+                Вы должны войти в свой аккаунт или зарегестрироваться.
+              </div>
+        }
       </>
     );
   }

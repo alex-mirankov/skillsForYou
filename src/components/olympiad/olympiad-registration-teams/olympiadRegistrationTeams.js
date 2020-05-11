@@ -1,17 +1,17 @@
 import React from 'react';
-import './style.scss';
-
 import axios from 'axios';
 import { connect } from 'react-redux';
 
-import { openWindow } from '../../../redux/actions/index';
+import './style.scss';
 
+import { openWindow } from '../../../redux/actions/index';
 import {
   InputRegistrationForm,
   ButtonAll,
   MyModal,
   OlympiadSelect,
 } from '../../index';
+import { baseUrl } from '../../../config/api-config';
 
 const styles = {
   marginTop: '43px',
@@ -35,7 +35,7 @@ class OlympiadRegistrationTeamsComponent extends React.Component {
     let params = {
       headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
     };
-    axios.get('http://skills4u-olymp.ru:81/olympiad', params)
+    axios.get(`${baseUrl}/olympiad`, params)
       .then(data => {
         this.setState({
           olympiadList: data.data,

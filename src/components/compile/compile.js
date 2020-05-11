@@ -1,14 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import CodeMirror from 'react-codemirror';
+import axios from 'axios';
+
 import '../../../node_modules/codemirror/lib/codemirror.css';
 import 'codemirror/mode/pascal/pascal';
 import './style.scss';
-import { connect } from 'react-redux';
+
 import { openWindow } from '../../redux/actions/index';
-
-import axios from 'axios';
-
 import { ButtonAll, MyModal } from '../index';
-import CodeMirror from 'react-codemirror';
+import { baseUrl } from '../../config/api-config';
 
 export class CompileComponent extends React.Component {
   state = {
@@ -69,7 +70,7 @@ export class CompileComponent extends React.Component {
       serial_number: this.props.serial_number,
       olympiad_id: this.props.olympiad_id,
     };
-    axios.post(`http://skills4u-olymp.ru:81/olympiad/checker`, compileConfig, params)
+    axios.post(`${baseUrl}/olympiad/checker`, compileConfig, params)
       .then((responce) => {
         if (responce.data.error === null) {
           this.setState({
@@ -111,7 +112,7 @@ export class CompileComponent extends React.Component {
   render() {
     let options = {
       lineNumbers: true,
-      mode: "pascal",
+      mode: 'pascal',
     };
 
     return (

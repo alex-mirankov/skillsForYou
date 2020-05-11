@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+
 import './style.scss';
 
 import { CircularIndeterminate } from '../../share';
@@ -6,12 +7,12 @@ import { CircularIndeterminate } from '../../share';
 export class OlympiadSelect extends React.Component {
   state = {
     isOpen: false,
-  };
+  }
 
   handleClick = () => {
     const { isOpen } = this.state;
     this.setState({ isOpen: !isOpen });
-  };
+  }
 
   render() {
     const { isOpen } = this.state;

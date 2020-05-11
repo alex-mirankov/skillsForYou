@@ -1,10 +1,12 @@
 import React from 'react';
-import './style.scss';
-import { history } from '../../../services/redux';
 import axios from 'axios';
 import { connect } from 'react-redux';
 
+import './style.scss';
+
+import { history } from '../../../services/redux';
 import { CircularIndeterminate } from '../../../components';
+import { baseUrl } from '../../../config/api-config';
 
 export class OlympiadScorePageWithRedux extends React.Component {
   state = {
@@ -13,7 +15,7 @@ export class OlympiadScorePageWithRedux extends React.Component {
     tableRowHeader: ['RK', 'TEAM'],
     renderArr: [''],
     olympiadID: Number(window.location.pathname.match(/\d+/)),
-  };
+  }
 
   componentDidMount() {
     this.getUserScoreFromBacked();
@@ -23,7 +25,8 @@ export class OlympiadScorePageWithRedux extends React.Component {
     let params = {
       headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
     };
-    axios.get(`http://skills4u-olymp.ru:81/olympiad/${this.state.olympiadID}/score`, params)
+
+    axios.get(`${baseUrl}/olympiad/${this.state.olympiadID}/score`, params)
       .then((data) => {
         data.data.map(item => {
           item.score = Object.values(item.score);
@@ -32,7 +35,7 @@ export class OlympiadScorePageWithRedux extends React.Component {
         this.setState({
           results: data.data,
         });
-        axios.get('http://skills4u-olymp.ru:81/olympiad', params)
+        axios.get(`${baseUrl}/olympiad`, params)
           .then(data => {
             let olympiad = data.data.find((element) => {
               if (element.id == this.state.olympiadID) {
@@ -111,7 +114,11 @@ export class OlympiadScorePageWithRedux extends React.Component {
   render() {
     return (
       <>
-        {localStorage.getItem('token') ? <this.renderComponent /> : history.push('/')}
+        {
+          localStorage.getItem('token')
+          ? <this.renderComponent />
+          : history.push('/')
+        }
       </>
     );
   }

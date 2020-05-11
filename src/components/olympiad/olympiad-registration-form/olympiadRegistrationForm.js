@@ -1,16 +1,12 @@
 import React from 'react';
-import './style.scss';
-
 import { connect } from 'react-redux';
-import { openWindow } from '../../../redux/actions/index';
-
 import axios from 'axios';
 
-import {
-  ButtonAll,
-  MyModal,
-  OlympiadSelect,
-} from '../../index';
+import './style.scss';
+
+import { openWindow } from '../../../redux/actions/index';
+import { ButtonAll, MyModal, OlympiadSelect } from '../../index';
+import { baseUrl } from '../../../config/api-config';
 
 const styles = {
   margin: '0 auto',
@@ -23,6 +19,7 @@ class OlympiadRegistrationFormComponent extends React.Component {
     olympiadId: 0,
     olympiadList: [],
   }
+
   handleChangeOlymp = name => {
     for (let i = 0; i < this.state.olympiadList.length; i++) {
       if (this.state.olympiadList[i].name === name) {
@@ -30,13 +27,13 @@ class OlympiadRegistrationFormComponent extends React.Component {
       }
     }
     this.setState({ currentValue: name });
-  };
+  }
 
   handleRegisatration = () => {
     let params = {
       headers: { 'Authorization': 'Token ' + this.state.token }
     };
-    axios.post('http://skills4u-olymp.ru:81/olympiad/registration', { olympiad_id: this.state.olympiadId }, params)
+    axios.post(`${baseUrl}/olympiad/registration`, { olympiad_id: this.state.olympiadId }, params)
       .then(data => {
         this.props.closeWindowComp();
       })
@@ -47,7 +44,7 @@ class OlympiadRegistrationFormComponent extends React.Component {
     let params = {
       headers: { 'Authorization': 'Token ' + this.state.token }
     };
-    axios.get('http://skills4u-olymp.ru:81/olympiad', params)
+    axios.get(`${baseUrl}/olympiad`, params)
       .then(data => {
         console.log(data);
         this.setState({
@@ -60,6 +57,7 @@ class OlympiadRegistrationFormComponent extends React.Component {
   componentDidMount() {
     this.getOlympiads();
   }
+
   render() {
     return (
       <div className="registration-olymp-form">

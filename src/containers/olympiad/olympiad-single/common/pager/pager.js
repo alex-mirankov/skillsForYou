@@ -1,13 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import './style.scss';
 
-import { connect } from 'react-redux';
 import { setNumericOlympiad } from '../../../../../redux/actions/index';
 
 class PagerComponent extends React.Component {
   state = {
     currentPage: this.props.currentPage,
-  };
+  }
 
   handlePagerChange = (item) => {
     if (item !== this.state.currentPage) {
@@ -20,10 +21,11 @@ class PagerComponent extends React.Component {
 
   render() {
     let { allTasks } = this.props;
+
     return (
       <div className="pager">
         {
-          allTasks.map((item, index) => {
+          allTasks.map((_item, index) => {
             return (
               <div className={`pager__numeric ${index + 1 === this.state.currentPage ? 'pager__numeric-active' : null}`}
                 onClick={() => this.handlePagerChange(index + 1)}>

@@ -1,6 +1,8 @@
 import React from 'react';
-import './style.scss';
 import InputMask from 'react-input-mask';
+
+import './style.scss';
+
 export class InputCabinet extends React.Component {
 
   render() {

@@ -1,5 +1,7 @@
 import React from 'react';
+
 import './style.scss';
+
 import { OlympiadRegistrationTeams } from '../../../components/olympiad/index';
 
 export class OlympiadRegistrationTeam extends React.Component {

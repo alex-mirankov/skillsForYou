@@ -1,8 +1,9 @@
 import React from 'react';
-import './style.scss';
-import { history } from '../../../services/redux';
 import { connect } from 'react-redux';
 
+import './style.scss';
+
+import { history } from '../../../services/redux';
 import { OlympiadRegistrationForm } from '../../../components/olympiad/index';
 
 export class OlympiadRegistrationWithRedux extends React.Component {
@@ -11,7 +12,7 @@ export class OlympiadRegistrationWithRedux extends React.Component {
       <div className="registration-single__header">Регистрация для участия в олимпиаде</div>
       <OlympiadRegistrationForm />
     </div>
-  );
+  )
 
   render() {
     return (

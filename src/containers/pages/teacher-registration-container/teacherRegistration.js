@@ -1,84 +1,67 @@
-import React, { Component } from "react";
-import "./style.css";
-import { history } from "../../../services/redux";
+import React, { Component } from 'react';
 import axios from 'axios';
 
-import {
-  InputRegistrationForm,
-  ButtonAll,
-  TextareaRegistrationForm,
-} from '../../../components/share';
-import {
-  authInputStyle,
-  submitBtnStyles
-} from '../login-container/login';
+import './style.css';
+
+import { history } from '../../../services/redux';
+
+import { InputRegistrationForm, ButtonAll, TextareaRegistrationForm } from '../../../components/share';
+import { authInputStyle, submitBtnStyles } from '../login-container/login';
+import { baseUrl } from '../../../config/api-config';
 
 export class TeacherRegistration extends Component {
   state = {
-    email: "",
-    full_name: "",
-    password: "",
+    email: '',
+    full_name: '',
+    password:'',
     is_teacher: true,
-    password_confirm: "",
+    password_confirm: '',
     region: '',
     city: '',
     place_of_work: '',
     motivation: '',
     education: '',
     isLoaderShown: false,
-  };
+  }
 
   handleSubmit = () => {
-    const {
-      email,
-      full_name,
-      password,
-      password_confirm,
-      is_teacher,
-      region,
-      city,
-      place_of_work,
-      motivation,
-      education,
-    } = this.state;
-
     const fields = {
-      email,
-      full_name: full_name,
-      password: password,
-      password_confirm: password_confirm,
-      is_teacher: is_teacher,
-      region: region,
-      city: city,
-      place_of_work: place_of_work,
-      motivation: motivation,
-      education: education,
+      email: this.state.email,
+      full_name: this.state.full_name,
+      password: this.state.password,
+      password_confirm: this.state.password_confirm,
+      is_teacher: this.state.is_teacher,
+      region: this.state.region,
+      city: this.state.city,
+      place_of_work: this.state.place_of_work,
+      motivation: this.state.motivation,
+      education: this.state.education,
     };
+
     if (this.state.password === this.state.password_confirm) {
       this.setState({
         isLoaderShown: true,
       });
-      axios.post('http://skills4u-olymp.ru:81/registration/', fields)
-      .then(e => {
+      axios.post(`${baseUrl}/registration/`, fields)
+      .then(_data => {
         history.push('/login');
       })
       .catch(error => {
         console.log(error);
       });
-    } else {
     }
-  };
+  }
 
   handleChangeControls = event => {
     this.setState({
       [event.target.name]: event.target.value
     });
-  };
+  }
 
   handleRegistrationTeacherClick = () => {
-    history.push("/registration");
+    history.push('/registration');
     document.documentElement.scrollTop = 0;
-  };
+  }
 
   TeacherRegistrationLayout = () => (
     <section className="registration">

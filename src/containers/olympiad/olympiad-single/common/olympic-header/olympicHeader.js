@@ -1,11 +1,12 @@
 import React from 'react';
+
 import './style.scss';
 
 import imageHeader from '../../../../../images/javascript2-img-start.png';
 
 export class OlympicHeader extends React.Component {
   render() {
-    let { allTasks, comleteTasks } = this.props;
+    let { allTasks } = this.props;
     return (
       <div className="single-olympic-header">
         <img className="single-olympic-header__image"

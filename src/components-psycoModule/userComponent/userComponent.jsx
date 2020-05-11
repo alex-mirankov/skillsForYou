@@ -3,6 +3,7 @@ import { Input } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom'
 import axios from 'axios';
 import './style.scss';
+import { baseUrl } from '../../config/api-config';
 class Filter extends Component {
 
   constructor(props) {
@@ -14,7 +15,7 @@ class Filter extends Component {
       headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
     };
     let UserObj = {}
-    axios.get('http://skills4u-olymp.ru:81/me', params)
+    axios.get(`${baseUrl}/me`, params)
       .then((data) => {
         UserObj.id = data.data.id;
         UserObj.email = data.data.email;

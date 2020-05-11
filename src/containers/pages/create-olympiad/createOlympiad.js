@@ -1,31 +1,29 @@
 import React from 'react';
-import './style.scss';
-
-import {
-  InputCabinet,
-  TextareaCabinet,
-  SelectCabinet,
-} from '../index';
-import { ButtonAll, CircularIndeterminate } from '../../../components/share';
-import { MyModal } from '../../../components/index';
 import axios from 'axios';
 import { connect } from 'react-redux';
+
+import './style.scss';
+
+import { InputCabinet, TextareaCabinet, SelectCabinet } from '../index';
+import { ButtonAll, CircularIndeterminate } from '../../../components/share';
+import { MyModal } from '../../../components/index';
 import { history } from '../../../services/redux';
 import { openWindow } from '../../../redux/actions/index';
+import { baseUrl } from '../../../config/api-config';
 
 export const inputDataTypeOptions = [
   {
     value: 'with keyboard',
     text: 'с клавиатуры',
   },
-];
+]
 
 export const outputDataTypeOptions = [
   {
     value: 'to screen',
     text: 'на экран',
   },
-];
+]
 
 export class CreateOlympiadPageWithRedux extends React.Component {
   state = {
@@ -65,6 +63,7 @@ export class CreateOlympiadPageWithRedux extends React.Component {
 
   uploadFiles = (e) => {
     e.preventDefault();
+
     this.setState({
       isFilesLoaderShown: true,
     });
@@ -79,9 +78,9 @@ export class CreateOlympiadPageWithRedux extends React.Component {
     };
     let responceFiles = {
       upload: async() => {
-        await fetch('http://skills4u-olymp.ru:81/fileupload/tests/', options)
+        await fetch(`${baseUrl}/fileupload/tests/`, options)
       }
-    }
+    };
     responceFiles.upload()
       .then(data => {
         this.setState({
@@ -99,19 +98,19 @@ export class CreateOlympiadPageWithRedux extends React.Component {
     this.setState({
       input_data_type: data,
     });
-  };
+  }
 
   handleChangeOutputDataType = (data) => {
     this.setState({
       output_data_type: data,
     });
-  };
+  }
 
   handleChangeControl = (data) => {
     this.setState({
       [data.target.name]: data.target.value,
     });
-  };
+  }
 
   handleChangeTaskFiles = data => {
     this.setState({
@@ -224,7 +223,7 @@ export class CreateOlympiadPageWithRedux extends React.Component {
     };
     let responceArchive = {
       upload: async() => {
-        await fetch('http://skills4u-olymp.ru:81/fileupload/archive/', options)
+        await fetch(`${baseUrl}/fileupload/archive/`, options)
       }
     }
     responceArchive.upload()
@@ -259,9 +258,8 @@ export class CreateOlympiadPageWithRedux extends React.Component {
       this.setState({
         olympiad: olympiad,
       });
-      console.log(olympiad);
 
-      axios.post('http://skills4u-olymp.ru:81/olympiad/create/', olympiad, params)
+      axios.post(`${baseUrl}/olympiad/create/`, olympiad, params)
         .then(data => {
           this.pushTaskCount(data.data.task.length);
           if (data.status === 200 || data.status === 201) {

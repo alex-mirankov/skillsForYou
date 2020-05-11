@@ -1,14 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import './style.scss';
 
 import { history } from '../../../services/redux';
-import { connect } from 'react-redux';
-
-import {
-  OlympicCard,
-  Warning,
-} from '../../../components/index';
-
+import { OlympicCard, Warning } from '../../../components/index';
 import olympicSolo from '../../../images/olympic-solo.png';
 
 const warningText = 'Чтобы принять участие в олимпиаде необходимо войти в аккаунт';
@@ -33,14 +29,14 @@ export class OlympiadEnterContainerWithRedux extends React.Component {
     history.push('/olympic-registration');
   }
 
-  goToTeamOlymp = () => {
-    history.push('/olympic-registartion-team');
-  }
-
   render() {
     return (
       <>
-        {window.localStorage.getItem('token') ? <this.Registration /> : <Warning warningText={warningText} />}
+        {
+          window.localStorage.getItem('token')
+          ? <this.Registration />
+          : <Warning warningText={warningText} />
+        }
       </>
     );
   }

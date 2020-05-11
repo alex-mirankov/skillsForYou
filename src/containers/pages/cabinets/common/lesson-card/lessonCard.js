@@ -1,15 +1,9 @@
 import React from 'react';
+
 import './style.scss';
 
-import {
-  InputCabinet,
-  TextareaCabinet,
-  SelectCabinet,
-} from '../index';
-
-import {
-  ButtonAll,
-} from '../../../../../components/index';
+import { InputCabinet, TextareaCabinet, SelectCabinet } from '../index';
+import { ButtonAll } from '../../../../../components/index';
 
 const percentArray = [
   {
@@ -34,11 +28,13 @@ export class LessonCardComponent extends React.Component {
   state = {
     percent: '',
   }
+
   handleChangeChangePercent = (name) => {
     this.setState({
       percent: name,
     });
-  };
+  }
+
   render() {
     return (
       <div className="lesson-card">
