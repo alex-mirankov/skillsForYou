@@ -7,6 +7,8 @@ import './style.scss';
 import { history } from '../../../../services/redux';
 import { ButtonAll, CircularIndeterminate } from '../../../../components';
 import { baseUrl } from '../../../../config/api-config';
+import { openWindow } from '../../../../redux/actions/index';
+import { MyModal } from '../../../../components/index';
 
 export class MyselfCabinetWithRedux extends React.Component {
   state = {
@@ -14,6 +16,7 @@ export class MyselfCabinetWithRedux extends React.Component {
     olympiadId: '',
     files: [],
     isArchiveLoaderShown: false,
+    errorMessage: '',
   }
 
   getAllUserOlympiads = () => {
@@ -49,9 +52,18 @@ export class MyselfCabinetWithRedux extends React.Component {
       .then((data) => {
         console.log(data);
         window.location.assign(`${baseUrl}/${data.data.url}`);
-      })
-      .catch(err => {
-        console.log(err);
+      }).catch((error) => {
+        let errorLabel;
+          if(Object.values(error)[2].status === 410) {
+            errorLabel = 'Возникла ошибка при скачивании. Возможно, олимпиада еще не закончилась';
+          } else {
+            errorLabel = 'Возникла непредвиденная ошибка при скачивании. Повторите попытку позже';
+          }
+          this.setState({
+            errorMessage: errorLabel,
+          });
+
+          this.props.closeWindowComp();
       });
   }
 
@@ -59,10 +71,11 @@ export class MyselfCabinetWithRedux extends React.Component {
     this.setState({
       userOlympiads: olymdiads,
     });
+    console.log(olymdiads);
   }
 
   validationDate = (endDate) => {
-    return new Date(endDate) > new Date() ? true : false;
+    return new Date(endDate) > new Date();
   }
 
   goToSelectOlympic = (id) => {
@@ -75,7 +88,15 @@ export class MyselfCabinetWithRedux extends React.Component {
       history.push(`/olympic-single/${id}`);
     })
     .catch(err => {
-      console.log(err);
+      let errorLabel;
+      if(Object.values(err)[2].status === 403) {
+        errorLabel = 'Олимпиада закончилась досрочно';
+      }
+      this.setState({
+        errorMessage: errorLabel,
+      });
+
+      this.props.closeWindowComp();
     });
   }
 
@@ -117,16 +138,19 @@ export class MyselfCabinetWithRedux extends React.Component {
                 <div className="my-self-cabinet-olympiad-list__controls">
                   <ButtonAll content={'Участвовать'}
                               action={() => this.goToSelectOlympic(olympiad.id)}
+                              isDisabled={new Date(olympiad.start_olympiad) > new Date() || new Date() > new Date(olympiad.end_olympiad)}
                     />
                   <ButtonAll content={'Результаты'}
-                    action={() => this.goToResultsOlympic(olympiad.id)}/>
+                              action={() => this.goToResultsOlympic(olympiad.id)}/>
                     <a href={`${baseUrl}/download/archive/${olympiad.id}`} download>
-                      <ButtonAll content={'Скачать архив'} />
+                      <ButtonAll isDisabled={new Date() < new Date(olympiad.end_olympiad)}
+                                content={'Скачать архив'} />
                     </a>
                       {
                         olympiad.task.map(item => {
                           return(
-                            <ButtonAll action={() => this.getTaskUrl(olympiad.id, item.serial_number)} content={`Скачать решение ${item.serial_number} задачи`} />
+                            <ButtonAll isDisabled={new Date() < new Date(olympiad.end_olympiad)}
+                                      action={() => this.getTaskUrl(olympiad.id, item.serial_number)} content={`Скачать решение ${item.serial_number} задачи`} />
                           )
                         })
                       }
@@ -142,6 +166,7 @@ export class MyselfCabinetWithRedux extends React.Component {
           ? <div className="my-self-cabinet__loader-text">Вы не участвуете в олимпиадах</div>
           : null
       }
+      <MyModal descriptionText={this.state.errorMessage}/>
     </>
   )
 
@@ -164,4 +189,10 @@ const mapStateToProps = (state) => ({
   user: state.user.userToken,
 });
 
-export const MyselfCabinet = connect(mapStateToProps)(MyselfCabinetWithRedux);
+const mapDispatchToProps = (dispatch) => ({
+  closeWindowComp: () => {
+    dispatch(openWindow());
+  }
+});
+
+export const MyselfCabinet = connect(mapStateToProps, mapDispatchToProps)(MyselfCabinetWithRedux);

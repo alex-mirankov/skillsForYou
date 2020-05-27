@@ -53,12 +53,12 @@ export class CreateOlympiadPageWithRedux extends React.Component {
     isExampleAdded: false,
     isTaskAdded: false,
     isOlympiadCreated: false,
-    isOlympiadCreatedError: false,
     isFilesAvailable: false,
+    isArhiveAvailable: false,
     olympiadId: 0,
     serialNumber: 1,
     serialNumberTask: 1,
-    createOlympiadText: '',
+    modalText: '',
   }
 
   uploadFiles = (e) => {
@@ -233,11 +233,28 @@ export class CreateOlympiadPageWithRedux extends React.Component {
         });
       })
       .catch(err => {
-        console.log(err);
         this.setState({
           isArchiveLoaderShown: false,
         });
       })
+  }
+
+  uploadTasksHelp = (e) => {
+    e.preventDefault();
+
+    this.setState({
+      modalText: 'Загружать задачи можно только тогда, когда создана олимпиада',
+    });
+    this.props.closeWindowComp();
+  }
+
+  uploadArhiveHelp = (e) => {
+    e.preventDefault();
+
+    this.setState({
+      modalText: 'Загружать архив можно только тогда, когда создана олимпиада',
+    });
+    this.props.closeWindowComp();
   }
 
   createOlympiad = () => {
@@ -264,12 +281,13 @@ export class CreateOlympiadPageWithRedux extends React.Component {
           this.pushTaskCount(data.data.task.length);
           if (data.status === 200 || data.status === 201) {
             this.setState({
-              createOlympiadText: 'Олимпиада создана. Теперь можно загрузить файлы к задачам'
+              modalText: 'Олимпиада создана. Теперь можно загрузить файлы к задачам'
             });
           }
           this.setState({
             isOlympiadCreated: true,
             isFilesAvailable: true,
+            isArhiveAvailable: true,
             olympiadId: data.data.id,
           });
           setTimeout(() => {
@@ -283,24 +301,25 @@ export class CreateOlympiadPageWithRedux extends React.Component {
         .catch(e => {
           if (Object.values(e)[2].status === 400) {
             this.setState({
-              createOlympiadText: 'Ошибка при создании олимпиады. Пожалуйста, проверьте введенные данные'
+              modalText: `Ошибка при создании олимпиады. Пожалуйста, проверьте введенные данные:
+                            Название олимпиады: обязательное поле;
+                            Максимальное количество участников: значение должно быть число;
+                            Тип входящих данных: обязательное поле;
+                            Тип выходящих данных: обязательное поле;
+                            Лимит на память: значение должно быть число (макс 2147483647);
+                            Лимит на время: значение должно быть число (макс 2147483647);
+                            Количество тестов: значение должно быть число;`,
             });
           } else if (Object.values(e)[2].status === 500) {
             this.setState({
-              createOlympiadText: 'Ошибка при создании олимпиады. Сервер недоступен, попробуйте позже'
+              modalText: 'Ошибка при создании олимпиады. Сервер недоступен, попробуйте позже',
             });
           }
           this.setState({
-            isOlympiadCreatedError: true,
             olympiad: {},
             tasks: [],
             createOlympiadError: e.error
           })
-          setTimeout(() => {
-            this.setState({
-              isOlympiadCreatedError: false,
-            })
-          }, 4000);
           this.props.closeWindowComp();
         });
   }
@@ -314,7 +333,7 @@ export class CreateOlympiadPageWithRedux extends React.Component {
           <InputCabinet caption={'Название олимпиады'}
                         handleChange={this.handleChangeControl}
                         name={'olympiad_name'} />
-          <InputCabinet caption={'Продолжительность олимпиады'}
+          <InputCabinet caption={'Продолжительность олимпиады(минут)'}
                         handleChange={this.handleChangeControl}
                         name={'olympiad_duration'} />
           <InputCabinet caption={'Дата старта'}
@@ -343,10 +362,10 @@ export class CreateOlympiadPageWithRedux extends React.Component {
                         inputValues={outputDataTypeOptions}
                         handleChange={this.handleChangeOutputDataType}
                         currentValue={this.state.output_data_type} />
-          <InputCabinet caption={'Лимит на память'}
+          <InputCabinet caption={'Лимит на память(мегабайт)'}
                         handleChange={this.handleChangeControl}
                         name={'memory_limit'} />
-          <InputCabinet caption={'Лимит на время'}
+          <InputCabinet caption={'Лимит на время(секунд)'}
                         handleChange={this.handleChangeControl}
                         name={'time_limit'} />
           <TextareaCabinet caption={'Описание задачи'}
@@ -385,6 +404,11 @@ export class CreateOlympiadPageWithRedux extends React.Component {
                                 currentValue={this.state.serialNumber} />
               : null
             }
+            <div className="create-olympiad-general__helper">
+              <div className="input-cabinet__caption">Загрузка задач</div>
+              <ButtonAll content={'?'}
+                            action={(e) => this.uploadTasksHelp(e)} />
+            </div>
             <div>In</div>
             <input value={this.state.olympiadId} name="olympiad_id" style={{display: 'none'}}/>
             <input value={this.state.serialNumber} name="serial_number" style={{display: 'none'}}/>
@@ -412,15 +436,24 @@ export class CreateOlympiadPageWithRedux extends React.Component {
               : null
             }
           </form>
-          <form id={`uploadArchive${this.state.olympiadId}`} encType="multipart/form-data">
+          <form id={`uploadArchive${this.state.olympiadId}`} encType="multipart/form-data" className="create-olympiad-upload-files">
+                    <div className="create-olympiad-general__helper">
+                      <div className="input-cabinet__caption">Загрузка архива</div>
+                      <ButtonAll content={'?'}
+                          action={(e) => this.uploadArhiveHelp(e)} />
+                    </div>
                       <input value={this.state.olympiadId} name="olympiad_id" style={{display: 'none'}}/>
                       <input type='file'
                               name="files" />
-                      <button id="uploadArchive__btn"
-                              type="submit"
-                              onClick={(e) => {this.uploadArchive(e, this.state.olympiadId)}}>
-                        Загрузить архив
-                      </button>
+                      {
+                        this.state.isArhiveAvailable
+                        ? <button id="uploadArchive__btn"
+                                  type="submit"
+                                  onClick={(e) => {this.uploadArchive(e, this.state.olympiadId)}}>
+                            Загрузить архив
+                          </button>
+                        : null
+                      }
                       {
                         this.state.isArchiveLoaderShown
                         ? <CircularIndeterminate />
@@ -429,7 +462,7 @@ export class CreateOlympiadPageWithRedux extends React.Component {
                     </form>
           <div className="create-olympiad-general-task__create-btn">
             <ButtonAll content={'Добавить задачу'}
-                        action={this.addTaskOlympiad} />
+                        action={(e) => this.addTaskOlympiad(e)} />
             {this.state.isTaskAdded ? <div>Задача добавлена!</div> : null}
           </div>
         </div>
@@ -440,9 +473,8 @@ export class CreateOlympiadPageWithRedux extends React.Component {
                     action={this.createOlympiad}
                     styles={{ width: '50%' }} />
         {this.state.isOlympiadCreated ? <div>Олимпиада создана!</div> : null}
-        {this.state.isOlympiadCreatedError ? <div>Ошибка при создании олимпиады!</div> : null}
       </div>
-      <MyModal descriptionText={this.state.createOlympiadText}/>
+      <MyModal descriptionText={this.state.modalText}/>
     </div>
   );
 

@@ -48,7 +48,7 @@ export class CompileComponent extends React.Component {
         this.props.closeWindowComp();
       })
       .catch((error) => {
-        if(Object.value(error)[2].status === 500) {
+        if(Object.values(error)[2].status === 500) {
           this.setState({
             checkerText: 'Ошибка на сервере',
           });
@@ -85,7 +85,7 @@ export class CompileComponent extends React.Component {
         this.props.closeWindowComp();
       })
       .catch((error) => {
-        if(Object.value(error)[2].status === 500) {
+        if(Object.values(error)[2].status === 500) {
           this.setState({
             checkerText: 'Ошибка на сервере',
           });

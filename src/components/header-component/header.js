@@ -81,10 +81,10 @@ class HeaderComponent extends Component {
                     onClick={() => this.navigateTo('/')}>
                 На главную
             </button>
-            <button className="header-main-page-control__btn"
+            {/* <button className="header-main-page-control__btn"
                     onClick={() => this.navigateTo('/tests/0')}>
                 Тесты
-            </button>
+            </button> */}
             {
               this.state.isTeacher
               ? <button className="header-main-page-control__btn"

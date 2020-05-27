@@ -12,7 +12,7 @@ export class OlympiadScorePageWithRedux extends React.Component {
   state = {
     results: [],
     tasks: [],
-    tableRowHeader: ['RK', 'TEAM'],
+    tableRowHeader: ['Место', 'Команда'],
     renderArr: [''],
     olympiadID: Number(window.location.pathname.match(/\d+/)),
   }
@@ -80,8 +80,8 @@ export class OlympiadScorePageWithRedux extends React.Component {
                       );
                     })
                   }
-                  <td className="olympiad-score__table-ceil-header">Total</td>
-                  <td className="olympiad-score__table-ceil-header">Time</td>
+                  <td className="olympiad-score__table-ceil-header">Всего очков</td>
+                  <td className="olympiad-score__table-ceil-header">Время</td>
                 </tr>
                 {
                   this.state.results.map((item, index) => {

@@ -1,5 +1,12 @@
 @import '../../styles/constants.scss';
 
+.ModalWindow-paper-1,
+.ModalWindow-paper-8,
+.ModalWindow-paper-12 {
+  width: auto !important;
+  height: auto !important;
+}
+
 .modal {
 
   &__content {

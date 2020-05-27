@@ -13,9 +13,26 @@
     justify-content: center;
   }
 
+  &-upload-files {
+    margin-top: 20px;
+    border: 2px solid #c2c2c2;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
   &-general {
     display: flex;
     justify-content: space-between;
+
+    &__helper {
+      display: flex;
+
+      & .button-all {
+        width: 20px;
+        height: 20px;
+        margin: 0 0 0 10px;
+      }
+    }
 
     &-info {
       margin-top: 20px;
@@ -88,6 +105,7 @@
         margin-top: 40px;
         display: flex;
         justify-content: center;
+        align-items: center;
         margin-bottom: 20px;
       }
 

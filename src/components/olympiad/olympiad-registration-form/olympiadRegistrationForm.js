@@ -18,6 +18,8 @@ class OlympiadRegistrationFormComponent extends React.Component {
     currentValue: 'Олимпиада',
     olympiadId: 0,
     olympiadList: [],
+    modalText: 'Вы можете начать участие в олимпиаде перейдя в личный кабинет.',
+    headerText: 'Спасибо за регистрацию!',
   }
 
   handleChangeOlymp = name => {
@@ -34,10 +36,27 @@ class OlympiadRegistrationFormComponent extends React.Component {
       headers: { 'Authorization': 'Token ' + this.state.token }
     };
     axios.post(`${baseUrl}/olympiad/registration`, { olympiad_id: this.state.olympiadId }, params)
-      .then(data => {
+      .then(_data => {
+        this.setState({
+          headerText: 'Спасибо за регистрацию!',
+          modalText: 'Вы можете начать участие в олимпиаде перейдя в личный кабинет.',
+        });
         this.props.closeWindowComp();
       })
-      .catch(e => { console.log(e) });
+      .catch(e => {
+        let errorLabel;
+        if (Object.values(e)[2].status === 400) {
+          errorLabel = 'Вы уже зарегестрированы на эту олимпиаду';
+        } else {
+          errorLabel = 'Возникла ошибка на сервере. Пожалуйста, попробуйте позже';
+        };
+
+        this.setState({
+          headerText: '',
+          modalText: errorLabel,
+        });
+        this.props.closeWindowComp();
+      });
   }
 
   getOlympiads = () => {
@@ -75,11 +94,8 @@ class OlympiadRegistrationFormComponent extends React.Component {
             content={'Регистрация'}
             action={this.handleRegisatration} />
         </div>
-        <MyModal headerText={'Спасибо за регистрацию!'}
-                  descriptionText={`
-                    Каждому участнику придет уведомление на почту
-                    для  подтверждения участия в олимпиаде.
-                  `} />
+        <MyModal headerText={this.state.headerText}
+                  descriptionText={this.state.modalText} />
       </div>
     );
   }

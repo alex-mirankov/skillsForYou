@@ -1,4 +1,4 @@
-import { GET_USER_TOKEN, DELETE_USER_TOKEN, SET_USER_INFO } from './index';
+import { GET_USER_TOKEN, DELETE_USER_TOKEN } from './index';
 
 export const getUserToken = (token) => {
 	return {

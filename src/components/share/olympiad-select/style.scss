@@ -32,6 +32,7 @@
     border-radius: 10px;
     background: white;
     color: $baseSelectColor;
+    overflow-y: auto;
 
     &-value {
       display: flex;
