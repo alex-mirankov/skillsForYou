@@ -31,23 +31,29 @@ class Filter extends Component {
   }
 
   goCreateTest(testType) {
-    let alert = true;
-    if (this.props.editTestState) {
-      this.props.clearEditTest();
-      this.props.setQuests([]);
-      this.props.setResults([]);
-    }
-    if (testType !== this.props.testType && this.props.testType !== null) {
-      alert = window.confirm("При переходе на создание теста другого типа, все созданыые вопросы будут удалены, перейти?");
-      if (alert) {
+    if (this.props.userTeacherStatus) {
+      let alert = true;
+      if (this.props.editTestState) {
+        this.props.clearEditTest();
         this.props.setQuests([]);
+        this.props.setResults([]);
+      }
+      if (testType !== this.props.testType && this.props.testType !== null) {
+        alert = window.confirm("При переходе на создание теста другого типа, все созданыые вопросы будут удалены, перейти?");
+        if (alert) {
+          this.props.setQuests([]);
+          this.props.history.push('/tests/createTest/' + testType)
+          this.props.changeTestType(testType)
+        }
+      }
+      else {
         this.props.history.push('/tests/createTest/' + testType)
-        this.props.changeTestType(testType)
       }
     }
     else {
-      this.props.history.push('/tests/createTest/' + testType)
+      alert("Вы не учитель");
     }
+
 
   }
   goToTheTests() {
