@@ -18,7 +18,7 @@ export class OlympicCard extends React.Component {
 						<p className="olympic-card-content-info__text">{content}
 							<span className="olympic-card-content-info__text-span"> прямо сейчас!</span>
 						</p>
-						<p className="olympic-card-content-info__date">Ближайшая олимпиада: {olympiadStartDate ? olympiadStartDate : 'нет созданных олимпиад'}</p>
+						{/* <p className="olympic-card-content-info__date">Ближайшая олимпиада: {olympiadStartDate ? olympiadStartDate : 'нет созданных олимпиад'}</p> */}
 						<ButtonAll content={'Участвовать'} action={action} />
 					</div>
 				</div>

@@ -33,6 +33,7 @@
     background: white;
     color: $baseSelectColor;
     overflow-y: auto;
+    z-index: 10;
 
     &-value {
       display: flex;

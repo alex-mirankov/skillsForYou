@@ -22,7 +22,7 @@ export class OlympiadEnterContainerWithRedux extends React.Component {
         <OlympicCard
           header={'Индивидуальная олимпиада'}
           image={olympicSolo}
-          olympiadStartDate={this.state.olympiadStartDate}
+          // olympiadStartDate={this.state.olympiadStartDate}
           content={'Любишь сражаться в одиночку?! Тогда прими участие'}
           action={this.goToSoloOlymp}
         />
@@ -37,10 +37,13 @@ export class OlympiadEnterContainerWithRedux extends React.Component {
     axios.get(`${baseUrl}/olympiad`, params)
       .then(data => {
         let arrayWithDates = [];
-        let filteredArray = data.data.filter(element => new Date(element.start_olympiad) > new Date());
+        console.log(data.data);
+        let filteredArray = data.data.filter(element => new Date(element.start_olympiad.split('T')[0]) >= new Date(new Date().toLocaleDateString()));
+        console.log(filteredArray);
         filteredArray.forEach(element => {
           arrayWithDates.push(new Date(element.start_olympiad));
         });
+
         let min = arrayWithDates[0];
         let max;
         arrayWithDates.forEach((element, i) => {
