@@ -417,9 +417,11 @@ class createTestForm extends Component {
               </div>
             </div>
             <div className="create-block__button-div">
-              <button className="create-block__form-button" type="button" onClick={this.handleSubmit} disabled={this.props.results.length === 0 || this.props.questions.length === 0}>
+              {this.props.userTeacherStatus 
+                ? <button className="create-block__form-button" type="button" onClick={this.handleSubmit} disabled={this.props.results.length === 0 || this.props.questions.length === 0}>
                 Создать
-        </button>
+                  </button> 
+                : null}
               <button className="create-block__form-button" type="button" onClick={reset}>
                 Очистить поля
         </button>
