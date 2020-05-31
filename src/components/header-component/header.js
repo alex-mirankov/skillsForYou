@@ -45,13 +45,18 @@ class HeaderComponent extends Component {
   }
 
   logout = () => {
+    this.setState({
+      isTeacher: null
+    });
     localStorage.removeItem('token');
     this.props.DeleteUserToken();
   };
 
   HeaderLayout = () => {
     const isMainPage = false;
-    this.checkUserIsTeacher();
+    if (!this.state.isTeacher) {
+      this.checkUserIsTeacher();
+    }
     return (
       <header className={isMainPage ? 'header-main-page' : 'header-main-page-not-main'}>
         <div className="header-main-page-control" style={{ display: this.regPanel }}>
@@ -74,28 +79,28 @@ class HeaderComponent extends Component {
         <div className="header-main-page-control" style={{ display: this.controlPanel }}>
           <React.Fragment>
             <button className="header-main-page-control__btn"
-                    onClick={this.logout}>
-                Выйти
+              onClick={this.logout}>
+              Выйти
             </button>
             <button className="header-main-page-control__btn"
-                    onClick={() => this.navigateTo('/myself-cabinet')}>
-                Личный кабинет
+              onClick={() => this.navigateTo('/myself-cabinet')}>
+              Личный кабинет
             </button>
             <button className="header-main-page-control__btn"
-                    onClick={() => this.navigateTo('/')}>
-                На главную
+              onClick={() => this.navigateTo('/')}>
+              На главную
             </button>
-            {/* <button className="header-main-page-control__btn"
-                    onClick={() => this.navigateTo('/tests/0')}>
-                Тесты
-            </button> */}
+            <button className="header-main-page-control__btn"
+              onClick={() => this.navigateTo('/tests/0')}>
+              Тесты
+            </button>
             {
               this.state.isTeacher
-              ? <button className="header-main-page-control__btn"
-                        onClick={() => this.navigateTo('/create-olympiad')}>
-                    Создать олимпиаду
+                ? <button className="header-main-page-control__btn"
+                  onClick={() => this.navigateTo('/create-olympiad')}>
+                  Создать олимпиаду
                 </button>
-              : null
+                : null
             }
           </React.Fragment>
         </div>
