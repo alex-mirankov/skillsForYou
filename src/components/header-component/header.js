@@ -17,6 +17,10 @@ class HeaderComponent extends Component {
   }
 
   componentDidMount() {
+    this.checkUserIsTeacher();
+  }
+
+  checkUserIsTeacher = () => {
     let params = {
       headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
     };
@@ -47,7 +51,7 @@ class HeaderComponent extends Component {
 
   HeaderLayout = () => {
     const isMainPage = false;
-
+    this.checkUserIsTeacher();
     return (
       <header className={isMainPage ? 'header-main-page' : 'header-main-page-not-main'}>
         <div className="header-main-page-control" style={{ display: this.regPanel }}>

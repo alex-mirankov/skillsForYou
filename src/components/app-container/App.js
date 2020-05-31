@@ -35,6 +35,7 @@ class AppComponent extends Component {
     }
   }
   render() {
+    this.checkAuth();
     return (
       <div className="app">
         <Header className="app-header"
